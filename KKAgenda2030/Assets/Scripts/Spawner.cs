@@ -7,16 +7,15 @@ public class Spawner : MonoBehaviour
     public GameObject player;
     public GameObject[] rubbish;
     public float spawnTime = 1f;
-    //public float reSpawnTime = 3f;
+    
     public Transform[] spawnPoints;
+    public float draggingtimer = 0.5f;
     public bool isEmpty;
  
 
     // Use this for initialization
     void Start()
-    {
-        //AOS = GetComponent<DragObjects>().OnMouseDrag();
-        player.GetComponent<DragObjects>().OnMouseDrag();
+    {        
         InvokeRepeating("Spawn", spawnTime,spawnTime);
         isEmpty = false;
     }
@@ -26,37 +25,45 @@ public class Spawner : MonoBehaviour
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         int rubbishObjectsIndex = Random.Range(0, rubbish.Length);
 
-        Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        isEmpty = true;
-               
-        //if () 
-        //{
-        //    Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        //    isEmpty = true;
-        //}
+        //Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        //isEmpty = true;
 
-        //else
-
-        //{
-        //    isEmpty = false;
-        //} 
-      
-    }
-
-   /* void ReSpawn(Transform[] spawnPoints)
-    {
-
-        if (rubbish == null)
+        if (Input.GetKey(KeyCode.Mouse0))           
         {
+
+            isEmpty = true;
+            player.GetComponent<DragObjects>().OnMouseDrag();
+
+            if (isEmpty == true)
+            {
+                Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+                draggingtimer -= Time.deltaTime; 
+            }
+
+        }
+
+        else
+
+        { 
             isEmpty = false;
-            print("On tyhjänä");
-        } 
+        }
+
     }
 
-    private void FixedUpdate()
-    {
-        ReSpawn(spawnPoints);
-    } */
+    /* void ReSpawn(Transform[] spawnPoints)
+     {
+
+         if (rubbish == null)
+         {
+             isEmpty = false;
+             print("On tyhjänä");
+         } 
+     }
+
+     private void FixedUpdate()
+     {
+         ReSpawn(spawnPoints);
+     } */
 }
 
 
