@@ -8,11 +8,6 @@ public class DragObjects : MonoBehaviour {
     Vector3 dist;
     float posX;
     float posY;
-   
-    private void Start()
-    {
-        
-    }
 
     public void OnMouseDown()
     {

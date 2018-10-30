@@ -4,8 +4,7 @@ using UnityEngine;
 
 
 public class TrashDestroy: MonoBehaviour {
-    public List<TrashType> acceptTypes;
-          
+    public List<TrashType> acceptTypes;          
 
     private void OnTriggerEnter(Collider other)
     {      
@@ -13,8 +12,13 @@ public class TrashDestroy: MonoBehaviour {
         {   
             Destroy(other.gameObject);
 
-            print(other.gameObject.tag);
-        }
-        
+            TrashGameManager.instance.AddedPoints();
+            TrashGameManager.instance.UpdatePoints();
+
+
+            //print(other.gameObject.tag);
+
+        }        
+
     }
 }

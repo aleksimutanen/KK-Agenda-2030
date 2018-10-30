@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TrashGameManager : MonoBehaviour {
 
     public static TrashGameManager instance = null;
 
+    public Text statusText;
+    public Text scoreText;
+
     public List<GameObject> Trashes;
     public GameObject spawner;
     public GameObject player;
+    private int score = 0;
 
     void Awake()
     {
@@ -29,6 +34,21 @@ public class TrashGameManager : MonoBehaviour {
         spawner = GetComponent<GameObject>();
         player = GetComponent<GameObject>();
 
+    }
+
+    public void UpdatePoints()
+    {
+        scoreText.text = " " + score;
+    }
+
+    public void AddedPoints()
+    {
+        score += 25;
+    }
+
+    public void DeletingPoints()
+    {
+        score -= 30;
     }
 
     // Update is called once per frame

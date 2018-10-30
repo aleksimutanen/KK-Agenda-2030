@@ -3,68 +3,63 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private GameObject AOS;
     public GameObject player;
     public GameObject[] rubbish;
-    public float spawnTime = 1f;
+    private GameObject[] rubs;
+    public Transform spawnPoint;
+    public float spawnTime = 2f;
+    public float resSpawnTimer = 0f;
+    public float lastSpawn;
+    private int rubIndex;
     
-    public Transform[] spawnPoints;
-    public float draggingtimer = 0.5f;
-    public bool isEmpty;
- 
 
-    // Use this for initialization
+    
     void Start()
-    {        
-        InvokeRepeating("Spawn", spawnTime,spawnTime);
-        isEmpty = false;
+    {       
+        InvokeRepeating("Spawn", spawnTime, resSpawnTimer);
     }
+
+
 
     public void Spawn()
     {
-        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-        int rubbishObjectsIndex = Random.Range(0, rubbish.Length);
+        rubs = new GameObject[rubbish.Length];
 
-        //Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        //isEmpty = true;
 
-        if (Input.GetKey(KeyCode.Mouse0))           
+        for (int i = 0; i < rubbish.Length; i++)
         {
+           // rubs[i] = Instantiate(rubbish[Random.Range(0, 2)]) as GameObject;
 
-            isEmpty = true;
-            player.GetComponent<DragObjects>().OnMouseDrag();
+            rubs[i] = Instantiate(rubbish[i]) as GameObject;
+            
 
-            if (isEmpty == true)
+            if (Time.time > resSpawnTimer + lastSpawn)
             {
-                Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-                draggingtimer -= Time.deltaTime; 
+              // rubs[i] = Instantiate(rubbish[Random.Range(0, rubbish.Length)]) as GameObject;
+               
+                
+
+               // print(rubs[i]);
+               print(i);
+               lastSpawn = Time.time;
             }
-
-        }
-
-        else
-
-        { 
-            isEmpty = false;
+            else
+            {
+               CancelInvoke("Spawn");
+            }
+            
         }
 
     }
 
-    /* void ReSpawn(Transform[] spawnPoints)
-     {
+    //void Update()
+    //{
+    //    Spawn();
+    //}
 
-         if (rubbish == null)
-         {
-             isEmpty = false;
-             print("On tyhjänä");
-         } 
-     }
-
-     private void FixedUpdate()
-     {
-         ReSpawn(spawnPoints);
-     } */
 }
+
+
 
 
 
