@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum GameState { Level1, Level2, Level3 };
+
 public class TrashGameManager : MonoBehaviour {
 
     public static TrashGameManager instance = null;
 
     public Text statusText;
     public Text scoreText;
-
+    public GameState state;
     public List<GameObject> Trashes;
     public GameObject spawner;
     public GameObject player;
