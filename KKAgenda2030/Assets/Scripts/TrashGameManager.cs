@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum GameState { Level1, Level2, Level3 };
+public enum GameState
+           { Level1,
+             Level2,
+             Level3,
+             MainMenu };
+
 
 public class TrashGameManager : MonoBehaviour {
 
@@ -13,10 +18,11 @@ public class TrashGameManager : MonoBehaviour {
     public Text statusText;
     public Text scoreText;
     public GameState state;
-    public List<GameObject> Trashes;
-    public GameObject spawner;
-    public GameObject player;
+
     private int score = 0;
+    public TrashDestroy[] TrashCans;
+    public bool levelIsCompleted;
+    public int listIsFull;
 
     void Awake()
     {
@@ -27,15 +33,36 @@ public class TrashGameManager : MonoBehaviour {
         }
         
         //if not, set instance to this
-        instance = this;
-        print("TrashGameManager is added to game");
+            instance = this;
+            print("TrashGameManager is added to game");
     }
 
     void Start()
-    {
-        spawner = GetComponent<GameObject>();
-        player = GetComponent<GameObject>();
+    {         
+        TrashCans = FindObjectsOfType<TrashDestroy>();
+        listIsFull = GetComponent<TrashDestroy>().maxOfList;
+    }
 
+
+    public bool AllTrashcansFull()
+    {
+            levelIsCompleted = false;
+
+        foreach (var can in TrashCans)
+        {
+            if (can.isFull)
+            {
+                print("Taso on Suoritettu");
+                levelIsCompleted = true;
+                
+            }
+
+            if (levelIsCompleted == true)
+            {
+                SceneManager.LoadScene("");
+            }
+        }
+        return levelIsCompleted;
     }
 
     public void UpdatePoints()
@@ -45,7 +72,6 @@ public class TrashGameManager : MonoBehaviour {
 
     public void AddedPoints()
     {
-        score += 25;
     }
 
     public void DeletingPoints()
@@ -53,8 +79,20 @@ public class TrashGameManager : MonoBehaviour {
         score -= 30;
     }
 
+
+    public void CheckCurrentActiveScene()
+    {
+
+    }
+
+
+
+
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update ()
+    {
+       CheckCurrentActiveScene();
+
+    }
+
 }

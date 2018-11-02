@@ -7,7 +7,7 @@ public class TrashDestroy: MonoBehaviour {
     public List<TrashType> acceptTypes;
     public List<GameObject> Success = new List<GameObject>();
     public int maxOfList = 5;
-    private int sizeOfList;
+    public int sizeOfList;
     public bool isFull = false;
 
     private void OnTriggerEnter(Collider other)
@@ -24,10 +24,18 @@ public class TrashDestroy: MonoBehaviour {
             TrashGameManager.instance.UpdatePoints();
 
             if (sizeOfList == maxOfList)
-            {
+            {             
+
                 isFull = true;
                 print("olen täysi");
+
+
+             //  TrashGameManager.instance.AllTrashcansFull();
+
+             
             }
+
+           
 
         }        
 

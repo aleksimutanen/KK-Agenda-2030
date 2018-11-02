@@ -5,7 +5,14 @@ using UnityEngine;
 public class DeletingTrash : MonoBehaviour
 {
     public List<TrashType> disqTypes;
-   
+    public GameObject obj;
+    Spawner spwn;
+
+    private void Start()
+    {
+        spwn = FindObjectOfType<Spawner>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         
@@ -16,24 +23,12 @@ public class DeletingTrash : MonoBehaviour
             TrashGameManager.instance.UpdatePoints();
 
             other.gameObject.SetActive(false);
-           
-            other.GetComponent<Spawner>().rubbish.Add(gameObject);
+                      
+            spwn.rubbish.Insert(1, obj);
+            print("roskia lisätty listaan");           
                                 
 
-        }
-
-       
+        }       
 
     }
-
-    
-        
-      
-    
-
-
-
-
-
-
 }

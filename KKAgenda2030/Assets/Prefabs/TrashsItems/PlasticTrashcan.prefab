@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136784123186274724}
   - component: {fileID: 54086069920459248}
   - component: {fileID: 114241992492000430}
+  - component: {fileID: 114068164420293796}
   m_Layer: 0
   m_Name: PlasticTrashcan
   m_TagString: Untagged
@@ -101,6 +102,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &114068164420293796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860588644716744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467d456113c0c0e4f95e09160f75146f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disqTypes: 0000000001000000
+  obj: {fileID: 1735283472664090, guid: 307634492af0a01418a908b85308f43d, type: 2}
 --- !u!114 &114241992492000430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,7 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptTypes: 02000000
-  disqTypes: 0000000001000000
+  Success: []
+  maxOfList: 5
+  isFull: 0
 --- !u!136 &136784123186274724
 CapsuleCollider:
   m_ObjectHideFlags: 1
