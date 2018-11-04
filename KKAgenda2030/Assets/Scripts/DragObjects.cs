@@ -22,6 +22,7 @@ public class DragObjects : MonoBehaviour {
             Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             transform.position = worldPos;
+            // print("Siirtyyy!");
            
     }
 

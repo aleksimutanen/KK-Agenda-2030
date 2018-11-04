@@ -8,6 +8,7 @@ public class DeletingTrash : MonoBehaviour
     public GameObject obj;
     Spawner spwn;
 
+
     private void Start()
     {
         spwn = FindObjectOfType<Spawner>();

@@ -8,7 +8,7 @@ public enum GameState
            { Level1,
              Level2,
              Level3,
-             MainMenu };
+             GameMenu };
 
 
 public class TrashGameManager : MonoBehaviour {
@@ -17,12 +17,13 @@ public class TrashGameManager : MonoBehaviour {
 
     public Text statusText;
     public Text scoreText;
-    public GameState state;
-
+    public GameState State { get; private set; }
+   
     private int score = 0;
     public TrashDestroy[] TrashCans;
-    public bool levelIsCompleted;
-    public int listIsFull;
+    public bool levelIsCompleted = false;
+    public float endTimer = 0.0f;
+   
 
     void Awake()
     {
@@ -38,11 +39,11 @@ public class TrashGameManager : MonoBehaviour {
     }
 
     void Start()
-    {         
+    {
         TrashCans = FindObjectsOfType<TrashDestroy>();
-        listIsFull = GetComponent<TrashDestroy>().maxOfList;
+        CheckCurrentActiveScene();
     }
-
+   
 
     public bool AllTrashcansFull()
     {
@@ -50,17 +51,24 @@ public class TrashGameManager : MonoBehaviour {
 
         foreach (var can in TrashCans)
         {
-            if (can.isFull)
+            if (!can.isFull)
             {
-                print("Taso on Suoritettu");
+                print(can.isFull);
+                print(levelIsCompleted);
+                print("bool trying changed");
                 levelIsCompleted = true;
-                
+                print(levelIsCompleted);
+                print("bool is changed");
+                print(levelIsCompleted);
+
             }
 
-            if (levelIsCompleted == true)
-            {
-                SceneManager.LoadScene("");
-            }
+            //if( levelIsCompleted == true)
+            //{
+            //    endTimer += Time.deltaTime *4;
+            //    print(endTimer);
+            //} 
+
         }
         return levelIsCompleted;
     }
@@ -72,6 +80,7 @@ public class TrashGameManager : MonoBehaviour {
 
     public void AddedPoints()
     {
+        score += 25;
     }
 
     public void DeletingPoints()
@@ -80,19 +89,32 @@ public class TrashGameManager : MonoBehaviour {
     }
 
 
-    public void CheckCurrentActiveScene()
+    private void CheckCurrentActiveScene()
     {
+        var currentSceneName = SceneManager.GetActiveScene().name;
+        
+        if (currentSceneName == "Joni_devscene")
+        {                  
+            State = GameState.Level1;
+        }
+
+        //if (currentSceneName == "Joni_devscene")
+        //{
+        //    State = GameState.Level2;
+        //}
+
+
+        //if (currentSceneName == "Joni_devscene")
+        //{
+        //    State = GameState.Level3;
+        //}
+
+        //if (currentSceneName == "MenuScene")
+        //{
+        //    State = GameState.GameMenu;
+        //}
 
     }
 
-
-
-
-    // Update is called once per frame
-    void Update ()
-    {
-       CheckCurrentActiveScene();
-
-    }
 
 }
