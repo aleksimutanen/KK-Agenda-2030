@@ -21,6 +21,7 @@ public class TrashGameManager : MonoBehaviour {
    
     private int score = 0;
     public TrashDestroy[] TrashCans;
+    Spawner spwn;
     public bool levelIsCompleted = false;
     public float endTimer = 0.0f;
    
@@ -42,6 +43,7 @@ public class TrashGameManager : MonoBehaviour {
     {
         TrashCans = FindObjectsOfType<TrashDestroy>();
         CheckCurrentActiveScene();
+        spwn = FindObjectOfType<Spawner>();
     }
    
 
@@ -63,11 +65,10 @@ public class TrashGameManager : MonoBehaviour {
 
             }
 
-            //if( levelIsCompleted == true)
+            //if (levelIsCompleted == true)
             //{
-            //    endTimer += Time.deltaTime *4;
-            //    print(endTimer);
-            //} 
+            //    SceneManager.LoadScene("Menuscene");
+            //}
 
         }
         return levelIsCompleted;
@@ -86,6 +87,11 @@ public class TrashGameManager : MonoBehaviour {
     public void DeletingPoints()
     {
         score -= 30;
+    }
+
+    public void ResSpawning()
+    {
+        spwn.Spawn();
     }
 
 

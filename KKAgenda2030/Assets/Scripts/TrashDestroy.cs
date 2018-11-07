@@ -24,6 +24,7 @@ public class TrashDestroy: MonoBehaviour {
                         
             TrashGameManager.instance.AddedPoints();
             TrashGameManager.instance.UpdatePoints();
+            TrashGameManager.instance.ResSpawning();
 
             if (sizeOfList == maxOfList)
             {             

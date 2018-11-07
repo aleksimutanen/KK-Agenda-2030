@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     public float spawnTime = 2f;
     public float resSpawnTimer;
     public float lastSpawn;
+    public float spawnStartertime;
    
 
 
@@ -17,8 +18,8 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Spawn", spawnTime, resSpawnTimer);
-       // Spawn();
+       // InvokeRepeating("Spawn", spawnTime, resSpawnTimer);
+        Spawn();
     }
 
 
@@ -26,7 +27,7 @@ public class Spawner : MonoBehaviour
     public void Spawn()
     {
 
-        if (Time.time > resSpawnTimer + lastSpawn)
+        if (spawnStartertime < resSpawnTimer + lastSpawn)
         {
             var rnd = Random.Range(0, rubbish.Count);
             
@@ -41,11 +42,11 @@ public class Spawner : MonoBehaviour
 
         if (rubbish.Count.Equals(0))
         {
-          //  print("Lista on tyhjä");
+           print("Lista on tyhjä");
 
            // TrashGameManager.instance.AllTrashcansFull();
 
-            CancelInvoke("Spawn");
+           CancelInvoke("Spawn");
 
         }
 
