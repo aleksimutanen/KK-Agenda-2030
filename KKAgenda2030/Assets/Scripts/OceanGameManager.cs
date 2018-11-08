@@ -8,7 +8,9 @@ public class OceanGameManager : MonoBehaviour {
 
     public List<Collectable> collectables = new List<Collectable>();
     public List<Avoidable> avoidables = new List<Avoidable>();
-    List<Vector3> locations = new List<Vector3>();
+
+    public int foodEaten;
+    public int trashEaten;
 
     public float objectDistanceThreshold;
 
@@ -16,11 +18,15 @@ public class OceanGameManager : MonoBehaviour {
     public int trashAmount;
     public GameObject foodPrefab;
     public GameObject trashPrefab;
-
     public Transform foodFolder;
     public Transform trashFolder;
 
     public LayerMask collectable;
+
+    public int score;
+    [SerializeField] int foodScore;
+    [SerializeField] int trashPenalty;
+
 
     void Awake() {
         if (instance) {
@@ -79,7 +85,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     Vector3 RandomizePosition() {
-        Vector3 pos = new Vector3(Random.Range(-8f, 8f), 0.1f, Random.Range(-4.5f, 15.5f));
+        Vector3 pos = new Vector3(Random.Range(-11f, 11f), 0.1f, Random.Range(-10f, 8.5f));
         return pos;
     }
 
@@ -94,18 +100,43 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void AddFoodToList(Collectable food) {
-        if (collectables.Contains(food))
-            return;
-        else
-            collectables.Add(food);
-        if (collectables.Count == foodAmount)
-            print("all food found");        
+        foodEaten++;
+        score += foodScore;
+        if (foodEaten == foodAmount) {
+            print("all food found");
+            EndGame();
+        }
+
+        //if (collectables.Contains(food))
+        //    return;
+        //else
+        //    collectables.Add(food);
+        //if (collectables.Count == foodAmount)
+        //    print("all food found");        
     }
 
     public void AddTrashToList(Avoidable trash) {
-        if (avoidables.Contains(trash))
-            return;
-        else
-            avoidables.Add(trash);
+        trashEaten++;
+        score -= trashPenalty;
+        //if (avoidables.Contains(trash))
+        //    return;
+        //else
+        //    avoidables.Add(trash);
+    }
+
+    public void HitNet() {
+        score -= trashPenalty * 2;
+    }
+
+    void EndGame() {
+        if (score > 80) {
+            print("you get 3 stars");
+        } else if (score > 50) {
+            print("you get 2 stars");
+        } else if (score > 20) {
+            print("you get 1 star");
+        } else {
+            print("you get no stars");
+        }
     }
 }

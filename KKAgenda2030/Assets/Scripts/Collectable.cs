@@ -9,6 +9,7 @@ public class Collectable : MonoBehaviour {
             print("food found");
             OceanGameManager.instance.AddFoodToList(this);
             gameObject.SetActive(false);
+            FindObjectOfType<CharacterMover>().GrowScale();
         }
     }
 }
