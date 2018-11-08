@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136269748422631270}
   - component: {fileID: 54322624679473326}
   - component: {fileID: 114164892820201756}
+  - component: {fileID: 114793267152576710}
   m_Layer: 0
   m_Name: GlassTrashcan
   m_TagString: Untagged
@@ -113,6 +114,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptTypes: 00000000
+  Success: []
+  maxOfList: 5
+  isFull: 0
+--- !u!114 &114793267152576710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676389456609718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467d456113c0c0e4f95e09160f75146f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disqTypes: 0100000002000000
+  obj: {fileID: 1259928199536676, guid: 859eba58868652e47a367cc6f09ee8ab, type: 2}
 --- !u!136 &136269748422631270
 CapsuleCollider:
   m_ObjectHideFlags: 1

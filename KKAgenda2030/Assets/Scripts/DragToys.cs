@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragObjects : MonoBehaviour {
+public class DragToys : MonoBehaviour
+{
 
-    public GameObject spawnerObject;
     Vector3 dist;
     float posX;
     float posY;
@@ -18,14 +18,17 @@ public class DragObjects : MonoBehaviour {
     }
 
     public void OnMouseDrag()
-    {        
-            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-            transform.position = worldPos;
-            // print("Siirtyyy!");
-           
+    {
+        Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+        transform.position = worldPos;
+        //print("Siirtyyy!");
+
+      
     }
 
 
 
 }
+
+

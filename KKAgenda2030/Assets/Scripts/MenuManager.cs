@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("Joni_devscene");
+    }
+
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

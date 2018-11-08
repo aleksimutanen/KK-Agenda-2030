@@ -3,62 +3,54 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private GameObject AOS;
     public GameObject player;
-    public GameObject[] rubbish;
-    public float spawnTime = 1f;
-    //public float reSpawnTime = 3f;
-    public Transform[] spawnPoints;
-    public bool isEmpty;
- 
+    public List<GameObject> rubbish;
+    public List<GameObject> collecteds;
+    public Transform spawnPoint;
+    public float spawnTime = 2f;
+    public float resSpawnTimer;
+    public float lastSpawn;
+    public float spawnStartertime;
+   
 
-    // Use this for initialization
+
+
+
     void Start()
     {
-        //AOS = GetComponent<DragObjects>().OnMouseDrag();
-        player.GetComponent<DragObjects>().OnMouseDrag();
-        InvokeRepeating("Spawn", spawnTime,spawnTime);
-        isEmpty = false;
+       // InvokeRepeating("Spawn", spawnTime, resSpawnTimer);
+        Spawn();
     }
+
+
 
     public void Spawn()
     {
-        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-        int rubbishObjectsIndex = Random.Range(0, rubbish.Length);
 
-        Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        isEmpty = true;
-               
-        //if () 
-        //{
-        //    Instantiate(rubbish[rubbishObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        //    isEmpty = true;
-        //}
-
-        //else
-
-        //{
-        //    isEmpty = false;
-        //} 
-      
-    }
-
-   /* void ReSpawn(Transform[] spawnPoints)
-    {
-
-        if (rubbish == null)
+        if (spawnStartertime < resSpawnTimer + lastSpawn)
         {
-            isEmpty = false;
-            print("On tyhjänä");
-        } 
+            var rnd = Random.Range(0, rubbish.Count);
+            
+
+            Instantiate(rubbish[rnd]);
+            rubbish.RemoveAt(rnd);
+              
+
+            print(rnd);
+            lastSpawn = Time.time;
+        }
+
+        if (rubbish.Count.Equals(0))
+        {
+           print("Lista on tyhjä");
+
+           // TrashGameManager.instance.AllTrashcansFull();
+
+           CancelInvoke("Spawn");
+
+        }
+
     }
 
-    private void FixedUpdate()
-    {
-        ReSpawn(spawnPoints);
-    } */
+
 }
-
-
-
-

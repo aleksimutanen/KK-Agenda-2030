@@ -6,4 +6,5 @@ public enum TrashType { Glass, Compost, Plastic, Waste };
 
 public class Trash : MonoBehaviour {
     public TrashType kind;
+    
 }
