@@ -6,7 +6,11 @@ using UnityEngine;
 public class GrandManager : MonoBehaviour {
 
     public static GrandManager instance;
-    bool paused;
+    public bool paused;
+
+    public GameObject mainMenuFolder;
+
+    public GameObject oceanGame;
 
 	void Start () {
         if (instance)
@@ -29,5 +33,10 @@ public class GrandManager : MonoBehaviour {
             Time.timeScale = 1;
             return false;
         }
+    }
+
+    public void LaunchOceanGame() {
+        mainMenuFolder.SetActive(false);
+        oceanGame.SetActive(true);
     }
 }
