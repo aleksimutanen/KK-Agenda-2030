@@ -5,16 +5,11 @@ public class Spawner : MonoBehaviour
 {
     public GameObject player;
     public List<GameObject> rubbish;
-    public List<GameObject> collecteds;
     public Transform spawnPoint;
     public float spawnTime = 2f;
     public float resSpawnTimer;
     public float lastSpawn;
     public float spawnStartertime;
-   
-
-
-
 
     void Start()
     {
@@ -30,8 +25,8 @@ public class Spawner : MonoBehaviour
         if (spawnStartertime < resSpawnTimer + lastSpawn)
         {
             var rnd = Random.Range(0, rubbish.Count);
-            
-
+           
+           
             Instantiate(rubbish[rnd]);
             rubbish.RemoveAt(rnd);
               
@@ -44,9 +39,8 @@ public class Spawner : MonoBehaviour
         {
            print("Lista on tyhjä");
 
-           // TrashGameManager.instance.AllTrashcansFull();
+           TrashGameManager.instance.LevelCompleted();
 
-           CancelInvoke("Spawn");
 
         }
 

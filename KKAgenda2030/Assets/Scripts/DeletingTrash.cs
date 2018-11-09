@@ -28,7 +28,7 @@ public class DeletingTrash : MonoBehaviour
             TrashGameManager.instance.ResSpawning();
             print("Spawnataan uusi roska");
 
-            spwn.rubbish.Insert(1, obj);
+            spwn.rubbish.Insert(0, obj);
             print("roskia lisätty listaan");           
                                 
 

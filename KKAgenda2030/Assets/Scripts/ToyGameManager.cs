@@ -55,7 +55,7 @@ public class ToyGameManager : MonoBehaviour {
             //}
 
         }
-        return !levelIsCompleted;
+        return levelIsCompleted;
     }
 
 

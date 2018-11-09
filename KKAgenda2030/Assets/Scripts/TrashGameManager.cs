@@ -20,10 +20,9 @@ public class TrashGameManager : MonoBehaviour {
     public GameState State { get; private set; }
    
     private int score = 0;
-    public TrashDestroy[] TrashCans;
-    Spawner spwn;
-    public bool levelIsCompleted = false;
-    public float endTimer = 0.0f;
+    public Spawner spwn;
+    public bool levelCompleted = false;
+    
    
 
     void Awake()
@@ -41,37 +40,21 @@ public class TrashGameManager : MonoBehaviour {
 
     void Start()
     {
-        TrashCans = FindObjectsOfType<TrashDestroy>();
+        
         CheckCurrentActiveScene();
         spwn = FindObjectOfType<Spawner>();
     }
-   
 
-    public bool AllTrashcansFull()
+
+    public void LevelCompleted()
     {
-            levelIsCompleted = false;
+        levelCompleted = false;
 
-        foreach (var can in TrashCans)
+        if (spwn.rubbish.Count.Equals(0))
         {
-            if (!can.isFull)
-            {
-                print(can.isFull);
-                print(levelIsCompleted);
-                print("bool trying changed");
-                levelIsCompleted = true;
-                print(levelIsCompleted);
-                print("bool is changed");
-                print(levelIsCompleted);
-
-            }
-
-            //if (levelIsCompleted == true)
-            //{
-            //    SceneManager.LoadScene("Menuscene");
-            //}
-
+            levelCompleted = true;
+            print(levelCompleted);
         }
-        return levelIsCompleted;
     }
 
     public void UpdatePoints()
