@@ -85,7 +85,7 @@ public class CharacterMover : MonoBehaviour {
         if (Input.GetKey(KeyCode.Mouse0)) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitGround, Mathf.Infinity, background) && Vector3.Distance(transform.position, hitGround.point) > 1f &&
+            if (Physics.Raycast(ray, out hitGround, Mathf.Infinity, background) && Vector3.Distance(transform.position, hitGround.point) > 0.75f &&
                 !pushing && thisWall.Count == 0 && !accelerating) {
                 speedFactor += Time.deltaTime * acceleration;
                 speedFactor = Mathf.Clamp01(speedFactor);

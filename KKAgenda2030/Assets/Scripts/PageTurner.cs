@@ -41,7 +41,7 @@ public class PageTurner : MonoBehaviour {
         //}
     }
 
-    void PreviousPage() {
+    public void PreviousPage() {
         if (pageIndex >= 1) {
             pages[pageIndex - 1].GetComponent<Animator>().Play("PageBack");
             pageIndex--;
@@ -49,7 +49,7 @@ public class PageTurner : MonoBehaviour {
         }
     }
 
-    void NextPage() {
+    public void NextPage() {
         if (pageIndex < pages.Length) {
             pages[pageIndex].GetComponent<Animator>().Play("Page");
             pageIndex++;
