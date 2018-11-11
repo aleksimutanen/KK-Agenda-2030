@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -479,12 +479,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnerPoints:
-  - {fileID: 879259054}
-  - {fileID: 1821716114}
+  - {fileID: 879259055}
+  - {fileID: 1821716115}
   SpawnerObjects:
   - {fileID: 1210577082797330, guid: 98c08e0b50c9fc540b904fb39225ae28, type: 2}
   - {fileID: 1676389456609718, guid: 6dc90d9baf68a264a9043f8002143fed, type: 2}
   - {fileID: 1860588644716744, guid: 4571b55f5ee18ef4a88d0878d13cc554, type: 2}
+  spawnStartertime: 0
+  resSpawnTimer: 3
+  lastSpawn: 0
 --- !u!1 &609615108
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +948,6 @@ MonoBehaviour:
   - {fileID: 1259928199536676, guid: 859eba58868652e47a367cc6f09ee8ab, type: 2}
   - {fileID: 1735283472664090, guid: 307634492af0a01418a908b85308f43d, type: 2}
   - {fileID: 1259928199536676, guid: 859eba58868652e47a367cc6f09ee8ab, type: 2}
-  collecteds: []
   spawnPoint: {fileID: 1680868858}
   spawnTime: 3
   resSpawnTimer: 3

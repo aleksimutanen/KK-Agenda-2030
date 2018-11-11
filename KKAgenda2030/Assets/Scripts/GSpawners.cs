@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GSpawners : MonoBehaviour {
 
-    public List<Transform> SpawnerPoints;
+    public Transform[] SpawnerPoints;
     public List<GameObject> SpawnerObjects;
     public float spawnStartertime;
     public float resSpawnTimer;
@@ -13,38 +13,32 @@ public class GSpawners : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Spawn();
+        Spawner();
+
+        CancelInvoke("Spawner");
 		
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        
 
-		
-	}
+    }
 
-    public void Spawn()
+    public void Spawner()
     {
         if (spawnStartertime < resSpawnTimer + lastSpawn)
         {
-            var rnd = Random.Range(0, SpawnerObjects.Count);
-            var PosRound = Random.Range(0, SpawnerPoints.Count);
-
-
-            // Find a random index between zero and one less than the number of spawn points.
-            // int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
-            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            // Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+           var rnd = Random.Range(0, SpawnerObjects.Count);
+           int spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
         
+           Instantiate(SpawnerObjects[rnd], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);           
+           SpawnerObjects.RemoveAt(rnd);
+          
 
-           // Instantiate(SpawnerObjects[rnd], PosRound.position, Quaternion.identity);           
-           // SpawnerObjects.RemoveAt(rnd);
-
-
-            print(rnd);
-            lastSpawn = Time.time;
+           print(rnd);
+           lastSpawn = Time.time;
         }
 
     }
