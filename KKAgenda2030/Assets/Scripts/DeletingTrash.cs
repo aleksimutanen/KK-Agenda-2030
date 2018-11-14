@@ -6,6 +6,7 @@ public class DeletingTrash : MonoBehaviour
 {
     public List<TrashType> disqTypes;
     public GameObject obj;
+    public List <GameObject> gameObjects;
     Spawner spwn;
 
 
@@ -24,13 +25,15 @@ public class DeletingTrash : MonoBehaviour
             TrashGameManager.instance.UpdatePoints();
 
             other.gameObject.SetActive(false);
-            print("roska lajiteltu oikein");
+            print("roskat lajiteltu VÄÄRIN!");
+            gameObjects.Add(other.gameObject);
             TrashGameManager.instance.ResSpawning();
             print("Spawnataan uusi roska");
 
-            spwn.rubbish.Insert(0, obj);
-            print("roskia lisätty listaan");           
-                                
+            
+            spwn.rubbish.Insert(0,obj );
+           // print("roskia lisätty listaan");
+                    
 
         }       
 

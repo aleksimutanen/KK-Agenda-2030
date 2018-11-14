@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676389456609718}
   m_LocalRotation: {x: -0.8510539, y: -0.29402375, z: -0.28694806, w: 0.3269833}
-  m_LocalPosition: {x: -6.8787146, y: 4.31, z: -1.7141055}
+  m_LocalPosition: {x: 46.55647, y: 42.72801, z: -56.812813}
   m_LocalScale: {x: 1, y: 2.4179993, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a28e8e0b8c6934049ba9b84dd175ed39, type: 2}
+  - {fileID: 2100000, guid: 4820059f791b4674b8bbe335e5ea47a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,10 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52aed2f87eb289f479d01280aaebd099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptTypes: 00000000
+  acceptTypes: 02000000
   Success: []
-  maxOfList: 5
-  isFull: 0
+  sizeOfList: 0
 --- !u!114 &114793267152576710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467d456113c0c0e4f95e09160f75146f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disqTypes: 0100000002000000
+  disqTypes: 0100000000000000030000000400000005000000
   obj: {fileID: 1259928199536676, guid: 859eba58868652e47a367cc6f09ee8ab, type: 2}
 --- !u!136 &136269748422631270
 CapsuleCollider:

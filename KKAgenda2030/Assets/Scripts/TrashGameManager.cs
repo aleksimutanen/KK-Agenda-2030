@@ -17,10 +17,11 @@ public class TrashGameManager : MonoBehaviour {
 
     public Text statusText;
     public Text scoreText;
-    public GameState State { get; private set; }
+    public GameState State;
    
     private int score = 0;
     public Spawner spwn;
+    public GSpawners Gspwn;
     public bool levelCompleted = false;
     
    
@@ -42,7 +43,9 @@ public class TrashGameManager : MonoBehaviour {
     {
         
         CheckCurrentActiveScene();
+
         spwn = FindObjectOfType<Spawner>();
+        Gspwn = FindObjectOfType<GSpawners>();
     }
 
 
@@ -103,6 +106,7 @@ public class TrashGameManager : MonoBehaviour {
         //    State = GameState.GameMenu;
         //}
 
+       // print(currentSceneName);
     }
 
 
