@@ -8,8 +8,6 @@ public class TrashDestroy: MonoBehaviour {
     public List<TrashType> acceptTypes;
     public List<GameObject> Success = new List<GameObject>();
     public int sizeOfList;
-   
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,9 +22,10 @@ public class TrashDestroy: MonoBehaviour {
             TrashGameManager.instance.AddedPoints();
             TrashGameManager.instance.UpdatePoints();
             TrashGameManager.instance.ResSpawning();
+            print("Roskat lajiteltu oikein");
 
 
-                            
+
         }
 
     }

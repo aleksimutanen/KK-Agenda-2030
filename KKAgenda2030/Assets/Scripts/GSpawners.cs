@@ -2,44 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GSpawners : MonoBehaviour {
+public class GSpawners : MonoBehaviour
+{
 
     public Transform[] SpawnerPoints;
     public List<GameObject> SpawnerObjects;
     public float spawnStartertime;
     public float resSpawnTimer;
     public float lastSpawn;
+    public bool[] spotUsed;
 
     // Use this for initialization
-    void Start ()
+    void Awake()
     {
         Spawner();
-
-        CancelInvoke("Spawner");
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        
 
     }
 
     public void Spawner()
     {
-        if (spawnStartertime < resSpawnTimer + lastSpawn)
-        {
-           var rnd = Random.Range(0, SpawnerObjects.Count);
-           int spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
-        
-           Instantiate(SpawnerObjects[rnd], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);           
-           SpawnerObjects.RemoveAt(rnd);
-          
+        var rnd = Random.Range(0, SpawnerObjects.Count);
 
-           print(rnd);
-           lastSpawn = Time.time;
+
+        int spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
+
+
+        while (spotUsed[spawnPointIndex] == true)
+        {
+            spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
         }
 
+        Instantiate(SpawnerObjects[rnd], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
+        SpawnerObjects.RemoveAt(rnd);
+        spotUsed[spawnPointIndex] = true;
+
+
+        print(SpawnerObjects[rnd]);
     }
-}
+} 

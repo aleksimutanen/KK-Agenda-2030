@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136517639834149728}
   - component: {fileID: 54272807813178638}
   - component: {fileID: 114455652725941060}
+  - component: {fileID: 114125539547338364}
   m_Layer: 0
   m_Name: CompostTrashcan
   m_TagString: Untagged
@@ -101,6 +102,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &114125539547338364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1210577082797330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467d456113c0c0e4f95e09160f75146f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disqTypes: 0100000002000000030000000400000005000000
+  obj: {fileID: 1224501277413242, guid: 801798a912e203144977dd92aabb8367, type: 2}
 --- !u!114 &114455652725941060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,8 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52aed2f87eb289f479d01280aaebd099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptTypes: 01000000
-  disqTypes: 0000000002000000
+  acceptTypes: 00000000
+  Success: []
+  sizeOfList: 0
 --- !u!136 &136517639834149728
 CapsuleCollider:
   m_ObjectHideFlags: 1
