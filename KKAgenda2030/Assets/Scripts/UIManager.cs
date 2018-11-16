@@ -7,17 +7,28 @@ public class UIManager : MonoBehaviour {
 
     PageTurner pt;
 
+    public GameObject bookCover;
     public Button pause;
+    public Button[] pauseMenuButtons;
+
+    public Image scoreSlider;
+
     bool paused;
+    public bool transition;
 
 	void Start () {
         //paused = true;
         pt = FindObjectOfType<PageTurner>();
-	}
-	
-	void Update () {
-		
-	}
+        for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
+    }
+
+    public void HitAvoidable() {
+        scoreSlider.GetComponent<Animator>().Play("OceanGameScoreBar");
+    }
+
+    public void HitFood() {
+        scoreSlider.GetComponent<Animator>().Play("OceanGameScoreBarIncrease");
+    }
 
     public void LaunchOceanGame() {
         GrandManager.instance.LaunchOceanGame();
@@ -33,32 +44,29 @@ public class UIManager : MonoBehaviour {
 
     public void PauseButton() {
         if (paused) {
-            //Anim("PauseButtonAnimationOut");
-            StartCoroutine(Anim("PauseButtonAnimationOut"));
+            StartCoroutine(PauseAnim("PauseButtonAnimationOut"));
             paused = false;
         } else {
-            //Anim("PauseButtonAnimation");
-            StartCoroutine(Anim("PauseButtonAnimation"));
+            StartCoroutine(PauseAnim("PauseButtonAnimation"));
             paused = true;
         }
-        //bool paused = GrandManager.instance.Pause();
-        //if (paused)
-        //    pause.GetComponent<Animator>().Play("PauseButtonAnimation");
-        //else
-        //    pause.GetComponent<Animator>().Play("PauseButtonAnimationOut");
-        //print("transition");
-        //StartCoroutine("Anim");
     }
 
-    IEnumerator Anim(string animName) {
+    IEnumerator PauseAnim(string animName) {
         if (GrandManager.instance.paused) {
             GrandManager.instance.Pause();
+            transition = true;
+            for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
             pause.GetComponent<Animator>().Play(animName);
+            transition = false;
             yield return null;
         } else {
+            transition = true;
             pause.GetComponent<Animator>().Play(animName);
             yield return new WaitForSeconds(1f);
             bool paused = GrandManager.instance.Pause();
+            for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = true;
+            transition = false;
             yield return null;
         }
     }

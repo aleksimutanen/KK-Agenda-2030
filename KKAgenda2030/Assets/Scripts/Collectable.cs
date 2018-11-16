@@ -7,9 +7,10 @@ public class Collectable : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Character") {
             print("food found");
-            OceanGameManager.instance.AddFoodToList(this);
+            OceanGameManager.instance.HitFood();
             gameObject.SetActive(false);
             FindObjectOfType<CharacterMover>().GrowScale();
+            FindObjectOfType<UIManager>().HitFood();
         }
     }
 }
