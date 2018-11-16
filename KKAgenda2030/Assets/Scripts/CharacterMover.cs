@@ -19,22 +19,23 @@ public class CharacterMover : MonoBehaviour {
     public LayerMask background;
     public LayerMask walls;
 
-    public Camera mainCam;
-
-    public Vector3 camDist;
     public Vector3 playerYPos;
     public Vector3 newDir;
+    Vector3 startPos;
+    Quaternion startRot;
 
     public bool pushing;
     bool decelerating;
     bool accelerating;
 
     public List<Collider> thisWall = new List<Collider>();
-    Collider wall;
+
     Rigidbody rb;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        startPos = transform.position;
+        startRot = transform.rotation;
     }
 
     //void Update() {
@@ -82,18 +83,17 @@ public class CharacterMover : MonoBehaviour {
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
-        if (Input.GetKey(KeyCode.Mouse0)) {
+        if (Input.GetKey(KeyCode.Mouse0) || Input.touchCount > 0) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hitGround, Mathf.Infinity, background) && Vector3.Distance(transform.position, hitGround.point) > 0.75f &&
                 !pushing && thisWall.Count == 0 && !accelerating) {
                 speedFactor += Time.deltaTime * acceleration;
                 speedFactor = Mathf.Clamp01(speedFactor);
+
                 Vector3 targetDir = hitGround.point + playerYPos - transform.position;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
                 float maxRD = turningSpeed * Time.deltaTime;
-                //Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, maxRD, 0.0f);
-                //rb.rotation = Quaternion.LookRotation(newDir, Vector3.up);
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
             } else {
                 speedFactor -= Time.deltaTime * deceleration;
@@ -106,12 +106,6 @@ public class CharacterMover : MonoBehaviour {
         if (!pushing) {
             rb.velocity = transform.forward * speedFactor * sprintFactor *  maxCharacterSpeed;
         }
-        //if (mainCam.transform.position.x > -5 && mainCam.transform.position.x < 5 && mainCam.transform.position.z > 2 && mainCam.transform.position.z < 13.5)
-        //var b = mainCam.transform.position;
-        //b.x = Mathf.Clamp(b.x, -5f, 5f);
-        //b.z = Mathf.Clamp(b.z, 2f, 13.5f);
-        //mainCam.transform.position = b;
-        //mainCam.transform.position = transform.position + camDist;
         Debug.DrawLine(transform.position, transform.position + transform.forward * 100f, Color.red);
     }
 
@@ -120,7 +114,6 @@ public class CharacterMover : MonoBehaviour {
             thisWall.Add(other);
         if (other.gameObject.tag == "Wall" && thisWall.Contains(other)) {
             if (!pushing) {
-                wall = thisWall[0];
                 RaycastHit hitWall;
                 Physics.Raycast(transform.position, transform.forward, out hitWall, Mathf.Infinity, walls);
                 Vector3 reflectDir = Vector3.Reflect(transform.forward, hitWall.normal);
@@ -130,18 +123,6 @@ public class CharacterMover : MonoBehaviour {
                 decelerating = true;
             }
             if (decelerating) {
-                //Vector3 targetDir = wall.transform.forward + playerYPos - transform.position;
-
-                //Vector3 targetDir = newDir + playerYPos;
-                //Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
-                //float maxRD = turningSpeed * Time.deltaTime;
-                //rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
-
-                //Vector3 targetDir = wall.transform.forward + playerYPos;
-                //float maxRD = turningSpeed * 1.2f * Time.deltaTime;
-                //Vector3 rotDir = Vector3.RotateTowards(transform.forward, targetDir, maxRD, 0.0f);
-                //rb.rotation = Quaternion.LookRotation(rotDir);
-
                 Vector3 targetDir = newDir + playerYPos;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
                 float maxRD = (turningSpeed / 2) * Time.deltaTime;
@@ -149,18 +130,12 @@ public class CharacterMover : MonoBehaviour {
 
                 pushFactor -= Time.deltaTime * (deceleration * 2);
                 rb.velocity = transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
-                //rb.velocity = newDir * pushFactor * maxCharacterSpeed;
                 if (pushFactor < 0) {
                     decelerating = false;
                     accelerating = true;
                 }
             }
             if (accelerating) {
-                //Vector3 targetDir = wall.transform.forward + playerYPos;
-                //float maxRD = turningSpeed * 1.2f * Time.deltaTime;
-                //Vector3 rotDir = Vector3.RotateTowards(transform.forward, targetDir, maxRD, 0.0f);
-                //rb.rotation = Quaternion.LookRotation(rotDir);
-
                 Vector3 targetDir = newDir + playerYPos;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
                 float maxRD = (turningSpeed / 2) * Time.deltaTime;
@@ -169,18 +144,9 @@ public class CharacterMover : MonoBehaviour {
                 pushFactor += Time.deltaTime * acceleration;
                 pushFactor = Mathf.Clamp01(pushFactor);
                 rb.velocity = newDir * pushFactor * sprintFactor * maxCharacterSpeed;
-                //rb.velocity = wall.transform.forward.normalized * pushFactor * maxCharacterSpeed;
             }
         }
     }
-
-    //private void OnTriggerStay(Collider other) {
-    //    if (!thisWall.Contains(other) && thisWall.Count == 0 && other.gameObject.tag == "Wall")
-    //        thisWall.Add(other);
-    //    if (other.gameObject.tag == "Wall" && thisWall.Contains(other)) {
-    //        rb.velocity -= transform.forward;
-    //    }
-    //}
 
     void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == "Wall") {
@@ -194,5 +160,10 @@ public class CharacterMover : MonoBehaviour {
 
     public void GrowScale() {
         transform.localScale += new Vector3(growScale, 0, growScale);
+    }
+
+    public void ResetCharacter() {
+        transform.position = startPos;
+        transform.rotation = startRot;
     }
 }
