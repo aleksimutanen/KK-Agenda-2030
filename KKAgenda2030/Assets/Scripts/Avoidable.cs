@@ -7,8 +7,9 @@ public class Avoidable : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Character") {
             print("trash eaten");
-            OceanGameManager.instance.AddTrashToList(this);
+            OceanGameManager.instance.HitTrash();
             gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().HitAvoidable();
         }    
     }
 }
