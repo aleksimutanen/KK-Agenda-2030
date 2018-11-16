@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860588644716744}
   m_LocalRotation: {x: -0.75973874, y: 0.12067258, z: 0.51344097, w: 0.38028097}
-  m_LocalPosition: {x: 10.031285, y: 5.0699997, z: -1.4441054}
+  m_LocalPosition: {x: 48.12423, y: 44.18355, z: -52.45669}
   m_LocalScale: {x: 1, y: 2.2530012, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a28e8e0b8c6934049ba9b84dd175ed39, type: 2}
+  - {fileID: 2100000, guid: 1d5249de0c01c1b429c576f8cdb47e1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467d456113c0c0e4f95e09160f75146f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disqTypes: 0000000001000000
+  disqTypes: 0000000001000000020000000500000003000000
   obj: {fileID: 1735283472664090, guid: 307634492af0a01418a908b85308f43d, type: 2}
 --- !u!114 &114241992492000430
 MonoBehaviour:
@@ -126,10 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52aed2f87eb289f479d01280aaebd099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptTypes: 02000000
+  acceptTypes: 04000000
   Success: []
-  maxOfList: 5
-  isFull: 0
+  sizeOfList: 0
 --- !u!136 &136784123186274724
 CapsuleCollider:
   m_ObjectHideFlags: 1
