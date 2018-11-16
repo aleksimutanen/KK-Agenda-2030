@@ -16,6 +16,7 @@ public class OceanGameManager : MonoBehaviour {
     public int[] levelTrashAmounts;
     public GameObject foodPrefab;
     public GameObject trashPrefab;
+    public GameObject[] trashPrefabs;
     public Transform[] foodFolders;
     public Transform[] trashFolders;
 
@@ -43,8 +44,8 @@ public class OceanGameManager : MonoBehaviour {
 
     void Start() {
         scoreSlider.value = 0;
-        SpawnObjects(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
-        SpawnObjects(levelTrashAmounts[levelIndex], trashPrefab, trashFolders[levelIndex]);
+        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
         //while (trashAmount > 0) {
         //    var pos = RandomizePosition();
         //    if (CheckPosition(pos)) {
@@ -109,11 +110,23 @@ public class OceanGameManager : MonoBehaviour {
         //}
     }
 
-    void SpawnObjects(int objectAmount, GameObject objectPrefab, Transform objectFolder) {
+    void SpawnFood(int objectAmount, GameObject objectPrefab, Transform objectFolder) {
         while (objectAmount > 0) {
             var pos = RandomizePosition();
             if (CheckPosition(pos)) {
                 GameObject obj = Instantiate(objectPrefab, pos, transform.rotation);
+                obj.transform.parent = objectFolder;
+                objectAmount--;
+            }
+        }
+    }
+
+    void SpawnTrash(int objectAmount, GameObject[] objectList, Transform objectFolder) {
+        while (objectAmount > 0) {
+            var pos = RandomizePosition();
+            if (CheckPosition(pos)) {
+                int rndIndex = Random.Range(0, objectList.Length);
+                GameObject obj = Instantiate(objectList[rndIndex], pos, transform.rotation);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
             }
@@ -168,8 +181,8 @@ public class OceanGameManager : MonoBehaviour {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
 
-        SpawnObjects(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
-        SpawnObjects(levelTrashAmounts[levelIndex], trashPrefab, trashFolders[levelIndex]);
+        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
 
         FindObjectOfType<CharacterMover>().ResetCharacter();
         scoreSlider.value = 0f;

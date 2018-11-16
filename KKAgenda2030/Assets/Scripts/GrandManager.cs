@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class GrandManager : MonoBehaviour {
 
@@ -11,6 +11,7 @@ public class GrandManager : MonoBehaviour {
     public GameObject mainMenuFolder;
 
     public GameObject oceanGame;
+    public Slider oceanGameUI;
 
 	void Start () {
         if (instance)
@@ -38,5 +39,6 @@ public class GrandManager : MonoBehaviour {
     public void LaunchOceanGame() {
         mainMenuFolder.SetActive(false);
         oceanGame.SetActive(true);
+        oceanGameUI.gameObject.SetActive(true);
     }
 }
