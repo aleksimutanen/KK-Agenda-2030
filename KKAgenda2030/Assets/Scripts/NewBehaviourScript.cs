@@ -12,7 +12,7 @@ public class NewBehaviourScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = originalPos + Vector3.right * Mathf.Sin(Time.time * Mathf.PI) * 0.5f
-            + Vector3.forward * Mathf.Sin(Time.time * Mathf.PI + 0.5f * Mathf.PI) * 0.5f;
-	}
+        transform.position = originalPos + /*Vector3.right * Mathf.Sin(Time.time * Mathf.PI) * 0.05f*/
+          /*  +*/ Vector3.forward * Mathf.Sin(Time.time * Mathf.PI + 0.5f * Mathf.PI) * 0.05f;
+    }
 }
