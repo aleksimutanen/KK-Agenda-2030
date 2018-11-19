@@ -9,18 +9,17 @@ public class Spawner : MonoBehaviour
     public List<TrashType> generateTypes;
     public Transform spawnPoint;
     public int sizeOfList = 10;
+    public int ObjectsReq = 5;
     public float spawnTime = 2f;
     public float resSpawnTimer;
     public float lastSpawn;
     public float spawnStartertime;
-    GSpawners spwn;
 
 
     void Start()
     {
         FilledList();
 
-        spwn = FindObjectOfType<GSpawners>();
         Spawn();
     }
 
@@ -44,7 +43,7 @@ public class Spawner : MonoBehaviour
 
         if (rubbish.Count.Equals(0))
         {
-            print("Lista on tyhjä");
+            print("List is empty");
 
             TrashGameManager.instance.LevelCompleted();
             CancelInvoke("Spawn");
@@ -56,8 +55,9 @@ public class Spawner : MonoBehaviour
     public void FilledList()
     {
        
-        // Täytetään roskalista halutuilla objekteilla.
+        // Filled Trashlist Trash Objects.
         
+        // Find trash accepted types.
         var trashcans = FindObjectsOfType<TrashDestroy>();
         generateTypes = new List<TrashType>();
         foreach (var can in trashcans)
@@ -70,7 +70,11 @@ public class Spawner : MonoBehaviour
         }
         print("types " + generateTypes.Count);
 
-             
+        // GenerateTypes = 2.
+
+        // Two Trash object can added to list.
+
+        // Above sizeofList is Max Value list. This list is 10.     
 
         for (int M = 0; M < sizeOfList;)
         {
@@ -78,11 +82,27 @@ public class Spawner : MonoBehaviour
             if (generateTypes.Contains(rightObjects[rnd].GetComponent<Trash>().kind))
             {
                 rubbish.Add(rightObjects[rnd]);
+                print(rnd);
                 M++;
-                print("Roskia lisätty listaan");
+                print("Trash added list");
             }
-            //rubbish.Add(rightObjects[0]);
-           // print(rubbish.Count);
+
+
+            // And now i want check max value per Objects = 5!
+            // Examble 5 Metal trash and 5 Glass Trash.
+            // but how i doing it?
+            if (rubbish.Contains(rightObjects[rnd])) 
+            {
+                if (rubbish.Count > ObjectsReq)
+                {
+                    rubbish.Remove(rightObjects[rnd]);
+                    print("Poistetaan objekti listasta");
+                } 
+
+
+            }
+           
+
         }
 
     }
