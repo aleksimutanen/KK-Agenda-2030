@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OceanGameManager : MonoBehaviour {
-    enum TimerType { Trash, Net, Food};
+
+    enum TimerType { Trash, Net, Food };
+
     public static OceanGameManager instance;
 
     public int foodEaten;
@@ -14,11 +16,10 @@ public class OceanGameManager : MonoBehaviour {
 
     public int[] levelFoodAmounts;
     public int[] levelTrashAmounts;
-    public GameObject foodPrefab;
-    public GameObject trashPrefab;
-    public GameObject[] trashPrefabs;
     public Transform[] foodFolders;
     public Transform[] trashFolders;
+    public GameObject[] trashPrefabs;
+    public GameObject foodPrefab;
 
     public int levelIndex;
 
@@ -32,9 +33,6 @@ public class OceanGameManager : MonoBehaviour {
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
-    //bool hitTrash;
-    //bool hitNet;
-    //bool hitFood;
 
     void Awake() {
         if (instance)
@@ -83,7 +81,8 @@ public class OceanGameManager : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
-            foodEaten = levelFoodAmounts[levelIndex] - 1;
+            FindObjectOfType<CharacterMover>().GrowScale();
+            //foodEaten = levelFoodAmounts[levelIndex] - 1;
             HitFood();
             //HitTrash();
         }
@@ -103,11 +102,6 @@ public class OceanGameManager : MonoBehaviour {
                 i++;
             }
         }
-
-        //if (scoreTimer > 0) {
-        //    scoreTimer -= Time.deltaTime;
-        //    LoseScore(trashPenalty);
-        //}
     }
 
     void SpawnFood(int objectAmount, GameObject objectPrefab, Transform objectFolder) {
@@ -169,8 +163,6 @@ public class OceanGameManager : MonoBehaviour {
         if (levelIndex < 3) {
             NextLevel();
         } else {
-            //foodFolders[levelIndex - 1].gameObject.SetActive(false);
-            //trashFolders[levelIndex - 1].gameObject.SetActive(false);
             print("game complete");
             GameComplete();
         }
@@ -195,28 +187,17 @@ public class OceanGameManager : MonoBehaviour {
 
     public void HitFood() {
         foodEaten++;
-        //score += foodScore;
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Food);
         CheckFoodAmount(foodEaten, levelFoodAmounts[levelIndex]);
     }
 
     public void HitTrash() {
-        //trashEaten++;
-        //score -= trashPenalty;
-        //hitTrash = true;
-
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Trash);
-
-        //scoreTimer = scoreTimer < 0 ?
-        //    1 :
-        //    scoreTimer + 1;
     }
 
     public void HitNet() {
-        //score -= trashPenalty * 2;
-
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Net);
     }
