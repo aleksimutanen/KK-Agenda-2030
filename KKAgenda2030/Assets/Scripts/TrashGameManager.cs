@@ -31,12 +31,12 @@ public class TrashGameManager : MonoBehaviour {
         //Check if instance already exists
         if (instance == null)
         {
-            print("TrashGameManager has been found");
+           // print("TrashGameManager has been found");
         }
         
         //if not, set instance to this
             instance = this;
-            print("TrashGameManager is added to game");
+           // print("TrashGameManager is added to game");
     }
 
     void Start()
@@ -53,10 +53,11 @@ public class TrashGameManager : MonoBehaviour {
     {
         levelCompleted = false;
 
-        if (spwn.rubbish.Count.Equals(0))
+        if (spwn.rubbish.Count == 0)
         {
             levelCompleted = true;
-            print(levelCompleted);
+            SceneManager.LoadScene("MenuScene");
+           // print(levelCompleted);
         }
     }
 

@@ -37,6 +37,6 @@ public class GSpawners : MonoBehaviour
         spotUsed[spawnPointIndex] = true;
 
 
-        print(SpawnerObjects[rnd]);
+       // print(SpawnerObjects[rnd]);
     }
 } 

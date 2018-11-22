@@ -537,6 +537,7 @@ MonoBehaviour:
   scoreText: {fileID: 1663159003}
   State: 0
   spwn: {fileID: 0}
+  Gspwn: {fileID: 0}
   levelCompleted: 0
 --- !u!1 &704132912
 GameObject:
@@ -962,8 +963,10 @@ MonoBehaviour:
   - {fileID: 1819796484966900, guid: f91d08583a4e334469d9c61cc4a4631e, type: 2}
   - {fileID: 1767710651016956, guid: bea6d042009166b458e9f30d517a0c45, type: 2}
   - {fileID: 1215928444221260, guid: 5c9af4925a403c04d84583b68d0cdb6e, type: 2}
+  generateTypes: 
   spawnPoint: {fileID: 1680868858}
   sizeOfList: 10
+  ObjectsReq: 5
   spawnTime: 3
   resSpawnTimer: 3
   lastSpawn: 0

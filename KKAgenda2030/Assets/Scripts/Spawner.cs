@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     public List<TrashType> generateTypes;
     public Transform spawnPoint;
     public int sizeOfList = 10;
-    public int ObjectsReq = 5;
+    public int objectsReqValue  = 5;
     public float spawnTime = 2f;
     public float resSpawnTimer;
     public float lastSpawn;
@@ -41,9 +41,9 @@ public class Spawner : MonoBehaviour
             lastSpawn = Time.time;
         }
 
-        if (rubbish.Count.Equals(0))
+        if (rubbish.Count == 0)
         {
-            print("List is empty");
+            print("Lista on tyhjä");
 
             TrashGameManager.instance.LevelCompleted();
             CancelInvoke("Spawn");
@@ -53,11 +53,9 @@ public class Spawner : MonoBehaviour
     }
 
     public void FilledList()
-    {
-       
-        // Filled Trashlist Trash Objects.
-        
-        // Find trash accepted types.
+    { 
+
+        // Haetaan sallitut roskatyypit.
         var trashcans = FindObjectsOfType<TrashDestroy>();
         generateTypes = new List<TrashType>();
         foreach (var can in trashcans)
@@ -68,42 +66,59 @@ public class Spawner : MonoBehaviour
                     generateTypes.Add(typ);
             }
         }
-        print("types " + generateTypes.Count);
+      //  print("types " + generateTypes.Count);
+      //  print(generateTypes[0]);
 
-        // GenerateTypes = 2.
 
-        // Two Trash object can added to list.
 
-        // Above sizeofList is Max Value list. This list is 10.     
+       // Täytetään lista. Salittujen tapausten mukaan.
 
-        for (int M = 0; M < sizeOfList;)
+        var lenOfList = sizeOfList; // "lenOfList" on listan koko.
+        var TrashTyps = generateTypes.Count; // "TrashTyps" on KAIKKI Sallitut roskatyypit. 
+        var OneTrashTypeClass = lenOfList / TrashTyps; // "OneTrashTypeClass" on yksittäisen roskatyypin määrä. 
+        var FinalTrash = lenOfList - OneTrashTypeClass * (TrashTyps - 1); // "FinalTrash" toteutetaan kun on jäljellä enään viimeinen roskatyyppi.
+
+        // Lisäksi objectsReqValue  on haluttu roskatyypin määrä.
+        //   print(lenOfList);
+        //   print(TrashTyps);
+          print(OneTrashTypeClass);
+        //   print(FinalTrash);
+
+        for (int W = 0; W < TrashTyps; W++)
         {
-            var rnd = Random.Range(0, rightObjects.Count);
-            if (generateTypes.Contains(rightObjects[rnd].GetComponent<Trash>().kind))
-            {
-                rubbish.Add(rightObjects[rnd]);
-                print(rnd);
-                M++;
-                print("Trash added list");
-            }
+            //var generateRubs = FindObjectsOfType<Trash>();
+            //foreach( var trueRubs in generateRubs)
+            //{
 
-
-            // And now i want check max value per Objects = 5!
-            // Examble 5 Metal trash and 5 Glass Trash.
-            // but how i doing it?
-            if (rubbish.Contains(rightObjects[rnd])) 
+            //}
+            int n = (W < TrashTyps - 1) ? OneTrashTypeClass : FinalTrash;
+            while (n > 0)
             {
-                if (rubbish.Count > ObjectsReq)
+                var rnd1 = Random.Range(0, rightObjects.Count);
+
+                if (rightObjects[rnd1].GetComponent<Trash>().kind == generateTypes[W])
                 {
-                    rubbish.Remove(rightObjects[rnd]);
-                    print("Poistetaan objekti listasta");
-                } 
 
+                    //rubbish.Add(rightObjects[Random.Range(0,rnd1)]  );
 
+                    rubbish.Add(rightObjects[rnd1]);               
+                    n--;
+                }
             }
-           
 
+            // Sekoitetaan lista. Fisher–Yates shuffle algorithm.
+
+
+            for (int P = 0; P < rubbish.Count; P++)
+                {
+                GameObject temp = rubbish[P]; // Temp on se jota käydään läpi.
+                int randomIndex = Random.Range(P, rubbish.Count); // Valitsee jonkun muun objektin kuin sen jota nyt käydään loopissa läpi.
+                rubbish[P] = rubbish[randomIndex]; // Saadaan edellisen rivin tulos.
+                rubbish[randomIndex] = temp; // Saadaan edellisen rivin tulos.
+                
+                }
+            
         }
-
+        
     }
 }      
