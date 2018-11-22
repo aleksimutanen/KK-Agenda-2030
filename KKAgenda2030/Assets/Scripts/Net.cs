@@ -11,4 +11,12 @@ public class Net : MonoBehaviour {
             FindObjectOfType<UIManager>().HitAvoidable();
         }
     }
+
+    //private void OnCollisionEnter(Collision collision) {
+    //    if (collision.gameObject.tag == "Character") {
+    //        print("hit net");
+    //        OceanGameManager.instance.HitNet();
+    //        FindObjectOfType<UIManager>().HitAvoidable();
+    //    }
+    //}
 }

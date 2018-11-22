@@ -20,6 +20,7 @@ public class OceanGameManager : MonoBehaviour {
     public Transform[] trashFolders;
     public GameObject[] trashPrefabs;
     public GameObject foodPrefab;
+    public GameObject nets;
 
     public int levelIndex;
 
@@ -41,6 +42,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void Start() {
+        levelIndex = 0;
         scoreSlider.value = 0;
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
@@ -82,7 +84,7 @@ public class OceanGameManager : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
             FindObjectOfType<CharacterMover>().GrowScale();
-            //foodEaten = levelFoodAmounts[levelIndex] - 1;
+            foodEaten = levelFoodAmounts[levelIndex] - 1;
             HitFood();
             //HitTrash();
         }
@@ -128,7 +130,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     Vector3 RandomizePosition() {
-        Vector3 pos = new Vector3(Random.Range(-8.5f, 8.5f), 0.1f, Random.Range(-12f, 12f));
+        Vector3 pos = new Vector3(Random.Range(-8.5f, 8.5f), 0.3f, Random.Range(-12f, 12f));
         return pos;
     }
 
@@ -172,6 +174,9 @@ public class OceanGameManager : MonoBehaviour {
     void NextLevel() {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
+
+        if (levelIndex == 1)
+            nets.SetActive(true);
 
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);

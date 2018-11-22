@@ -33,9 +33,11 @@ public class CharacterMover : MonoBehaviour {
     public List<Collider> thisWall = new List<Collider>();
 
     Rigidbody rb;
+    //Rigidbody2D rb;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         startRot = transform.rotation;
     }
@@ -76,7 +78,7 @@ public class CharacterMover : MonoBehaviour {
     //y = 0.5*(sin(x*2*pi - 0.5*pi)+1)
 
     void FixedUpdate() {
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             moveInputStartTime = Time.time;
         var sprintT = Time.time - moveInputStartTime;
         // wave 0..1
@@ -85,7 +87,7 @@ public class CharacterMover : MonoBehaviour {
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
-        if (Input.GetKey(KeyCode.Mouse0) || Input.touchCount > 0) {
+        if (Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hitGround, Mathf.Infinity, background) && Vector3.Distance(transform.position, hitGround.point) > 0.75f &&
@@ -124,8 +126,8 @@ public class CharacterMover : MonoBehaviour {
                 Vector3 reflectDir = Vector3.Reflect(transform.forward, hitWall.normal);
                 newDir = reflectDir + hitWall.normal;
                 newDir.y = 0f;
-                //newDir = Vector3.zero;
-                pushFactor = 1;
+                pushFactor = speedFactor;
+                //pushFactor = 0;
                 pushing = true;
                 decelerating = true;
             }
@@ -134,7 +136,7 @@ public class CharacterMover : MonoBehaviour {
             if (decelerating && pushTimer < 0) {
                 Vector3 targetDir = newDir + playerYPos;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
-                float maxRD = (turningSpeed / 2) * Time.deltaTime;
+                float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
                 pushFactor -= Time.deltaTime * (deceleration * 2);
@@ -147,16 +149,16 @@ public class CharacterMover : MonoBehaviour {
             if (accelerating) {
                 Vector3 targetDir = newDir + playerYPos;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
-                float maxRD = (turningSpeed / 2) * Time.deltaTime;
+                float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
                 pushFactor += Time.deltaTime * acceleration;
                 pushFactor = Mathf.Clamp01(pushFactor);
-                rb.velocity = newDir * pushFactor * sprintFactor * maxCharacterSpeed;
+                rb.velocity = /*newDir*/transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
             }
         }
-        
     }
+
 
     void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == "Wall") {
@@ -176,5 +178,6 @@ public class CharacterMover : MonoBehaviour {
     public void ResetCharacter() {
         transform.position = startPos;
         transform.rotation = startRot;
+        rb.velocity = Vector3.zero;
     }
 }
