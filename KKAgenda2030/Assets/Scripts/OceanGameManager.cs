@@ -31,6 +31,7 @@ public class OceanGameManager : MonoBehaviour {
     [SerializeField] int trashPenalty;
 
     public Slider scoreSlider;
+    public Slider roundEndSlider;
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
@@ -44,6 +45,7 @@ public class OceanGameManager : MonoBehaviour {
     void Start() {
         levelIndex = 0;
         scoreSlider.value = 0;
+        roundEndSlider.gameObject.SetActive(false);
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
         //while (trashAmount > 0) {
@@ -149,7 +151,28 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     IEnumerator LevelComplete() {
+        print("level transition start");
+        FindObjectOfType<UIManager>().OceanGameLevelComplete();
+        FindObjectOfType<CharacterMover>().canMove = false;
         yield return new WaitForSeconds(2f);
+        roundEndSlider.gameObject.SetActive(true);
+        roundEndSlider.value = 0f;
+        float s = scoreSlider.value;
+        float fillTime = 3f;
+
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            roundEndSlider.value += s * fillSpeed * Time.deltaTime;
+            //if ()
+            yield return null;
+        }
+        yield return new WaitForSeconds(2f);
+        FindObjectOfType<UIManager>().slider.GetComponent<Animator>().Play("New State");
+        roundEndSlider.gameObject.SetActive(false);
+
         scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         print(scoreSlider.value);
         if (scoreSlider.value >= 80) {
@@ -168,15 +191,18 @@ public class OceanGameManager : MonoBehaviour {
             print("game complete");
             GameComplete();
         }
-        yield return null;
+        //yield return null;
     }
 
     void NextLevel() {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
 
-        if (levelIndex == 1)
+        if (levelIndex > 0) {
+            //nets[levelIndex - 1].SetActive(false);
+            //nets[levelIndex].SetActive(true);
             nets.SetActive(true);
+        }
 
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);

@@ -26,6 +26,7 @@ public class CharacterMover : MonoBehaviour {
     Vector3 startPos;
     Quaternion startRot;
 
+    public bool canMove;
     public bool pushing;
     bool decelerating;
     bool accelerating;
@@ -36,6 +37,7 @@ public class CharacterMover : MonoBehaviour {
     //Rigidbody2D rb;
 
     void Start() {
+        canMove = true;
         rb = GetComponent<Rigidbody>();
         //rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
@@ -87,7 +89,7 @@ public class CharacterMover : MonoBehaviour {
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
-        if (Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) {
+        if ((Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && canMove) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hitGround, Mathf.Infinity, background) && Vector3.Distance(transform.position, hitGround.point) > 0.75f &&
@@ -176,6 +178,7 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void ResetCharacter() {
+        canMove = true;
         transform.position = startPos;
         transform.rotation = startRot;
         rb.velocity = Vector3.zero;
