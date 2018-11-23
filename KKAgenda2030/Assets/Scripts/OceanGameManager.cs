@@ -32,6 +32,7 @@ public class OceanGameManager : MonoBehaviour {
 
     public Slider scoreSlider;
     public Slider roundEndSlider;
+    public AnimationCurve sliderAnimCurve;
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
@@ -151,13 +152,16 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     IEnumerator LevelComplete() {
+
         print("level transition start");
         FindObjectOfType<UIManager>().OceanGameLevelComplete();
         FindObjectOfType<CharacterMover>().canMove = false;
+
         yield return new WaitForSeconds(2f);
+
         roundEndSlider.gameObject.SetActive(true);
-        roundEndSlider.value = 0f;
-        float s = scoreSlider.value;
+        //roundEndSlider.value = -50f;
+        float s = scoreSlider.value + 50f;
         float fillTime = 3f;
 
         float t = 0f;
@@ -165,11 +169,15 @@ public class OceanGameManager : MonoBehaviour {
 
         while (t <= 1) {
             t += fillSpeed * Time.deltaTime;
-            roundEndSlider.value += s * fillSpeed * Time.deltaTime;
+            var curvedT = sliderAnimCurve.Evaluate(t);
+            roundEndSlider.value = -50f + (curvedT * s);
+            print(roundEndSlider.value);
             //if ()
             yield return null;
         }
+
         yield return new WaitForSeconds(2f);
+
         FindObjectOfType<UIManager>().slider.GetComponent<Animator>().Play("New State");
         roundEndSlider.gameObject.SetActive(false);
 
