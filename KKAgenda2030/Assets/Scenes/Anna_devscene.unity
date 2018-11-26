@@ -1983,7 +1983,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ace734ae6f8d22744a88a6c3fb85ed76, type: 2}
+  - {fileID: 2100000, guid: e576530e720193b45a49280242e1c11d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2221,7 +2221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998206f61dbc8224ea1848569d45878b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bookCover: {fileID: 0}
   pause: {fileID: 94171943}
+  pauseMenuButtons: []
+  sliderImage: {fileID: 0}
+  slider: {fileID: 0}
+  transition: 0
 --- !u!4 &817404281
 Transform:
   m_ObjectHideFlags: 0
@@ -2706,10 +2711,10 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 1024
-  mainCam: {fileID: 1368455726}
-  camDist: {x: 0, y: 10, z: 0}
   playerYPos: {x: 0, y: 0.1, z: 0}
+  rayOffset: {x: 0, y: 0, z: 0}
   newDir: {x: 0, y: 0, z: 0}
+  canMove: 0
   pushing: 0
   thisWall: []
 --- !u!65 &1043130693
@@ -3180,6 +3185,7 @@ MonoBehaviour:
   paused: 0
   mainMenuFolder: {fileID: 0}
   oceanGame: {fileID: 0}
+  oceanGameUI: {fileID: 0}
 --- !u!4 &1330401713
 Transform:
   m_ObjectHideFlags: 0
@@ -3337,8 +3343,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947dbda0778c5c34da9bb2aa8ed0900d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
   target: {fileID: 1043130690}
   visibleArea: {fileID: 1888105540}
+  pauseMenu: {fileID: 0}
 --- !u!81 &1368455728
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4852,21 +4860,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88057cca68cd8ea44902651c8a8cfc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectables: []
-  avoidables: []
   foodEaten: 0
   trashEaten: 0
   objectDistanceThreshold: 1
-  foodAmount: 10
-  trashAmount: 40
+  levelFoodAmounts: 
+  levelTrashAmounts: 
+  foodFolders: []
+  trashFolders: []
+  trashPrefabs: []
   foodPrefab: {fileID: 1747083380098994, guid: 7053d3d06244ed847b7a4c83ce58d1b9, type: 2}
-  trashPrefab: {fileID: 1726558849085176, guid: b7dd3a4ab7d63f14ea0f5107c046f70c,
-    type: 2}
-  foodFolder: {fileID: 1141579704}
-  trashFolder: {fileID: 811779486}
+  nets: {fileID: 0}
+  levelIndex: 0
   collectable:
     serializedVersion: 2
     m_Bits: 1536
   score: 0
   foodScore: 10
   trashPenalty: 5
+  scoreSlider: {fileID: 0}
+  roundEndSlider: {fileID: 0}
+  sliderAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
