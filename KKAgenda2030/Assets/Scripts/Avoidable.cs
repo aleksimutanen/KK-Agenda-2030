@@ -10,6 +10,7 @@ public class Avoidable : MonoBehaviour {
             OceanGameManager.instance.HitTrash();
             gameObject.SetActive(false);
             FindObjectOfType<UIManager>().HitAvoidable();
+            FindObjectOfType<PhoneVibrate>().Vibrate();
         }    
     }
 }

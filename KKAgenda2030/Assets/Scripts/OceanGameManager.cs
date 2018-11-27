@@ -31,6 +31,10 @@ public class OceanGameManager : MonoBehaviour {
     [SerializeField] int trashPenalty;
 
     public Slider scoreSlider;
+    public Slider roundEndSlider;
+    public AnimationCurve sliderAnimCurve;
+    public float[] starScore;
+    public Image[] starImages;
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
@@ -44,6 +48,7 @@ public class OceanGameManager : MonoBehaviour {
     void Start() {
         levelIndex = 0;
         scoreSlider.value = 0;
+        roundEndSlider.gameObject.SetActive(false);
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
         //while (trashAmount > 0) {
@@ -98,7 +103,7 @@ public class OceanGameManager : MonoBehaviour {
                 if (timerTypes[i] == TimerType.Trash)
                     LoseScore(trashPenalty);
                 else if (timerTypes[i] == TimerType.Net)
-                    LoseScore(trashPenalty * 2);
+                    LoseScore(trashPenalty);
                 else if (timerTypes[i] == TimerType.Food)
                     GainScore(foodScore);
                 i++;
@@ -149,14 +154,49 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     IEnumerator LevelComplete() {
-        yield return new WaitForSeconds(2f);
+
+        print("level transition start");
+        FindObjectOfType<UIManager>().OceanGameLevelComplete();
+        FindObjectOfType<CharacterMover>().canMove = false;
+
+        yield return new WaitForSeconds(2.5f);
         scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
+
+        roundEndSlider.gameObject.SetActive(true);
+        //roundEndSlider.value = -50f;
+        float s = scoreSlider.value + 50f;
+        float fillTime = 3f;
+
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sliderAnimCurve.Evaluate(t);
+            roundEndSlider.value = -50f + (curvedT * s);
+            print(roundEndSlider.value);
+            for (int i = 0; i < starImages.Length; i++) {
+                if (roundEndSlider.value >= starScore[i]) {
+                    starImages[i].gameObject.SetActive(true);
+                    FindObjectOfType<UIManager>().LevelEndStars(starImages[i]);
+                    print("star achieved");
+                }
+            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(5f);
+
+        FindObjectOfType<UIManager>().slider.GetComponent<Animator>().Play("New State");
+        roundEndSlider.gameObject.SetActive(false);
+        for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
+
         print(scoreSlider.value);
         if (scoreSlider.value >= 80) {
             print("you get 3 stars");
-        } else if (scoreSlider.value >= 50) {
+        } else if (scoreSlider.value >= 55) {
             print("you get 2 stars");
-        } else if (scoreSlider.value >= 20) {
+        } else if (scoreSlider.value >= 30) {
             print("you get 1 star");
         } else {
             print("you get no stars");
@@ -168,15 +208,18 @@ public class OceanGameManager : MonoBehaviour {
             print("game complete");
             GameComplete();
         }
-        yield return null;
+        //yield return null;
     }
 
     void NextLevel() {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
 
-        if (levelIndex == 1)
+        if (levelIndex > 0) {
+            //nets[levelIndex - 1].SetActive(false);
+            //nets[levelIndex].SetActive(true);
             nets.SetActive(true);
+        }
 
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
@@ -191,6 +234,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void HitFood() {
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         foodEaten++;
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Food);
@@ -198,11 +242,13 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void HitTrash() {
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Trash);
     }
 
     public void HitNet() {
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Net);
     }

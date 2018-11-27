@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Net : MonoBehaviour {
 
+    PhoneVibrate pv;
+
+    private void Start() {
+        pv = FindObjectOfType<PhoneVibrate>();
+    }
+
     private void OnTriggerEnter(Collider other) {
+        print("enter net");
         if (other.gameObject.tag == "Character") {
-            print("hit net");
+            if (pv.nets.Count == 0)
             OceanGameManager.instance.HitNet();
+            pv.AddColliderToList(gameObject.GetComponent<Collider>());
             FindObjectOfType<UIManager>().HitAvoidable();
         }
     }
 
-    //private void OnCollisionEnter(Collision collision) {
-    //    if (collision.gameObject.tag == "Character") {
-    //        print("hit net");
-    //        OceanGameManager.instance.HitNet();
-    //        FindObjectOfType<UIManager>().HitAvoidable();
-    //    }
-    //}
+    private void OnTriggerExit(Collider other) {
+        print("exit net");
+        if (other.gameObject.tag == "Character") {
+            pv.RemoveColliderFromList(gameObject.GetComponent<Collider>());
+        }
+    }
 }

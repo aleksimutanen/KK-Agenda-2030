@@ -11,32 +11,36 @@ public class UIManager : MonoBehaviour {
     public Button pause;
     public Button[] pauseMenuButtons;
 
-    public Image scoreSlider;
-    
-    
+    public Image sliderImage;
+    public Slider slider;
+
     bool paused;
     public bool transition;
 
 	void Start () {
-        //paused = true;
-        
-         pt = FindObjectOfType<PageTurner>();
+        pt = FindObjectOfType<PageTurner>();
         for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
-    } 
+    }
 
     public void HitAvoidable() {
-        scoreSlider.GetComponent<Animator>().Play("OceanGameScoreBar");
+        sliderImage.GetComponent<Animator>().Play("OceanGameScoreBar");
     }
 
     public void HitFood() {
-        scoreSlider.GetComponent<Animator>().Play("OceanGameScoreBarIncrease");
+        sliderImage.GetComponent<Animator>().Play("OceanGameScoreBarIncrease");
+    }
+
+    public void OceanGameLevelComplete() {
+        slider.GetComponent<Animator>().Play("OceanGameLevelEnd");
+    }
+
+    public void LevelEndStars(Image star) {
+        star.GetComponent<Animator>().Play("StarPop");
     }
 
     public void LaunchOceanGame() {
         GrandManager.instance.LaunchOceanGame();
     }
-
-  
 
     public void NextPage() {
         pt.NextPage();

@@ -26,6 +26,7 @@ public class CharacterMover : MonoBehaviour {
     Vector3 startPos;
     Quaternion startRot;
 
+    public bool canMove;
     public bool pushing;
     bool decelerating;
     bool accelerating;
@@ -36,6 +37,7 @@ public class CharacterMover : MonoBehaviour {
     //Rigidbody2D rb;
 
     void Start() {
+        canMove = true;
         rb = GetComponent<Rigidbody>();
         //rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
@@ -87,7 +89,7 @@ public class CharacterMover : MonoBehaviour {
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
-        if (Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) {
+        if ((Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && canMove) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hitGround, Mathf.Infinity, background) && Vector3.Distance(transform.position, hitGround.point) > 0.75f &&
@@ -123,6 +125,9 @@ public class CharacterMover : MonoBehaviour {
                 print(hitWall.normal);
                 if (hitWall.normal == Vector3.zero)
                     hitWall.normal = other.transform.forward;
+                //hitWall.normal = other.transform.forward;
+                //if (other.gameObject.name == "Net")
+                //    hitWall.normal = -transform.forward;
                 Vector3 reflectDir = Vector3.Reflect(transform.forward, hitWall.normal);
                 newDir = reflectDir + hitWall.normal;
                 newDir.y = 0f;
@@ -131,7 +136,10 @@ public class CharacterMover : MonoBehaviour {
                 pushing = true;
                 decelerating = true;
             }
+            //if (other.gameObject.name == "Wall")
             pushTimer -= Time.deltaTime;
+            //else if (other.gameObject.name == "Net")
+            //    pushTimer = -1;
 
             if (decelerating && pushTimer < 0) {
                 Vector3 targetDir = newDir + playerYPos;
@@ -139,13 +147,18 @@ public class CharacterMover : MonoBehaviour {
                 float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
-                pushFactor -= Time.deltaTime * (deceleration * 2);
+                //if (other.gameObject.name == "Net")
+                //    pushFactor -= Time.deltaTime * (deceleration * 10);
+                //else
+                    pushFactor -= Time.deltaTime * (deceleration * 2);
                 rb.velocity = transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
+
                 if (pushFactor < 0) {
                     decelerating = false;
                     accelerating = true;
                 }
             }
+
             if (accelerating) {
                 Vector3 targetDir = newDir + playerYPos;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
@@ -176,6 +189,7 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void ResetCharacter() {
+        canMove = true;
         transform.position = startPos;
         transform.rotation = startRot;
         rb.velocity = Vector3.zero;
