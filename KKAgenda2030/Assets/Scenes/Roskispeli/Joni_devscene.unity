@@ -445,7 +445,6 @@ GameObject:
   m_Component:
   - component: {fileID: 588505766}
   - component: {fileID: 588505767}
-  - component: {fileID: 588505768}
   m_Layer: 0
   m_Name: GarbageSpawner
   m_TagString: Untagged
@@ -489,21 +488,7 @@ MonoBehaviour:
   - {fileID: 1559513590725608, guid: b2189bcc6f5140e43878c4cea43014db, type: 2}
   - {fileID: 1234808805409296, guid: d8f48c5208eae5541ac9a97d7d755b6d, type: 2}
   - {fileID: 1111495660797814, guid: 36aaf7f592696a14bb4db0fef58313f5, type: 2}
-  spawnStartertime: 0
-  resSpawnTimer: 3
-  lastSpawn: 0
   spotUsed: 0000
---- !u!114 &588505768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 588505765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5714d0dcbb1a27d4eb6b744641192c6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &609615108
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +951,7 @@ MonoBehaviour:
   generateTypes: 
   spawnPoint: {fileID: 1680868858}
   sizeOfList: 10
-  ObjectsReq: 5
+  objectsReqValue: 5
   spawnTime: 3
   resSpawnTimer: 3
   lastSpawn: 0

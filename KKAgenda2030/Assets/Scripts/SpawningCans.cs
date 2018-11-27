@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class SpawningCans : MonoBehaviour {
 
-    private int CansOfSpawn = 2;
+    public int[] CansOfSpawn;
     private int ReadySpawning;
     GSpawners spwn;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         spwn = FindObjectOfType<GSpawners>();
+        
         Canspawn();
     }
 	
 	// Update is called once per frame
 	void Canspawn ()
     {
-        if (ReadySpawning < CansOfSpawn)
+        
+        if (ReadySpawning < CansOfSpawn[0])
         {
             spwn.Spawner();
 
             ReadySpawning++;
         }
+
+
     }
 
 

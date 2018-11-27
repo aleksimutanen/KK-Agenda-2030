@@ -1,42 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-public class GSpawners : MonoBehaviour
-{
-
-    public Transform[] SpawnerPoints;
-    public List<GameObject> SpawnerObjects;
-    public float spawnStartertime;
-    public float resSpawnTimer;
-    public float lastSpawn;
-    public bool[] spotUsed;
-
-    // Use this for initialization
-    void Awake()
+    public class GSpawners : MonoBehaviour
     {
-        Spawner();
 
-    }
+        public Transform[] SpawnerPoints;
+        public List<GameObject> SpawnerObjects;
 
-    public void Spawner()
-    {
-        var rnd = Random.Range(0, SpawnerObjects.Count);
+        public bool[] spotUsed;
 
-
-        int spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
-
-
-        while (spotUsed[spawnPointIndex] == true)
+        void Awake()
         {
-            spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
+
+            for (int E = 0; E < SpawnerPoints.Length; E++)
+            {
+
+            Spawner();
+            
+            }
         }
 
-        Instantiate(SpawnerObjects[rnd], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
-        SpawnerObjects.RemoveAt(rnd);
-        spotUsed[spawnPointIndex] = true;
+
+   
 
 
-       // print(SpawnerObjects[rnd]);
+    public void Spawner()
+        {
+           // var rnd = Random.Range(0, SpawnerObjects.Count);
+            int bools = Random.Range(0, spotUsed.Length);
+
+            int spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
+            int spawnObjectsIndex = Random.Range(0, SpawnerObjects.Count);
+
+             while (spotUsed[spawnPointIndex] == true)
+             {
+                spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
+               // spawnPointIndex++;
+
+             }               
+          Instantiate(SpawnerObjects[spawnObjectsIndex], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
+              
+          SpawnerObjects.RemoveAt(spawnObjectsIndex);
+               
+          spotUsed[spawnPointIndex] = true;
+        }
+
+         
+       
+
     }
-} 

@@ -12,15 +12,17 @@ public class UIManager : MonoBehaviour {
     public Button[] pauseMenuButtons;
 
     public Image scoreSlider;
-
+    
+    
     bool paused;
     public bool transition;
 
 	void Start () {
         //paused = true;
-        pt = FindObjectOfType<PageTurner>();
+        
+         pt = FindObjectOfType<PageTurner>();
         for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
-    }
+    } 
 
     public void HitAvoidable() {
         scoreSlider.GetComponent<Animator>().Play("OceanGameScoreBar");
@@ -33,6 +35,8 @@ public class UIManager : MonoBehaviour {
     public void LaunchOceanGame() {
         GrandManager.instance.LaunchOceanGame();
     }
+
+  
 
     public void NextPage() {
         pt.NextPage();

@@ -81,7 +81,7 @@ public class Spawner : MonoBehaviour
         // Lisäksi objectsReqValue  on haluttu roskatyypin määrä.
         //   print(lenOfList);
         //   print(TrashTyps);
-          print(OneTrashTypeClass);
+        //  print(OneTrashTypeClass);
         //   print(FinalTrash);
 
         for (int W = 0; W < TrashTyps; W++)
