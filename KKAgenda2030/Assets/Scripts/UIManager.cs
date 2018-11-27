@@ -34,6 +34,10 @@ public class UIManager : MonoBehaviour {
         slider.GetComponent<Animator>().Play("OceanGameLevelEnd");
     }
 
+    public void LevelEndStars(Image star) {
+        star.GetComponent<Animator>().Play("StarPop");
+    }
+
     public void LaunchOceanGame() {
         GrandManager.instance.LaunchOceanGame();
     }

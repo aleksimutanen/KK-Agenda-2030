@@ -125,6 +125,9 @@ public class CharacterMover : MonoBehaviour {
                 print(hitWall.normal);
                 if (hitWall.normal == Vector3.zero)
                     hitWall.normal = other.transform.forward;
+                //hitWall.normal = other.transform.forward;
+                //if (other.gameObject.name == "Net")
+                //    hitWall.normal = -transform.forward;
                 Vector3 reflectDir = Vector3.Reflect(transform.forward, hitWall.normal);
                 newDir = reflectDir + hitWall.normal;
                 newDir.y = 0f;
@@ -133,7 +136,10 @@ public class CharacterMover : MonoBehaviour {
                 pushing = true;
                 decelerating = true;
             }
+            //if (other.gameObject.name == "Wall")
             pushTimer -= Time.deltaTime;
+            //else if (other.gameObject.name == "Net")
+            //    pushTimer = -1;
 
             if (decelerating && pushTimer < 0) {
                 Vector3 targetDir = newDir + playerYPos;
@@ -141,13 +147,18 @@ public class CharacterMover : MonoBehaviour {
                 float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
-                pushFactor -= Time.deltaTime * (deceleration * 2);
+                //if (other.gameObject.name == "Net")
+                //    pushFactor -= Time.deltaTime * (deceleration * 10);
+                //else
+                    pushFactor -= Time.deltaTime * (deceleration * 2);
                 rb.velocity = transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
+
                 if (pushFactor < 0) {
                     decelerating = false;
                     accelerating = true;
                 }
             }
+
             if (accelerating) {
                 Vector3 targetDir = newDir + playerYPos;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);

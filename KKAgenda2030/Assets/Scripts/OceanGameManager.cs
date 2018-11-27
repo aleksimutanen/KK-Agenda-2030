@@ -33,6 +33,8 @@ public class OceanGameManager : MonoBehaviour {
     public Slider scoreSlider;
     public Slider roundEndSlider;
     public AnimationCurve sliderAnimCurve;
+    public float[] starScore;
+    public Image[] starImages;
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
@@ -101,7 +103,7 @@ public class OceanGameManager : MonoBehaviour {
                 if (timerTypes[i] == TimerType.Trash)
                     LoseScore(trashPenalty);
                 else if (timerTypes[i] == TimerType.Net)
-                    LoseScore(trashPenalty * 2);
+                    LoseScore(trashPenalty);
                 else if (timerTypes[i] == TimerType.Food)
                     GainScore(foodScore);
                 i++;
@@ -157,7 +159,8 @@ public class OceanGameManager : MonoBehaviour {
         FindObjectOfType<UIManager>().OceanGameLevelComplete();
         FindObjectOfType<CharacterMover>().canMove = false;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
 
         roundEndSlider.gameObject.SetActive(true);
         //roundEndSlider.value = -50f;
@@ -172,22 +175,28 @@ public class OceanGameManager : MonoBehaviour {
             var curvedT = sliderAnimCurve.Evaluate(t);
             roundEndSlider.value = -50f + (curvedT * s);
             print(roundEndSlider.value);
-            //if ()
+            for (int i = 0; i < starImages.Length; i++) {
+                if (roundEndSlider.value >= starScore[i]) {
+                    starImages[i].gameObject.SetActive(true);
+                    FindObjectOfType<UIManager>().LevelEndStars(starImages[i]);
+                    print("star achieved");
+                }
+            }
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         FindObjectOfType<UIManager>().slider.GetComponent<Animator>().Play("New State");
         roundEndSlider.gameObject.SetActive(false);
+        for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
 
-        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         print(scoreSlider.value);
         if (scoreSlider.value >= 80) {
             print("you get 3 stars");
-        } else if (scoreSlider.value >= 50) {
+        } else if (scoreSlider.value >= 55) {
             print("you get 2 stars");
-        } else if (scoreSlider.value >= 20) {
+        } else if (scoreSlider.value >= 30) {
             print("you get 1 star");
         } else {
             print("you get no stars");
@@ -225,6 +234,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void HitFood() {
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         foodEaten++;
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Food);
@@ -232,11 +242,13 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void HitTrash() {
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Trash);
     }
 
     public void HitNet() {
+        scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Net);
     }
