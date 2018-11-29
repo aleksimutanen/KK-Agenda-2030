@@ -11,6 +11,7 @@ public class Avoidable : MonoBehaviour {
             gameObject.SetActive(false);
             FindObjectOfType<UIManager>().HitAvoidable();
             FindObjectOfType<PhoneVibrate>().Vibrate();
+            FindObjectOfType<CharacterMover>().StartCoroutine("AteTrash");
         }    
     }
 }

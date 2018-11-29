@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour {
     public Button pause;
     public Button[] pauseMenuButtons;
 
+    public Image transitionBackGround;
+    public Image transitionCircle;
     public Image sliderImage;
     public Slider slider;
 
@@ -20,6 +22,11 @@ public class UIManager : MonoBehaviour {
 	void Start () {
         pt = FindObjectOfType<PageTurner>();
         for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.I)) LaunchOceanGame();
+        if (Input.GetKeyDown(KeyCode.U)) GrandManager.instance.BackToMainMenu();
     }
 
     public void HitAvoidable() {
@@ -32,6 +39,14 @@ public class UIManager : MonoBehaviour {
 
     public void OceanGameLevelComplete() {
         slider.GetComponent<Animator>().Play("OceanGameLevelEnd");
+    }
+
+    public void OceanGameBackGroundTransition() {
+        transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+    }
+
+    public void OceanGameCircle() {
+        transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
     }
 
     public void LevelEndStars(Image star) {

@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 23543919519704592}
   - component: {fileID: 65999278455503582}
   - component: {fileID: 114782901030834098}
+  - component: {fileID: 114428242708110848}
   m_Layer: 27
   m_Name: Trash_Plastic
   m_TagString: Untagged
@@ -127,6 +128,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 0.29429555, z: 9.999999}
   m_Center: {x: 0, y: 0.011588693, z: 0}
+--- !u!114 &114428242708110848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1746991715312124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed95d7c27c3fd234da7286bb7dbd088b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114782901030834098
 MonoBehaviour:
   m_ObjectHideFlags: 1

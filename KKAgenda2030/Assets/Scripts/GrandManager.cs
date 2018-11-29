@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum SceneActive { Menu, Ocean }
 public class GrandManager : MonoBehaviour {
 
     public static GrandManager instance;
+    public SceneActive scene;
+    public GameObject activeScene;
+    public GameObject previousScene;
+
     public bool paused;
 
-    public GameObject mainMenuFolder;
+    public GameObject mainMenu;
 
     public GameObject oceanGame;
     public Slider oceanGameUI;
@@ -37,8 +42,19 @@ public class GrandManager : MonoBehaviour {
     }
 
     public void LaunchOceanGame() {
-        mainMenuFolder.SetActive(false);
+        mainMenu.SetActive(false);
         oceanGame.SetActive(true);
         oceanGameUI.gameObject.SetActive(true);
+
+        activeScene = oceanGame;
+        scene = SceneActive.Ocean;
+    }
+
+    public void BackToMainMenu() {
+        previousScene = activeScene;
+        previousScene.SetActive(false);
+        activeScene = mainMenu;
+        activeScene.SetActive(true);
+        scene = SceneActive.Menu;
     }
 }

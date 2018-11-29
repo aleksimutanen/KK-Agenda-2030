@@ -29,18 +29,18 @@ public class PageTurner : MonoBehaviour {
             NextPage();
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             PreviousPage();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, pageTurners))
-            {
-                if (hit.transform.gameObject == nextPageButton)
-                    NextPage();
-                else if (hit.transform.gameObject == previousPageButton)
-                    PreviousPage();
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, pageTurners))
+        //    {
+        //        if (hit.transform.gameObject == nextPageButton)
+        //            NextPage();
+        //        else if (hit.transform.gameObject == previousPageButton)
+        //            PreviousPage();
+        //    }
+        //}
     }
 
     public void PreviousPage() {

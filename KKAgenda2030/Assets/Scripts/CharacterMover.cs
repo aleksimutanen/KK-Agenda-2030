@@ -32,14 +32,17 @@ public class CharacterMover : MonoBehaviour {
     bool accelerating;
 
     public List<Collider> thisWall = new List<Collider>();
+    public GameObject unHappyHead;
 
     Rigidbody rb;
-    //Rigidbody2D rb;
+    PhoneVibrate pv;
+    Animator am;
 
     void Start() {
         canMove = true;
+        am = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
-        //rb = GetComponent<Rigidbody2D>();
+        pv = FindObjectOfType<PhoneVibrate>();
         startPos = transform.position;
         startRot = transform.rotation;
     }
@@ -80,7 +83,8 @@ public class CharacterMover : MonoBehaviour {
     //y = 0.5*(sin(x*2*pi - 0.5*pi)+1)
 
     void FixedUpdate() {
-        if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        if (Input.GetKeyDown(KeyCode.O)) StartCoroutine("AteTrash");
+        if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) 
             moveInputStartTime = Time.time;
         var sprintT = Time.time - moveInputStartTime;
         // wave 0..1
@@ -109,10 +113,16 @@ public class CharacterMover : MonoBehaviour {
             speedFactor -= Time.deltaTime * deceleration;
             speedFactor = Mathf.Clamp01(speedFactor);
         }
-        if (!pushing) {
-            rb.velocity = transform.forward * speedFactor * sprintFactor *  maxCharacterSpeed;
+        if (pv.nets.Count > 0) {
+            rb.velocity = transform.forward * (speedFactor / 2) * sprintFactor *  maxCharacterSpeed;
+            am.Play("UnHappySharkSwim");
+        } else if (!pushing) {
+            rb.velocity = transform.forward * speedFactor * sprintFactor * maxCharacterSpeed;
         }
-        Debug.DrawLine(transform.position - transform.forward, transform.position + transform.forward * 100f, Color.red);
+        if (speedFactor > 0 && pv.nets.Count == 0) am.Play("SharkSwim");
+        else if (speedFactor == 0 && pv.nets.Count == 0) am.Play("SharkIdle");
+
+            Debug.DrawLine(transform.position - transform.forward, transform.position + transform.forward * 100f, Color.red);
     }
 
     void OnTriggerStay(Collider other) {
@@ -125,21 +135,15 @@ public class CharacterMover : MonoBehaviour {
                 print(hitWall.normal);
                 if (hitWall.normal == Vector3.zero)
                     hitWall.normal = other.transform.forward;
-                //hitWall.normal = other.transform.forward;
-                //if (other.gameObject.name == "Net")
-                //    hitWall.normal = -transform.forward;
                 Vector3 reflectDir = Vector3.Reflect(transform.forward, hitWall.normal);
                 newDir = reflectDir + hitWall.normal;
                 newDir.y = 0f;
                 pushFactor = speedFactor;
-                //pushFactor = 0;
                 pushing = true;
                 decelerating = true;
             }
-            //if (other.gameObject.name == "Wall")
+
             pushTimer -= Time.deltaTime;
-            //else if (other.gameObject.name == "Net")
-            //    pushTimer = -1;
 
             if (decelerating && pushTimer < 0) {
                 Vector3 targetDir = newDir + playerYPos;
@@ -147,9 +151,6 @@ public class CharacterMover : MonoBehaviour {
                 float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
-                //if (other.gameObject.name == "Net")
-                //    pushFactor -= Time.deltaTime * (deceleration * 10);
-                //else
                     pushFactor -= Time.deltaTime * (deceleration * 2);
                 rb.velocity = transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
 
@@ -170,6 +171,12 @@ public class CharacterMover : MonoBehaviour {
                 rb.velocity = /*newDir*/transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
             }
         }
+    }
+
+    public IEnumerator AteTrash() {
+        unHappyHead.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        unHappyHead.SetActive(false);
     }
 
 
