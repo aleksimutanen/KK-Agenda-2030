@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour {
     public GameObject bookCover;
     public Button pause;
     public Button[] pauseMenuButtons;
+    public Image[] pauseMenuImageList;
 
     public Image transitionBackGround;
     public Image transitionCircle;
@@ -57,6 +58,11 @@ public class UIManager : MonoBehaviour {
         GrandManager.instance.LaunchOceanGame();
     }
 
+    public void BackToMainMenu() {
+        GrandManager.instance.BackToMainMenu();
+        PauseButton();
+    }
+
     public void NextPage() {
         pt.NextPage();
     }
@@ -73,24 +79,65 @@ public class UIManager : MonoBehaviour {
             StartCoroutine(PauseAnim("PauseButtonAnimation"));
             paused = true;
         }
+        print(paused);
     }
 
     IEnumerator PauseAnim(string animName) {
         if (GrandManager.instance.paused) {
-            GrandManager.instance.Pause();
+            //unpaused
             transition = true;
+
             for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
-            pause.GetComponent<Animator>().Play(animName);
+            Color[] b = new Color[pauseMenuImageList.Length];
+            float[] d = new float[pauseMenuImageList.Length];
+
+            for (int i = 0; i < b.Length; i++) {
+                b[i] = pauseMenuImageList[i].color;
+                d[i] = b[i].a;
+            }
+
+            while (d[0] >= 0) {
+                for (int i = 0; i < pauseMenuImageList.Length; i++) {
+                    d[i] -= Time.unscaledDeltaTime;
+                    b[i].a = d[i];
+                    pauseMenuImageList[i].color = b[i];
+                }
+                print("xd");
+                yield return null;
+            }
+
+            GrandManager.instance.Pause();
+
             transition = false;
-            yield return null;
         } else {
+            //paused
             transition = true;
-            pause.GetComponent<Animator>().Play(animName);
-            yield return new WaitForSeconds(1f);
+
+            //pause.GetComponent<Animator>().Play(animName);
+
+            //yield return new WaitForSeconds(1f);
             bool paused = GrandManager.instance.Pause();
+
+            Color[] b = new Color[pauseMenuImageList.Length];
+            float[] d = new float[pauseMenuImageList.Length];
+
+            for (int i = 0; i < b.Length; i++) {
+                b[i] = pauseMenuImageList[i].color;
+                d[i] = b[i].a;
+            }
+
+            while (d[0] <= 1) {
+                for (int i = 0; i < pauseMenuImageList.Length; i++) {
+                    d[i] += Time.unscaledDeltaTime;
+                    b[i].a = d[i];
+                    pauseMenuImageList[i].color = b[i];
+                }
+                print("xd");
+                yield return null;
+            }
             for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = true;
+
             transition = false;
-            yield return null;
         }
     }
 }
