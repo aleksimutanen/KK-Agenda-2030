@@ -5,9 +5,11 @@ using UnityEngine;
 public class Net : MonoBehaviour {
 
     PhoneVibrate pv;
+    UIManager ui;
 
     private void Start() {
         pv = FindObjectOfType<PhoneVibrate>();
+        ui = FindObjectOfType<UIManager>();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -16,7 +18,7 @@ public class Net : MonoBehaviour {
             if (pv.nets.Count == 0)
             OceanGameManager.instance.HitNet();
             pv.AddColliderToList(gameObject.GetComponent<Collider>());
-            FindObjectOfType<UIManager>().HitAvoidable();
+            ui.HitAvoidable();
         }
     }
 

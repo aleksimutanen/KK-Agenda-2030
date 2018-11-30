@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 23888344563380876}
   - component: {fileID: 65680782731828820}
   - component: {fileID: 114271343985288646}
+  - component: {fileID: 114851538045916778}
   m_Layer: 27
   m_Name: Trash_Candybar
   m_TagString: Untagged
@@ -136,6 +137,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d77faa09da9ca9349add48557de2abec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114851538045916778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586052732366642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed95d7c27c3fd234da7286bb7dbd088b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212701645890287618

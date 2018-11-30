@@ -5,9 +5,12 @@ using UnityEngine;
 public class PhoneVibrate : MonoBehaviour {
 
     public List<Collider> nets = new List<Collider>();
+    CharacterMover cm;
 
     void Update() {
-        if (nets.Count > 0) Handheld.Vibrate();
+        if (nets.Count > 0) {
+            Handheld.Vibrate();
+        }
     }
 
     public void AddColliderToList(Collider net) {

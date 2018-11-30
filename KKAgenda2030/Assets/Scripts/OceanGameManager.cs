@@ -16,11 +16,12 @@ public class OceanGameManager : MonoBehaviour {
 
     public int[] levelFoodAmounts;
     public int[] levelTrashAmounts;
+    public GameObject[] nets;
     public Transform[] foodFolders;
     public Transform[] trashFolders;
     public GameObject[] trashPrefabs;
+    public List<List<Transform>> objectFolder = new List<List<Transform>>();
     public GameObject foodPrefab;
-    public GameObject nets;
 
     public int levelIndex;
 
@@ -29,6 +30,8 @@ public class OceanGameManager : MonoBehaviour {
     public int score;
     [SerializeField] int foodScore;
     [SerializeField] int trashPenalty;
+    Vector3 startingScale;
+    Vector3 characterScale;
 
     public Slider scoreSlider;
     public Slider roundEndSlider;
@@ -46,11 +49,14 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void Start() {
-        levelIndex = 0;
-        scoreSlider.value = 0;
-        roundEndSlider.gameObject.SetActive(false);
-        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
-        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+        //levelIndex = 0;
+        //scoreSlider.value = 0;
+        //roundEndSlider.gameObject.SetActive(false);
+        //SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        //SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+        //startingScale = FindObjectOfType<CharacterMover>().transform.localScale;
+        
+
         //while (trashAmount > 0) {
         //    var pos = RandomizePosition();
         //    if (CheckPosition(pos)) {
@@ -86,9 +92,27 @@ public class OceanGameManager : MonoBehaviour {
         //}
     }
 
+    public void StartGame() {
+        levelIndex = 0;
+        scoreSlider.value = 0;
+        roundEndSlider.gameObject.SetActive(false);
+        
+        var b = FindObjectOfType<CharacterMover>();
+        startingScale = b.transform.localScale;
+        b.transform.localScale = startingScale;
+        b.ResetCharacter();
+        for (int i = 0; i < trashFolders.Length; i++) {
+            trashFolders[i] = new GameObject().transform;
+            //trashFolders[i].transform.parent = objectFolder;
+            foodFolders[i] = new GameObject().transform;
+            //foodFolders[i].transform.parent = objectFolder;
+        }
+        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
-            FindObjectOfType<CharacterMover>().GrowScale();
             foodEaten = levelFoodAmounts[levelIndex] - 1;
             HitFood();
             //HitTrash();
@@ -103,7 +127,7 @@ public class OceanGameManager : MonoBehaviour {
                 if (timerTypes[i] == TimerType.Trash)
                     LoseScore(trashPenalty);
                 else if (timerTypes[i] == TimerType.Net)
-                    LoseScore(trashPenalty);
+                    LoseScore(trashPenalty * 2f);
                 else if (timerTypes[i] == TimerType.Food)
                     GainScore(foodScore);
                 i++;
@@ -118,6 +142,7 @@ public class OceanGameManager : MonoBehaviour {
                 GameObject obj = Instantiate(objectPrefab, pos, transform.rotation);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
+                print("food spawned");
             }
         }
     }
@@ -155,11 +180,13 @@ public class OceanGameManager : MonoBehaviour {
 
     IEnumerator LevelComplete() {
 
+        var ui = FindObjectOfType<UIManager>();
         print("level transition start");
-        FindObjectOfType<UIManager>().OceanGameLevelComplete();
+        ui.OceanGameLevelComplete();
         FindObjectOfType<CharacterMover>().canMove = false;
 
         yield return new WaitForSeconds(2.5f);
+
         scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
 
         roundEndSlider.gameObject.SetActive(true);
@@ -185,22 +212,23 @@ public class OceanGameManager : MonoBehaviour {
             yield return null;
         }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
-        FindObjectOfType<UIManager>().slider.GetComponent<Animator>().Play("New State");
+        //start transition
+        ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+
+        yield return new WaitForSeconds(1f);
+
+        //start loading roll
+        ui.slider.GetComponent<Animator>().Play("New State");
+        ui.transitionCircle.gameObject.SetActive(true);
+        ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
+
+        yield return new WaitForSeconds(3f);
+
+        ui.transitionCircle.gameObject.SetActive(false);
         roundEndSlider.gameObject.SetActive(false);
         for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
-
-        print(scoreSlider.value);
-        if (scoreSlider.value >= 80) {
-            print("you get 3 stars");
-        } else if (scoreSlider.value >= 55) {
-            print("you get 2 stars");
-        } else if (scoreSlider.value >= 30) {
-            print("you get 1 star");
-        } else {
-            print("you get no stars");
-        }
 
         if (levelIndex < 3) {
             NextLevel();
@@ -208,29 +236,56 @@ public class OceanGameManager : MonoBehaviour {
             print("game complete");
             GameComplete();
         }
-        //yield return null;
+
+        yield return new WaitForSeconds(1f);
+        ui.transitionBackGround.GetComponent<Animator>().Play("New State");
+    }
+
+    public void ReloadLevel() {
+       
+        foodFolders[levelIndex].gameObject.SetActive(false);
+        trashFolders[levelIndex].gameObject.SetActive(false);
+
+        trashFolders[levelIndex] = new GameObject().transform;
+        //trashFolders[levelIndex].transform.parent = objectFolder;
+
+        foodFolders[levelIndex] = new GameObject().transform;
+        //foodFolders[levelIndex].transform.parent = objectFolder;
+
+        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+
+        var b = FindObjectOfType<CharacterMover>();
+        b.ResetCharacter();
+        b.transform.localScale = characterScale;
+        foodEaten = 0;
+        scoreSlider.value = 0f;
+        print("reload");
     }
 
     void NextLevel() {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
+        nets[levelIndex - 1].SetActive(false);
 
-        if (levelIndex > 0) {
-            //nets[levelIndex - 1].SetActive(false);
-            //nets[levelIndex].SetActive(true);
-            nets.SetActive(true);
-        }
-
+        nets[levelIndex].SetActive(true);
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
 
-        FindObjectOfType<CharacterMover>().ResetCharacter();
+        var b = FindObjectOfType<CharacterMover>();
+        b.ResetCharacter();
+        characterScale = b.transform.localScale;
         scoreSlider.value = 0f;
         foodEaten = 0;
     }
 
     void GameComplete() {
 
+    }
+
+    public void QuitToMenu() {
+        //objectFolder.GetComponentInChildren<Transform>().gameObject.SetActive(false);
+        //objectFolder.gameObject.SetActive(true);
     }
 
     public void HitFood() {
