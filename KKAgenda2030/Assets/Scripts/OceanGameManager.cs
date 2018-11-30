@@ -17,10 +17,11 @@ public class OceanGameManager : MonoBehaviour {
     public int[] levelFoodAmounts;
     public int[] levelTrashAmounts;
     public GameObject[] nets;
-    public Transform[] foodFolders;
-    public Transform[] trashFolders;
+    public List<Transform> foodFolders = new List<Transform>();
+    public List<Transform> trashFolders = new List<Transform>();
     public GameObject[] trashPrefabs;
-    public List<List<Transform>> objectFolder = new List<List<Transform>>();
+    //public List<List<Transform>> objectFolder = new List<List<Transform>>();
+    public Transform objectFolder;
     public GameObject foodPrefab;
 
     public int levelIndex;
@@ -30,7 +31,7 @@ public class OceanGameManager : MonoBehaviour {
     public int score;
     [SerializeField] int foodScore;
     [SerializeField] int trashPenalty;
-    Vector3 startingScale;
+    public Vector3 startingScale;
     Vector3 characterScale;
 
     public Slider scoreSlider;
@@ -98,14 +99,14 @@ public class OceanGameManager : MonoBehaviour {
         roundEndSlider.gameObject.SetActive(false);
         
         var b = FindObjectOfType<CharacterMover>();
-        startingScale = b.transform.localScale;
         b.transform.localScale = startingScale;
+        characterScale = b.transform.localScale;
         b.ResetCharacter();
-        for (int i = 0; i < trashFolders.Length; i++) {
+        for (int i = 0; i < trashFolders.Count; i++) {
             trashFolders[i] = new GameObject().transform;
-            //trashFolders[i].transform.parent = objectFolder;
+            trashFolders[i].transform.parent = objectFolder;
             foodFolders[i] = new GameObject().transform;
-            //foodFolders[i].transform.parent = objectFolder;
+            foodFolders[i].transform.parent = objectFolder;
         }
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
@@ -246,11 +247,13 @@ public class OceanGameManager : MonoBehaviour {
         foodFolders[levelIndex].gameObject.SetActive(false);
         trashFolders[levelIndex].gameObject.SetActive(false);
 
+        Destroy(trashFolders[levelIndex].gameObject);
         trashFolders[levelIndex] = new GameObject().transform;
-        //trashFolders[levelIndex].transform.parent = objectFolder;
+        trashFolders[levelIndex].transform.parent = objectFolder;
 
+        Destroy(foodFolders[levelIndex].gameObject);
         foodFolders[levelIndex] = new GameObject().transform;
-        //foodFolders[levelIndex].transform.parent = objectFolder;
+        foodFolders[levelIndex].transform.parent = objectFolder;
 
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
@@ -280,10 +283,15 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void GameComplete() {
-
+        //QuitToMenu();
     }
 
     public void QuitToMenu() {
+        for (int i = 0; i < foodFolders.Count; i++) {
+            Destroy(trashFolders[i].gameObject);
+            Destroy(foodFolders[i].gameObject);
+        }
+        foodEaten = 0;
         //objectFolder.GetComponentInChildren<Transform>().gameObject.SetActive(false);
         //objectFolder.gameObject.SetActive(true);
     }
