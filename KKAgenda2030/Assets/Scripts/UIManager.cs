@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour {
     public Image transitionCircle;
     public Image sliderImage;
     public Slider slider;
+    
+    public float fadeTime;
 
     bool paused;
     public bool transition;
@@ -58,7 +60,13 @@ public class UIManager : MonoBehaviour {
         GrandManager.instance.LaunchOceanGame();
     }
 
+    public void ReloadOceanGameLevel() {
+        OceanGameManager.instance.ReloadLevel();
+        PauseButton();
+    }
+
     public void BackToMainMenu() {
+        OceanGameManager.instance.QuitToMenu();
         GrandManager.instance.BackToMainMenu();
         PauseButton();
     }
@@ -88,6 +96,7 @@ public class UIManager : MonoBehaviour {
             transition = true;
 
             for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
+
             Color[] b = new Color[pauseMenuImageList.Length];
             float[] d = new float[pauseMenuImageList.Length];
 
@@ -98,11 +107,10 @@ public class UIManager : MonoBehaviour {
 
             while (d[0] >= 0) {
                 for (int i = 0; i < pauseMenuImageList.Length; i++) {
-                    d[i] -= Time.unscaledDeltaTime;
+                    d[i] -= Time.unscaledDeltaTime * (1 / fadeTime);
                     b[i].a = d[i];
                     pauseMenuImageList[i].color = b[i];
                 }
-                print("xd");
                 yield return null;
             }
 
@@ -128,11 +136,10 @@ public class UIManager : MonoBehaviour {
 
             while (d[0] <= 1) {
                 for (int i = 0; i < pauseMenuImageList.Length; i++) {
-                    d[i] += Time.unscaledDeltaTime;
+                    d[i] += Time.unscaledDeltaTime * (1 / fadeTime);
                     b[i].a = d[i];
                     pauseMenuImageList[i].color = b[i];
                 }
-                print("xd");
                 yield return null;
             }
             for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = true;

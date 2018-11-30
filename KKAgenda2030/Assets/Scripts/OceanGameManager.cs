@@ -20,6 +20,7 @@ public class OceanGameManager : MonoBehaviour {
     public Transform[] foodFolders;
     public Transform[] trashFolders;
     public GameObject[] trashPrefabs;
+    public List<List<Transform>> objectFolder = new List<List<Transform>>();
     public GameObject foodPrefab;
 
     public int levelIndex;
@@ -29,6 +30,8 @@ public class OceanGameManager : MonoBehaviour {
     public int score;
     [SerializeField] int foodScore;
     [SerializeField] int trashPenalty;
+    Vector3 startingScale;
+    Vector3 characterScale;
 
     public Slider scoreSlider;
     public Slider roundEndSlider;
@@ -46,11 +49,14 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void Start() {
-        levelIndex = 0;
-        scoreSlider.value = 0;
-        roundEndSlider.gameObject.SetActive(false);
-        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
-        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+        //levelIndex = 0;
+        //scoreSlider.value = 0;
+        //roundEndSlider.gameObject.SetActive(false);
+        //SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        //SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+        //startingScale = FindObjectOfType<CharacterMover>().transform.localScale;
+        
+
         //while (trashAmount > 0) {
         //    var pos = RandomizePosition();
         //    if (CheckPosition(pos)) {
@@ -86,6 +92,25 @@ public class OceanGameManager : MonoBehaviour {
         //}
     }
 
+    public void StartGame() {
+        levelIndex = 0;
+        scoreSlider.value = 0;
+        roundEndSlider.gameObject.SetActive(false);
+        
+        var b = FindObjectOfType<CharacterMover>();
+        startingScale = b.transform.localScale;
+        b.transform.localScale = startingScale;
+        b.ResetCharacter();
+        for (int i = 0; i < trashFolders.Length; i++) {
+            trashFolders[i] = new GameObject().transform;
+            //trashFolders[i].transform.parent = objectFolder;
+            foodFolders[i] = new GameObject().transform;
+            //foodFolders[i].transform.parent = objectFolder;
+        }
+        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
             foodEaten = levelFoodAmounts[levelIndex] - 1;
@@ -117,6 +142,7 @@ public class OceanGameManager : MonoBehaviour {
                 GameObject obj = Instantiate(objectPrefab, pos, transform.rotation);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
+                print("food spawned");
             }
         }
     }
@@ -215,6 +241,28 @@ public class OceanGameManager : MonoBehaviour {
         ui.transitionBackGround.GetComponent<Animator>().Play("New State");
     }
 
+    public void ReloadLevel() {
+       
+        foodFolders[levelIndex].gameObject.SetActive(false);
+        trashFolders[levelIndex].gameObject.SetActive(false);
+
+        trashFolders[levelIndex] = new GameObject().transform;
+        //trashFolders[levelIndex].transform.parent = objectFolder;
+
+        foodFolders[levelIndex] = new GameObject().transform;
+        //foodFolders[levelIndex].transform.parent = objectFolder;
+
+        SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
+        SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
+
+        var b = FindObjectOfType<CharacterMover>();
+        b.ResetCharacter();
+        b.transform.localScale = characterScale;
+        foodEaten = 0;
+        scoreSlider.value = 0f;
+        print("reload");
+    }
+
     void NextLevel() {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
@@ -224,13 +272,20 @@ public class OceanGameManager : MonoBehaviour {
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
 
-        FindObjectOfType<CharacterMover>().ResetCharacter();
+        var b = FindObjectOfType<CharacterMover>();
+        b.ResetCharacter();
+        characterScale = b.transform.localScale;
         scoreSlider.value = 0f;
         foodEaten = 0;
     }
 
     void GameComplete() {
 
+    }
+
+    public void QuitToMenu() {
+        //objectFolder.GetComponentInChildren<Transform>().gameObject.SetActive(false);
+        //objectFolder.gameObject.SetActive(true);
     }
 
     public void HitFood() {

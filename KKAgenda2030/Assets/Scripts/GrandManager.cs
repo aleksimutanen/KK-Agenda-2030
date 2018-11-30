@@ -45,7 +45,7 @@ public class GrandManager : MonoBehaviour {
         mainMenu.SetActive(false);
         oceanGame.SetActive(true);
         oceanGameUI.gameObject.SetActive(true);
-
+        OceanGameManager.instance.StartGame();
         activeScene = oceanGame;
         scene = SceneActive.Ocean;
     }

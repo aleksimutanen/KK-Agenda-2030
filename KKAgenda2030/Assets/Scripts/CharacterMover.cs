@@ -23,7 +23,7 @@ public class CharacterMover : MonoBehaviour {
     public Vector3 playerYPos;
     public Vector3 rayOffset;
     public Vector3 newDir;
-    Vector3 startPos;
+    public Vector3 startPos;
     Quaternion startRot;
 
     public bool canMove;
@@ -196,6 +196,7 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void ResetCharacter() {
+        var rb = GetComponent<Rigidbody>();
         canMove = true;
         transform.position = startPos;
         transform.rotation = startRot;
