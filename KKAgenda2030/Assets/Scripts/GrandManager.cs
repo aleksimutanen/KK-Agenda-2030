@@ -18,11 +18,14 @@ public class GrandManager : MonoBehaviour {
     public GameObject oceanGame;
     public Slider oceanGameUI;
 
+    public string sharkMusic;
+    public string stopMusic;
+
 	void Start () {
         if (instance)
             Debug.LogError("2 GrandManagers found");
         instance = this;
-	}
+    }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.R))
@@ -48,6 +51,7 @@ public class GrandManager : MonoBehaviour {
         OceanGameManager.instance.StartGame();
         activeScene = oceanGame;
         scene = SceneActive.Ocean;
+        Fabric.EventManager.Instance.PostEvent("sharkMusic");
     }
 
     public void BackToMainMenu() {
@@ -56,5 +60,6 @@ public class GrandManager : MonoBehaviour {
         activeScene = mainMenu;
         activeScene.SetActive(true);
         scene = SceneActive.Menu;
+        Fabric.EventManager.Instance.PostEvent("stopMusic");
     }
 }
