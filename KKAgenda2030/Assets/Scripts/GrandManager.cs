@@ -20,8 +20,11 @@ public class GrandManager : MonoBehaviour {
 
     public string sharkMusic;
     public string stopMusic;
+    public string ambient;
+    public string stopAmbient;
 
 	void Start () {
+        Fabric.EventManager.Instance.PostEvent("ambient");
         if (instance)
             Debug.LogError("2 GrandManagers found");
         instance = this;
@@ -51,6 +54,7 @@ public class GrandManager : MonoBehaviour {
         OceanGameManager.instance.StartGame();
         activeScene = oceanGame;
         scene = SceneActive.Ocean;
+        Fabric.EventManager.Instance.PostEvent("stopAmbient");
         Fabric.EventManager.Instance.PostEvent("sharkMusic");
     }
 

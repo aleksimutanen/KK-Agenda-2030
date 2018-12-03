@@ -43,6 +43,10 @@ public class OceanGameManager : MonoBehaviour {
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
 
+    public string levelClear;
+    public string stopMusic;
+    public string sharkMusic;
+
     void Awake() {
         if (instance)
             Debug.LogError("2+ SeaManagers found!");
@@ -181,6 +185,9 @@ public class OceanGameManager : MonoBehaviour {
 
     IEnumerator LevelComplete() {
 
+        Fabric.EventManager.Instance.PostEvent("stopMusic");
+        Fabric.EventManager.Instance.PostEvent("levelClear");
+
         var ui = FindObjectOfType<UIManager>();
         print("level transition start");
         ui.OceanGameLevelComplete();
@@ -217,6 +224,7 @@ public class OceanGameManager : MonoBehaviour {
 
         //start transition
         ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+        Fabric.EventManager.Instance.PostEvent("sharkMusic");
 
         yield return new WaitForSeconds(1f);
 
