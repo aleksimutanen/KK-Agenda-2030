@@ -16,11 +16,11 @@ public class Net : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        Fabric.EventManager.Instance.PostEvent("netHit");
         print("enter net");
+        Fabric.EventManager.Instance.PostEvent("netHit");
         if (other.gameObject.tag == "Character") {
             if (pv.nets.Count == 0)
-            OceanGameManager.instance.HitNet();
+                OceanGameManager.instance.HitNet();
             pv.AddColliderToList(gameObject.GetComponent<Collider>());
             ui.HitAvoidable();
         }
@@ -28,9 +28,9 @@ public class Net : MonoBehaviour {
 
     private void OnTriggerExit(Collider other) {
         print("exit net");
+        Fabric.EventManager.Instance.PostEvent("netEscape");
         if (other.gameObject.tag == "Character") {
             pv.RemoveColliderFromList(gameObject.GetComponent<Collider>());
-            Fabric.EventManager.Instance.PostEvent("netEscape");
         }
     }
 }
