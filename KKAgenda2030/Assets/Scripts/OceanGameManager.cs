@@ -16,6 +16,7 @@ public class OceanGameManager : MonoBehaviour {
 
     public int[] levelFoodAmounts;
     public int[] levelTrashAmounts;
+    public GameObject[] backGroundImages;
     public GameObject[] nets;
     public List<Transform> foodFolders = new List<Transform>();
     public List<Transform> trashFolders = new List<Transform>();
@@ -42,6 +43,10 @@ public class OceanGameManager : MonoBehaviour {
     public float[] endStarScore;
     public Image[] starImages;
     public Image[] totalStars;
+    public Image gameEndShark;
+    public Image happySharkFace;
+    public Image unHappySharkFace;
+
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
@@ -107,6 +112,8 @@ public class OceanGameManager : MonoBehaviour {
         roundEndSlider.gameObject.SetActive(false);
         scoreSlider.gameObject.SetActive(true);
 
+        nets[levelIndex].SetActive(true);
+        backGroundImages[levelIndex].SetActive(true);
         FindObjectOfType<PhoneVibrate>().nets.Clear();
         var b = FindObjectOfType<CharacterMover>();
         b.transform.localScale = startingScale;
@@ -276,6 +283,12 @@ public class OceanGameManager : MonoBehaviour {
 
             ui.slider.GetComponent<Animator>().Play("New State");
 
+            gameEndShark.GetComponent<Animator>().Play("UISharkSwim");
+            if (starsCollected >= 7)
+                happySharkFace.gameObject.SetActive(true);
+            else if (starsCollected <= 3)
+                unHappySharkFace.gameObject.SetActive(true);
+
             //s = countedStars;
             s = starsCollected;
 
@@ -306,6 +319,8 @@ public class OceanGameManager : MonoBehaviour {
             for (int i = 0; i < totalStars.Length; i++) totalStars[i].gameObject.SetActive(false);
 
             gameEndSlider.GetComponent<Animator>().Play("New State");
+            happySharkFace.gameObject.SetActive(false);
+            unHappySharkFace.gameObject.SetActive(false);
 
             QuitToMenu();
             GrandManager.instance.BackToMainMenu();
@@ -346,7 +361,9 @@ public class OceanGameManager : MonoBehaviour {
         foodFolders[levelIndex - 1].gameObject.SetActive(false);
         trashFolders[levelIndex - 1].gameObject.SetActive(false);
         nets[levelIndex - 1].SetActive(false);
+        backGroundImages[levelIndex - 1].SetActive(false);
 
+        backGroundImages[levelIndex].SetActive(true);
         nets[levelIndex].SetActive(true);
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
@@ -368,6 +385,7 @@ public class OceanGameManager : MonoBehaviour {
         for (int i = 0; i < foodFolders.Count; i++) {
             Destroy(trashFolders[i].gameObject);
             Destroy(foodFolders[i].gameObject);
+            nets[i].SetActive(false);
         }
         foodEaten = 0;
     }

@@ -33,6 +33,7 @@ public class CharacterMover : MonoBehaviour {
 
     public List<Collider> thisWall = new List<Collider>();
     public GameObject unHappyHead;
+    public GameObject happyHead;
 
     Rigidbody rb;
     PhoneVibrate pv;
@@ -177,6 +178,12 @@ public class CharacterMover : MonoBehaviour {
         unHappyHead.SetActive(true);
         yield return new WaitForSeconds(1f);
         unHappyHead.SetActive(false);
+    }
+
+    public IEnumerator AteFood() {
+        happyHead.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        happyHead.SetActive(false);
     }
 
 

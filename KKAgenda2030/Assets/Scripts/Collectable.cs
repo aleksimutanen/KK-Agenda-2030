@@ -13,6 +13,7 @@ public class Collectable : MonoBehaviour {
             FindObjectOfType<CharacterMover>().GrowScale();
             FindObjectOfType<UIManager>().HitFood();
             Fabric.EventManager.Instance.PostEvent("goodFood");
+            FindObjectOfType<CharacterMover>().StartCoroutine("AteFood");
         }
     }
 }
