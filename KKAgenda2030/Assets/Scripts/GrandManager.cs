@@ -66,5 +66,6 @@ public class GrandManager : MonoBehaviour {
         activeScene.SetActive(true);
         scene = SceneActive.Menu;
         Fabric.EventManager.Instance.PostEvent("stopMusic");
+        Fabric.EventManager.Instance.PostEvent("ambient");
     }
 }
