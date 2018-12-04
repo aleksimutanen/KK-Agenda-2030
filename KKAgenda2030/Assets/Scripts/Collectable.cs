@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Collectable : MonoBehaviour {
+    public string goodFood;
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Character") {
@@ -11,6 +12,7 @@ public class Collectable : MonoBehaviour {
             gameObject.SetActive(false);
             FindObjectOfType<CharacterMover>().GrowScale();
             FindObjectOfType<UIManager>().HitFood();
+            Fabric.EventManager.Instance.PostEvent("goodFood");
         }
     }
 }

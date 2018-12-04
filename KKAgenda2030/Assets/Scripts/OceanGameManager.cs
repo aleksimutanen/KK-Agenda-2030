@@ -20,6 +20,7 @@ public class OceanGameManager : MonoBehaviour {
     public List<Transform> foodFolders = new List<Transform>();
     public List<Transform> trashFolders = new List<Transform>();
     public GameObject[] trashPrefabs;
+    //public List<List<Transform>> objectFolder = new List<List<Transform>>();
     public Transform objectFolder;
     public GameObject foodPrefab;
 
@@ -35,16 +36,17 @@ public class OceanGameManager : MonoBehaviour {
 
     public Slider scoreSlider;
     public Slider roundEndSlider;
-    public Slider gameEndSlider;
     public AnimationCurve sliderAnimCurve;
-    public float starsCollected;
     public float[] starScore;
-    public float[] endStarScore;
     public Image[] starImages;
-    public Image[] totalStars;
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
+
+    public string levelClear;
+    public string stopMusic;
+    public string sharkMusic;
+    public string oneStar;
 
     void Awake() {
         if (instance)
@@ -100,9 +102,7 @@ public class OceanGameManager : MonoBehaviour {
         levelIndex = 0;
         scoreSlider.value = 0;
         roundEndSlider.gameObject.SetActive(false);
-        scoreSlider.gameObject.SetActive(true);
-
-        FindObjectOfType<PhoneVibrate>().nets.Clear();
+        
         var b = FindObjectOfType<CharacterMover>();
         b.transform.localScale = startingScale;
         characterScale = b.transform.localScale;
@@ -122,11 +122,6 @@ public class OceanGameManager : MonoBehaviour {
             foodEaten = levelFoodAmounts[levelIndex] - 1;
             HitFood();
             //HitTrash();
-        }
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            foodEaten = levelFoodAmounts[levelIndex] - 1;
-            levelIndex = 2;
-            HitFood();
         }
 
         for (int i = 0; i < scoreTimers.Count;) {
@@ -191,11 +186,12 @@ public class OceanGameManager : MonoBehaviour {
 
     IEnumerator LevelComplete() {
 
-        print("level transition start");
+        Fabric.EventManager.Instance.PostEvent("stopMusic");
+        Fabric.EventManager.Instance.PostEvent("levelClear");
 
         var ui = FindObjectOfType<UIManager>();
+        print("level transition start");
         ui.OceanGameLevelComplete();
-        FindObjectOfType<PhoneVibrate>().nets.Clear();
         FindObjectOfType<CharacterMover>().canMove = false;
 
         yield return new WaitForSeconds(2.5f);
@@ -203,6 +199,7 @@ public class OceanGameManager : MonoBehaviour {
         scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
 
         roundEndSlider.gameObject.SetActive(true);
+        //roundEndSlider.value = -50f;
         float s = scoreSlider.value + 50f;
         float fillTime = 3f;
 
@@ -217,89 +214,38 @@ public class OceanGameManager : MonoBehaviour {
             for (int i = 0; i < starImages.Length; i++) {
                 if (roundEndSlider.value >= starScore[i]) {
                     starImages[i].gameObject.SetActive(true);
-                    ui.LevelEndStars(starImages[i]);
+                    FindObjectOfType<UIManager>().LevelEndStars(starImages[i]);
                     print("star achieved");
+                    Fabric.EventManager.Instance.PostEvent("oneStar");
                 }
             }
             yield return null;
         }
 
-        if (roundEndSlider.value >= 79)
-            starsCollected += 3f;
-        else if (roundEndSlider.value >= 54)
-            starsCollected += 2f;
-        else if (roundEndSlider.value >= 29)
-            starsCollected += 1f;
+        yield return new WaitForSeconds(3f);
+
+        //start transition
+        ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+        Fabric.EventManager.Instance.PostEvent("sharkMusic");
 
         yield return new WaitForSeconds(1f);
 
+        //start loading roll
+        ui.slider.GetComponent<Animator>().Play("New State");
+        ui.transitionCircle.gameObject.SetActive(true);
+        ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
+
+        yield return new WaitForSeconds(3f);
+
+        ui.transitionCircle.gameObject.SetActive(false);
+        roundEndSlider.gameObject.SetActive(false);
+        for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
+
         if (levelIndex < 3) {
-
-            yield return new WaitForSeconds(3f);
-
-            //start transition
-            ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
-
-            yield return new WaitForSeconds(1f);
-
-            //start loading roll
-            ui.slider.GetComponent<Animator>().Play("New State");
-            ui.transitionCircle.gameObject.SetActive(true);
-            ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
-
-            yield return new WaitForSeconds(3f);
-
-            ui.transitionCircle.gameObject.SetActive(false);
-            roundEndSlider.gameObject.SetActive(false);
-            for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
-
             NextLevel();
-
         } else {
-            ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameGameEnd");
-
-            yield return new WaitForSeconds(1f);
-
-            gameEndSlider.GetComponent<Animator>().Play("OceanGameCompleted");
-
-            yield return new WaitForSeconds(2f);
-
-            ui.slider.GetComponent<Animator>().Play("New State");
-
-            //s = countedStars;
-            s = starsCollected;
-            
-            fillTime = 3f;
-            t = 0f;
-            fillSpeed = 1 / fillTime;
-
-            while (t <= 1) {
-                t += fillSpeed * Time.deltaTime;
-                var curvedT = sliderAnimCurve.Evaluate(t);
-                gameEndSlider.value = (curvedT * s);
-                print(gameEndSlider.value);
-                for (int i = 0; i < totalStars.Length; i++) {
-                    if (gameEndSlider.value >= endStarScore[i]) {
-                        totalStars[i].gameObject.SetActive(true);
-                        ui.LevelEndStars(totalStars[i]);
-                        print("star achieved");
-                    }
-                }
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(3f);
-
-            print("slider zero");
-            gameEndSlider.value = 0f;
-            for (int i = 0; i < totalStars.Length; i++) totalStars[i].gameObject.SetActive(false);
-
-            gameEndSlider.GetComponent<Animator>().Play("New State");
-
-            QuitToMenu();
-            GrandManager.instance.BackToMainMenu();
-
-            starsCollected = 0f;
+            print("game complete");
+            GameComplete();
         }
 
         yield return new WaitForSeconds(1f);
@@ -322,7 +268,6 @@ public class OceanGameManager : MonoBehaviour {
         SpawnTrash(levelTrashAmounts[levelIndex], trashPrefabs, trashFolders[levelIndex]);
         SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
 
-        FindObjectOfType<PhoneVibrate>().nets.Clear();
         var b = FindObjectOfType<CharacterMover>();
         b.ResetCharacter();
         b.transform.localScale = characterScale;
@@ -348,17 +293,17 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void GameComplete() {
-        FindObjectOfType<UIManager>().BackToMainMenu();
+        //QuitToMenu();
     }
 
     public void QuitToMenu() {
-        FindObjectOfType<PhoneVibrate>().nets.Clear();
-        scoreSlider.gameObject.SetActive(false);
         for (int i = 0; i < foodFolders.Count; i++) {
             Destroy(trashFolders[i].gameObject);
             Destroy(foodFolders[i].gameObject);
         }
         foodEaten = 0;
+        //objectFolder.GetComponentInChildren<Transform>().gameObject.SetActive(false);
+        //objectFolder.gameObject.SetActive(true);
     }
 
     public void HitFood() {

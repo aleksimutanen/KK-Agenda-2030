@@ -71,6 +71,7 @@ public class MenuManager : MonoBehaviour {
     public void PlayMusic()
     {
         audioData.Play();
+        print("Soita musiikia");
     }
 
     public void Credits()
