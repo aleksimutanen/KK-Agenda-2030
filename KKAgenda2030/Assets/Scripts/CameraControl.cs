@@ -12,10 +12,11 @@ public class CameraControl : MonoBehaviour {
 
     public BoxXZ visibleArea;
 
-    public GameObject pauseMenu;
+    //public GameObject pauseMenu;
 
 	void Start () {
         ui = FindObjectOfType<UIManager>();
+        //print(Screen.dpi);
 	}
 	
 	void Update () {
@@ -34,8 +35,8 @@ public class CameraControl : MonoBehaviour {
         newPosition.z = Mathf.Clamp(newPosition.z, -camAllowedOffsetZ, camAllowedOffsetZ);
 
         transform.position = newPosition;
-        if (!ui.transition)
-            pauseMenu.transform.position = transform.position + new Vector3((-camSizeX - x) * 0.5f, -5, (camSizeZ + x) * 0.5f);
+        //if (!ui.transition)
+        //    pauseMenu.transform.position = transform.position + new Vector3((-camSizeX - x) * 0.5f, -5, (camSizeZ + x) * 0.5f);
     }
 
     private void OnDrawGizmos() {

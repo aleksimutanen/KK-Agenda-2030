@@ -57,18 +57,48 @@ public class UIManager : MonoBehaviour {
     }
 
     public void LaunchOceanGame() {
-        GrandManager.instance.LaunchOceanGame();
+        //GrandManager.instance.LaunchOceanGame();
+        GrandManager.instance.StartCoroutine("LaunchOceanGame");
     }
 
     public void ReloadOceanGameLevel() {
-        OceanGameManager.instance.ReloadLevel();
+        //OceanGameManager.instance.ReloadLevel();
+        //PauseButton();
+        StartCoroutine("ReloadGameFade");
+    }
+
+    IEnumerator ReloadGameFade() {
+        transitionBackGround.GetComponent<Animator>().Play("OceanGameQuickTransition");
         PauseButton();
+
+        yield return new WaitForSeconds(1f);
+
+        OceanGameManager.instance.ReloadLevel();
+
+        yield return new WaitForSeconds(1f);
+
+        transitionBackGround.GetComponent<Animator>().Play("New State");
     }
 
     public void BackToMainMenu() {
+        //OceanGameManager.instance.QuitToMenu();
+        //GrandManager.instance.BackToMainMenu();
+        //PauseButton();
+        StartCoroutine("QuitGameFade");
+    }
+
+    IEnumerator QuitGameFade() {
+        transitionBackGround.GetComponent<Animator>().Play("OceanGameQuickTransition");
+        PauseButton();
+
+        yield return new WaitForSeconds(1f);
+
         OceanGameManager.instance.QuitToMenu();
         GrandManager.instance.BackToMainMenu();
-        PauseButton();
+
+        yield return new WaitForSeconds(1f);
+
+        transitionBackGround.GetComponent<Animator>().Play("New State");
     }
 
     public void NextPage() {
