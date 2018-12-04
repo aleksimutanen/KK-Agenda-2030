@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour {
 
     public GameObject MenuForThegame;
-    public GameObject ThisSite;
+    public Canvas ThisSite;
     public GameObject VideoScreen;
     public GameObject creditsTheGame;
     private VideoPlayer seaVideoPlayer;
@@ -28,6 +28,8 @@ public class MenuManager : MonoBehaviour {
     public void GameOptions()
     {
         MenuForThegame.gameObject.SetActive(true);
+
+        print("Avataan Options valikko");
         
     }
 
@@ -40,7 +42,7 @@ public class MenuManager : MonoBehaviour {
         StartCoroutine(PlaySeaVideo());
 
         // Screen.SetResolution(720,720,false);
-        print("Video alkaa");
+        
     }    
 
 
@@ -49,15 +51,15 @@ public class MenuManager : MonoBehaviour {
         VideoScreen.gameObject.SetActive(false);
         ThisSite.gameObject.SetActive(true);
         seaVideoPlayer.Stop();
-        print("Video pysähtyy");
+        
     }
 
     public IEnumerator PlaySeaVideo()
     {
-        seaVideoPlayer.Play();
+        seaVideoPlayer.Play();       
 
         yield return new WaitForSeconds(1f);
-
+       
         yield return new WaitUntil(() => !seaVideoPlayer.isPlaying);
 
         StopVideo();
@@ -66,12 +68,13 @@ public class MenuManager : MonoBehaviour {
     public void OpenPDF()
     {
          Application.OpenURL(Web + "www.kierratyskeskus.fi/files/13645/Pikku_simpukka_askarteluohje.pdf");
+               
     }
 
     public void PlayMusic()
     {
         audioData.Play();
-        print("Soita musiikia");
+       
     }
 
     public void Credits()
