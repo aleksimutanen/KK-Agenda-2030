@@ -24,10 +24,11 @@ public class GrandManager : MonoBehaviour {
     public string stopAmbient;
 
 	void Start () {
-      //  Fabric.EventManager.Instance.PostEvent("ambient");
         if (instance)
             Debug.LogError("2 GrandManagers found");
         instance = this;
+
+        Fabric.EventManager.Instance.PostEvent("ambient");
     }
 
     void Update() {

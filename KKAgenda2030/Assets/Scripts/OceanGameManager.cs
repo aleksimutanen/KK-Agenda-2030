@@ -46,6 +46,7 @@ public class OceanGameManager : MonoBehaviour {
     public string levelClear;
     public string stopMusic;
     public string sharkMusic;
+    public string oneStar;
 
     void Awake() {
         if (instance)
@@ -215,6 +216,7 @@ public class OceanGameManager : MonoBehaviour {
                     starImages[i].gameObject.SetActive(true);
                     FindObjectOfType<UIManager>().LevelEndStars(starImages[i]);
                     print("star achieved");
+                    Fabric.EventManager.Instance.PostEvent("oneStar");
                 }
             }
             yield return null;
