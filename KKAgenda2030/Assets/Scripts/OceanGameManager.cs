@@ -316,6 +316,8 @@ public class OceanGameManager : MonoBehaviour {
 
             print("slider zero");
             gameEndSlider.value = 0f;
+            for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
+
             for (int i = 0; i < totalStars.Length; i++) totalStars[i].gameObject.SetActive(false);
 
             gameEndSlider.GetComponent<Animator>().Play("New State");
