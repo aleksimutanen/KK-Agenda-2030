@@ -12,6 +12,8 @@ public class CameraControl : MonoBehaviour {
 
     public BoxXZ visibleArea;
 
+    public Vector3 dir;
+
     //public GameObject pauseMenu;
 
 	void Start () {
@@ -21,7 +23,7 @@ public class CameraControl : MonoBehaviour {
 	
 	void Update () {
         // track
-        var newPosition = target.position + Vector3.up * 10f;
+        var newPosition = target.position + dir * 10f;
 
         // clamp camera
         var cam = Camera.main;
