@@ -19,6 +19,7 @@ public class CharacterMover : MonoBehaviour {
 
     public LayerMask background;
     public LayerMask walls;
+    public LayerMask collectables;
 
     public Vector3 playerYPos;
     public Vector3 rayOffset;
@@ -30,18 +31,30 @@ public class CharacterMover : MonoBehaviour {
     public bool pushing;
     bool decelerating;
     bool accelerating;
+    bool happyFaceActive;
 
     public List<Collider> thisWall = new List<Collider>();
-    public GameObject unHappyHead;
-    public GameObject happyHead;
+    public GameObject /*unHappyHead*/u;
+    public GameObject /*happyHead*/h;
 
     Rigidbody rb;
     PhoneVibrate pv;
     Animator am;
+    SpriteRenderer sr;
+    SpriteRenderer unHappyHead;
+    SpriteRenderer happyHead;
+
+    public SpriteRenderer[] faces;
+    public List<Collider> items;
 
     void Start() {
         canMove = true;
         am = GetComponentInChildren<Animator>();
+
+        sr = GetComponentInChildren<SpriteRenderer>();
+        unHappyHead = u.GetComponent<SpriteRenderer>();
+        happyHead = h.GetComponent<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody>();
         pv = FindObjectOfType<PhoneVibrate>();
         startPos = transform.position;
@@ -83,9 +96,28 @@ public class CharacterMover : MonoBehaviour {
 
     //y = 0.5*(sin(x*2*pi - 0.5*pi)+1)
 
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 2f);
+    }
+
     void FixedUpdate() {
-        if (Input.GetKeyDown(KeyCode.O)) StartCoroutine("AteTrash");
-        if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) 
+        //graphics
+        if (transform.eulerAngles.y > -90f && transform.eulerAngles.y < 180f)
+            FlipSpriteYPos();
+        else FlipSpriteYNeg();
+
+        var s = Physics.OverlapSphere(transform.position, 2f, collectables);
+        items = new List<Collider>(s);
+        for (int i = 0; i < items.Count; i++) {
+            if (items[i].gameObject.name == "Food(Clone)")
+                ChangeFace();
+            else if (!happyFaceActive) DisableFace();
+        }
+
+
+        //movement
+        if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             moveInputStartTime = Time.time;
         var sprintT = Time.time - moveInputStartTime;
         // wave 0..1
@@ -115,7 +147,7 @@ public class CharacterMover : MonoBehaviour {
             speedFactor = Mathf.Clamp01(speedFactor);
         }
         if (pv.nets.Count > 0) {
-            rb.velocity = transform.forward * (speedFactor / 2) * sprintFactor *  maxCharacterSpeed;
+            rb.velocity = transform.forward * (speedFactor / 2) * sprintFactor * maxCharacterSpeed;
             am.Play("UnHappySharkSwim");
         } else if (!pushing) {
             rb.velocity = transform.forward * speedFactor * sprintFactor * maxCharacterSpeed;
@@ -123,7 +155,7 @@ public class CharacterMover : MonoBehaviour {
         if (speedFactor > 0 && pv.nets.Count == 0) am.Play("SharkSwim");
         else if (speedFactor == 0 && pv.nets.Count == 0) am.Play("SharkIdle");
 
-            Debug.DrawLine(transform.position - transform.forward, transform.position + transform.forward * 100f, Color.red);
+        Debug.DrawLine(transform.position - transform.forward, transform.position + transform.forward * 100f, Color.red);
     }
 
     void OnTriggerStay(Collider other) {
@@ -152,7 +184,7 @@ public class CharacterMover : MonoBehaviour {
                 float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
-                    pushFactor -= Time.deltaTime * (deceleration * 2);
+                pushFactor -= Time.deltaTime * (deceleration * 2);
                 rb.velocity = transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
 
                 if (pushFactor < 0) {
@@ -174,18 +206,51 @@ public class CharacterMover : MonoBehaviour {
         }
     }
 
+    void ChangeFace() {
+        if (happyHead.enabled) return;
+        happyHead.enabled = true;
+        print("face changed");
+    }
+
+    void DisableFace() {
+        if (!happyHead.enabled) return;
+            happyHead.enabled = false;
+        print("face disabled");
+    }
+
     public IEnumerator AteTrash() {
-        unHappyHead.SetActive(true);
+        //unHappyHead.SetActive(true);
+        unHappyHead.enabled = true;
         yield return new WaitForSeconds(1f);
-        unHappyHead.SetActive(false);
+        //unHappyHead.SetActive(false);
+        unHappyHead.enabled = false;
     }
 
     public IEnumerator AteFood() {
-        happyHead.SetActive(true);
+        happyFaceActive = true;
+        //happyHead.SetActive(true);
+        happyHead.enabled = true;
         yield return new WaitForSeconds(1f);
-        happyHead.SetActive(false);
+        //happyHead.SetActive(false);
+        happyHead.enabled = false;
+        happyFaceActive = false;
     }
 
+    public void FlipSpriteYNeg() {
+        if (!sr.flipY) return;
+        else {
+            for (int i = 0; i < faces.Length; i++) faces[i].flipY = true;
+            sr.flipY = false;
+        }
+    }
+
+    public void FlipSpriteYPos() {
+        if (sr.flipY) return;
+        else {
+            for (int i = 0; i < faces.Length; i++) faces[i].flipY = false;
+            sr.flipY = true;
+        }
+    }
 
     void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == "Wall") {

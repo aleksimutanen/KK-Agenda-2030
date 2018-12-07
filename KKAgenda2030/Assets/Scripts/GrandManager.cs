@@ -31,8 +31,7 @@ public class GrandManager : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.R))
-            Pause();
+
     }
 
     public bool Pause() {
