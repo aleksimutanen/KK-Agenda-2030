@@ -390,6 +390,7 @@ public class OceanGameManager : MonoBehaviour {
             nets[i].SetActive(false);
         }
         foodEaten = 0;
+        starsCollected = 0f;
     }
 
     public void HitFood() {
