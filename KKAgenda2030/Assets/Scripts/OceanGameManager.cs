@@ -35,6 +35,7 @@ public class OceanGameManager : MonoBehaviour {
     public Vector3 startingScale;
     Vector3 characterScale;
 
+    public Button pauseButton;
     public Slider scoreSlider;
     public Slider roundEndSlider;
     public Slider gameEndSlider;
@@ -109,6 +110,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void StartGame() {
+        pauseButton.interactable = true;
         levelIndex = 0;
         scoreSlider.value = 0;
         roundEndSlider.gameObject.SetActive(false);
@@ -178,6 +180,10 @@ public class OceanGameManager : MonoBehaviour {
             if (CheckPosition(pos)) {
                 int rndIndex = Random.Range(0, objectList.Length);
                 GameObject obj = Instantiate(objectList[rndIndex], pos, transform.rotation);
+                Vector3 rndRot = obj.transform.eulerAngles;
+                rndRot.y = Random.Range(0f, 360f);
+                obj.transform.eulerAngles = rndRot;
+                print(obj.transform.rotation.y);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
             }
@@ -393,6 +399,7 @@ public class OceanGameManager : MonoBehaviour {
         }
         foodEaten = 0;
         starsCollected = 0f;
+        pauseButton.interactable = false;
     }
 
     public void HitFood() {
