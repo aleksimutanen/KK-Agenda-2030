@@ -7,23 +7,23 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour {
 
     public GameObject MenuForThegame;
-    public Canvas ThisSite;
     public GameObject VideoScreen;
     public GameObject creditsTheGame;
     private VideoPlayer seaVideoPlayer;
     private AudioSource audioData;
     private string Web =  "https://";
-    
+
 
     void Awake()
     {
         seaVideoPlayer = GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
-       
-        VideoScreen.gameObject.SetActive(false);
+
+        creditsTheGame.gameObject.SetActive(false);
+        
     }
 
-  
+
 
     public void GameOptions()
     {
@@ -36,7 +36,7 @@ public class MenuManager : MonoBehaviour {
      
     public void PlayVideo()
     {
-        ThisSite.gameObject.SetActive(false);
+    
         VideoScreen.gameObject.SetActive(true);
 
         StartCoroutine(PlaySeaVideo());
@@ -49,7 +49,6 @@ public class MenuManager : MonoBehaviour {
     private void StopVideo()
     {
         VideoScreen.gameObject.SetActive(false);
-        ThisSite.gameObject.SetActive(true);
         seaVideoPlayer.Stop();
         
     }
@@ -81,16 +80,23 @@ public class MenuManager : MonoBehaviour {
     {
         MenuForThegame.gameObject.SetActive(false);
         creditsTheGame.gameObject.SetActive(true);
+        print("Avataan Credits ikkuna");
+    }
+
+    public void ContinueGame()
+    {
+        MenuForThegame.gameObject.SetActive(false);
+        print("Jatketaan peliä");
     }
 
     public void Back()
     {
-        MenuForThegame.gameObject.SetActive(false);
+        creditsTheGame.gameObject.SetActive(false);
+        MenuForThegame.gameObject.SetActive(true);
     }
 
-    public void BackToOptions()
+    public void Options()
     {
-        creditsTheGame.gameObject.SetActive(false);
         MenuForThegame.gameObject.SetActive(true);
     }
 
@@ -98,6 +104,7 @@ public class MenuManager : MonoBehaviour {
     public void QuitGame()
     {      
         Application.Quit();
+        print("Poistutaan pelistä");
     }
 
 }

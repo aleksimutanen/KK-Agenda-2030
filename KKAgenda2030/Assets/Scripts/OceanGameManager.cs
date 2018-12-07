@@ -23,6 +23,7 @@ public class OceanGameManager : MonoBehaviour {
     public GameObject[] trashPrefabs;
     public Transform objectFolder;
     public GameObject foodPrefab;
+    public string testAudio;
 
     public int levelIndex;
 
@@ -60,6 +61,7 @@ public class OceanGameManager : MonoBehaviour {
         if (instance)
             Debug.LogError("2+ SeaManagers found!");
         instance = this;
+        Fabric.EventManager.Instance.PostEvent("testAudio");
     }
 
     void Start() {
