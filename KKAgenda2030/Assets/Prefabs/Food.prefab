@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886593b82bd1818468a99317464b5a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origFace: {fileID: 21300000, guid: 7d1413a8cf00dba4ba0b9f6212596d64, type: 3}
+  newFace: {fileID: 21300000, guid: 80685d53edc7c334f8a91e86b3643383, type: 3}
 --- !u!114 &114661892361971480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717ba2ba29fa9e04393be6cf01f4aaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goodFood: 
 --- !u!212 &212182079474366742
 SpriteRenderer:
   m_ObjectHideFlags: 1
