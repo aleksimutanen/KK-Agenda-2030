@@ -34,6 +34,7 @@ public class CharacterMover : MonoBehaviour {
     bool happyFaceActive;
 
     public List<Collider> thisWall = new List<Collider>();
+    public Collider food;
     public GameObject /*unHappyHead*/u;
     public GameObject /*happyHead*/h;
 
@@ -50,6 +51,7 @@ public class CharacterMover : MonoBehaviour {
     void Start() {
         canMove = true;
         am = GetComponentInChildren<Animator>();
+        food = GetComponent<Collider>();
 
         sr = GetComponentInChildren<SpriteRenderer>();
         unHappyHead = u.GetComponent<SpriteRenderer>();
@@ -102,6 +104,8 @@ public class CharacterMover : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        if (Input.GetKeyDown(KeyCode.L))
+            for (int i = 0; i < 30; i++) GrowScale();
         //graphics
         if (transform.eulerAngles.y > -90f && transform.eulerAngles.y < 180f)
             FlipSpriteYPos();
@@ -109,12 +113,20 @@ public class CharacterMover : MonoBehaviour {
 
         var s = Physics.OverlapSphere(transform.position, 2f, collectables);
         items = new List<Collider>(s);
-        for (int i = 0; i < items.Count; i++) {
-            if (items[i].gameObject.name == "Food(Clone)")
-                ChangeFace();
-            else if (!happyFaceActive) DisableFace();
+        //for (int i = 0; i < items.Count; i++) {
+        //    if (items[i].gameObject.name == "Food(Clone)") {
+        //        ChangeFace();
+        //    } else if (!happyFaceActive) DisableFace();
+        //}
+        foreach(Collider c in items) {
+            if (c.gameObject.name == "Food(Clone)") {
+                ChangeFace(c);
+                break;
+            } else {
+                DisableFace();
+            }
         }
-
+        if (items.Count == 0) DisableFace();
 
         //movement
         if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
@@ -206,15 +218,16 @@ public class CharacterMover : MonoBehaviour {
         }
     }
 
-    void ChangeFace() {
+    void ChangeFace(Collider fish) {
         if (happyHead.enabled) return;
+        fish.GetComponent<FishFloater>().ChangeFace();
         happyHead.enabled = true;
         print("face changed");
     }
 
     void DisableFace() {
         if (!happyHead.enabled) return;
-            happyHead.enabled = false;
+        happyHead.enabled = false;
         print("face disabled");
     }
 
@@ -268,6 +281,7 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void ResetCharacter() {
+        items.Clear();
         var rb = GetComponent<Rigidbody>();
         canMove = true;
         transform.position = startPos;
