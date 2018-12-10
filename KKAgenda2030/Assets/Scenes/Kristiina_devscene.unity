@@ -662,7 +662,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1304,7 +1304,7 @@ ParticleSystem:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 1
+            value: 0.68181825
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -1347,8 +1347,8 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 5
-      repeatInterval: 0.5
+      cycleCount: 3
+      repeatInterval: 0.6
     - serializedVersion: 2
       time: 0
       countCurve:
@@ -1405,7 +1405,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.8
+      repeatInterval: 0.2
   SizeModule:
     enabled: 0
     curve:
