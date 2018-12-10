@@ -9,6 +9,9 @@ public class FishFloater : MonoBehaviour {
     float f;
     SpriteRenderer sr;
 
+    public Sprite origFace;
+    public Sprite newFace;
+
     void Start() {
         sr = GetComponentInChildren<SpriteRenderer>();
         originalPos = transform.position;
@@ -22,22 +25,34 @@ public class FishFloater : MonoBehaviour {
         //                                       /*  +*/ Vector3.forward * Mathf.Sin(Time.time * Mathf.PI + f * Mathf.PI) * s;
         //}
         if (d < 0)
-            FlipSpriteYNeg();
+            FlipSpriteXNeg();
         else
-            FlipSpriteYPos();
+            FlipSpriteXPos();
     }
 
-    public void FlipSpriteYNeg() {
+    public void FlipSpriteXNeg() {
         if (!sr.flipX) return;
         else {
             sr.flipX = false;
         }
     }
 
-    public void FlipSpriteYPos() {
+    public void FlipSpriteXPos() {
         if (sr.flipX) return;
         else {
             sr.flipX = true;
         }
+    }
+
+    public void ChangeFace() {
+        StartCoroutine("Face");
+    }
+
+    IEnumerator Face() {
+        //eyesClosed.SetActive(true);
+        sr.sprite = newFace;
+        yield return new WaitForSeconds(5f);
+        sr.sprite = origFace;
+        //eyesClosed.SetActive(false);
     }
 }
