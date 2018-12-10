@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour {
     {
         seaVideoPlayer = GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
-
+        VideoScreen.gameObject.SetActive(false);
         creditsTheGame.gameObject.SetActive(false);
         
     }
@@ -36,7 +36,7 @@ public class MenuManager : MonoBehaviour {
      
     public void PlayVideo()
     {
-    
+
         VideoScreen.gameObject.SetActive(true);
 
         StartCoroutine(PlaySeaVideo());
