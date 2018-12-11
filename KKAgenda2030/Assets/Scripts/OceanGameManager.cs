@@ -211,6 +211,8 @@ public class OceanGameManager : MonoBehaviour {
 
     IEnumerator LevelComplete() {
 
+        pauseButton.interactable = false;
+
         Fabric.EventManager.Instance.PostEvent("stopMusic");
         Fabric.EventManager.Instance.PostEvent("levelClear");
 
@@ -270,7 +272,7 @@ public class OceanGameManager : MonoBehaviour {
             //start loading roll
             ui.slider.GetComponent<Animator>().Play("New State");
             ui.transitionCircle.gameObject.SetActive(true);
-            ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
+            ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
 
             yield return new WaitForSeconds(3f);
 
@@ -340,6 +342,8 @@ public class OceanGameManager : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
         ui.transitionBackGround.GetComponent<Animator>().Play("New State");
+        pauseButton.interactable = true;
+
     }
 
     public void ReloadLevel() {
