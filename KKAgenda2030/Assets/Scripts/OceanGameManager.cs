@@ -272,7 +272,7 @@ public class OceanGameManager : MonoBehaviour {
             //start loading roll
             ui.slider.GetComponent<Animator>().Play("New State");
             ui.transitionCircle.gameObject.SetActive(true);
-            ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
+            ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
 
             yield return new WaitForSeconds(3f);
 

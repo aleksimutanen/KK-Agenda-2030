@@ -53,7 +53,7 @@ public class GrandManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         ui.transitionCircle.gameObject.SetActive(true);
-        ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
+        ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
         yield return new WaitForSeconds(3f);
 
         ui.transitionCircle.gameObject.SetActive(false);

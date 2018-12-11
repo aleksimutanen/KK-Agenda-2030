@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void OceanGameCircle() {
-        transitionCircle.GetComponent<Animator>().Play("TransitionCircle2");
+        transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
     }
 
     public void LevelEndStars(Image star) {
