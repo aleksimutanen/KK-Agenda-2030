@@ -18,12 +18,22 @@ public class MenuManager : MonoBehaviour {
     {
         seaVideoPlayer = GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
-      //  VideoScreen.gameObject.SetActive(false);
+        VideoScreen.gameObject.SetActive(false);
         creditsTheGame.gameObject.SetActive(false);
         
     }
 
+    private void Update()
+    {
+        if (VideoScreen.gameObject == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0)
+            {
+                VideoScreen.gameObject.SetActive(false);
 
+            }
+        }
+    }
 
     public void GameOptions()
     {
@@ -36,6 +46,7 @@ public class MenuManager : MonoBehaviour {
      
     public void PlayVideo()
     {
+        MenuForThegame.gameObject.SetActive(true);
 
         VideoScreen.gameObject.SetActive(true);
 
@@ -50,7 +61,9 @@ public class MenuManager : MonoBehaviour {
     {
         VideoScreen.gameObject.SetActive(false);
         seaVideoPlayer.Stop();
+
         
+
     }
 
     public IEnumerator PlaySeaVideo()
@@ -61,6 +74,7 @@ public class MenuManager : MonoBehaviour {
        
         yield return new WaitUntil(() => !seaVideoPlayer.isPlaying);
 
+        MenuForThegame.gameObject.SetActive(false);
         StopVideo();
     }
 
