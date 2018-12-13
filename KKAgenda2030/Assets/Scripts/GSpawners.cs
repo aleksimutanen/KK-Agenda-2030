@@ -32,7 +32,8 @@
 
             int spawnPointIndex = Random.Range(0, SpawnerPoints.Length);
             int spawnObjectsIndex = Random.Range(0, SpawnerObjects.Count);
-
+            
+            
              while (spotUsed[spawnPointIndex] == true)
              {
                 spawnPointIndex = Random.Range(0, SpawnerPoints.Length);

@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
     }
 
 
-
     public void Spawn()
     {
 
@@ -34,8 +33,7 @@ public class Spawner : MonoBehaviour
             var rnd = Random.Range(0, rubbish.Count);
 
             Instantiate(rubbish[rnd]);
-            rubbish.RemoveAt(rnd);
-            
+            rubbish.RemoveAt(rnd);            
 
             //print(rnd);
             lastSpawn = Time.time;
@@ -46,6 +44,7 @@ public class Spawner : MonoBehaviour
             print("Lista on tyhjä");
 
             TrashGameManager.instance.LevelCompleted();
+           
             CancelInvoke("Spawn");
         }
 
@@ -110,13 +109,13 @@ public class Spawner : MonoBehaviour
 
 
             for (int P = 0; P < rubbish.Count; P++)
-                {
+            {
                 GameObject temp = rubbish[P]; // Temp on se jota käydään läpi.
                 int randomIndex = Random.Range(P, rubbish.Count); // Valitsee jonkun muun objektin kuin sen jota nyt käydään loopissa läpi.
                 rubbish[P] = rubbish[randomIndex]; // Saadaan edellisen rivin tulos.
                 rubbish[randomIndex] = temp; // Saadaan edellisen rivin tulos.
                 
-                }
+            }
             
         }
         
