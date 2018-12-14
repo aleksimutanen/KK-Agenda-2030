@@ -8,18 +8,18 @@ public class MenuInteractive : MonoBehaviour {
 
     public string siniSimpukkaAnim;
     public string pikeAnim;
+    public string roachAnim;
 
     public Transform siniSimpukka;
     public Transform pike;
+    public Transform roach;
 
     public Camera menuCam;
-    public LayerMask ui;
 
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) {
             Vector3 screenPos = menuCam.ScreenToWorldPoint(Input.mousePosition);
             screenPos.z = 0f;
-            print("xd");
             bubblePopper.SetActive(true);
             bubblePopper.transform.position = screenPos;
             Invoke("StopTouch", 0.25f);
@@ -36,5 +36,9 @@ public class MenuInteractive : MonoBehaviour {
 
     public void PlayPikeAnim() {
         pike.GetComponent<Animator>().Play(pikeAnim);
+    }
+
+    public void PlayRoachAnim() {
+        roach.GetComponent<Animator>().Play(roachAnim);
     }
 }

@@ -282,6 +282,7 @@ public class CharacterMover : MonoBehaviour {
 
     public void ResetCharacter() {
         items.Clear();
+        FindObjectOfType<PhoneVibrate>().nets.Clear();  
         var rb = GetComponent<Rigidbody>();
         canMove = true;
         transform.position = startPos;

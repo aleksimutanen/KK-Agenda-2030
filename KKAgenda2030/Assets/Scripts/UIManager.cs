@@ -177,4 +177,8 @@ public class UIManager : MonoBehaviour {
             transition = false;
         }
     }
+
+    public void XD() {
+        print("xd");
+    }
 }
