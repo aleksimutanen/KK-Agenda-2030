@@ -110,7 +110,8 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void StartGame() {
-        pauseButton.interactable = true;
+        //pauseButton.interactable = true;
+        pauseButton.gameObject.SetActive(true);
         levelIndex = 0;
         scoreSlider.value = 0;
         roundEndSlider.gameObject.SetActive(false);
@@ -169,7 +170,7 @@ public class OceanGameManager : MonoBehaviour {
                 GameObject obj = Instantiate(objectPrefab, pos, transform.rotation);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
-                print("food spawned");
+                //print("food spawned");
             }
         }
     }
@@ -183,7 +184,7 @@ public class OceanGameManager : MonoBehaviour {
                 Vector3 rndRot = obj.transform.eulerAngles;
                 rndRot.y = Random.Range(0f, 360f);
                 obj.transform.eulerAngles = rndRot;
-                print(obj.transform.rotation.y);
+                //print(obj.transform.rotation.y);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
             }
@@ -403,7 +404,8 @@ public class OceanGameManager : MonoBehaviour {
         }
         foodEaten = 0;
         starsCollected = 0f;
-        pauseButton.interactable = false;
+        pauseButton.gameObject.SetActive(false);
+        //pauseButton.interactable = false;
     }
 
     public void HitFood() {

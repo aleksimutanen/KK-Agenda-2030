@@ -138,7 +138,6 @@ public class CharacterMover : MonoBehaviour {
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
-        print(sprintFactor);
         if ((Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && canMove) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
