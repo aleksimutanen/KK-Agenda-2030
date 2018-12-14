@@ -22,7 +22,7 @@ public class TrashDestroy: MonoBehaviour {
             TrashGameManager.instance.AddedPoints();
             TrashGameManager.instance.UpdatePoints();
             TrashGameManager.instance.ResSpawning();
-            print("Roskat lajiteltu oikein");
+           // print("Roskat lajiteltu oikein");
 
 
 

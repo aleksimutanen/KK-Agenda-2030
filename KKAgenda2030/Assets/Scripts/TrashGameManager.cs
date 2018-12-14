@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum GameState
-           { Level1,
-             Level2,
-             Level3,
+           { Game,
+             Restart1,
+             Restart2,
              GameMenu };
 
 
@@ -42,12 +42,19 @@ public class TrashGameManager : MonoBehaviour {
     void Start()
     {
         
-        CheckCurrentActiveScene();
+        CheckCurrentActiveSceneState();
 
         spwn = FindObjectOfType<Spawner>();
         Gspwn = FindObjectOfType<GSpawners>();
     }
 
+    void Update()
+    {
+        if (levelCompleted == true)
+        {
+           
+        }
+    }
 
     public void LevelCompleted()
     {
@@ -56,8 +63,10 @@ public class TrashGameManager : MonoBehaviour {
         if (spwn.rubbish.Count == 0)
         {
             levelCompleted = true;
-            SceneManager.LoadScene("MenuScene");
-           // print(levelCompleted);
+                       
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+
+            // print(levelCompleted);
         }
     }
 
@@ -82,33 +91,45 @@ public class TrashGameManager : MonoBehaviour {
     }
 
 
-    private void CheckCurrentActiveScene()
+    private void CheckCurrentActiveSceneState()
     {
         var currentSceneName = SceneManager.GetActiveScene().name;
         
-        if (currentSceneName == "Joni_devscene")
-        {                  
-            State = GameState.Level1;
+           
+        if (State == GameState.Game)
+        {
+            currentSceneName = "Joni_devscene";
         }
 
-        //if (currentSceneName == "Joni_devscene")
-        //{
-        //    State = GameState.Level2;
-        //}
+        if (State == GameState.Restart1)
+        {
+            currentSceneName = "Level-2";
+           
+        }
 
 
-        //if (currentSceneName == "Joni_devscene")
-        //{
-        //    State = GameState.Level3;
-        //}
+        if (State == GameState.Restart2)
+        {
+            currentSceneName = "Joni_devscene";
+            
+        }
 
-        //if (currentSceneName == "MenuScene")
-        //{
-        //    State = GameState.GameMenu;
-        //}
-
-       // print(currentSceneName);
+        // print(currentSceneName);
     }
 
+    //public void ChangeGameStates()
+    //{
 
+    //    if (State == GameState.Game)
+    //    {
+    //        State = GameState.Restart1;
+    //    }
+
+    //    if (State == GameState.Restart1)
+    //    {
+    //        State = GameState.Restart2;
+    //    }
+
+
+    //}
 }
