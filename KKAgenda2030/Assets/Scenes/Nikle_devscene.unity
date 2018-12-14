@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,13 +136,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 538704110}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.4999999, y: -0.5000001, z: 0.4999999, w: 0.5000001}
+  m_LocalPosition: {x: 8.94, y: -1.58, z: 0.0000036731362}
+  m_LocalScale: {x: 0.063861, y: 0.063861, z: 0.063861}
   m_Children: []
-  m_Father: {fileID: 1757995819}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Father: {fileID: 1724836096}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 89.99999}
 --- !u!199 &538704112
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -269,7 +269,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -4904,6 +4904,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!4 &1724836096 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4743939775415246, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 2}
+  m_PrefabInternal: {fileID: 1757995818}
 --- !u!1001 &1757995818
 Prefab:
   m_ObjectHideFlags: 0
@@ -4958,11 +4963,14 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1767634624033300, guid: c1dcf163cef0f134b84f9e16841e4308, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289098155481196, guid: c1dcf163cef0f134b84f9e16841e4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1757995819 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4619155680307206, guid: c1dcf163cef0f134b84f9e16841e4308,
-    type: 2}
-  m_PrefabInternal: {fileID: 1757995818}
