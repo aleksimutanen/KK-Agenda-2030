@@ -12,7 +12,7 @@ public class ToyCheck : MonoBehaviour {
         if (other.gameObject == rightObject)
         {
             isReady = true;
-            print("Oikea lelu löytyi");
+          //  print("Oikea lelu löytyi" +  rightObject);
 
             ToyGameManager.instance.AllToycansFull();
 

@@ -7,8 +7,8 @@ public class ToyGameManager : MonoBehaviour {
     public static ToyGameManager instance = null;
     public List<GameObject> kids;
     public List<GameObject> toys;
-    public bool levelIsCompleted = false;
     private ToyCheck[] goals;
+    public List<bool> levelIsCompleted;
    
 
     void Awake()
@@ -34,28 +34,35 @@ public class ToyGameManager : MonoBehaviour {
 
     public bool AllToycansFull()
     {
-       // levelIsCompleted = false;
+        // levelIsCompleted = false;
 
         foreach (var toy in goals)
         {
             if (toy.isReady)
             {
                 //print(toy.isReady);
-                //print(levelIsCompleted);
-                //print("bool trying changed");
-                levelIsCompleted = true;
-                //print(levelIsCompleted);
+                print(levelIsCompleted);
+                print("bool trying changed");
+                levelIsCompleted[Random.Range(0,3)] = true;
+                print(levelIsCompleted);
                 //print("bool is changed");
-               // print(levelIsCompleted);
             }
 
-            //if (levelIsCompleted == true)
+            //for (int i = 0; i < levelIsCompleted.Count; ++i)
             //{
-            //    SceneManager.LoadScene("Menuscene");
+            //    if (levelIsCompleted[i] == false)
+            //    {
+            //        return false;
+            //    }
+                
+            //    //else if (!levelIsCompleted[i] == false)
+            //    //{
+            //    //    return true;
+            //    //}
             //}
 
         }
-        return levelIsCompleted;
+        return levelIsCompleted[Random.Range(0,3)];
     }
 
 

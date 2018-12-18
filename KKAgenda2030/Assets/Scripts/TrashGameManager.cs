@@ -48,14 +48,7 @@ public class TrashGameManager : MonoBehaviour {
         Gspwn = FindObjectOfType<GSpawners>();
     }
 
-    void Update()
-    {
-        if (levelCompleted == true)
-        {
-           
-        }
-    }
-
+  
     public void LevelCompleted()
     {
         levelCompleted = false;
@@ -117,19 +110,5 @@ public class TrashGameManager : MonoBehaviour {
         // print(currentSceneName);
     }
 
-    //public void ChangeGameStates()
-    //{
-
-    //    if (State == GameState.Game)
-    //    {
-    //        State = GameState.Restart1;
-    //    }
-
-    //    if (State == GameState.Restart1)
-    //    {
-    //        State = GameState.Restart2;
-    //    }
-
-
-    //}
+    
 }
