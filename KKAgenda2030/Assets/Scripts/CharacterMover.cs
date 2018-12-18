@@ -232,6 +232,17 @@ private void OnDrawGizmos() {
         }
     }
 
+    void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Wall") {
+            speedFactor = pushFactor;
+            accelerating = false;
+            pushing = false;
+            pushTimer = 0.3f;
+            if (thisWall.Contains(other))
+                thisWall.Remove(other);
+        }
+    }
+
     void ChangeFace(Collider fish) {
         if (happyHead.enabled) return;
         fish.GetComponent<FishFloater>().ChangeFace();
@@ -276,17 +287,6 @@ private void OnDrawGizmos() {
         else {
             for (int i = 0; i < faces.Length; i++) faces[i].flipY = false;
             sr.flipY = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Wall") {
-            speedFactor = pushFactor;
-            accelerating = false;
-            pushing = false;
-            pushTimer = 0.3f;
-            if (thisWall.Contains(other))
-                thisWall.Remove(other);
         }
     }
 

@@ -17,6 +17,8 @@ public class GrandManager : MonoBehaviour {
 
     public GameObject oceanGame;
     public GameObject optionsButton;
+    public GameObject previousPageButton;
+    public GameObject nextPageButton;
     public Slider oceanGameUI;
 
     public string sharkMusic;
@@ -48,7 +50,10 @@ public class GrandManager : MonoBehaviour {
     }
 
     public IEnumerator LaunchOceanGame() {
-        optionsButton.SetActive(false);
+
+        //optionsButton.SetActive(false);
+        //previousPageButton.SetActive(false);
+        //nextPageButton.SetActive(false);
 
         var ui = FindObjectOfType<UIManager>();
         ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
@@ -84,7 +89,10 @@ public class GrandManager : MonoBehaviour {
         activeScene = mainMenu;
         activeScene.SetActive(true);
         scene = SceneActive.Menu;
-        optionsButton.SetActive(true);
+
+        //optionsButton.SetActive(true);
+        //previousPageButton.SetActive(true);
+        //nextPageButton.SetActive(true);
 
         Fabric.EventManager.Instance.PostEvent("stopMusic");
         Fabric.EventManager.Instance.PostEvent("ambient");
