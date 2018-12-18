@@ -10,6 +10,8 @@ public class CharacterMover : MonoBehaviour {
     public float turningSpeed;
     float speedFactor;
     float sprintFactor;
+    float bubbleLimitSpeed = 1.2f;
+
     public float acceleration;
     public float deceleration;
     public float growScale;
@@ -45,10 +47,12 @@ public class CharacterMover : MonoBehaviour {
     SpriteRenderer unHappyHead;
     SpriteRenderer happyHead;
 
+    public ParticleSystem StartBubbleBurst;
+
     public SpriteRenderer[] faces;
     public List<Collider> items;
 
-    void Start() {
+    void Awake() {
         canMove = true;
         am = GetComponentInChildren<Animator>();
         food = GetComponent<Collider>();
@@ -61,49 +65,52 @@ public class CharacterMover : MonoBehaviour {
         pv = FindObjectOfType<PhoneVibrate>();
         startPos = transform.position;
         startRot = transform.rotation;
+        StartBubbleBurst.Stop();
+        moveInputStartTime = -10f;
     }
 
-    //void Update() {
-    //    transform.position += transform.rotation * Vector3.forward * characterSpeed;
-    //    mainCam.transform.position = transform.position + camDist;
-    //    if (Input.GetKey(KeyCode.Mouse0)) {
-    //        RaycastHit hit;
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //        //var rot = transform.rotation.normalized;
-    //        //var rot = transform.rotation;
-    //        var rot = transform.eulerAngles;
-    //        //var rot = transform.localRotation;
-    //        if (Physics.Raycast(ray, out hit, Mathf.Infinity, background)) {
-    //            if (hit.point.z > transform.position.z) {
-    //                //if (transform.eulerAngles.y < 90/* && transform.localEulerAngles.y >= 0*/) {
-    //                print(transform.eulerAngles.y);
-    //                print("turn right");
-    //                rot.y += turningSpeed * Time.deltaTime;
-    //                rot.x = 0; rot.z = 0;
-    //                //}
-    //            } else if (hit.point.z < transform.position.z) {
-    //                //if (transform.eulerAngles.y > -90/* && transform.localEulerAngles.y <= 0*/) {
-    //                print(transform.eulerAngles.y);
-    //                print("turn left");
-    //                rot.y -= turningSpeed * Time.deltaTime;
-    //                rot.x = 0; rot.z = 0;
-    //                //}
-    //            }
-    //            //rot.y = Mathf.Clamp(rot.y, 0, 270);
-    //            transform.eulerAngles = rot;
-    //            mainCam.transform.position = transform.position + camDist;
-    //        }
-    //    }
-    //}
+//void Update() {
+//    transform.position += transform.rotation * Vector3.forward * characterSpeed;
+//    mainCam.transform.position = transform.position + camDist;
+//    if (Input.GetKey(KeyCode.Mouse0)) {
+//        RaycastHit hit;
+//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//        //var rot = transform.rotation.normalized;
+//        //var rot = transform.rotation;
+//        var rot = transform.eulerAngles;
+//        //var rot = transform.localRotation;
+//        if (Physics.Raycast(ray, out hit, Mathf.Infinity, background)) {
+//            if (hit.point.z > transform.position.z) {
+//                //if (transform.eulerAngles.y < 90/* && transform.localEulerAngles.y >= 0*/) {
+//                print(transform.eulerAngles.y);
+//                print("turn right");
+//                rot.y += turningSpeed * Time.deltaTime;
+//                rot.x = 0; rot.z = 0;
+//                //}
+//            } else if (hit.point.z < transform.position.z) {
+//                //if (transform.eulerAngles.y > -90/* && transform.localEulerAngles.y <= 0*/) {
+//                print(transform.eulerAngles.y);
+//                print("turn left");
+//                rot.y -= turningSpeed * Time.deltaTime;
+//                rot.x = 0; rot.z = 0;
+//                //}
+//            }
+//            //rot.y = Mathf.Clamp(rot.y, 0, 270);
+//            transform.eulerAngles = rot;
+//            mainCam.transform.position = transform.position + camDist;
+//        }
+//    }
+//}
 
-    //y = 0.5*(sin(x*2*pi - 0.5*pi)+1)
+//y = 0.5*(sin(x*2*pi - 0.5*pi)+1)
 
-    private void OnDrawGizmos() {
+private void OnDrawGizmos() {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 2f);
     }
 
     void FixedUpdate() {
+
         if (Input.GetKeyDown(KeyCode.L))
             for (int i = 0; i < 30; i++) GrowScale();
         //graphics
@@ -133,11 +140,18 @@ public class CharacterMover : MonoBehaviour {
             moveInputStartTime = Time.time;
         var sprintT = Time.time - moveInputStartTime;
         // wave 0..1
+        var oldSprintFactor = sprintFactor;
         sprintFactor = sprintT > sprintDuration ?
             0f :
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
+        if (oldSprintFactor < bubbleLimitSpeed && sprintFactor > bubbleLimitSpeed) {
+            StartBubbleBurst.Play();
+        }
+        else if (oldSprintFactor > bubbleLimitSpeed && sprintFactor < bubbleLimitSpeed) {
+            StartBubbleBurst.Stop();
+        }
         if ((Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && canMove) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

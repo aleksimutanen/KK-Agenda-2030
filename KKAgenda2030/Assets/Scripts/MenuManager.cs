@@ -16,7 +16,7 @@ public class MenuManager : MonoBehaviour {
 
     void Awake()
     {
-        seaVideoPlayer = GetComponent<VideoPlayer>();
+        seaVideoPlayer = VideoScreen.GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
         VideoScreen.gameObject.SetActive(false);
         creditsTheGame.gameObject.SetActive(false);
@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour {
     {
         if (VideoScreen.gameObject == true)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0)
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Mouse0))
             {
                 VideoScreen.gameObject.SetActive(false);
 
@@ -46,7 +46,7 @@ public class MenuManager : MonoBehaviour {
      
     public void PlayVideo()
     {
-        MenuForThegame.gameObject.SetActive(true);
+        //MenuForThegame.gameObject.SetActive(true);
 
         VideoScreen.gameObject.SetActive(true);
 
@@ -84,10 +84,11 @@ public class MenuManager : MonoBehaviour {
                
     }
 
-    public void PlayMusic()
-    {
-        audioData.Play();
-       
+    public void PlayMusic() {
+        if (audioData.isPlaying)
+            audioData.Stop();
+        else if (!audioData.isPlaying)
+            audioData.Play();
     }
 
     public void Credits()
