@@ -39,6 +39,7 @@ public class CharacterMover : MonoBehaviour {
     public Collider food;
     public GameObject /*unHappyHead*/u;
     public GameObject /*happyHead*/h;
+    public AnimationCurve sharkBodyColor;
 
     Rigidbody rb;
     PhoneVibrate pv;
@@ -46,6 +47,7 @@ public class CharacterMover : MonoBehaviour {
     SpriteRenderer sr;
     SpriteRenderer unHappyHead;
     SpriteRenderer happyHead;
+    public SpriteRenderer[] sharkSprites;
 
     public ParticleSystem StartBubbleBurst;
 
@@ -259,7 +261,32 @@ private void OnDrawGizmos() {
     public IEnumerator AteTrash() {
         //unHappyHead.SetActive(true);
         unHappyHead.enabled = true;
-        yield return new WaitForSeconds(1f);
+
+        //float s = scoreSlider.value + 50f;
+        float fillTime = 1f;
+
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sharkBodyColor.Evaluate(t);
+            //sr.color = Color.Lerp(Color.white, Color.green, curvedT);
+            foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, Color.green, curvedT);
+            //roundEndSlider.value = -50f + (curvedT * s);
+            //print(roundEndSlider.value);
+            //for (int i = 0; i < starImages.Length; i++) {
+            //    if (roundEndSlider.value >= starScore[i]) {
+            //        //starImages[i].gameObject.SetActive(true);
+            //        //ui.LevelEndStars(starImages[i]);
+            //        //print("star achieved");
+            //        //Fabric.EventManager.Instance.PostEvent("oneStar");
+            //    }
+            //}
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(1f);
         //unHappyHead.SetActive(false);
         unHappyHead.enabled = false;
     }

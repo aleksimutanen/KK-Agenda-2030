@@ -50,7 +50,6 @@ public class GrandManager : MonoBehaviour {
     }
 
     public IEnumerator LaunchOceanGame() {
-
         //optionsButton.SetActive(false);
         //previousPageButton.SetActive(false);
         //nextPageButton.SetActive(false);

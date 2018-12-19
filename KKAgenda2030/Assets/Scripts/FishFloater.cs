@@ -15,7 +15,7 @@ public class FishFloater : MonoBehaviour {
     void Start() {
         sr = GetComponentInChildren<SpriteRenderer>();
         originalPos = transform.position;
-        s = Random.Range(0.001f, 0.5f);
+        s = Random.Range(0.1f, 0.5f);
         f = Random.Range(0.2f, 0.5f);
     }
 
