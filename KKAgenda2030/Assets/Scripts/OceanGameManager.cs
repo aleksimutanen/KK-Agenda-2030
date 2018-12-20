@@ -113,6 +113,8 @@ public class OceanGameManager : MonoBehaviour {
     public void StartGame() {
         //pauseButton.interactable = true;
         pauseButton.gameObject.SetActive(true);
+        if (!pauseButton.interactable)
+            pauseButton.interactable = true;
         foodEaten = 0;
         levelIndex = 0;
         scoreSlider.value = 0;
@@ -125,8 +127,8 @@ public class OceanGameManager : MonoBehaviour {
         backGroundImages[levelIndex].SetActive(true);
         FindObjectOfType<PhoneVibrate>().nets.Clear();
         var b = FindObjectOfType<CharacterMover>();
-        b.transform.localScale = startingScale;
-        characterScale = b.transform.localScale;
+        //b.transform.localScale = startingScale;
+        //characterScale = b.transform.localScale;
         b.ResetCharacter();
         for (int i = 0; i < trashFolders.Count; i++) {
             trashFolders[i] = new GameObject().transform;
@@ -370,7 +372,7 @@ public class OceanGameManager : MonoBehaviour {
         FindObjectOfType<PhoneVibrate>().nets.Clear();
         var b = FindObjectOfType<CharacterMover>();
         b.ResetCharacter();
-        b.transform.localScale = characterScale;
+        //b.transform.localScale = characterScale;
         foodEaten = 0;
         fishCounterText.text = foodEaten + " / 10";
         scoreSlider.value = 0f;
@@ -390,7 +392,7 @@ public class OceanGameManager : MonoBehaviour {
 
         var b = FindObjectOfType<CharacterMover>();
         b.ResetCharacter();
-        characterScale = b.transform.localScale;
+        //characterScale = b.transform.localScale;
         scoreSlider.value = 0f;
         foodEaten = 0;
         fishCounterText.text = foodEaten + " / 10";

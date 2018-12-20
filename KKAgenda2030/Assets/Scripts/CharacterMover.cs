@@ -308,7 +308,7 @@ private void OnDrawGizmos() {
     }
 
     public void GrowScale() {
-        transform.localScale += new Vector3(growScale, 0, growScale);
+        //transform.localScale += new Vector3(growScale, 0, growScale);
     }
 
     public void ResetCharacter() {
