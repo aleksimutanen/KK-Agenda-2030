@@ -33,7 +33,6 @@ public class CharacterMover : MonoBehaviour {
     public bool pushing;
     bool decelerating;
     bool accelerating;
-    bool happyFaceActive;
 
     public List<Collider> thisWall = new List<Collider>();
     public Collider food;
@@ -51,6 +50,8 @@ public class CharacterMover : MonoBehaviour {
 
     public ParticleSystem StartBubbleBurst;
 
+    public Color ateTrashColor;
+    public Color ateFoodColor;
     public SpriteRenderer[] faces;
     public List<Collider> items;
 
@@ -259,46 +260,35 @@ private void OnDrawGizmos() {
     }
 
     public IEnumerator AteTrash() {
-        //unHappyHead.SetActive(true);
         unHappyHead.enabled = true;
-
-        //float s = scoreSlider.value + 50f;
         float fillTime = 1f;
-
         float t = 0f;
         float fillSpeed = 1 / fillTime;
 
         while (t <= 1) {
             t += fillSpeed * Time.deltaTime;
             var curvedT = sharkBodyColor.Evaluate(t);
-            //sr.color = Color.Lerp(Color.white, Color.green, curvedT);
-            foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, Color.green, curvedT);
-            //roundEndSlider.value = -50f + (curvedT * s);
-            //print(roundEndSlider.value);
-            //for (int i = 0; i < starImages.Length; i++) {
-            //    if (roundEndSlider.value >= starScore[i]) {
-            //        //starImages[i].gameObject.SetActive(true);
-            //        //ui.LevelEndStars(starImages[i]);
-            //        //print("star achieved");
-            //        //Fabric.EventManager.Instance.PostEvent("oneStar");
-            //    }
-            //}
+            foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, ateTrashColor, curvedT);
             yield return null;
         }
 
-        //yield return new WaitForSeconds(1f);
-        //unHappyHead.SetActive(false);
         unHappyHead.enabled = false;
     }
 
     public IEnumerator AteFood() {
-        happyFaceActive = true;
-        //happyHead.SetActive(true);
         happyHead.enabled = true;
-        yield return new WaitForSeconds(1f);
-        //happyHead.SetActive(false);
+        float fillTime = 1f;
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sharkBodyColor.Evaluate(t);
+            foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, ateFoodColor, curvedT);
+            yield return null;
+        }
+
         happyHead.enabled = false;
-        happyFaceActive = false;
     }
 
     public void FlipSpriteYNeg() {

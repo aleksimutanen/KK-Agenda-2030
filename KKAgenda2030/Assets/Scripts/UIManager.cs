@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour {
 
     public GameObject bookCover;
     public Button pause;
+    public Button[] menuButtons;
     public Button[] pauseMenuButtons;
     public Image[] pauseMenuImageList;
 
@@ -59,6 +60,15 @@ public class UIManager : MonoBehaviour {
     public void LaunchOceanGame() {
         //GrandManager.instance.LaunchOceanGame();
         GrandManager.instance.StartCoroutine("LaunchOceanGame");
+        DisableMenuButtons();
+    }
+
+    public void DisableMenuButtons() {
+        foreach (Button b in menuButtons) b.gameObject.SetActive(false);
+    }
+
+    public void EnableMenuButtons() {
+        foreach (Button b in menuButtons) b.gameObject.SetActive(true);
     }
 
     public void ReloadOceanGameLevel() {
