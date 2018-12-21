@@ -33,12 +33,12 @@ public class CharacterMover : MonoBehaviour {
     public bool pushing;
     bool decelerating;
     bool accelerating;
-    bool happyFaceActive;
 
     public List<Collider> thisWall = new List<Collider>();
     public Collider food;
     public GameObject /*unHappyHead*/u;
     public GameObject /*happyHead*/h;
+    public AnimationCurve sharkBodyColor;
 
     Rigidbody rb;
     PhoneVibrate pv;
@@ -46,9 +46,12 @@ public class CharacterMover : MonoBehaviour {
     SpriteRenderer sr;
     SpriteRenderer unHappyHead;
     SpriteRenderer happyHead;
+    public SpriteRenderer[] sharkSprites;
 
     public ParticleSystem StartBubbleBurst;
 
+    public Color ateTrashColor;
+    public Color ateFoodColor;
     public SpriteRenderer[] faces;
     public List<Collider> items;
 
@@ -257,21 +260,35 @@ private void OnDrawGizmos() {
     }
 
     public IEnumerator AteTrash() {
-        //unHappyHead.SetActive(true);
         unHappyHead.enabled = true;
-        yield return new WaitForSeconds(1f);
-        //unHappyHead.SetActive(false);
+        float fillTime = 1f;
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sharkBodyColor.Evaluate(t);
+            foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, ateTrashColor, curvedT);
+            yield return null;
+        }
+
         unHappyHead.enabled = false;
     }
 
     public IEnumerator AteFood() {
-        happyFaceActive = true;
-        //happyHead.SetActive(true);
         happyHead.enabled = true;
-        yield return new WaitForSeconds(1f);
-        //happyHead.SetActive(false);
+        float fillTime = 1f;
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sharkBodyColor.Evaluate(t);
+            foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, ateFoodColor, curvedT);
+            yield return null;
+        }
+
         happyHead.enabled = false;
-        happyFaceActive = false;
     }
 
     public void FlipSpriteYNeg() {
@@ -291,7 +308,7 @@ private void OnDrawGizmos() {
     }
 
     public void GrowScale() {
-        transform.localScale += new Vector3(growScale, 0, growScale);
+        //transform.localScale += new Vector3(growScale, 0, growScale);
     }
 
     public void ResetCharacter() {

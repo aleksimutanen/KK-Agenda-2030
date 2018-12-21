@@ -35,6 +35,7 @@ public class OceanGameManager : MonoBehaviour {
     public Vector3 startingScale;
     Vector3 characterScale;
 
+    public Text fishCounterText;
     public Button pauseButton;
     public Slider scoreSlider;
     public Slider roundEndSlider;
@@ -112,17 +113,22 @@ public class OceanGameManager : MonoBehaviour {
     public void StartGame() {
         //pauseButton.interactable = true;
         pauseButton.gameObject.SetActive(true);
+        if (!pauseButton.interactable)
+            pauseButton.interactable = true;
+        foodEaten = 0;
         levelIndex = 0;
         scoreSlider.value = 0;
         roundEndSlider.gameObject.SetActive(false);
         scoreSlider.gameObject.SetActive(true);
+        fishCounterText.gameObject.SetActive(true);
+        fishCounterText.text = foodEaten + " / 10";
 
         nets[levelIndex].SetActive(true);
         backGroundImages[levelIndex].SetActive(true);
         FindObjectOfType<PhoneVibrate>().nets.Clear();
         var b = FindObjectOfType<CharacterMover>();
-        b.transform.localScale = startingScale;
-        characterScale = b.transform.localScale;
+        //b.transform.localScale = startingScale;
+        //characterScale = b.transform.localScale;
         b.ResetCharacter();
         for (int i = 0; i < trashFolders.Count; i++) {
             trashFolders[i] = new GameObject().transform;
@@ -366,8 +372,9 @@ public class OceanGameManager : MonoBehaviour {
         FindObjectOfType<PhoneVibrate>().nets.Clear();
         var b = FindObjectOfType<CharacterMover>();
         b.ResetCharacter();
-        b.transform.localScale = characterScale;
+        //b.transform.localScale = characterScale;
         foodEaten = 0;
+        fishCounterText.text = foodEaten + " / 10";
         scoreSlider.value = 0f;
         print("reload");
     }
@@ -385,9 +392,10 @@ public class OceanGameManager : MonoBehaviour {
 
         var b = FindObjectOfType<CharacterMover>();
         b.ResetCharacter();
-        characterScale = b.transform.localScale;
+        //characterScale = b.transform.localScale;
         scoreSlider.value = 0f;
         foodEaten = 0;
+        fishCounterText.text = foodEaten + " / 10";
     }
 
     void GameComplete() {
@@ -397,12 +405,14 @@ public class OceanGameManager : MonoBehaviour {
     public void QuitToMenu() {
         FindObjectOfType<PhoneVibrate>().nets.Clear();
         scoreSlider.gameObject.SetActive(false);
+        fishCounterText.gameObject.SetActive(false);
         for (int i = 0; i < foodFolders.Count; i++) {
             Destroy(trashFolders[i].gameObject);
             Destroy(foodFolders[i].gameObject);
             nets[i].SetActive(false);
         }
         foodEaten = 0;
+        fishCounterText.text = foodEaten + " / 10";
         starsCollected = 0f;
         pauseButton.gameObject.SetActive(false);
         //pauseButton.interactable = false;
@@ -411,6 +421,7 @@ public class OceanGameManager : MonoBehaviour {
     public void HitFood() {
         scoreSlider.value = Mathf.RoundToInt(scoreSlider.value);
         foodEaten++;
+        fishCounterText.text = foodEaten + " / 10";
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Food);
         CheckFoodAmount(foodEaten, levelFoodAmounts[levelIndex]);
