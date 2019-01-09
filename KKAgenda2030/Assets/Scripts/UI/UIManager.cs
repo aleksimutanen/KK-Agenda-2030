@@ -57,6 +57,10 @@ public class UIManager : MonoBehaviour {
         star.GetComponent<Animator>().Play("StarPop");
     }
 
+    public void DisableStar(Image star) {
+        star.GetComponent<Animator>().Play("New State");
+    }
+
     public void LaunchOceanGame() {
         //GrandManager.instance.LaunchOceanGame();
         GrandManager.instance.StartCoroutine("LaunchOceanGame");
@@ -64,11 +68,13 @@ public class UIManager : MonoBehaviour {
     }
 
     public void DisableMenuButtons() {
-        foreach (Button b in menuButtons) b.gameObject.SetActive(false);
+        //foreach (Button b in menuButtons) b.gameObject.SetActive(false);
+        foreach (Button b in menuButtons) b.interactable = false;
     }
 
     public void EnableMenuButtons() {
-        foreach (Button b in menuButtons) b.gameObject.SetActive(true);
+        //foreach (Button b in menuButtons) b.gameObject.SetActive(true);
+        foreach (Button b in menuButtons) b.interactable = true;
     }
 
     public void ReloadOceanGameLevel() {
