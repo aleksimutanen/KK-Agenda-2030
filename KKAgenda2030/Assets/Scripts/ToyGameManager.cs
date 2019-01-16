@@ -43,23 +43,19 @@ public class ToyGameManager : MonoBehaviour {
                 //print(toy.isReady);
                 print(levelIsCompleted);
                 print("bool trying changed");
-                levelIsCompleted[Random.Range(0,3)] = true;
+                levelIsCompleted[Random.Range(0, 3)] = true;
                 print(levelIsCompleted);
                 //print("bool is changed");
+
+                if (levelIsCompleted[Random.Range(0, 3)] == true)
+                {
+                    
+                }
+
+
+
             }
 
-            //for (int i = 0; i < levelIsCompleted.Count; ++i)
-            //{
-            //    if (levelIsCompleted[i] == false)
-            //    {
-            //        return false;
-            //    }
-                
-            //    //else if (!levelIsCompleted[i] == false)
-            //    //{
-            //    //    return true;
-            //    //}
-            //}
 
         }
         return levelIsCompleted[Random.Range(0,3)];
