@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
         {
             print("Lista on tyhjä");
 
-            TrashGameManager.instance.LevelCompleted();
+            StartCoroutine(TrashGameManager.instance.LevelCompleted());
            
             CancelInvoke("Spawn");
         }

@@ -13,16 +13,31 @@ public enum GameState
 
 public class TrashGameManager : MonoBehaviour {
 
+    enum TimerType { Increase, Decrease };
+
     public static TrashGameManager instance = null;
 
+    public Slider scoreSlider;
+    public Slider endScoreSlider;
+    public AnimationCurve sliderAnimCurve;
+    public Animator sliderAnimator;
+
+    public Image[] starImages;
+    public float[] starScore;
+
+
+
     public Text statusText;
-    public Text scoreText;
     public GameState State;
    
     private int score = 0;
     public Spawner spwn;
     public GSpawners Gspwn;
     public bool levelCompleted = false;
+
+    List<float> scoreTimers = new List<float>();
+    List<TimerType> timerTypes = new List<TimerType>();
+
     
    
 
@@ -48,9 +63,51 @@ public class TrashGameManager : MonoBehaviour {
         Gspwn = FindObjectOfType<GSpawners>();
     }
 
-  
-    public void LevelCompleted()
-    {
+    private void Update() {
+        for (int i = 0; i < scoreTimers.Count;) {
+            scoreTimers[i] -= Time.deltaTime;
+            if (scoreTimers[i] < 0) {
+                scoreTimers.RemoveAt(i);
+                timerTypes.RemoveAt(i);
+            } else {
+                if (timerTypes[i] == TimerType.Decrease)
+                    LoseScore(5f);
+                else if (timerTypes[i] == TimerType.Increase)
+                    GainScore(10f);
+                i++;
+            }
+        }
+    }
+
+    public IEnumerator LevelCompleted() {
+
+        statusText.text = "Taso suoritettu!";
+        endScoreSlider.gameObject.SetActive(true);
+
+        float s = scoreSlider.value;
+        float fillTime = 3f;
+
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sliderAnimCurve.Evaluate(t);
+            endScoreSlider.value = +(curvedT * s);
+            for (int i = 0; i < starImages.Length; i++) {
+                if (endScoreSlider.value >= starScore[i]) {
+                    starImages[i].gameObject.SetActive(true);
+                    //ui.LevelEndStars(starImages[i]);
+                }
+            }
+            yield return null;
+        }
+
+        // feidaus pois ja keskelle takasin vaakassa.
+        sliderAnimator.Play("ScoreBarMove");
+
+
+
         levelCompleted = false;
 
         if (spwn.rubbish.Count == 0)
@@ -63,19 +120,32 @@ public class TrashGameManager : MonoBehaviour {
         }
     }
 
+
     public void UpdatePoints()
     {
-        scoreText.text = " " + score;
+        //scoreText.text = " " + score;
     }
 
     public void AddedPoints()
     {
-        score += 25;
+        scoreTimers.Add(1f);
+        timerTypes.Add(TimerType.Increase);
+        //score += 25;
+    }
+
+    void GainScore(float amount) {
+        scoreSlider.value += amount * Time.deltaTime;
     }
 
     public void DeletingPoints()
     {
-        score -= 30;
+        //score -= 30;
+        scoreTimers.Add(1f);
+        timerTypes.Add(TimerType.Decrease);
+    }
+
+    void LoseScore(float amount) {
+        scoreSlider.value -= amount * Time.deltaTime;
     }
 
     public void ResSpawning()
