@@ -13,17 +13,10 @@
         void Awake()
         {
 
-            for (int E = 0; E < SpawnerPoints.Length; E++)
-            {
-
+            for (int E = 0; E < SpawnerPoints.Length; E++) {
             Spawner();
-            
             }
         }
-
-
-   
-
 
     public void Spawner()
         {
@@ -46,8 +39,4 @@
                
           spotUsed[spawnPointIndex] = true;
         }
-
-         
-       
-
     }

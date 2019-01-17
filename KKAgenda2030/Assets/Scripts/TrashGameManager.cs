@@ -19,11 +19,14 @@ public class TrashGameManager : MonoBehaviour {
 
     public Slider scoreSlider;
     public Slider endScoreSlider;
+    public Slider totalScoreSlider;
     public AnimationCurve sliderAnimCurve;
     public Animator sliderAnimator;
 
     public Image[] starImages;
     public float[] starScore;
+    public Image[] totalStarImages;
+    public float[] totalStarScore;
 
 
 
@@ -38,6 +41,8 @@ public class TrashGameManager : MonoBehaviour {
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
 
+    PersistentData pd;
+    public GameObject pdPrefab;
     
    
 
@@ -56,7 +61,13 @@ public class TrashGameManager : MonoBehaviour {
 
     void Start()
     {
-        
+
+        pd = GameObject.FindObjectOfType<PersistentData>();
+        if (pd == null) {
+            var pdgo = Instantiate(pdPrefab);
+            pd = pdgo.GetComponent<PersistentData>();
+        }
+
         CheckCurrentActiveSceneState();
 
         spwn = FindObjectOfType<Spawner>();
@@ -64,6 +75,15 @@ public class TrashGameManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            spwn.rubbish.Clear();
+            spwn.rubbish.Add(new GameObject());
+            spwn.Spawn();
+            score = 100;
+            scoreSlider.value = 100f;
+        }
+
+
         for (int i = 0; i < scoreTimers.Count;) {
             scoreTimers[i] -= Time.deltaTime;
             if (scoreTimers[i] < 0) {
@@ -84,6 +104,11 @@ public class TrashGameManager : MonoBehaviour {
         statusText.text = "Taso suoritettu!";
         endScoreSlider.gameObject.SetActive(true);
 
+        var ui = FindObjectOfType<UIManager>();
+
+        sliderAnimator.Play("ScoreBarMove");
+        yield return new WaitForSeconds(3f);
+
         float s = scoreSlider.value;
         float fillTime = 3f;
 
@@ -97,16 +122,17 @@ public class TrashGameManager : MonoBehaviour {
             for (int i = 0; i < starImages.Length; i++) {
                 if (endScoreSlider.value >= starScore[i]) {
                     starImages[i].gameObject.SetActive(true);
-                    //ui.LevelEndStars(starImages[i]);
+                    ui.LevelEndStars(starImages[i]);
                 }
             }
             yield return null;
         }
+        Debug.LogError("FOO!!!!!");
+        foreach (Image star in starImages)
+            if (star.gameObject.activeSelf)
+                pd.totalStarAmount += 1f;
 
         // feidaus pois ja keskelle takasin vaakassa.
-        sliderAnimator.Play("ScoreBarMove");
-
-
 
         levelCompleted = false;
 
@@ -118,6 +144,29 @@ public class TrashGameManager : MonoBehaviour {
 
             // print(levelCompleted);
         }
+
+        // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+
+        s = pd.totalStarAmount;
+        fillTime = 3f;
+
+        t = 0f;
+        fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sliderAnimCurve.Evaluate(t);
+            totalScoreSlider.value = +(curvedT * s);
+            for (int i = 0; i < totalStarImages.Length; i++) {
+                if (totalScoreSlider.value >= totalStarScore[i]) {
+                    totalStarImages[i].gameObject.SetActive(true);
+                    ui.LevelEndStars(totalStarImages[i]);
+                }
+            }
+            yield return null;
+        }
+
+
     }
 
 
@@ -128,6 +177,7 @@ public class TrashGameManager : MonoBehaviour {
 
     public void AddedPoints()
     {
+        //Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Increase);
         //score += 25;
@@ -140,6 +190,7 @@ public class TrashGameManager : MonoBehaviour {
     public void DeletingPoints()
     {
         //score -= 30;
+        //Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Decrease);
     }
