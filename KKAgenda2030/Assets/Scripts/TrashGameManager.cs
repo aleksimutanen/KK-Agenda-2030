@@ -113,6 +113,7 @@ public class TrashGameManager : MonoBehaviour {
 
         var ui = FindObjectOfType<UIManager>();
 
+        yield return new WaitForSeconds(1f);
         sliderAnimator.Play("ScoreBarMove");
         yield return new WaitForSeconds(3f);
 
@@ -129,7 +130,7 @@ public class TrashGameManager : MonoBehaviour {
             for (int i = 0; i < starImages.Length; i++) {
                 if (endScoreSlider.value >= starScore[i]) {
                     starImages[i].gameObject.SetActive(true);
-                    ui.LevelEndStars(starImages[i]);
+                    ui.LevelEndStars2(starImages[i]);
                 }
             }
             yield return null;
@@ -139,26 +140,18 @@ public class TrashGameManager : MonoBehaviour {
                 pd.totalStarAmount += 1f;
 
         levelCompleted = false;
+        endScoreSlider.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
-
-
-        if (spwn.rubbish.Count == 0)
-        {
-            levelCompleted = true;
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-            // Vaihdetaan scene seuraavaan fadejen kanssa
-            // ei toimi vikassa levelissä nykyisellään!
-            levelChanger.FadeToNextLevel();
-        }
 
         // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
 
         // muu kuin lvl3
         if (totalScoreSlider != null) {
+            scoreSlider.GetComponent<Animator>().Play("ScoreBarFade");
+            // tuunaa totalSLider kohilleen
+            totalScoreSlider.gameObject.SetActive(true);
             s = pd.totalStarAmount;
             fillTime = 3f;
-
             t = 0f;
             fillSpeed = 1 / fillTime;
 
@@ -168,11 +161,27 @@ public class TrashGameManager : MonoBehaviour {
                 totalScoreSlider.value = +(curvedT * s);
                 for (int i = 0; i < totalStarImages.Length; i++) {
                     if (totalScoreSlider.value >= totalStarScore[i]) {
+                        print(i);
                         totalStarImages[i].gameObject.SetActive(true);
-                        ui.LevelEndStars(totalStarImages[i]);
+                        ui.LevelEndStars2(totalStarImages[i]);
                     }
                 }
                 yield return null;
+            }
+            yield return new WaitForSeconds(2f);
+
+        }
+
+        if (spwn.rubbish.Count == 0) {
+            levelCompleted = true;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            // Vaihdetaan scene seuraavaan fadejen kanssa
+            // ei toimi vikassa levelissä nykyisellään!
+            if (SceneManager.GetActiveScene().buildIndex != 3) {
+                levelChanger.FadeToNextLevel();
+            } else {
+                SceneManager.LoadScene(0);
             }
         }
     }

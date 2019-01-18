@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour {
 
+    int maxBuildIndex = 2;
     public Animator animator;
     private int levelToLoad;
 
@@ -14,7 +15,12 @@ public class LevelChanger : MonoBehaviour {
     }
 
     public void FadeToNextLevel() {
-        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == maxBuildIndex)
+            // palaa menuun?
+            SceneManager.LoadScene(0);
+        else
+            // lataa seuraava buildissa oleva lvl
+            FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void FadeToLevel(int levelIndex) {
@@ -23,6 +29,9 @@ public class LevelChanger : MonoBehaviour {
     }
 
     public void OnFadeComplete() {
-        SceneManager.LoadScene(levelToLoad);
+        if (SceneManager.GetActiveScene().buildIndex == maxBuildIndex)
+            SceneManager.GetSceneByBuildIndex(0);
+        else
+            SceneManager.LoadScene(levelToLoad);
     }
 }

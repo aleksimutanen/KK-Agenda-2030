@@ -54,6 +54,11 @@ public class UIManager : MonoBehaviour {
     }
 
     public void LevelEndStars(Image star) {
+        star.GetComponent<Animator>().Play("StarPop");
+    }
+
+
+    public void LevelEndStars2(Image star) {
         star.GetComponent<Animator>().Play("StarPop_ThrashGame");
     }
 

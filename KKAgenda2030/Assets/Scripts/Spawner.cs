@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        if (spawnStartertime < resSpawnTimer + lastSpawn)
+        if (spawnStartertime < resSpawnTimer + lastSpawn && rubbish.Count != 1)
         {
             var rnd = Random.Range(0, rubbish.Count);
             Instantiate(rubbish[rnd]);
@@ -36,9 +36,11 @@ public class Spawner : MonoBehaviour
             ThrashCountScript.totalThrashCount--;
         }
 
-        if (rubbish.Count == 0)
+        //if (rubbish.Count == 0)
+        else
         {
             print("Lista on tyhjä");
+            rubbish.Clear();
             StartCoroutine(TrashGameManager.instance.LevelCompleted());
             CancelInvoke("Spawn");
         }
