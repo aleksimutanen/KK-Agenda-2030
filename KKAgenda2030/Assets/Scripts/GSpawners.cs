@@ -7,6 +7,7 @@
 
         public Transform[] SpawnerPoints;
         public List<GameObject> SpawnerObjects;
+        public GameObject canFolder;
 
         public bool[] spotUsed;
 
@@ -33,8 +34,10 @@
                // spawnPointIndex++;
 
              }               
-          Instantiate(SpawnerObjects[spawnObjectsIndex], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
-              
+
+          var thrashCan = Instantiate(SpawnerObjects[spawnObjectsIndex], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
+          thrashCan.transform.parent = canFolder.transform;
+
           SpawnerObjects.RemoveAt(spawnObjectsIndex);
                
           spotUsed[spawnPointIndex] = true;
