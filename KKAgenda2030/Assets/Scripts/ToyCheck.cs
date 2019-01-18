@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ToyCheck : MonoBehaviour {
     
+
     public GameObject rightObject;
     public bool isReady = false;
 
@@ -11,12 +12,11 @@ public class ToyCheck : MonoBehaviour {
     {
         if (other.gameObject == rightObject)
         {
-            isReady = true;
-          //  print("Oikea lelu löytyi" +  rightObject);
+            isReady = true;        
 
             ToyGameManager.instance.AllToycansFull();
 
-           // rightObject.SetActive(false);
+            rightObject.SetActive(false);
 
         }
       
