@@ -20,7 +20,6 @@ public class TrashDestroy: MonoBehaviour {
             //Destroy(other.gameObject);
                         
             TrashGameManager.instance.AddedPoints();
-            TrashGameManager.instance.UpdatePoints();
             TrashGameManager.instance.ResSpawning();
            // print("Roskat lajiteltu oikein");
 

@@ -22,8 +22,6 @@ public class DeletingTrash : MonoBehaviour
         {
             //Destroy(other.gameObject);
             TrashGameManager.instance.DeletingPoints();
-            TrashGameManager.instance.UpdatePoints();
-
             other.gameObject.SetActive(false);
             print("roskat lajiteltu VÄÄRIN!");
             gameObjects.Add(other.gameObject);

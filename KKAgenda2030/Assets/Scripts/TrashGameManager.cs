@@ -138,9 +138,9 @@ public class TrashGameManager : MonoBehaviour {
             if (star.gameObject.activeSelf)
                 pd.totalStarAmount += 1f;
 
-        // feidaus pois ja keskelle takasin vaakassa.
-
         levelCompleted = false;
+        yield return new WaitForSeconds(2f);
+
 
         if (spwn.rubbish.Count == 0)
         {
@@ -153,6 +153,8 @@ public class TrashGameManager : MonoBehaviour {
         }
 
         // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+
+        // muu kuin lvl3
         if (totalScoreSlider != null) {
             s = pd.totalStarAmount;
             fillTime = 3f;
@@ -173,14 +175,6 @@ public class TrashGameManager : MonoBehaviour {
                 yield return null;
             }
         }
-
-
-    }
-
-
-    public void UpdatePoints()
-    {
-        //scoreText.text = " " + score;
     }
 
     public void AddedPoints()
@@ -188,36 +182,34 @@ public class TrashGameManager : MonoBehaviour {
         //Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Increase);
-        //score += 25;
     }
 
     void GainScore(float amount) {
+        // TODO: spriteflash vihreänä
+        scoreSlider.GetComponent<Animator>().Play("GreenFlash");
         scoreSlider.value += amount * Time.deltaTime;        
     }
 
-    public void DeletingPoints()
-    {
-        //score -= 30;
+    void LoseScore(float amount) {
+        // TODO: spriteflash punaisena
+        scoreSlider.GetComponent<Animator>().Play("RedFlash");
+        scoreSlider.value -= amount * Time.deltaTime;
+    }
+
+    public void DeletingPoints() {
         //Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Decrease);
     }
 
-    void LoseScore(float amount) {
-        scoreSlider.value -= amount * Time.deltaTime;
-    }
-
-    public void ResSpawning()
-    {
+    public void ResSpawning() {
         spwn.Spawn();
     }
 
 
-    private void CheckCurrentActiveSceneState()
-    {
+    private void CheckCurrentActiveSceneState() {
         var currentSceneName = SceneManager.GetActiveScene().name;
         
-           
         if (State == GameState.Game)
         {
             currentSceneName = "Joni_devscene";
@@ -229,15 +221,9 @@ public class TrashGameManager : MonoBehaviour {
            
         }
 
-
         if (State == GameState.Restart2)
         {
             currentSceneName = "Joni_devscene";
-            
         }
-
-        // print(currentSceneName);
     }
-
-    
 }
