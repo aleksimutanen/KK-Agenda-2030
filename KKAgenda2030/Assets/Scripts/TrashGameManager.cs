@@ -17,6 +17,8 @@ public class TrashGameManager : MonoBehaviour {
 
     public static TrashGameManager instance = null;
 
+    LevelChanger levelChanger;
+
     public Slider scoreSlider;
     public Slider endScoreSlider;
     public Slider totalScoreSlider;
@@ -28,9 +30,8 @@ public class TrashGameManager : MonoBehaviour {
     public Image[] totalStarImages;
     public float[] totalStarScore;
 
-
-
     public Text statusText;
+
     public GameState State;
    
     private int score = 0;
@@ -56,7 +57,7 @@ public class TrashGameManager : MonoBehaviour {
         
         //if not, set instance to this
             instance = this;
-           // print("TrashGameManager is added to game");
+        // print("TrashGameManager is added to game");
     }
 
     void Start()
@@ -72,6 +73,7 @@ public class TrashGameManager : MonoBehaviour {
 
         spwn = FindObjectOfType<Spawner>();
         Gspwn = FindObjectOfType<GSpawners>();
+        levelChanger = FindObjectOfType<LevelChanger>();
     }
 
     private void Update() {
@@ -92,12 +94,14 @@ public class TrashGameManager : MonoBehaviour {
             } else {
                 if (timerTypes[i] == TimerType.Decrease)
                     LoseScore(5f);
+                
                 else if (timerTypes[i] == TimerType.Increase)
                     GainScore(10f);
                 i++;
             }
         }
     }
+    
 
     public IEnumerator LevelCompleted() {
 
@@ -127,7 +131,6 @@ public class TrashGameManager : MonoBehaviour {
             }
             yield return null;
         }
-        Debug.LogError("FOO!!!!!");
         foreach (Image star in starImages)
             if (star.gameObject.activeSelf)
                 pd.totalStarAmount += 1f;
@@ -139,10 +142,9 @@ public class TrashGameManager : MonoBehaviour {
         if (spwn.rubbish.Count == 0)
         {
             levelCompleted = true;
-                       
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-
-            // print(levelCompleted);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // Vaihdetaan scene seuraavaan fadejen kanssa
+            levelChanger.FadeToNextLevel();
         }
 
         // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
@@ -185,6 +187,7 @@ public class TrashGameManager : MonoBehaviour {
 
     void GainScore(float amount) {
         scoreSlider.value += amount * Time.deltaTime;
+        
     }
 
     public void DeletingPoints()
