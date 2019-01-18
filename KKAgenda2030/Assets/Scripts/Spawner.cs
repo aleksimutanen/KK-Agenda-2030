@@ -33,6 +33,7 @@ public class Spawner : MonoBehaviour
             rubbish.RemoveAt(rnd);
             //print(rnd);
             lastSpawn = Time.time;
+            ThrashCountScript.totalThrashCount--;
         }
 
         if (rubbish.Count == 0)

@@ -6414,7 +6414,7 @@ MonoBehaviour:
   - {fileID: 1215928444221260, guid: 5c9af4925a403c04d84583b68d0cdb6e, type: 3}
   generateTypes: 
   spawnPoint: {fileID: 994966837}
-  sizeOfList: 10
+  sizeOfList: 11
   objectsReqValue: 5
   spawnTime: 3
   resSpawnTimer: 3
@@ -7026,6 +7026,7 @@ GameObject:
   - component: {fileID: 2036335376}
   - component: {fileID: 2036335378}
   - component: {fileID: 2036335377}
+  - component: {fileID: 2036335379}
   m_Layer: 5
   m_Name: ThrashRemainText
   m_TagString: Untagged
@@ -7094,6 +7095,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036335375}
   m_CullTransparentMesh: 0
+--- !u!114 &2036335379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036335375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb06e1c749aa0b4ca78a4fca9a87aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8677990905012391392
 PrefabInstance:
   m_ObjectHideFlags: 0

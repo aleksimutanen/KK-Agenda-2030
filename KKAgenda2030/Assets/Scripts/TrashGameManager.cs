@@ -143,29 +143,32 @@ public class TrashGameManager : MonoBehaviour {
         {
             levelCompleted = true;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
             // Vaihdetaan scene seuraavaan fadejen kanssa
+            // ei toimi vikassa levelissä nykyisellään!
             levelChanger.FadeToNextLevel();
         }
 
         // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+        if (totalScoreSlider != null) {
+            s = pd.totalStarAmount;
+            fillTime = 3f;
 
-        s = pd.totalStarAmount;
-        fillTime = 3f;
+            t = 0f;
+            fillSpeed = 1 / fillTime;
 
-        t = 0f;
-        fillSpeed = 1 / fillTime;
-
-        while (t <= 1) {
-            t += fillSpeed * Time.deltaTime;
-            var curvedT = sliderAnimCurve.Evaluate(t);
-            totalScoreSlider.value = +(curvedT * s);
-            for (int i = 0; i < totalStarImages.Length; i++) {
-                if (totalScoreSlider.value >= totalStarScore[i]) {
-                    totalStarImages[i].gameObject.SetActive(true);
-                    ui.LevelEndStars(totalStarImages[i]);
+            while (t <= 1) {
+                t += fillSpeed * Time.deltaTime;
+                var curvedT = sliderAnimCurve.Evaluate(t);
+                totalScoreSlider.value = +(curvedT * s);
+                for (int i = 0; i < totalStarImages.Length; i++) {
+                    if (totalScoreSlider.value >= totalStarScore[i]) {
+                        totalStarImages[i].gameObject.SetActive(true);
+                        ui.LevelEndStars(totalStarImages[i]);
+                    }
                 }
+                yield return null;
             }
-            yield return null;
         }
 
 
@@ -186,8 +189,7 @@ public class TrashGameManager : MonoBehaviour {
     }
 
     void GainScore(float amount) {
-        scoreSlider.value += amount * Time.deltaTime;
-        
+        scoreSlider.value += amount * Time.deltaTime;        
     }
 
     public void DeletingPoints()
