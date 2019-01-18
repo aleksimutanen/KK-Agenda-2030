@@ -10,6 +10,7 @@ public class PageTurner : MonoBehaviour {
     public Pages page;
 
     public GameObject[] pages;
+    public GameObject[] pageContent;
 
     public Button[] buttons;
     public GameObject nextPageButton;
@@ -33,12 +34,16 @@ public class PageTurner : MonoBehaviour {
         StartCoroutine("PreviousPageAnim");
     }
 
-   
     IEnumerator PreviousPageAnim() {
         if (pageIndex >= 1) {
             if (pageIndex == pages.Length - 1) nextPageButton.SetActive(true);
             foreach (Button b in buttons) b.interactable = false;
             pages[pageIndex - 1].SetActive(true);
+
+            Vector3 pos = Vector3.zero;
+            //pages[pageIndex - 1].GetComponent<RectTransform>().position = pos;
+            pageContent[pageIndex - 1].GetComponent<RectTransform>().localPosition = pos;
+
             pages[pageIndex - 1].GetComponent<Animator>().Play("PageBack");
 
             yield return new WaitForSeconds(0.5f);
@@ -60,6 +65,11 @@ public class PageTurner : MonoBehaviour {
             if (pageIndex == 0) previousPageButton.SetActive(true);
             foreach (Button b in buttons) b.interactable = false;
             pages[pageIndex + 1].SetActive(true);
+
+            Vector3 pos = Vector3.zero;
+            //pages[pageIndex + 1].GetComponent<RectTransform>().position = pos;
+            pageContent[pageIndex + 1].GetComponent<RectTransform>().localPosition = pos;
+
             pages[pageIndex].GetComponent<Animator>().Play("Page");
 
             yield return new WaitForSeconds(0.5f);

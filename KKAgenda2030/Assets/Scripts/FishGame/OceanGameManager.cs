@@ -13,37 +13,45 @@ public class OceanGameManager : MonoBehaviour {
     public int trashEaten;
 
     public float objectDistanceThreshold;
+    public LayerMask collectable;
 
+    //Game Logic
     public int[] levelFoodAmounts;
     public int[] levelTrashAmounts;
+
     public GameObject[] backGroundImages;
     public GameObject[] nets;
+
     public List<Transform> foodFolders = new List<Transform>();
     public List<Transform> trashFolders = new List<Transform>();
+
     public GameObject[] trashPrefabs;
     public Transform objectFolder;
     public GameObject foodPrefab;
-    public string testAudio;
 
     public int levelIndex;
-
-    public LayerMask collectable;
 
     public int score;
     [SerializeField] int foodScore;
     [SerializeField] int trashPenalty;
     public Vector3 startingScale;
     Vector3 characterScale;
+    //
 
+    //UI
     public Text fishCounterText;
     public Button pauseButton;
+
     public Slider scoreSlider;
     public Slider roundEndSlider;
     public Slider gameEndSlider;
+
     public AnimationCurve sliderAnimCurve;
+
     public float starsCollected;
     public float[] starScore;
     public float[] endStarScore;
+
     public Image[] starImages;
     public Image[] totalStars;
     public Image gameEndShark;
@@ -53,11 +61,15 @@ public class OceanGameManager : MonoBehaviour {
     float scoreTimer = -1f;
     List<float> scoreTimers = new List<float>();
     List<TimerType> timerTypes = new List<TimerType>();
+    //
 
+    //Audio
+    public string testAudio;
     public string levelClear;
     public string stopMusic;
     public string sharkMusic;
     public string oneStar;
+    //
 
     void Awake() {
         if (instance)
@@ -111,7 +123,6 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     public void StartGame() {
-        //pauseButton.interactable = true;
         pauseButton.gameObject.SetActive(true);
         if (!pauseButton.interactable)
             pauseButton.interactable = true;
@@ -176,7 +187,6 @@ public class OceanGameManager : MonoBehaviour {
                 GameObject obj = Instantiate(objectPrefab, pos, transform.rotation);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
-                //print("food spawned");
             }
         }
     }
@@ -190,7 +200,6 @@ public class OceanGameManager : MonoBehaviour {
                 Vector3 rndRot = obj.transform.eulerAngles;
                 rndRot.y = Random.Range(0f, 360f);
                 obj.transform.eulerAngles = rndRot;
-                //print(obj.transform.rotation.y);
                 obj.transform.parent = objectFolder;
                 objectAmount--;
             }
@@ -250,7 +259,6 @@ public class OceanGameManager : MonoBehaviour {
                 if (roundEndSlider.value >= starScore[i]) {
                     starImages[i].gameObject.SetActive(true);
                     ui.LevelEndStars(starImages[i]);
-                    print("star achieved");
                     Fabric.EventManager.Instance.PostEvent("oneStar");
                 }
             }
@@ -300,14 +308,8 @@ public class OceanGameManager : MonoBehaviour {
 
             ui.slider.GetComponent<Animator>().Play("New State");
 
-            gameEndShark.GetComponent<Animator>().Play("UISharkSwim");
-            if (starsCollected >= 7)
-                happySharkFace.gameObject.SetActive(true);
-            else if (starsCollected <= 3)
-                unHappySharkFace.gameObject.SetActive(true);
-
-            //s = countedStars;
-            s = starsCollected;
+            s = 9;
+            //s = starsCollected;
 
             fillTime = 3f;
             t = 0f;
@@ -322,11 +324,38 @@ public class OceanGameManager : MonoBehaviour {
                     if (gameEndSlider.value >= endStarScore[i]) {
                         totalStars[i].gameObject.SetActive(true);
                         ui.LevelEndStars(totalStars[i]);
-                        print("star achieved");
                         Fabric.EventManager.Instance.PostEvent("oneStar");
                     }
                 }
                 yield return null;
+            }
+
+            yield return new WaitForSeconds(2f);
+
+            gameEndShark.GetComponent<Animator>().Play("UISharkSwim");
+            if (starsCollected >= 7)
+                happySharkFace.gameObject.SetActive(true);
+            else if (starsCollected <= 3)
+                unHappySharkFace.gameObject.SetActive(true);
+
+            if (starsCollected < 9) {
+                t = 0;
+                s = s - starsCollected;
+                while (t <= 1) {
+                    t += fillSpeed * Time.deltaTime;
+                    var curvedT = sliderAnimCurve.Evaluate(t);
+                    gameEndSlider.value = 9f + (curvedT * -s);
+                    print(gameEndSlider.value);
+                    for (int i = totalStars.Length - 1; i > -1; i--) {
+                        if (gameEndSlider.value <= endStarScore[i]) {
+                            //print(endStarScore[i]);
+                            totalStars[i].gameObject.SetActive(true);
+                            ui.DisableStar(totalStars[i]);
+                            //insert negative audio here
+                        }
+                    }
+                    yield return null;
+                }
             }
 
             yield return new WaitForSeconds(3f);
@@ -415,7 +444,6 @@ public class OceanGameManager : MonoBehaviour {
         fishCounterText.text = foodEaten + " / 10";
         starsCollected = 0f;
         pauseButton.gameObject.SetActive(false);
-        //pauseButton.interactable = false;
     }
 
     public void HitFood() {

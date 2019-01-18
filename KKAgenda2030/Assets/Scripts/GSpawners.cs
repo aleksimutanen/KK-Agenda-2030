@@ -7,23 +7,17 @@
 
         public Transform[] SpawnerPoints;
         public List<GameObject> SpawnerObjects;
+        public GameObject canFolder;
 
         public bool[] spotUsed;
 
         void Awake()
         {
 
-            for (int E = 0; E < SpawnerPoints.Length; E++)
-            {
-
+            for (int E = 0; E < SpawnerPoints.Length; E++) {
             Spawner();
-            
             }
         }
-
-
-   
-
 
     public void Spawner()
         {
@@ -40,14 +34,12 @@
                // spawnPointIndex++;
 
              }               
-          Instantiate(SpawnerObjects[spawnObjectsIndex], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
-              
+
+          var thrashCan = Instantiate(SpawnerObjects[spawnObjectsIndex], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
+          thrashCan.transform.parent = canFolder.transform;
+
           SpawnerObjects.RemoveAt(spawnObjectsIndex);
                
           spotUsed[spawnPointIndex] = true;
         }
-
-         
-       
-
     }
