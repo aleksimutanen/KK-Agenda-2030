@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
         if (spawnStartertime < resSpawnTimer + lastSpawn && rubbish.Count != 1)
         {
             var rnd = Random.Range(0, rubbish.Count);
-            Instantiate(rubbish[rnd]);
+            Instantiate(rubbish[rnd], spawnPoint.position, Quaternion.identity);
             rubbish.RemoveAt(rnd);
             //print(rnd);
             lastSpawn = Time.time;

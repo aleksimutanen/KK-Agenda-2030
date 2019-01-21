@@ -140,8 +140,8 @@ public class TrashGameManager : MonoBehaviour {
                 pd.totalStarAmount += 1f;
 
         levelCompleted = false;
-        endScoreSlider.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
+
 
         // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
 
@@ -161,7 +161,6 @@ public class TrashGameManager : MonoBehaviour {
                 totalScoreSlider.value = +(curvedT * s);
                 for (int i = 0; i < totalStarImages.Length; i++) {
                     if (totalScoreSlider.value >= totalStarScore[i]) {
-                        print(i);
                         totalStarImages[i].gameObject.SetActive(true);
                         ui.LevelEndStars2(totalStarImages[i]);
                     }
@@ -183,6 +182,7 @@ public class TrashGameManager : MonoBehaviour {
             } else {
                 SceneManager.LoadScene(0);
             }
+
         }
     }
 
