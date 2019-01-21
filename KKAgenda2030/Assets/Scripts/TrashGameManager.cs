@@ -29,6 +29,7 @@ public class TrashGameManager : MonoBehaviour {
     public float[] starScore;
     public Image[] totalStarImages;
     public float[] totalStarScore;
+    public GameObject totalScoreBCG;
 
     public Text statusText;
     public GameObject thrashCountObject;
@@ -141,13 +142,18 @@ public class TrashGameManager : MonoBehaviour {
 
         levelCompleted = false;
         yield return new WaitForSeconds(2f);
+        scoreSlider.GetComponent<Animator>().Play("ScoreBarGroupFade");
 
 
-        // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+        yield return new WaitForSeconds(2f);
+        if (totalScoreSlider != null) {
+            totalScoreBCG.SetActive(true);
+            // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+            yield return new WaitForSeconds(3f);
+        }
 
         // muu kuin lvl3
         if (totalScoreSlider != null) {
-            scoreSlider.GetComponent<Animator>().Play("ScoreBarFade");
             // tuunaa totalSLider kohilleen
             totalScoreSlider.gameObject.SetActive(true);
             s = pd.totalStarAmount;
@@ -175,11 +181,11 @@ public class TrashGameManager : MonoBehaviour {
             levelCompleted = true;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-            // Vaihdetaan scene seuraavaan fadejen kanssa
-            // ei toimi vikassa levelissä nykyisellään!
+            // Vaihdetaan scene seuraavaan tasoon fadejen kanssa
             if (SceneManager.GetActiveScene().buildIndex != 3) {
                 levelChanger.FadeToNextLevel();
-            } else {
+            } else { // vikan levelin jälkeen loadi vaikka menuun? Scenenro?
+                yield return new WaitForSeconds(4f);
                 SceneManager.LoadScene(0);
             }
 

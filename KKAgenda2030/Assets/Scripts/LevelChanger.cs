@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelChanger : MonoBehaviour {
 
@@ -7,6 +8,7 @@ public class LevelChanger : MonoBehaviour {
     public Animator animator;
     private int levelToLoad;
     TrashGameManager TGM;
+    public Image fakeLoad;
 
     private void Awake() {
         TGM = FindObjectOfType<TrashGameManager>();
@@ -33,6 +35,8 @@ public class LevelChanger : MonoBehaviour {
         levelToLoad = levelIndex;
         animator.SetTrigger("FadeOut");
         TGM.endScoreSlider.gameObject.SetActive(false);
+        fakeLoad.gameObject.SetActive(true);
+
 
     }
 
