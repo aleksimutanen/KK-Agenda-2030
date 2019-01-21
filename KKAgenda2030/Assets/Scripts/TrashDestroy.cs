@@ -11,21 +11,25 @@ public class TrashDestroy: MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (acceptTypes.Contains(other.GetComponent<Trash>().kind))
-        {
+        var temp = other.GetComponent<Trash>();
+        if (temp == null) {
+            return;
+        }
+        if (acceptTypes.Contains(temp.kind)) {
 
             Success.Add(other.gameObject);
             sizeOfList = Success.Count;
             other.gameObject.SetActive(false);
             //Destroy(other.gameObject);
-                        
+
             TrashGameManager.instance.AddedPoints();
             TrashGameManager.instance.ResSpawning();
-           // print("Roskat lajiteltu oikein");
+            // print("Roskat lajiteltu oikein");
 
-
-
+        } else { // roska on väärä
+            TrashGameManager.instance.DeletingPoints();
+            var dg = other.GetComponent<DragObjects>();
+            dg.OnDraggingEnd();
         }
-
     }
 }

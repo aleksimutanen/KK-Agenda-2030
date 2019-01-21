@@ -4,75 +4,49 @@ using UnityEngine;
 
 public class DragObjects : MonoBehaviour {
 
-    Spawner spwn;
     Vector3 dist;
     float posX;
     float posY;
-    private float distance = 3f;
-    private float lerpTime = 5;
-    private float currentLerpTime = 0;
-    private Vector3 startPos;
-    private Vector3 endPos;
+    float returnSpeed = 20;
+
+    public Vector3 startPos;
     public bool dragging = false;
 
 
-    void Start()
-    {
-        spwn = FindObjectOfType<Spawner>();
+    void Start() {
         startPos = transform.position;
-        endPos = transform.position + Vector3.down * distance;
     }
 
-    void OnDraggingEnd()
-    {
-        dragging = false;
-        if (dragging == false)
-        {
-            currentLerpTime += Time.deltaTime;
-            if (currentLerpTime >= lerpTime)
-            {
-                currentLerpTime = lerpTime;
+    void Update() {
+        if (dragging) {
+            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+            transform.position = worldPos;
+        } else {
+            var distance = Vector3.Distance(transform.position, startPos);
+            if (distance > 0.01f) { // roska liikuu lähtöpistettä kohti
+                GetComponent<Collider>().enabled = false;
+                var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
+                transform.position = newPos;
+                if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
+                    GetComponent<Collider>().enabled = true;
+                }
             }
-
-            float Perc = currentLerpTime / lerpTime;
-            transform.position = Vector3.Lerp(startPos, endPos, Perc);
         }
     }
 
+    public void OnDraggingEnd() {
+        dragging = false;
+    }
 
-    public void OnMouseDown()
-    {
-
+    void OnMouseDown() {
+        dragging = true;
         dist = Camera.main.WorldToScreenPoint(transform.position);
         posX = Input.mousePosition.x - dist.x;
         posY = Input.mousePosition.y - dist.y;
     }
 
-    public void OnMouseDrag()
-    {        
-            dragging = true;
-            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-            transform.position = worldPos;
-            // print("Siirtyyy!");
-       
+    void OnMouseUp() {
+        OnDraggingEnd();
     }
-
-    public void OnMouseUp()
-    {
-        print("Draggaus loppu");
-
-        dragging = false;
-
-        if (dragging == false)
-        {
-            OnDraggingEnd();
-            print(dragging);
-            print("Voidaan palata");
-        }
-    }
-
-
-
-
 }

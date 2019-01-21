@@ -6,6 +6,11 @@ public class LevelChanger : MonoBehaviour {
     int maxBuildIndex = 2;
     public Animator animator;
     private int levelToLoad;
+    TrashGameManager TGM;
+
+    private void Awake() {
+        TGM = FindObjectOfType<TrashGameManager>();
+    }
 
     void Update() {
         // for testing
@@ -21,11 +26,14 @@ public class LevelChanger : MonoBehaviour {
         else
             // lataa seuraava buildissa oleva lvl
             FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     public void FadeToLevel(int levelIndex) {
         levelToLoad = levelIndex;
         animator.SetTrigger("FadeOut");
+        TGM.endScoreSlider.gameObject.SetActive(false);
+
     }
 
     public void OnFadeComplete() {

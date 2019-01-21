@@ -106,7 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1751b0fc06d59e478d4a2d048a4e532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerObject: {fileID: 0}
+  returnSpeed: 1
+  startPos: {x: 0, y: 0, z: 0}
+  dragging: 0
 --- !u!114 &114877644582698502
 MonoBehaviour:
   m_ObjectHideFlags: 0
