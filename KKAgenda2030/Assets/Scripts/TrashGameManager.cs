@@ -185,7 +185,7 @@ public class TrashGameManager : MonoBehaviour {
             if (SceneManager.GetActiveScene().buildIndex != 3) {
                 levelChanger.FadeToNextLevel();
             } else { // vikan levelin jälkeen loadi vaikka menuun? Scenenro?
-                yield return new WaitForSeconds(4f);
+                yield return new WaitForSeconds(5f);
                 SceneManager.LoadScene(0);
             }
 
