@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToyRepair : MonoBehaviour
-{ 
-    public List<GameObject> partOfToy;
+{
+
+    public List<bool> levelIsCompleted;
+
 
     private void OnCollisionEnter(Collision col)  
     {
@@ -12,8 +14,8 @@ public class ToyRepair : MonoBehaviour
         {
             print("Nyt osuu!");
 
-            partOfToy.Add(gameObject);
             gameObject.SetActive(false);
+            
         }
     }
 }
