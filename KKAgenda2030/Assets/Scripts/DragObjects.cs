@@ -8,16 +8,28 @@ public class DragObjects : MonoBehaviour {
     float posX;
     float posY;
     float returnSpeed = 20;
+    float hintTimer;
 
     public Vector3 startPos;
     public bool dragging = false;
 
+    GSpawners gs;
+
+
 
     void Start() {
         startPos = transform.position;
+        gs = FindObjectOfType<GSpawners>();
     }
 
     void Update() {
+
+        hintTimer += Time.deltaTime;
+        if (hintTimer > 10f) {
+            Hint();
+            hintTimer = 0f;
+        }
+
         if (dragging) {
             Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
@@ -37,6 +49,36 @@ public class DragObjects : MonoBehaviour {
 
     public void OnDraggingEnd() {
         dragging = false;
+    }
+
+    // possible start for hint system
+    public void Hint() {
+
+        var currentTrash = FindObjectOfType<Trash>();
+        var trashEnum = currentTrash.GetComponent<Trash>().kind;
+        // TODO:
+        // haetaan trashEnumia vastaava roskis acceptTypesin avulla, mistä soittaa animaatiota.
+        var tc = FindTrashCan(trashEnum);
+        if (!tc) {
+            Debug.LogError("ei löytynyt oikeaa roskista");
+        }
+        tc.GetComponent<Animator>().Play("HintShake");
+    }
+
+    TrashDestroy FindTrashCan (TrashType tt) {
+        var so = FindObjectsOfType<TrashDestroy>();
+        foreach (var td in so) {
+            if (td.acceptTypes.Contains(tt)) {
+                return td;
+            }
+        }
+        //foreach (var item in gs.SpawnerObjects) {
+        //    var td = item.GetComponent<TrashDestroy>();
+        //    if (td.acceptTypes.Contains(tt)) {
+        //        return td;
+        //    }
+        //}
+        return null;
     }
 
     void OnMouseDown() {

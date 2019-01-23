@@ -186,6 +186,7 @@ public class TrashGameManager : MonoBehaviour {
                 levelChanger.FadeToNextLevel();
             } else { // vikan levelin jälkeen loadi vaikka menuun? Scenenro?
                 yield return new WaitForSeconds(5f);
+                // jotain fancya UI-animaatioita tähän ennen menuun paluuta?
                 SceneManager.LoadScene(0);
             }
 
