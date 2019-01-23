@@ -9,6 +9,7 @@ public class ToyGameManager : MonoBehaviour {
     public List<GameObject> kids;
     public Transform[] kidsPositions;
     public List<GameObject> toys;
+    public List<GameObject> repairedToys;
     private ToyCheck[] goals;
     public List<bool> levelIsCompleted;
     public float spawnTime = 2f;
