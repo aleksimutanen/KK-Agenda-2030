@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject player;
     public List<GameObject> rubbish;
     public List<GameObject> rightObjects;
     public List<TrashType> generateTypes;

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8021759894326636202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8021759894326636200}
+  - component: {fileID: 8021759894326636201}
+  m_Layer: 0
+  m_Name: TrashSpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8021759894326636200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021759894326636202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.03, y: -7.99, z: 0}
+  m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8021759894326636201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021759894326636202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4e6f9bfe728454f9e782f7d1feacff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rubbish: []
+  rightObjects:
+  - {fileID: 1735283472664090, guid: 307634492af0a01418a908b85308f43d, type: 3}
+  - {fileID: 1259928199536676, guid: 859eba58868652e47a367cc6f09ee8ab, type: 3}
+  - {fileID: 1215928444221260, guid: 5c9af4925a403c04d84583b68d0cdb6e, type: 3}
+  - {fileID: 1767710651016956, guid: bea6d042009166b458e9f30d517a0c45, type: 3}
+  - {fileID: 1224501277413242, guid: 107c2835af8727f438e7ed0f86b6776d, type: 3}
+  - {fileID: 1224501277413242, guid: c7e2308cb6573754e90b1fcf2a40a4b8, type: 3}
+  - {fileID: 1819796484966900, guid: 662450192a7c3b54fbb7447c23f48383, type: 3}
+  - {fileID: 1224501277413242, guid: d7ae96dd1af2a7243bd46828c111d419, type: 3}
+  - {fileID: 1224501277413242, guid: 801798a912e203144977dd92aabb8367, type: 3}
+  - {fileID: 1819796484966900, guid: 2cb4e73d20ecb7b4ba321878882dc844, type: 3}
+  - {fileID: 1819796484966900, guid: deef340dfb38af44f89959130cc32757, type: 3}
+  - {fileID: 1819796484966900, guid: f91d08583a4e334469d9c61cc4a4631e, type: 3}
+  generateTypes: 
+  spawnPoint: {fileID: 0}
+  sizeOfList: 11
+  objectsReqValue: 5
+  spawnTime: 3
+  resSpawnTimer: 3
+  lastSpawn: 0
+  spawnStartertime: 0

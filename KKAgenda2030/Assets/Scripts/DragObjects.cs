@@ -51,8 +51,19 @@ public class DragObjects : MonoBehaviour {
         dragging = false;
     }
 
+    
+    IEnumerator waitOneSecond() {
+        yield return new WaitForSeconds(1f);
+    }
+
+    void Wait() {
+        StartCoroutine(waitOneSecond());
+    }
+
     // possible start for hint system
     public void Hint() {
+
+        Invoke("Wait", 0.5f);
 
         var currentTrash = FindObjectOfType<Trash>();
         var trashEnum = currentTrash.GetComponent<Trash>().kind;
