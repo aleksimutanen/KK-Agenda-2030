@@ -41,6 +41,7 @@ public class ToyRepairManager : MonoBehaviour
 
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
         spotUsed[spawnPointIndex] = true;
+       
 
     }
 }
