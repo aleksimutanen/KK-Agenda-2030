@@ -5,7 +5,8 @@ using UnityEngine;
 public class ToyRepair : MonoBehaviour
 {
 
-    public List<bool> levelIsCompleted;
+    ToyRepairManager tRM;
+    public GameObject toy;
 
 
     private void OnCollisionEnter(Collision col)  
@@ -13,9 +14,9 @@ public class ToyRepair : MonoBehaviour
         if (col.gameObject.tag == "RepairCube")
         {
             print("Nyt osuu!");
-
+          
             gameObject.SetActive(false);
-            
+            tRM.partOfToys.Remove(this.gameObject);
         }
     }
 }
