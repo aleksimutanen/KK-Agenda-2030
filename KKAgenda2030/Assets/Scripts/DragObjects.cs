@@ -51,12 +51,11 @@ public class DragObjects : MonoBehaviour {
         dragging = false;
     }
 
+
     // possible start for hint system
     public void Hint() {
-
         var currentTrash = FindObjectOfType<Trash>();
         var trashEnum = currentTrash.GetComponent<Trash>().kind;
-        // TODO:
         // haetaan trashEnumia vastaava roskis acceptTypesin avulla, mistä soittaa animaatiota.
         var tc = FindTrashCan(trashEnum);
         if (!tc) {

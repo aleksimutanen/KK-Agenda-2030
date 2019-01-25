@@ -106,7 +106,6 @@ public class TrashGameManager : MonoBehaviour {
     
 
     public IEnumerator LevelCompleted() {
-
         Gspwn.canFolder.gameObject.SetActive(false);
         thrashCountObject.SetActive(false);
         statusText.text = "Taso suoritettu!";
