@@ -26,7 +26,7 @@ public class DragObjects : MonoBehaviour {
 
         hintTimer += Time.deltaTime;
         if (hintTimer > 10f) {
-            Hint();
+            StartCoroutine(Hint());
             hintTimer = 0f;
         }
 
@@ -53,7 +53,24 @@ public class DragObjects : MonoBehaviour {
 
 
     // possible start for hint system
-    public void Hint() {
+    //public void Hint() {
+    //    var currentTrash = FindObjectOfType<Trash>();
+    //    var trashEnum = currentTrash.GetComponent<Trash>().kind;
+    //    // haetaan trashEnumia vastaava roskis acceptTypesin avulla, mistä soittaa animaatiota.
+    //    var tc = FindTrashCan(trashEnum);
+    //    if (!tc) {
+    //        Debug.LogError("ei löytynyt oikeaa roskista");
+    //    }
+    //    // vaihda animator controller toiseen, josta löytyy hintShake
+    //    var idleCTR = tc.GetComponent<Animator>().runtimeAnimatorController; // idleController ensin talteen
+    //    tc.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Assets/Animations/ThrashGame/TrashCanShake.controller") as RuntimeAnimatorController;
+    //    tc.GetComponent<Animator>().Play("HintShake");
+    //    tc.GetComponent<Animator>().runtimeAnimatorController = idleCTR as RuntimeAnimatorController; // Controller takaisin idlelle.
+
+    //}
+
+    public IEnumerator Hint() {
+        var currentController = FindObjectOfType<RuntimeAnimatorController>();
         var currentTrash = FindObjectOfType<Trash>();
         var trashEnum = currentTrash.GetComponent<Trash>().kind;
         // haetaan trashEnumia vastaava roskis acceptTypesin avulla, mistä soittaa animaatiota.
@@ -61,7 +78,17 @@ public class DragObjects : MonoBehaviour {
         if (!tc) {
             Debug.LogError("ei löytynyt oikeaa roskista");
         }
+
+        // vaihda animator controller toiseen, josta löytyy hintShake
+        currentController = tc.GetComponent<Animator>().runtimeAnimatorController; // idleController ensin talteen
+        print("first Contrl: " + currentController);
+        tc.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("TrashCanShake");
+        // Controllervaihdon jälkeen slotti on NULL!;
+        print(tc.GetComponent<Animator>().runtimeAnimatorController);
         tc.GetComponent<Animator>().Play("HintShake");
+        yield return new WaitForSeconds(1f);
+        tc.GetComponent<Animator>().runtimeAnimatorController = currentController as RuntimeAnimatorController; // Controller takaisin idlelle.
+
     }
 
     TrashDestroy FindTrashCan (TrashType tt) {
