@@ -20,7 +20,7 @@ public class ThrashCountScript : MonoBehaviour
     void Update()
     {
         totalThrashCount = spawner.rubbish.Count;
-        thrashText.text = "Roskia jäljellä: " + totalThrashCount;
+        thrashText.text = "" + totalThrashCount;
 
     }
 }
