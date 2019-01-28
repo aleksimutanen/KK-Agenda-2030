@@ -6,9 +6,12 @@ public class ToyRepair : MonoBehaviour
 {
 
     ToyRepairManager tRM;
-    public GameObject toy;
-    private int objectsfalse = 0;
+    public int objectsfalse = 0;
 
+    private void Start()
+    {
+      gameObject.SetActive(true);
+    }
 
     private void OnCollisionEnter(Collision col)  
     {
@@ -17,14 +20,15 @@ public class ToyRepair : MonoBehaviour
             print("Nyt osuu!");
           
             gameObject.SetActive(false);
-;
+            objectsfalse++;
+
         }
 
         if (!gameObject.activeSelf)
         {
             print("objekti ei näy!");
-            tRM.spotUsed[objectsfalse] = true;
-            toy.SetActive(true);               
+         
+                    
         }
     }
 }
