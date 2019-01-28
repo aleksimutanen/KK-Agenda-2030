@@ -72,6 +72,11 @@ public class UIManager : MonoBehaviour {
         DisableMenuButtons();
     }
 
+    public void LaunchTrashGame() {
+        GrandManager.instance.LaunchTrashGame();
+        DisableMenuButtons();
+    }
+
     public void DisableMenuButtons() {
         //foreach (Button b in menuButtons) b.gameObject.SetActive(false);
         foreach (Button b in menuButtons) b.interactable = false;

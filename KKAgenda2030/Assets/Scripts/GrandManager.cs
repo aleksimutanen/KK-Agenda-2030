@@ -13,14 +13,21 @@ public class GrandManager : MonoBehaviour {
 
     public bool paused;
 
+    // Menu:
     public GameObject mainMenu;
 
+
+    // Games:
     public GameObject oceanGame;
+    public GameObject trashGame;
+
+    // Menu UI's
     public GameObject optionsButton;
     public GameObject previousPageButton;
     public GameObject nextPageButton;
     public Slider oceanGameUI;
 
+    // Fabric
     public string sharkMusic;
     public string stopMusic;
     public string ambient;
@@ -80,6 +87,14 @@ public class GrandManager : MonoBehaviour {
         Fabric.EventManager.Instance.PostEvent("stopAmbient");
         Fabric.EventManager.Instance.PostEvent("sharkMusic");
 
+    }
+
+    public void LaunchTrashGame() {
+        optionsButton.SetActive(false);
+        previousPageButton.SetActive(false);
+        nextPageButton.SetActive(false);
+
+        trashGame.SetActive(true);
     }
 
     public void BackToMainMenu() {
