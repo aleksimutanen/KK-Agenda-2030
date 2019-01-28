@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ToyRepairManager : MonoBehaviour
 {
-    ToyRepair tr;
+    public GameObject repairedCube;
+    public GameObject readytoy;
     public List<GameObject> partOfToys;
     public Transform[] spawnPoints;
     public bool[] spotUsed;
@@ -19,29 +20,41 @@ public class ToyRepairManager : MonoBehaviour
         }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        tr = FindObjectOfType<ToyRepair>();
+        repairedCube = GameObject.FindGameObjectWithTag("BrokenToy"); 
+        
+    }
 
-    }        
-
-   void Spawn()
+    void Spawn()
     {
         int bools = Random.Range(0, spotUsed.Length);
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         int spawnObjectsIndex = Random.Range(0, partOfToys.Count);
-        
-        while((spotUsed[spawnPointIndex] == true)) 
+       
+
+        while ((spotUsed[spawnPointIndex] == true)) 
         {
             spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
+            
         }
 
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
         spotUsed[spawnPointIndex] = true;
-       
 
+        
+        
     }
+
+
+
+    public void Update()
+    {
+       if(!repairedCube.activeSelf)
+        
+        {
+            readytoy.SetActive(true);
+        }
+    }
+
 }
