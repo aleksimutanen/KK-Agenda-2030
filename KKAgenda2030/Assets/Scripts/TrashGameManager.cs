@@ -32,7 +32,8 @@ public class TrashGameManager : MonoBehaviour {
     public GameObject totalScoreBCG;
 
     public Text statusText;
-    public GameObject thrashCountObject;
+    public GameObject trashCountObject;
+    public GameObject trashAreaBCG;
 
     public GameState State;
    
@@ -107,7 +108,8 @@ public class TrashGameManager : MonoBehaviour {
 
     public IEnumerator LevelCompleted() {
         Gspwn.canFolder.gameObject.SetActive(false);
-        thrashCountObject.SetActive(false);
+        trashCountObject.SetActive(false);
+        trashAreaBCG.gameObject.SetActive(false);
         statusText.text = "Taso suoritettu!";
         endScoreSlider.gameObject.SetActive(true);
 
