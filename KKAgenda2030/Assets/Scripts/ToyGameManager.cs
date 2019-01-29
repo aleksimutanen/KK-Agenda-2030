@@ -9,14 +9,9 @@ public class ToyGameManager : MonoBehaviour {
     public List<GameObject> kids;
     public Transform[] kidsPositions;
     public List<GameObject> toys;
-    public List<GameObject> repairedToys;
     private ToyCheck[] goals;
     public List<bool> levelIsCompleted;
-    public float spawnTime = 2f;
-    public float resSpawnTimer;
-    public float lastSpawn;
-    public float spawnStartertime;
-
+    public bool[] spotUsed;
 
 
     void Awake()
@@ -31,16 +26,17 @@ public class ToyGameManager : MonoBehaviour {
         instance = this;
         print("ToyGameManager is added to game");
 
-    }
-
-
-   
-    // Use this for initialization
+            for (int e = 0; e < kidsPositions.Length; e++)
+            {
+                   Spawn();
+            }
+    }   
+    
     void Start ()
     {
         goals = FindObjectsOfType<ToyCheck>();  
         lightOfRed.GetComponent<Light>().enabled = false;
-        Spawn();
+       
     }
 
     public bool AllToycansFull()
@@ -74,18 +70,22 @@ public class ToyGameManager : MonoBehaviour {
         return levelIsCompleted[Random.Range(0,3)];
     }
 
-    public void Spawn()
+    void Spawn()
     {
-        for (int E = 0; E <= kids.Count; E++)
+        int bools = Random.Range(0, spotUsed.Length);
+        int spawnPointIndex = Random.Range(0, kidsPositions.Length);
+        int spawnObjectsIndex = Random.Range(0, kids.Count);
+
+
+        while ((spotUsed[spawnPointIndex] == true))
         {
+            spawnPointIndex = Random.Range(0, kidsPositions.Length);
 
-            var rnd = Random.Range(0, kids.Count);
-
-            Instantiate(kids[rnd]);
-            kids.RemoveAt(rnd);
-            
-            lastSpawn = Time.time;
         }
+
+        var childs = Instantiate(kids[spawnObjectsIndex], kidsPositions[spawnPointIndex].position, kidsPositions[spawnPointIndex].rotation);
+        kids.RemoveAt(spawnObjectsIndex);
+        spotUsed[spawnPointIndex] = true;
 
     }
 

@@ -46,8 +46,6 @@ public class ToyRepairManager : MonoBehaviour
         
     }
 
-
-
     public void Update()
     {
        if(!repairedCube.activeSelf)
