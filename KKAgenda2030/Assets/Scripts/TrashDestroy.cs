@@ -8,6 +8,8 @@ public class TrashDestroy: MonoBehaviour {
     public List<TrashType> acceptTypes;
     public List<GameObject> Success = new List<GameObject>();
     public int sizeOfList;
+    public Animator childAnimator;
+    public string eatAnimation;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +18,7 @@ public class TrashDestroy: MonoBehaviour {
             return;
         }
         if (acceptTypes.Contains(temp.kind)) {
-
+            childAnimator.Play(eatAnimation);
             Success.Add(other.gameObject);
             sizeOfList = Success.Count;
             other.gameObject.SetActive(false);
