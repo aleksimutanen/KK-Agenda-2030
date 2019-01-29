@@ -17,7 +17,7 @@ public class ToyRepair : MonoBehaviour
     {
         if (col.gameObject.tag == "RepairCube")
         {
-            print("Nyt osuu!");
+           // print("Nyt osuu!");
           
             gameObject.SetActive(false);
             objectsfalse++;
@@ -26,7 +26,7 @@ public class ToyRepair : MonoBehaviour
 
         if (!gameObject.activeSelf)
         {
-            print("objekti ei näy!");
+          //  print("objekti ei näy!");
          
                     
         }
