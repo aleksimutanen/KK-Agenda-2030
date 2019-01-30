@@ -107,6 +107,10 @@ public class TrashGameManager : MonoBehaviour {
     
 
     public IEnumerator LevelCompleted() {
+        //SpriteAppear[] spriteAppears = FindObjectsOfType<SpriteAppear>();
+        //for (int i = 0; i < spriteAppears.Length; i++) {
+        //    spriteAppears[i].alphaFade();
+        //}
         Gspwn.canFolder.gameObject.SetActive(false);
         trashCountObject.SetActive(false);
         trashAreaBCG.gameObject.SetActive(false);
@@ -180,16 +184,19 @@ public class TrashGameManager : MonoBehaviour {
 
         if (spwn.rubbish.Count == 0) {
             levelCompleted = true;
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            statusText.text = "";
 
+            levelChanger.StartCoroutine("LevelChange");
+
+            // OLD STYLE!
             // Vaihdetaan scene seuraavaan tasoon fadejen kanssa
-            if (SceneManager.GetActiveScene().buildIndex != 3) {
-                levelChanger.FadeToNextLevel();
-            } else { // vikan levelin jälkeen loadi vaikka menuun? Scenenro?
-                yield return new WaitForSeconds(5f);
-                // jotain fancya UI-animaatioita tähän ennen menuun paluuta?
-                SceneManager.LoadScene(0);
-            }
+            //if (SceneManager.GetActiveScene().buildIndex != 3) {
+            //    levelChanger.FadeToNextLevel();
+            //} else { // vikan levelin jälkeen loadi vaikka menuun? Scenenro?
+            //    yield return new WaitForSeconds(5f);
+            //    // jotain fancya UI-animaatioita tähän ennen menuun paluuta?
+            //    SceneManager.LoadScene(0);
+            //}
 
         }
     }
@@ -202,13 +209,11 @@ public class TrashGameManager : MonoBehaviour {
     }
 
     void GainScore(float amount) {
-        // TODO: spriteflash vihreänä
         scoreSlider.GetComponent<Animator>().Play("GreenFlash");
         scoreSlider.value += amount * Time.deltaTime;        
     }
 
     void LoseScore(float amount) {
-        // TODO: spriteflash punaisena
         scoreSlider.GetComponent<Animator>().Play("RedFlash");
         scoreSlider.value -= amount * Time.deltaTime;
     }

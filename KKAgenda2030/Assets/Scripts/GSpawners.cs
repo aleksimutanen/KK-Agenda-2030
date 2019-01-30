@@ -5,7 +5,6 @@
 
     public class GSpawners : MonoBehaviour
     {
-
         public Transform[] SpawnerPoints;
         public List<GameObject> SpawnerObjects;
         public GameObject canFolder;
