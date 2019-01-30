@@ -11,8 +11,7 @@ public class TrashDestroy: MonoBehaviour {
     public Animator childAnimator;
     public string eatAnimation;
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         var temp = other.GetComponent<Trash>();
         if (temp == null) {
             return;
