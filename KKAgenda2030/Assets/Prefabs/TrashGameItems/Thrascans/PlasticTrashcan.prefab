@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 114241992492000430}
   - component: {fileID: 1013099454733537921}
   - component: {fileID: 849995060650563107}
+  - component: {fileID: 776392412}
   m_Layer: 0
   m_Name: PlasticTrashcan
   m_TagString: Untagged
@@ -100,6 +101,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &776392412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860588644716744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff3ae80898ba8d4da0cf4d0aefeb3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 1.2
 --- !u!1 &6299233923340190400
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +184,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: af4a44129da4c384cb2c26330ac8ecc3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
