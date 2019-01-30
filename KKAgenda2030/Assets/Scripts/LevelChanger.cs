@@ -23,7 +23,7 @@ public class LevelChanger : MonoBehaviour {
 
     public void FadeToNextLevel() {
         if (SceneManager.GetActiveScene().buildIndex == maxBuildIndex)
-            // palaa menuun?
+            // Menuscenen nro tähän
             SceneManager.LoadScene(0);
         else
             // lataa seuraava buildissa oleva lvl
@@ -36,6 +36,7 @@ public class LevelChanger : MonoBehaviour {
         animator.SetTrigger("FadeOut");
         TGM.endScoreSlider.gameObject.SetActive(false);
         fakeLoad.gameObject.SetActive(true);
+        fakeLoad.GetComponent<Animator>().Play("FakeLoading");
 
 
     }
