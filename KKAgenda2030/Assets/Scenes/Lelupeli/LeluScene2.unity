@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db29e42e2212e44a875752d09aeb250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repairedCube: {fileID: 0}
+  fullrepairedCube: {fileID: 0}
   readytoy: {fileID: 3453617735206096789}
   partOfToys:
   - {fileID: 6841784604164549015, guid: a6bc417a82e3474428e2c5d659f29db0, type: 3}
@@ -489,6 +489,7 @@ MonoBehaviour:
   - {fileID: 1048446974}
   - {fileID: 1762920244}
   spotUsed: 000000
+  isRepaired: 000000
 --- !u!1 &1889978638
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +669,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1124949151440520395, guid: 63014acfcc054c44a995a65624dfb017, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 63014acfcc054c44a995a65624dfb017, type: 3}
 --- !u!1 &3453617735206096789 stripped
 GameObject:

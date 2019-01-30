@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ToyRepairManager : MonoBehaviour
 {
-    public GameObject repairedCube;
+
+    ToyRepair tR;
+    public GameObject fullrepairedCube;
+    private GameObject repairedCube;
     public GameObject readytoy;
     public List<GameObject> partOfToys;
     public Transform[] spawnPoints;
     public bool[] spotUsed;
-
+    public bool[] isRepaired;
+    
 
     void Awake()
     {
@@ -22,9 +26,14 @@ public class ToyRepairManager : MonoBehaviour
 
     void Start()
     {
-        repairedCube = GameObject.FindGameObjectWithTag("BrokenToy"); 
-        
+        repairedCube = GameObject.FindGameObjectWithTag("BrokenToy");        
     }
+
+    public void Update()
+    {
+        repairedIsReady();
+    }
+
 
     void Spawn()
     {
@@ -40,19 +49,25 @@ public class ToyRepairManager : MonoBehaviour
         }
 
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        spotUsed[spawnPointIndex] = true;
-
-        
+        partOfToys.RemoveAt(spawnObjectsIndex);
+        spotUsed[spawnPointIndex] = true;        
         
     }
 
-    public void Update()
+    void repairedIsReady()
     {
-       if(!repairedCube.activeSelf)
-        
-        {
-            readytoy.SetActive(true);
+        int repairedBool = Random.Range(0, isRepaired.Length);
+        int i = 0;
+
+        while (i > isRepaired.Length)
+        {    
+
+            if (!repairedCube.activeSelf)
+            {
+            isRepaired[repairedBool] = true;
+            print("Lelu on piilossa");
+            }
+            i++;
         }
     }
-
 }
