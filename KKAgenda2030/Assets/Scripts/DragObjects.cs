@@ -58,7 +58,6 @@ public class DragObjects : MonoBehaviour {
             td = hit.collider.GetComponent<TrashDestroy>();
             // onko collidereista joku can triggeri
             if (td) {
-                print(td.name);
                 var temp = GetComponent<Trash>();
                 if (td.acceptTypes.Contains(temp.kind)) {
                     td.EatTrash(GetComponent<Trash>());

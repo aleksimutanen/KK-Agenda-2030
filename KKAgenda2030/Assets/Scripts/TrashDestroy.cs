@@ -15,7 +15,6 @@ public class TrashDestroy: MonoBehaviour {
         childAnimator.Play(eatAnimation);
         Success.Add(t.gameObject);
         sizeOfList = Success.Count;
-        
     }
 
 

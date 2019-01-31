@@ -38,7 +38,6 @@ public class Spawner : MonoBehaviour
         //if (rubbish.Count == 0)
         else
         {
-            print("Lista on tyhjä");
             rubbish.Clear();
             StartCoroutine(TrashGameManager.instance.LevelCompleted());
             CancelInvoke("Spawn");
