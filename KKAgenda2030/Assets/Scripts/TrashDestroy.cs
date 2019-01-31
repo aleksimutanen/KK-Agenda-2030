@@ -11,26 +11,34 @@ public class TrashDestroy: MonoBehaviour {
     public Animator childAnimator;
     public string eatAnimation;
 
-    private void OnTriggerEnter(Collider other) {
-        var temp = other.GetComponent<Trash>();
-        if (temp == null) {
-            return;
-        }
-        if (acceptTypes.Contains(temp.kind)) {
-            childAnimator.Play(eatAnimation);
-            Success.Add(other.gameObject);
-            sizeOfList = Success.Count;
-            other.gameObject.SetActive(false);
-            //Destroy(other.gameObject);
-
-            TrashGameManager.instance.AddedPoints();
-            TrashGameManager.instance.ResSpawning();
-            // print("Roskat lajiteltu oikein");
-
-        } else { // roska on väärä
-            TrashGameManager.instance.DeletingPoints();
-            var dg = other.GetComponent<DragObjects>();
-            dg.OnDraggingEnd();
-        }
+    public void EatTrash(Trash t) {
+        childAnimator.Play(eatAnimation);
+        Success.Add(t.gameObject);
+        sizeOfList = Success.Count;
+        
     }
+
+
+    //private void OnTriggerEnter(Collider other) {
+    //    var temp = other.GetComponent<Trash>();
+    //    if (temp == null) {
+    //        return;
+    //    }
+    //    if (acceptTypes.Contains(temp.kind)) {
+    //        childAnimator.Play(eatAnimation);
+    //        Success.Add(other.gameObject);
+    //        sizeOfList = Success.Count;
+    //        other.gameObject.SetActive(false);
+    //        //Destroy(other.gameObject);
+
+    //        TrashGameManager.instance.AddedPoints();
+    //        TrashGameManager.instance.ResSpawning();
+    //        // print("Roskat lajiteltu oikein");
+
+    //    } else { // roska on väärä
+    //        TrashGameManager.instance.DeletingPoints();
+    //        var dg = other.GetComponent<DragObjects>();
+    //        dg.OnDraggingEnd();
+    //    }
+    //}
 }

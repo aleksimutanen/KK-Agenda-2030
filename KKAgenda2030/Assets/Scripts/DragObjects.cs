@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragObjects : MonoBehaviour {
 
+
     Vector3 dist;
     float posX;
     float posY;
@@ -49,6 +50,26 @@ public class DragObjects : MonoBehaviour {
 
     public void OnDraggingEnd() {
         dragging = false;
+        var mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
+        TrashDestroy td = null;
+        RaycastHit hit;
+
+        if (Physics.Raycast(mousePos, out hit)) {
+            td = hit.collider.GetComponent<TrashDestroy>();
+            // onko collidereista joku can triggeri
+            if (td) {
+                print(td.name);
+                var temp = GetComponent<Trash>();
+                if (td.acceptTypes.Contains(temp.kind)) {
+                    td.EatTrash(GetComponent<Trash>());
+                    TrashGameManager.instance.AddedPoints();
+                    TrashGameManager.instance.ResSpawning();
+                    gameObject.SetActive(false);
+                } else {
+                    TrashGameManager.instance.DeletingPoints();
+                }
+            }
+        }
     }
 
     public void Hint() {
