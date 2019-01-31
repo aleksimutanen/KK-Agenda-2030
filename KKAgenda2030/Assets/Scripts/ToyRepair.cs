@@ -33,7 +33,7 @@ public class ToyRepair : MonoBehaviour
             {
                 
                 print("yksi on valmis");
-                tRM.isRepaired.SetValue(true, ready);
+                //tRM.isRepaired.SetValue(true, ready);
                 
             }
         }
