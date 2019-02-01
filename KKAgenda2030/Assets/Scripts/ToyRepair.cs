@@ -6,39 +6,30 @@ public class ToyRepair : MonoBehaviour
 {
 
     ToyRepairManager tRM;
-    public int objectsfalse = 0;
-    public bool[] isRepaired;
+   
+    
 
     private void Start()
     {
-      gameObject.SetActive(true);
+        gameObject.SetActive(true);
         tRM = GameObject.FindObjectOfType<ToyRepairManager>();
+        
     }
 
     private void OnCollisionEnter(Collision col)  
     {
         if (col.gameObject.tag == "RepairCube")
         {
-              print("Nyt osuu!");
+            //  print("Nyt osuu!");
               
-              gameObject.SetActive(false);
-              objectsfalse++;
-            
+            gameObject.SetActive(false);
+            tRM.UseToyPart(this.gameObject);
+                         
         }
 
-        if (!gameObject.activeSelf)
-        {
+       
 
-            foreach (bool ready in tRM.isRepaired)
-            {
-                
-                print("yksi on valmis");
-                //tRM.isRepaired.SetValue(true, ready);
-                
-            }
-        }
-
-        
-        
     }
+
+   
 }
