@@ -10,11 +10,17 @@ public class TrashDestroy: MonoBehaviour {
     public int sizeOfList;
     public Animator childAnimator;
     public string eatAnimation;
+    public string spitAnimation;
+
 
     public void EatTrash(Trash t) {
         childAnimator.Play(eatAnimation);
         Success.Add(t.gameObject);
         sizeOfList = Success.Count;
+    }
+
+    public void SpitTrash() {
+        childAnimator.Play(spitAnimation);
     }
 
 

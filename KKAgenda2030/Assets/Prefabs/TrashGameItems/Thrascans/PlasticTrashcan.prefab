@@ -69,6 +69,7 @@ MonoBehaviour:
   sizeOfList: 0
   childAnimator: {fileID: 1078708209}
   eatAnimation: EatPlastic
+  spitAnimation: SpitPlastic
 --- !u!65 &1013099454733537921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113,7 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff3ae80898ba8d4da0cf4d0aefeb3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 1.2
 --- !u!1 &6299233923340190400
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: af4a44129da4c384cb2c26330ac8ecc3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

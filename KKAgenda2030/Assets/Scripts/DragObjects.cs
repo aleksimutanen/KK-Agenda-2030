@@ -48,12 +48,11 @@ public class DragObjects : MonoBehaviour {
         }
     }
 
-    public void OnDraggingEnd() {
+   public void OnDraggingEnd() {
         dragging = false;
         var mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
         TrashDestroy td = null;
         RaycastHit hit;
-
         if (Physics.Raycast(mousePos, out hit)) {
             td = hit.collider.GetComponent<TrashDestroy>();
             // onko collidereista joku can triggeri
@@ -65,6 +64,7 @@ public class DragObjects : MonoBehaviour {
                     TrashGameManager.instance.ResSpawning();
                     gameObject.SetActive(false);
                 } else {
+                    td.SpitTrash();
                     TrashGameManager.instance.DeletingPoints();
                 }
             }
