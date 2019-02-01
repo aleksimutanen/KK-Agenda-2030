@@ -12,7 +12,6 @@ public class TrashDestroy: MonoBehaviour {
     public string eatAnimation;
     public string spitAnimation;
 
-
     public void EatTrash(Trash t) {
         childAnimator.Play(eatAnimation);
         Success.Add(t.gameObject);
@@ -23,7 +22,13 @@ public class TrashDestroy: MonoBehaviour {
         childAnimator.Play(spitAnimation);
     }
 
-
+    //private void Update() {
+    //    blinkTimer -= Time.deltaTime;
+    //    if (blinkTimer < 0) {
+    //        eyeAnimator.Play(blinkAnimation);
+    //        blinkTimer = Random.Range(minT, maxT);
+    //    }
+    //}
     //private void OnTriggerEnter(Collider other) {
     //    var temp = other.GetComponent<Trash>();
     //    if (temp == null) {
