@@ -14,30 +14,21 @@ public class ToyRepairManager : MonoBehaviour
     public Transform[] spawnPoints;
     public bool[] spotUsed;
     public bool[] isRepaired;
+    int isCollected = 0;
 
 
     public void UseToyPart(GameObject toy)
     {
 
-        var toys = Random.Range(0, partOfToys.Count);
-        var toyIsRepaired = Random.Range(0, isRepaired.Length);
-
-
-        for(int u = 0; u < partOfToys.Count; u++)
+        if (isRepaired.Length - 1 >= isCollected)
         {
-            if (partOfToys[u].activeSelf)
-            {
 
-                print("Voit pelata"); // Kokeilu printti.
-               
-              
-                isRepaired[toyIsRepaired] = true;
-                repairedIsReady();
-
-                
-
-            }
+            isRepaired[isCollected] = true;
+            isCollected++;
+            print(isCollected);
         }
+
+        repairedIsReady();
 
     }
 
@@ -64,7 +55,7 @@ public class ToyRepairManager : MonoBehaviour
         }
 
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        // partOfToys.RemoveAt(spawnObjectsIndex);
+        partOfToys.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;        
         
     }
@@ -92,14 +83,7 @@ public class ToyRepairManager : MonoBehaviour
 
         }
 
-        //if (!repairedCube.activeSelf)
-        //{
-
-        //    allRepaired = true;
-        //    print(allRepaired);
-        //    readytoy.SetActive(true);
-        //}
-
+        
 
     }
 }
