@@ -7,7 +7,8 @@ public class ToyRepairManager : MonoBehaviour
 {
 
     ToyRepair tR;
-    public GameObject AllmoustRepairedCube;
+    public GameObject repairCube;
+    public GameObject allmoustRepairedCube;
     private GameObject repairedCube;
     public GameObject readytoy;
     public List<GameObject> partOfToys;
@@ -26,8 +27,12 @@ public class ToyRepairManager : MonoBehaviour
             isRepaired[isCollected] = true;
             isCollected++;
             print(isCollected);
-        }
 
+        } if (isRepaired[0] == true && isRepaired[1] == true)
+        {
+            allmoustRepairedCube.SetActive(true);
+        }
+        //!allmoustRepairedCube.activeSelf;
         repairedIsReady();
 
     }
@@ -79,8 +84,10 @@ public class ToyRepairManager : MonoBehaviour
 
         if (allRepaired)
         {
-            readytoy.SetActive(true);
 
+            readytoy.SetActive(true);
+            allmoustRepairedCube.SetActive(false);
+            repairCube.SetActive(false);
         }
 
         
