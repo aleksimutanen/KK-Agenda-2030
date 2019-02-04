@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Spawner : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class Spawner : MonoBehaviour
     public float resSpawnTimer;
     public float lastSpawn;
     public float spawnStartertime;
+    public GameObject trashesFolder;
+
 
     void Start()
     {
@@ -25,10 +29,20 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
+
         if (spawnStartertime < resSpawnTimer + lastSpawn && rubbish.Count != 1)
         {
             var rnd = Random.Range(0, rubbish.Count);
-            Instantiate(rubbish[rnd], spawnPoint.position, Quaternion.identity);
+            var trash = Instantiate(rubbish[rnd], spawnPoint.position, Quaternion.identity);
+            var currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name == "Nikle_devscenelvl2") {
+                trashesFolder.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+            }
+            if (currentScene.name == "Nikle_devscenelvl3") {
+                trashesFolder.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
+            }
+            trash.transform.parent = trashesFolder.transform;
             rubbish.RemoveAt(rnd);
             //print(rnd);
             lastSpawn = Time.time;

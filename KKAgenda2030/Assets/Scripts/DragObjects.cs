@@ -36,15 +36,27 @@ public class DragObjects : MonoBehaviour {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             transform.position = worldPos;
         } else {
-            var distance = Vector3.Distance(transform.position, startPos);
-            if (distance > 0.01f) { // roska liikuu lähtöpistettä kohti
-                GetComponent<Collider>().enabled = false;
-                var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
-                transform.position = newPos;
-                if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
-                    GetComponent<Collider>().enabled = true;
-                }
-            }
+            //var distance = Vector3.Distance(transform.position, startPos);
+            //if (distance > 0.01f) { // roska liikuu lähtöpistettä kohti
+            //    GetComponent<Collider>().enabled = false;
+            //    var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
+            //    transform.position = newPos;
+            //    if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
+            //        GetComponent<Collider>().enabled = true;
+            //    }
+            //}
+        }
+    }
+
+    IEnumerator ReturnTrash(float wait) { 
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(wait);
+        while (Vector3.Distance(transform.position, startPos) > 0.01f) {
+            var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
+            transform.position = newPos;
+        }
+        if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
+            GetComponent<Collider>().enabled = true;
         }
     }
 
@@ -64,11 +76,15 @@ public class DragObjects : MonoBehaviour {
                     TrashGameManager.instance.ResSpawning();
                     gameObject.SetActive(false);
                 } else {
+                    StartCoroutine("ReturnTrash", 0.2f);
                     td.SpitTrash();
                     TrashGameManager.instance.DeletingPoints();
                 }
             }
+        } else {
+        StartCoroutine("ReturnTrash", 0f);
         }
+
     }
 
     public void Hint() {
