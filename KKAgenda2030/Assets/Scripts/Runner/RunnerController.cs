@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RunnerController : MonoBehaviour {
 
-    public float speed;
     public float speedFactor;
     public float maxSpeed;
 
@@ -14,8 +13,6 @@ public class RunnerController : MonoBehaviour {
     bool down;
 
     Rigidbody rb;
-
-    public GameObject map;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -88,7 +85,6 @@ public class RunnerController : MonoBehaviour {
             }
         }
 
-        map.transform.position += -transform.right * speed * Time.deltaTime;
 
         //bool dir = rb.velocity.z > 0 ?
         //       up = true :
