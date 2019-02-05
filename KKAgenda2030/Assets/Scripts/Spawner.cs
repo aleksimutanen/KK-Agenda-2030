@@ -27,11 +27,9 @@ public class Spawner : MonoBehaviour
     }
 
 
-    public void Spawn()
-    {
+    public void Spawn() {
 
-        if (spawnStartertime < resSpawnTimer + lastSpawn && rubbish.Count != 1)
-        {
+        if (spawnStartertime < resSpawnTimer + lastSpawn && rubbish.Count != 1) {
             var rnd = Random.Range(0, rubbish.Count);
             var trash = Instantiate(rubbish[rnd], spawnPoint.position, Quaternion.identity);
             var currentScene = SceneManager.GetActiveScene();
@@ -50,34 +48,30 @@ public class Spawner : MonoBehaviour
         }
 
         //if (rubbish.Count == 0)
-        else
-        {
+        else {
             rubbish.Clear();
             StartCoroutine(TrashGameManager.instance.LevelCompleted());
             CancelInvoke("Spawn");
         }
     }
 
-    public void FilledList()
-    { 
+    public void FilledList() {
 
         // Haetaan sallitut roskatyypit.
         var trashcans = FindObjectsOfType<TrashDestroy>();
         generateTypes = new List<TrashType>();
-        foreach (var can in trashcans)
-        {
-            foreach (var typ in can.acceptTypes)
-            {
+        foreach (var can in trashcans) {
+            foreach (var typ in can.acceptTypes) {
                 if (!generateTypes.Contains(typ))
                     generateTypes.Add(typ);
             }
         }
-      //  print("types " + generateTypes.Count);
-      //  print(generateTypes[0]);
+        //  print("types " + generateTypes.Count);
+        //  print(generateTypes[0]);
 
 
 
-       // Täytetään lista. Salittujen tapausten mukaan.
+        // Täytetään lista. Salittujen tapausten mukaan.
 
         var lenOfList = sizeOfList; // "lenOfList" on listan koko.
         var TrashTyps = generateTypes.Count; // "TrashTyps" on KAIKKI Sallitut roskatyypit. 
