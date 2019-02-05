@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum SceneActive { Menu, Ocean }
 public class GrandManager : MonoBehaviour {
@@ -34,14 +35,16 @@ public class GrandManager : MonoBehaviour {
     public string stopAmbient;
 
     void Start() {
+
         if (instance)
             Debug.LogError("2 GrandManagers found");
         instance = this;
-        Fabric.EventManager.Instance.PostEvent("ambient");
+        //Fabric.EventManager.Instance.PostEvent("ambient");
     }
 
     void Update() {
-
+        if (Input.GetKeyDown(KeyCode.T))
+            Time.timeScale = 1f;
     }
 
     public bool Pause() {
@@ -90,11 +93,13 @@ public class GrandManager : MonoBehaviour {
     }
 
     public void LaunchTrashGame() {
-        optionsButton.SetActive(false);
-        previousPageButton.SetActive(false);
-        nextPageButton.SetActive(false);
+        //optionsButton.SetActive(false);
+        //previousPageButton.SetActive(false);
+        //nextPageButton.SetActive(false);
 
-        trashGame.SetActive(true);
+        //trashGame.SetActive(true);
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void BackToMainMenu() {

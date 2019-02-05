@@ -21,6 +21,7 @@ public class DragObjects : MonoBehaviour {
     void Start() {
         startPos = transform.position;
         gs = FindObjectOfType<GSpawners>();
+
     }
 
     void Update() {
@@ -36,26 +37,40 @@ public class DragObjects : MonoBehaviour {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             transform.position = worldPos;
         } else {
-            var distance = Vector3.Distance(transform.position, startPos);
-            if (distance > 0.01f) { // roska liikuu lähtöpistettä kohti
-                GetComponent<Collider>().enabled = false;
-                var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
-                transform.position = newPos;
-                if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
-                    GetComponent<Collider>().enabled = true;
-                }
-            }
+            //var distance = Vector3.Distance(transform.position, startPos);
+            //if (distance > 0.01f) { // roska liikuu lähtöpistettä kohti
+            //    GetComponent<Collider>().enabled = false;
+            //    var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
+            //    transform.position = newPos;
+            //    if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
+            //        GetComponent<Collider>().enabled = true;
+            //    }
+            //}
+        }
+    }
+    // MoveTowards ei toimi coroutinen sisällä oikein, joku workaround?
+    IEnumerator ReturnTrash(float wait) {
+        print("inessä");
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(wait);
+        while (Vector3.Distance(transform.position, startPos) > 0.01f) {
+            var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
+            transform.position = newPos;
+            yield return null;
+        }
+        if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
+            GetComponent<Collider>().enabled = true;
         }
     }
 
-   public void OnDraggingEnd() {
+    public void OnDraggingEnd() {
         dragging = false;
         var mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
         TrashDestroy td = null;
         RaycastHit hit;
         if (Physics.Raycast(mousePos, out hit)) {
             td = hit.collider.GetComponent<TrashDestroy>();
-            // onko collidereista joku can triggeri
+            // onko collidereista joku roskistriggeri
             if (td) {
                 var temp = GetComponent<Trash>();
                 if (td.acceptTypes.Contains(temp.kind)) {
@@ -64,10 +79,15 @@ public class DragObjects : MonoBehaviour {
                     TrashGameManager.instance.ResSpawning();
                     gameObject.SetActive(false);
                 } else {
+                    StartCoroutine("ReturnTrash", 0.4f);
                     td.SpitTrash();
                     TrashGameManager.instance.DeletingPoints();
                 }
+            } else {
+                StartCoroutine("ReturnTrash", 0f);
             }
+        } else {
+            StartCoroutine("ReturnTrash", 0f);
         }
     }
 

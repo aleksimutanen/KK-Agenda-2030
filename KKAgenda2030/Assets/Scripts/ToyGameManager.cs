@@ -19,12 +19,12 @@ public class ToyGameManager : MonoBehaviour {
         //Check if instance already exists
         if (instance == null)
         {
-            print("ToyGameManager has been found");
+      //      print("ToyGameManager has been found");
         }
 
         //if not, set instance to this
         instance = this;
-        print("ToyGameManager is added to game");
+    //    print("ToyGameManager is added to game");
 
             for (int e = 0; e < kidsPositions.Length; e++)
             {
@@ -46,17 +46,14 @@ public class ToyGameManager : MonoBehaviour {
         {
             if (toy.isReady)
             {
-                //print(toy.isReady);
-                print(levelIsCompleted);
-                print("bool trying changed");
+              
                 levelIsCompleted[Random.Range(0, 3)] = true;
-                print(levelIsCompleted);
-                //print("bool is changed");               
+                     
             }
 
             if (!toy.isReady)
             {
-                print("Odottaa että on valmista!");
+            //    print("Odottaa että on valmista!");
                 // lightOfRed.SetActive(false);
                 lightOfRed.GetComponent<Light>().enabled = false;
 
