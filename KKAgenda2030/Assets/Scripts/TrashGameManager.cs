@@ -114,14 +114,14 @@ public class TrashGameManager : MonoBehaviour {
         Gspwn.canFolder.gameObject.SetActive(false);
         trashCountObject.SetActive(false);
         trashAreaBCG.gameObject.SetActive(false);
-        statusText.text = "Taso suoritettu!";
+        //statusText.text = "Taso suoritettu!";
         endScoreSlider.gameObject.SetActive(true);
 
         var ui = FindObjectOfType<UIManager>();
 
         yield return new WaitForSeconds(1f);
         sliderAnimator.Play("ScoreBarMove");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         float s = scoreSlider.value;
         float fillTime = 3f;
