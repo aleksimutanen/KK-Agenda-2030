@@ -4,119 +4,106 @@ using UnityEngine;
 
 public class RunnerController : MonoBehaviour {
 
-    public float speed;
+    public float upSpeed;
+    public float downSpeed;
+
     public float speedFactor;
     public float maxSpeed;
 
+    public float deceleration;
+    public float acceleration;
+
     public LayerMask background;
 
-    bool up;
-    bool down;
-
     Rigidbody rb;
-
-    public GameObject map;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
     }
 
-    //void Update() {
-    //    RaycastHit hit;
-    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-    //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, background)) {
-    //        if (Input.GetKey(KeyCode.Mouse0)) {
-    //            speedFactor += Time.deltaTime;
-    //            speedFactor = Mathf.Clamp01(speedFactor);
-    //        } else {
-    //            speedFactor -= Time.deltaTime;
-    //            speedFactor = Mathf.Clamp01(speedFactor);
-    //        }
-    //    }
-
-    //    bool dir = rb.velocity.z > 0 ?
-    //           up = true :
-    //           up = false;
-
-    //        if (hit.point.z > transform.position.z)
-    //            rb.velocity = transform.forward * speedFactor;
-    //        else if (hit.point.z < transform.position.z)
-    //            rb.velocity = -transform.forward * speedFactor;
-
-    //        //rb.velocity = transform.right * speed;
-
-    //        Vector3 camPos = transform.position;
-    //        camPos.y += 10f;
-    //        Camera.main.transform.position = camPos;
-
-    //        //sprintFactor = sprintT > sprintDuration ?
-    //        //0f :
-    //        //0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
-
-           
-    //        //if (rb.velocity.z > 0)
-    //        //    up = true;
-    //        //else
-    //        //    up = false;
-    //        //else if (rb.velocity.z < 0)
-        
-    //}
-
     void Update() {
+        /*
+        Programmed rigidbody vectors 
+        */
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 newDir = Vector3.zero;
+        Vector3 dir = (new Vector3(0, 0, upSpeed) + new Vector3(0, 0, -downSpeed)) * speedFactor;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, background) && Input.GetKey(KeyCode.Mouse0)) {
-            speedFactor += Time.deltaTime;
-            speedFactor = Mathf.Clamp01(speedFactor);
+            speedFactor += Time.deltaTime * acceleration;
+            speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
 
             if (hit.point.z > transform.position.z) {
-                rb.velocity = transform.forward * speedFactor;
-            } else if (hit.point.z < transform.position.z) {
-                rb.velocity = -transform.forward * speedFactor;
+                rb.velocity = dir;
+                upSpeed += Time.deltaTime * acceleration;
+                upSpeed = Mathf.Clamp01(upSpeed);
+            } else {
+                upSpeed -= Time.deltaTime * deceleration;
+                upSpeed = Mathf.Clamp01(upSpeed);
             }
-        } else {
-            speedFactor -= Time.deltaTime;
-            speedFactor = Mathf.Clamp01(speedFactor);
 
-            if (rb.velocity.z > 0) {
-                rb.velocity = transform.forward * speedFactor;
-            } else if (rb.velocity.z < 0) {
-                rb.velocity = -transform.forward * speedFactor;
+            if (hit.point.z < transform.position.z) {
+                rb.velocity = dir;
+                downSpeed += Time.deltaTime * acceleration;
+                downSpeed = Mathf.Clamp01(downSpeed);
+            } else {
+                downSpeed -= Time.deltaTime * deceleration;
+                downSpeed = Mathf.Clamp01(downSpeed);
             }
+
+        } else {
+            speedFactor -= Time.deltaTime * deceleration;
+            speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
+
+            upSpeed -= Time.deltaTime * deceleration;
+            upSpeed = Mathf.Clamp01(upSpeed);
+
+            downSpeed -= Time.deltaTime * deceleration;
+            downSpeed = Mathf.Clamp01(downSpeed);
+
+            rb.velocity = dir;
         }
 
-        map.transform.position += -transform.right * speed * Time.deltaTime;
 
-        //bool dir = rb.velocity.z > 0 ?
-        //       up = true :
-        //       up = false;
+        /*
+        Unity Rigidbody acceleration based movement 
+        */ 
 
-        
 
-        //newDir.x = transform.right.x * speed;
+        //RaycastHit hit;
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Vector3 dir = transform.forward * speedFactor;
 
-        //rb.velocity = transform.right * speed;
-        //rb.velocity = newDir;
+        //if (Physics.Raycast(ray, out hit, Mathf.Infinity, background) && Input.GetKey(KeyCode.Mouse0)) {
+        //    speedFactor += Time.deltaTime * acceleration;
+        //    speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
+
+        //    if (hit.point.z > transform.position.z) {
+        //        rb.AddForce(dir, ForceMode.Acceleration);
+        //    } else if (hit.point.z < transform.position.z) {
+        //        rb.AddForce(-dir, ForceMode.Acceleration);
+        //    }
+
+        //} else {
+        //    speedFactor -= Time.deltaTime * deceleration;
+        //    speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
+
+        //    if (rb.velocity.z > 0) {
+        //        rb.AddForce(dir, ForceMode.Acceleration);
+        //    } else if (rb.velocity.z < 0) {
+        //        rb.AddForce(-dir, ForceMode.Acceleration);
+        //    }
+        //}
+
+
+
+
+
 
         //Vector3 camPos = transform.position;
         //camPos.y += 10f;
         //Camera.main.transform.position = camPos;
-
-
-        //sprintFactor = sprintT > sprintDuration ?
-        //0f :
-        //0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
-
-
-        //if (rb.velocity.z > 0)
-        //    up = true;
-        //else
-        //    up = false;
-        //else if (rb.velocity.z < 0)
-
     }
 }
 
