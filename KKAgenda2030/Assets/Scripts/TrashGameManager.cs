@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum GameState
-           { Game,
-             Restart1,
-             Restart2,
-             GameMenu };
+public enum GameState {
+    Game,
+    Restart1,
+    Restart2,
+    GameMenu
+};
 
 
 public class TrashGameManager : MonoBehaviour {
@@ -36,7 +37,7 @@ public class TrashGameManager : MonoBehaviour {
     public GameObject trashAreaBCG;
 
     public GameState State;
-   
+
     private int score = 0;
     public Spawner spwn;
     public GSpawners Gspwn;
@@ -47,26 +48,25 @@ public class TrashGameManager : MonoBehaviour {
 
     PersistentData pd;
     public GameObject pdPrefab;
-    
-   
 
-    void Awake()
-    {
+
+
+    void Awake() {
         //Check if instance already exists
-        if (instance == null)
-        {
-           // print("TrashGameManager has been found");
+        if (instance == null) {
+            // print("TrashGameManager has been found");
         }
-        
+
         //if not, set instance to this
-            instance = this;
+        instance = this;
         // print("TrashGameManager is added to game");
+
+        Time.timeScale = 1f;
     }
 
-    void Start()
-    {
+    void Start() {
 
-        pd = GameObject.FindObjectOfType<PersistentData>();
+        pd = FindObjectOfType<PersistentData>();
         if (pd == null) {
             var pdgo = Instantiate(pdPrefab);
             pd = pdgo.GetComponent<PersistentData>();
@@ -97,14 +97,14 @@ public class TrashGameManager : MonoBehaviour {
             } else {
                 if (timerTypes[i] == TimerType.Decrease)
                     LoseScore(5f);
-                
+
                 else if (timerTypes[i] == TimerType.Increase)
                     GainScore(10f);
                 i++;
             }
         }
     }
-    
+
 
     public IEnumerator LevelCompleted() {
         //SpriteAppear[] spriteAppears = FindObjectsOfType<SpriteAppear>();
@@ -114,14 +114,14 @@ public class TrashGameManager : MonoBehaviour {
         Gspwn.canFolder.gameObject.SetActive(false);
         trashCountObject.SetActive(false);
         trashAreaBCG.gameObject.SetActive(false);
-        statusText.text = "Taso suoritettu!";
+        //statusText.text = "Taso suoritettu!";
         endScoreSlider.gameObject.SetActive(true);
 
         var ui = FindObjectOfType<UIManager>();
 
         yield return new WaitForSeconds(1f);
         sliderAnimator.Play("ScoreBarMove");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         float s = scoreSlider.value;
         float fillTime = 3f;
@@ -201,8 +201,7 @@ public class TrashGameManager : MonoBehaviour {
         }
     }
 
-    public void AddedPoints()
-    {
+    public void AddedPoints() {
         //Mathf.RoundToInt(scoreSlider.value);
         scoreTimers.Add(1f);
         timerTypes.Add(TimerType.Increase);
@@ -210,7 +209,7 @@ public class TrashGameManager : MonoBehaviour {
 
     void GainScore(float amount) {
         scoreSlider.GetComponent<Animator>().Play("GreenFlash");
-        scoreSlider.value += amount * Time.deltaTime;        
+        scoreSlider.value += amount * Time.deltaTime;
     }
 
     void LoseScore(float amount) {
@@ -231,20 +230,17 @@ public class TrashGameManager : MonoBehaviour {
 
     private void CheckCurrentActiveSceneState() {
         var currentSceneName = SceneManager.GetActiveScene().name;
-        
-        if (State == GameState.Game)
-        {
+
+        if (State == GameState.Game) {
             currentSceneName = "Joni_devscene";
         }
 
-        if (State == GameState.Restart1)
-        {
+        if (State == GameState.Restart1) {
             currentSceneName = "Level-2";
-           
+
         }
 
-        if (State == GameState.Restart2)
-        {
+        if (State == GameState.Restart2) {
             currentSceneName = "Joni_devscene";
         }
     }

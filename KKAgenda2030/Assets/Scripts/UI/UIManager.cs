@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
@@ -22,6 +23,11 @@ public class UIManager : MonoBehaviour {
 
     bool paused;
     public bool transition;
+
+    // TRASH GAME UI's //
+    //=================//
+
+    public Animator animator;
 
 	void Start () {
         pt = FindObjectOfType<PageTurner>();
@@ -113,6 +119,35 @@ public class UIManager : MonoBehaviour {
         StartCoroutine("QuitGameFade");
     }
 
+    public void QuitGame() {
+        // palaa roskispelin menuun
+        SceneManager.LoadScene(0);
+
+    }
+
+    public void ReloadTrashGame() {
+        //PauseButton();
+        StartCoroutine("ReloadTrashGameFade");
+    }
+
+    IEnumerator ReloadTrashGameFade() {
+        animator.Play("LevelSwitchNEW");
+        PauseButton();
+
+        //insert a proper time frame
+
+        //  I
+        //  I
+        //  V
+
+        yield return new WaitForSeconds(1f);
+
+        //fade image on
+        //yield return new WaitForSeconds(animation lenght);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return null;
+    }
+
     IEnumerator QuitGameFade() {
         transitionBackGround.GetComponent<Animator>().Play("OceanGameQuickTransition");
         PauseButton();
@@ -135,18 +170,22 @@ public class UIManager : MonoBehaviour {
         pt.PreviousPage();
     }
 
+    // PAUSE UI ACTIONS //
+
     public void PauseButton() {
-        if (paused) {
-            StartCoroutine(PauseAnim("PauseButtonAnimationOut"));
-            paused = false;
-        } else {
-            StartCoroutine(PauseAnim("PauseButtonAnimation"));
-            paused = true;
-        }
-        print(paused);
+        //if (paused) {
+        //    StartCoroutine(PauseAnim("PauseButtonAnimationOut"));
+        //    paused = false;
+        //} else {
+        //    StartCoroutine(PauseAnim("PauseButtonAnimation"));
+        //    paused = true;
+        //}
+        //print(paused);
+
+        StartCoroutine("PauseAnim");
     }
 
-    IEnumerator PauseAnim(string animName) {
+    IEnumerator PauseAnim() {
         if (GrandManager.instance.paused) {
             //unpaused
             transition = true;

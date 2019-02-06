@@ -18,9 +18,30 @@ public class PageTurner : MonoBehaviour {
 
     public int pageIndex;
 
+    PersistentData pd;
+    public GameObject pdPrefab;
+
+
     void Start () {
-        page = Pages.Cover;
-        pageIndex = 0;
+
+        pd = FindObjectOfType<PersistentData>();
+        if (pd == null) {
+            var pdgo = Instantiate(pdPrefab);
+            pd = pdgo.GetComponent<PersistentData>();
+        }
+        //page = Pages.Cover;
+        //pageIndex = 0;
+        pageIndex = pd.pageIndex;
+        //foreach (GameObject page in pages) {
+        //    if (page != )
+        //    page.SetActive()
+        //}
+        for (int i = 0; i < pages.Length; i++) {
+            if (pages[i] != pages[pageIndex])
+                pages[i].SetActive(false);
+            else
+                pages[i].SetActive(true);
+        }
     }
 
     void Update() {
