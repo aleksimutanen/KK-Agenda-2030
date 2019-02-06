@@ -67,10 +67,10 @@ public class TrashGameManager : MonoBehaviour {
     void Start() {
 
         pd = FindObjectOfType<PersistentData>();
-        //if (pd == null) {
-        //    var pdgo = Instantiate(pdPrefab);
-        //    pd = pdgo.GetComponent<PersistentData>();
-        //}
+        if (pd == null) {
+            var pdgo = Instantiate(pdPrefab);
+            pd = pdgo.GetComponent<PersistentData>();
+        }
 
         CheckCurrentActiveSceneState();
 
