@@ -6,8 +6,9 @@ public class ToyRepair : MonoBehaviour
 {
 
     ToyRepairManager tRM;
-   
     
+
+
 
     private void Start()
     {
@@ -21,8 +22,9 @@ public class ToyRepair : MonoBehaviour
         if (col.gameObject.tag == "RepairCube")
         {
             //  print("Nyt osuu!");
-              
+
             gameObject.SetActive(false);
+            tRM.toysCollected.Add(gameObject);
             tRM.UseToyPart(this.gameObject);
                          
         }
@@ -30,6 +32,5 @@ public class ToyRepair : MonoBehaviour
        
 
     }
-
    
 }

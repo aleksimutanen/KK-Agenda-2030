@@ -7,16 +7,34 @@ public class ToyRepairManager : MonoBehaviour
 {
 
     ToyRepair tR;
+    Toy toytype;
+    public List<ToyType> generateToysTypes;
     public GameObject repairCube;
-    public GameObject allmoustRepairedCube;
     private GameObject repairedCube;
     public GameObject readytoy;
+    public List<GameObject> almostReadytoys;
+    public List<GameObject> allPartOfToys;
     public List<GameObject> partOfToys;
+    public List<GameObject> toysCollected;
     public Transform[] spawnPoints;
+    public int sizeOfList = 3;
     public bool[] spotUsed;
     public bool[] isRepaired;
     int isCollected = 0;
 
+
+    void Awake()
+    {
+      
+        tR = GameObject.FindObjectOfType<ToyRepair>();
+
+        FilledList();
+
+        for (int E = 0; E < spawnPoints.Length; E++)
+        {
+            Spawn();
+        }
+    }
 
     public void UseToyPart(GameObject toy)
     {
@@ -25,29 +43,67 @@ public class ToyRepairManager : MonoBehaviour
         {
 
             isRepaired[isCollected] = true;
+           
             isCollected++;
-            print(isCollected);
+            //print(isCollected);
 
-        } if (isRepaired[0] == true && isRepaired[1] == true)
-        {
-            allmoustRepairedCube.SetActive(true);
         }
-        //!allmoustRepairedCube.activeSelf;
+
+        //bool found1 = false;
+        //for (var i = 0; i < toysCollected.Count;)
+        //{
+
+        //    if (toysCollected[i].name.Equals("Toy1(Clone)"))
+        //    {
+        //        found1 = true;
+        //        break;
+        //    }
+
+        //    i++;
+        //}
+        //bool found2 = false;
+        //for (var i = 0; i < toysCollected.Count;)
+        //{
+
+        //    if (toysCollected[i].name.Equals("Toy2(Clone)"))
+        //    {
+        //        found2 = true;
+        //        break;
+        //    }
+
+        //    i++;
+        //}
+        //if (found1 && found2)
+        //{
+        //    almostReadytoys[0].SetActive(true);
+        //}
+
+        // Yllä oleva tekee saman kuin alla oleva.
+
+        if (toysCollected.Exists(x => x.name.Equals("Toy1(Clone)")) &&
+            toysCollected.Exists(x => x.name.Equals("Toy4(Clone)")))
+        {
+            almostReadytoys[0].SetActive(true);
+        }
+
+        if (toysCollected.Exists(x => x.name.Equals("Toy3(Clone)")) &&
+           toysCollected.Exists(x => x.name.Equals("Toy4(Clone)")))
+        {
+            almostReadytoys[1].SetActive(true);
+        }
+
+        if (toysCollected.Exists(x => x.name.Equals("Toy3(Clone)")) &&
+           toysCollected.Exists(x => x.name.Equals("Toy1(Clone)")))
+        {
+            almostReadytoys[2].SetActive(true);
+        }
+
         repairedIsReady();
 
     }
 
-    void Awake()
-    {
-
-        for (int E = 0; E < spawnPoints.Length; E++)
-        {
-            Spawn();
-        }
-    }     
-
     void Spawn()
-    {
+    {       
         int bools = Random.Range(0, spotUsed.Length);
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         int spawnObjectsIndex = Random.Range(0, partOfToys.Count);
@@ -63,6 +119,38 @@ public class ToyRepairManager : MonoBehaviour
         partOfToys.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;        
         
+    }
+
+    void FilledList()
+    {
+
+        // Täytetään lista. Salittujen tapausten mukaan.
+
+        var lenOfList = sizeOfList; // "lenOfList" on listan koko.
+        var OneTrashTypeClass = lenOfList / generateToysTypes.Count; // "OneTrashTypeClass" on yksittäisen lelutyypin määrä. 
+        var FinalTrash = lenOfList - OneTrashTypeClass * (generateToysTypes.Count - 1); // "FinalTrash" toteutetaan kun on jäljellä enään viimeinen roskatyyppi.
+
+       
+
+        for (int W = 0; W < generateToysTypes.Count; W++)
+        {
+            int n = (W < generateToysTypes.Count - 1) ? OneTrashTypeClass : FinalTrash;
+            while (n > 0)
+            {
+                var rnd1 = Random.Range(0, allPartOfToys.Count);
+
+                if (allPartOfToys[rnd1].GetComponent<Toy>().kind == ToyType.Testikuutiot)  // Katsoo kaikki 3 tietyn tyypin lelua.
+                {
+                 
+
+                   partOfToys.Add(allPartOfToys[rnd1]); // Lisää lelut listaan josta ne luodaan peliin.
+
+                    allPartOfToys.RemoveAt(rnd1);
+                    n--;
+                }
+            }
+        }
+
     }
 
    public void repairedIsReady() 
@@ -86,7 +174,7 @@ public class ToyRepairManager : MonoBehaviour
         {
 
             readytoy.SetActive(true);
-            allmoustRepairedCube.SetActive(false);
+           
             repairCube.SetActive(false);
         }
 

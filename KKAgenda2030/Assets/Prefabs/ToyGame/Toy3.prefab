@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 2338324654166771559}
   - component: {fileID: 2338324654166771556}
   - component: {fileID: 2338324654166771557}
+  - component: {fileID: 4133724785986606829}
   - component: {fileID: 6330309777303957384}
   - component: {fileID: 6670582362993116834}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Toy3
   m_TagString: BrokenToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +107,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1d2850415dceb4b92d12907d3aa45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsfalse: 0
+--- !u!114 &4133724785986606829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338324654166771482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452138b027fe3494a88ddead2bf2fbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
 --- !u!114 &6330309777303957384
 MonoBehaviour:
   m_ObjectHideFlags: 0
