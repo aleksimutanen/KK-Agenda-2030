@@ -51,6 +51,9 @@ public class TrashGameManager : MonoBehaviour {
     public GameObject pdPrefab;
 
 
+    //AUDIO
+    public string netHit;
+
 
     void Awake() {
         //Check if instance already exists
@@ -92,11 +95,11 @@ public class TrashGameManager : MonoBehaviour {
                 scoreTimers.RemoveAt(i);
                 timerTypes.RemoveAt(i);
             } else {
-                if (timerTypes[i] == TimerType.Decrease)
+                if (timerTypes[i] == TimerType.Decrease) {
                     LoseScore(5f);
-
-                else if (timerTypes[i] == TimerType.Increase)
+                } else if (timerTypes[i] == TimerType.Increase) {
                     GainScore(10f);
+                }
                 i++;
             }
         }
