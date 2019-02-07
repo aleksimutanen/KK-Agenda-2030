@@ -65,15 +65,11 @@ public class TrashGameManager : MonoBehaviour {
     }
 
     void Start() {
-
         pd = FindObjectOfType<PersistentData>();
         if (pd == null) {
             var pdgo = Instantiate(pdPrefab);
             pd = pdgo.GetComponent<PersistentData>();
         }
-
-        CheckCurrentActiveSceneState();
-
         spwn = FindObjectOfType<Spawner>();
         Gspwn = FindObjectOfType<GSpawners>();
         levelChanger = FindObjectOfType<LevelChanger>();
@@ -179,7 +175,6 @@ public class TrashGameManager : MonoBehaviour {
                 yield return null;
             }
             yield return new WaitForSeconds(2f);
-
         }
 
         if (spwn.rubbish.Count == 0) {
@@ -225,23 +220,5 @@ public class TrashGameManager : MonoBehaviour {
 
     public void ResSpawning() {
         spwn.Spawn();
-    }
-
-
-    private void CheckCurrentActiveSceneState() {
-        var currentSceneName = SceneManager.GetActiveScene().name;
-
-        if (State == GameState.Game) {
-            currentSceneName = "Joni_devscene";
-        }
-
-        if (State == GameState.Restart1) {
-            currentSceneName = "Level-2";
-
-        }
-
-        if (State == GameState.Restart2) {
-            currentSceneName = "Joni_devscene";
-        }
     }
 }

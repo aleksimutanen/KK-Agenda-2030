@@ -50,7 +50,6 @@ public class DragObjects : MonoBehaviour {
     }
     // MoveTowards ei toimi coroutinen sisällä oikein, joku workaround?
     IEnumerator ReturnTrash(float wait) {
-        print("inessä");
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(wait);
         while (Vector3.Distance(transform.position, startPos) > 0.01f) {

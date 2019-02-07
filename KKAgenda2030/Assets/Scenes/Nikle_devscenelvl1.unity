@@ -6749,12 +6749,7 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2217172110629822004, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 153988969}
-    - target: {fileID: 2217172111803790983, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
+    - target: {fileID: 2217172110443204251, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6764,7 +6759,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 153988969}
-    - target: {fileID: 2217172110443204251, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
+    - target: {fileID: 2217172111803790983, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 153988969}
+    - target: {fileID: 2217172110629822004, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6859,6 +6859,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4129572648849446315, guid: 7c6f03081f235404986a340eecb3acc4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129572648849446315, guid: 7c6f03081f235404986a340eecb3acc4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129572648849446230, guid: 7c6f03081f235404986a340eecb3acc4,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129572648849446230, guid: 7c6f03081f235404986a340eecb3acc4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 707a2a67cd84af4439b560ed26fef703,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6f03081f235404986a340eecb3acc4, type: 3}
 --- !u!1001 &5012088689040281844
