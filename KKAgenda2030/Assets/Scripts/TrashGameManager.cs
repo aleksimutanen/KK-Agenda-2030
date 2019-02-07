@@ -25,6 +25,7 @@ public class TrashGameManager : MonoBehaviour {
     public Slider totalScoreSlider;
     public AnimationCurve sliderAnimCurve;
     public Animator sliderAnimator;
+    public Animator scoreMeterAnimator;
 
     public Image[] starImages;
     public float[] starScore;
@@ -150,12 +151,18 @@ public class TrashGameManager : MonoBehaviour {
         if (totalScoreSlider != null) {
             totalScoreBCG.SetActive(true);
             // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+            if (pd.totalStarAmount <= 3) {
+                scoreMeterAnimator.Play("TotalScoreMeter_Bad");
+            } else if (pd.totalStarAmount > 3) {
+                scoreMeterAnimator.Play("TotalScoreMeter_Ok");
+            } else if (pd.totalStarAmount > 6) {
+                scoreMeterAnimator.Play("TotalScoreMeter_Good");
+            }
             yield return new WaitForSeconds(3f);
         }
 
         // muu kuin lvl3
         if (totalScoreSlider != null) {
-            // tuunaa totalSLider kohilleen
             totalScoreSlider.gameObject.SetActive(true);
             s = pd.totalStarAmount;
             fillTime = 3f;
