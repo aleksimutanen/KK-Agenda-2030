@@ -40,12 +40,13 @@ public class ToyRepair : MonoBehaviour
     //    }
     //}
 
- 
 
 
-    private void OnCollisionStay(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "RepairCube")
+
+        if (other.gameObject.tag == "RepairCube")
         {
             print("Osuu " + gameObject.name);
             gameObject.GetComponent<Collider>().enabled = false;
@@ -62,6 +63,8 @@ public class ToyRepair : MonoBehaviour
             print("Siirtyy paikkaan " + goalPoint);
         }
     }
+
+
 
 
 

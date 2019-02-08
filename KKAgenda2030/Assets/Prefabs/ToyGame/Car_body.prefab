@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9035598356693690194}
   - component: {fileID: 1464443819761615814}
   - component: {fileID: 2335079858198970873}
-  - component: {fileID: 7742204751368056792}
+  - component: {fileID: 424101297}
   m_Layer: 0
   m_Name: Car_body
   m_TagString: BrokenToy
@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1d2850415dceb4b92d12907d3aa45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: {fileID: 8343157406879079894, guid: 70ba11b1bbde39b468438ecd92e3ad29,
-    type: 3}
+  goalPoint: {fileID: 0}
   speed: 0.5
 --- !u!114 &5130054379460665906
 MonoBehaviour:
@@ -76,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23095a8d545b8e249bbfc62380222295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sLock: {fileID: 0}
 --- !u!212 &1464443819761615814
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -132,12 +132,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6841784604164549015}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5.0819654, y: 2.8543072, z: 0}
-  m_Center: {x: 0.053718727, y: 0.1746531, z: 0}
---- !u!54 &7742204751368056792
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &424101297
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Constraints: 112
+  m_CollisionDetection: 0
