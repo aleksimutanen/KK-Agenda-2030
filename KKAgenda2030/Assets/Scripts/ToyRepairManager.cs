@@ -8,6 +8,7 @@ public class ToyRepairManager : MonoBehaviour
 
     ToyRepair tR;
     Toy toytype;
+    public GameObject toysFolder;
     public List<ToyType> generateToysTypes;
     public GameObject repairCube;
     private GameObject repairedCube;
@@ -116,7 +117,10 @@ public class ToyRepairManager : MonoBehaviour
             
         }
 
+
+      
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        toys.transform.parent = toysFolder.transform;
         partOfToys.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;        
         
@@ -125,30 +129,43 @@ public class ToyRepairManager : MonoBehaviour
     void FilledList()
     {
 
-        // Täytetään lista. Salittujen tapausten mukaan.
+        // Täytetään lista. Salittujen tapausten mukaan. Joita on aina 3 per lelu.
 
-        var lenOfList = sizeOfList; // "lenOfList" on listan koko.
-        var OneTrashTypeClass = lenOfList / generateToysTypes.Count; // "OneTrashTypeClass" on yksittäisen lelutyypin määrä. 
-        var FinalTrash = lenOfList - OneTrashTypeClass * (generateToysTypes.Count - 1); // "FinalTrash" toteutetaan kun on jäljellä enään viimeinen roskatyyppi.
+     //   var lenOfList = sizeOfList; // "lenOfList" on listan koko.
+     //   var OneTrashTypeClass = lenOfList / generateToysTypes.Count; // "OneTrashTypeClass" on yksittäisen lelutyypin määrä. 
+     //   var FinalTrash = lenOfList - OneTrashTypeClass * (generateToysTypes.Count - 1); // "FinalTrash" toteutetaan kun on jäljellä enään viimeinen roskatyyppi.
 
        
 
-        for (int W = 0; W < generateToysTypes.Count; W++)
-        {
-            int n = (W < generateToysTypes.Count - 1) ? OneTrashTypeClass : FinalTrash;
-            while (n > 0)
-            {
-                var rnd1 = Random.Range(0, allPartOfToys.Count);
+        //for (int W = 0; W < generateToysTypes.Count; W++)
+        //{
+        //    int n = (W < generateToysTypes.Count - 1) ? OneTrashTypeClass : FinalTrash;
+        //    while (n > 0)
+        //    {
+        //        var rnd1 = Random.Range(0, allPartOfToys.Count);
 
-                if (allPartOfToys[rnd1].GetComponent<Toy>().kind == ToyType.Car)  // Katsoo kaikki 3 tietyn tyypin lelut.
-                {
+        //        if (allPartOfToys[rnd1].GetComponent<Toy>().kind == ToyType.Car /*||  allPartOfToys[rnd1].GetComponent<Toy>().kind == ToyType.Car 
+        //            ||  allPartOfToys[rnd1]GetComponent<Toy>().kind == ToyType.Car */)  // Katsoo kaikki 3 tietyn tyypin lelut.
+
+        //        {
                  
 
-                   partOfToys.Add(allPartOfToys[rnd1]); // Lisää lelut listaan josta ne luodaan peliin.
+        //           partOfToys.Add(allPartOfToys[rnd1]); // Lisää lelut listaan josta ne luodaan peliin.
 
-                    allPartOfToys.RemoveAt(rnd1);
-                    n--;
-                }
+        //            allPartOfToys.RemoveAt(rnd1);
+        //            n--;
+        //        }
+        //    }
+        //}
+        
+        var typ = generateToysTypes[Random.Range(0, generateToysTypes.Count)];
+        for (int i = 0; i < allPartOfToys.Count; i++)
+        {
+            if (allPartOfToys[i].GetComponent<Toy>().kind == typ)
+            {
+                partOfToys.Add(allPartOfToys[i]); // Lisää lelut listaan josta ne luodaan peliin.
+                allPartOfToys.RemoveAt(i);
+                i--;
             }
         }
 

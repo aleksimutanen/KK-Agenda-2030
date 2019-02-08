@@ -566,6 +566,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1011377885347246, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
 --- !u!1 &608274720 stripped
@@ -605,6 +609,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &608274724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1130492158136486, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &746217930
 GameObject:
   m_ObjectHideFlags: 0
@@ -5621,6 +5631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5293910918100641821, guid: c85976630f8fe6a479f3f0c1a662b875,
         type: 3}
+      propertyPath: toysFolder
+      value: 
+      objectReference: {fileID: 608274724}
+    - target: {fileID: 5293910918100641821, guid: c85976630f8fe6a479f3f0c1a662b875,
+        type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 923293953}
@@ -5634,24 +5649,6 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1155444786}
-    - target: {fileID: 5293910918100641821, guid: c85976630f8fe6a479f3f0c1a662b875,
-        type: 3}
-      propertyPath: allPartOfToys.Array.data[0]
-      value: 
-      objectReference: {fileID: 6841784604164549015, guid: d6b63645e1990c147bd2218dbf4a2dac,
-        type: 3}
-    - target: {fileID: 5293910918100641821, guid: c85976630f8fe6a479f3f0c1a662b875,
-        type: 3}
-      propertyPath: allPartOfToys.Array.data[2]
-      value: 
-      objectReference: {fileID: 1727166654, guid: 4e33fb5625acbd344b82664498f205aa,
-        type: 3}
-    - target: {fileID: 5293910918100641821, guid: c85976630f8fe6a479f3f0c1a662b875,
-        type: 3}
-      propertyPath: allPartOfToys.Array.data[3]
-      value: 
-      objectReference: {fileID: 2338324654166771482, guid: a3d393c61bbe7254ca5d2433f4320d90,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c85976630f8fe6a479f3f0c1a662b875, type: 3}
 --- !u!1 &923293952
@@ -5709,7 +5706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144983391}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.8, y: 59.7, z: -34.8}
+  m_LocalPosition: {x: 10.8, y: 59.7, z: 0}
   m_LocalScale: {x: 7.1956263, y: 7.6374183, z: 8.869542}
   m_Children: []
   m_Father: {fileID: 1370851144}

@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2338324654166771553}
   - component: {fileID: 2338324654166771556}
   - component: {fileID: 2338324654166771557}
-  - component: {fileID: 4133724785986606829}
+  - component: {fileID: 1198841523083694474}
   - component: {fileID: 6330309777303957384}
-  - component: {fileID: 4663489881724434274}
+  - component: {fileID: 712071358729782001}
   m_Layer: 0
-  m_Name: Toy3
+  m_Name: Car_tyreB 1
   m_TagString: BrokenToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2338324654166771482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.4, y: 3.771, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: 107.510994, y: -88.8, z: 0}
+  m_LocalScale: {x: 3.9, y: 3.9, z: 3.9}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.8188772, y: 2.7361941, z: 0.99999875}
+  m_Center: {x: -0.041335665, y: 0.0826772, z: 0}
 --- !u!114 &2338324654166771557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,10 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1d2850415dceb4b92d12907d3aa45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: {fileID: 1374238255844069034, guid: e6392622d3f6846429680ca53d969e4c,
+  goalPoint: {fileID: 1024848679361780480, guid: 68f2bd569efba18469e602333ea1170b,
     type: 3}
   speed: 4
---- !u!114 &4133724785986606829
+--- !u!114 &1198841523083694474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452138b027fe3494a88ddead2bf2fbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kind: 1
+  kind: 0
 --- !u!114 &6330309777303957384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23095a8d545b8e249bbfc62380222295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &4663489881724434274
+--- !u!212 &712071358729782001
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,12 +125,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 551d2c646452ccd45903c9036f7832fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ec47894e4ae22040b5712dae2e1d10d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.31, y: 3.7}
+  m_Size: {x: 2.1384616, y: 2.7230768}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

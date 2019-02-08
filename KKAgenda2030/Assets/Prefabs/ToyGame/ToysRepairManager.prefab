@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db29e42e2212e44a875752d09aeb250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toysFolder: {fileID: 0}
   generateToysTypes: 0000000001000000
   repairCube: {fileID: 0}
   readytoy: {fileID: 0}
@@ -51,10 +52,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   allPartOfToys:
-  - {fileID: 6841784604164549015, guid: a6bc417a82e3474428e2c5d659f29db0, type: 3}
-  - {fileID: 6207669508642953625, guid: fcb7f1f8f29c706439a8c6937616bda9, type: 3}
-  - {fileID: 2338324654166771482, guid: 5b55c222d08fd81429fe61b2e80f08d4, type: 3}
-  - {fileID: 2338324654166771482, guid: 7f73f721d5a4f6547a27624fedd095e3, type: 3}
+  - {fileID: 6841784604164549015, guid: d6b63645e1990c147bd2218dbf4a2dac, type: 3}
+  - {fileID: 6841784604164549015, guid: 0f1ffcf23cb4ab141bc28ab26855666d, type: 3}
+  - {fileID: 1727166654, guid: 4e33fb5625acbd344b82664498f205aa, type: 3}
+  - {fileID: 2338324654166771482, guid: a3d393c61bbe7254ca5d2433f4320d90, type: 3}
+  - {fileID: 2338324654166771482, guid: 0b4cf4fc59713f542a24b160a1627409, type: 3}
+  - {fileID: 1727166654, guid: c6d9be7b26c6499418630c8bd32a31a1, type: 3}
   partOfToys: []
   toysCollected: []
   spawnPoints:
