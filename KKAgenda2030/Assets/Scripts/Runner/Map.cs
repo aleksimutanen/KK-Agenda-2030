@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Map : MonoBehaviour {
 
-    public float speed;
+    public float tfSpeed;
+    public float rbSpeed;
+
+    Rigidbody rb;
 
     void Start() {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update() {
-        speed += Time.deltaTime * 0.1f;
-        transform.position += -transform.right * speed * Time.deltaTime;
+        tfSpeed += Time.deltaTime * 0.01f;
+        transform.position += -transform.right * tfSpeed * Time.deltaTime;
+
+        //rbSpeed += Time.deltaTime * 1f;
+        //rb.velocity = -transform.right * rbSpeed * Time.deltaTime;
     }
+
+    //void FixedUpdate() {
+        //rbSpeed += Time.deltaTime * 1f;
+        //rb.velocity = -transform.right * rbSpeed * Time.deltaTime;
+    //}
 }
