@@ -5,9 +5,10 @@ using UnityEngine;
 public class ClickLennu : MonoBehaviour {
 
     public Animator animator;
+    public string animationName;
 
     private void OnMouseDown() {
-        animator.Play("Lennu_show");
+        animator.Play(animationName);
     }
 
 }

@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class RunnerController : MonoBehaviour {
 
-    public float upSpeed;
-    public float downSpeed;
+    [SerializeField] float upSpeed;
+    [SerializeField] float downSpeed;
 
-    public float speedFactor;
-    public float maxSpeed;
+    [SerializeField] float speedFactor;
+    [SerializeField] float maxSpeed;
 
-    public float deceleration;
-    public float acceleration;
+    [SerializeField] float deceleration;
+    [SerializeField] float acceleration;
 
-    public LayerMask background;
+    [SerializeField] LayerMask background;
 
     Rigidbody rb;
+
+    float tfSpeed = 1.5f;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update() {
+    void FixedUpdate() {
         /*
         Programmed rigidbody vectors 
         */
@@ -35,24 +37,25 @@ public class RunnerController : MonoBehaviour {
             speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
 
             if (hit.point.z > transform.position.z) {
-                rb.velocity = dir;
                 upSpeed += Time.deltaTime * acceleration;
                 upSpeed = Mathf.Clamp01(upSpeed);
+                rb.velocity = dir;
             } else {
                 upSpeed -= Time.deltaTime * deceleration;
                 upSpeed = Mathf.Clamp01(upSpeed);
             }
 
             if (hit.point.z < transform.position.z) {
-                rb.velocity = dir;
                 downSpeed += Time.deltaTime * acceleration;
                 downSpeed = Mathf.Clamp01(downSpeed);
+                rb.velocity = dir;
             } else {
                 downSpeed -= Time.deltaTime * deceleration;
                 downSpeed = Mathf.Clamp01(downSpeed);
             }
 
         } else {
+
             speedFactor -= Time.deltaTime * deceleration;
             speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
 
@@ -66,9 +69,10 @@ public class RunnerController : MonoBehaviour {
         }
 
 
+
         /*
         Unity Rigidbody acceleration based movement 
-        */ 
+        */
 
 
         //RaycastHit hit;
@@ -100,11 +104,14 @@ public class RunnerController : MonoBehaviour {
 
 
 
+        //ignore
 
         //Vector3 camPos = transform.position;
         //camPos.y += 10f;
         //Camera.main.transform.position = camPos;
     }
+
+    
 }
 
 

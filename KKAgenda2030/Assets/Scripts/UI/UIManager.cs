@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour {
     public Animator animator;
 
 	void Start () {
+        Time.timeScale = 1f;
         pt = FindObjectOfType<PageTurner>();
         for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
     }
