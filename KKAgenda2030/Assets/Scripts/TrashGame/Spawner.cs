@@ -99,12 +99,6 @@ public class Spawner : MonoBehaviour
                 if (rightObjects[rnd1].GetComponent<Trash>().kind == generateTypes[W])
                 {
 
-                    if(rightObjects[rnd1].GetComponent<Trash>().kind == TrashType.Biojäte)
-                    {
-
-
-                    }
-
                     rubbish.Add(rightObjects[rnd1]);               
                     n--;
                 }

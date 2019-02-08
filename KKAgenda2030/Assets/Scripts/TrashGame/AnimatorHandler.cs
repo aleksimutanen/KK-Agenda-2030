@@ -10,6 +10,8 @@ public class AnimatorHandler : MonoBehaviour
     public float maxT;
     public float minT;
 
+
+
     void Start() {
         blinkTimer = Random.Range(minT, maxT);
     }
