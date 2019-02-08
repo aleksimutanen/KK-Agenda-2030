@@ -17,6 +17,7 @@ public class ToyRepairManager : MonoBehaviour
     public List<GameObject> partOfToys;
     public List<GameObject> toysCollected;
     public Transform[] spawnPoints;
+    public Transform[] goalPoints;   
     public int sizeOfList = 3;
     public bool[] spotUsed;
     public bool[] isRepaired;
@@ -24,7 +25,7 @@ public class ToyRepairManager : MonoBehaviour
 
 
     void Awake()
-    {
+    {        
       
         tR = GameObject.FindObjectOfType<ToyRepair>();
 
@@ -80,25 +81,25 @@ public class ToyRepairManager : MonoBehaviour
 
         // Yllä oleva tekee saman kuin alla oleva.
 
-        if (toysCollected.Exists(x => x.name.Equals("Toy1(Clone)")) &&
-            toysCollected.Exists(x => x.name.Equals("Toy4(Clone)")))
-        {
-            almostReadytoys[0].SetActive(true);
-        }
+        //if (toysCollected.Exists(x => x.name.Equals("Toy1(Clone)")) &&
+        //    toysCollected.Exists(x => x.name.Equals("Toy4(Clone)")))
+        //{
+        //    almostReadytoys[0].SetActive(true);
+        //}
 
-        if (toysCollected.Exists(x => x.name.Equals("Toy3(Clone)")) &&
-           toysCollected.Exists(x => x.name.Equals("Toy4(Clone)")))
-        {
-            almostReadytoys[1].SetActive(true);
-        }
+        //if (toysCollected.Exists(x => x.name.Equals("Toy3(Clone)")) &&
+        //   toysCollected.Exists(x => x.name.Equals("Toy4(Clone)")))
+        //{
+        //    almostReadytoys[1].SetActive(true);
+        //}
 
-        if (toysCollected.Exists(x => x.name.Equals("Toy3(Clone)")) &&
-           toysCollected.Exists(x => x.name.Equals("Toy1(Clone)")))
-        {
-            almostReadytoys[2].SetActive(true);
-        }
+        //if (toysCollected.Exists(x => x.name.Equals("Toy3(Clone)")) &&
+        //   toysCollected.Exists(x => x.name.Equals("Toy1(Clone)")))
+        //{
+        //    almostReadytoys[2].SetActive(true);
+        //}
 
-        repairedIsReady();
+        //repairedIsReady();
 
     }
 
@@ -139,7 +140,7 @@ public class ToyRepairManager : MonoBehaviour
             {
                 var rnd1 = Random.Range(0, allPartOfToys.Count);
 
-                if (allPartOfToys[rnd1].GetComponent<Toy>().kind == ToyType.Testikuutiot)  // Katsoo kaikki 3 tietyn tyypin lelua.
+                if (allPartOfToys[rnd1].GetComponent<Toy>().kind == ToyType.Car)  // Katsoo kaikki 3 tietyn tyypin lelut.
                 {
                  
 

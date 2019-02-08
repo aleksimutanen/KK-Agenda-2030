@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5293910918100641808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5293910918100641810}
+  - component: {fileID: 5293910918100641821}
+  m_Layer: 0
+  m_Name: ToysRepairManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5293910918100641810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293910918100641808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5293910918100641821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293910918100641808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db29e42e2212e44a875752d09aeb250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateToysTypes: 0000000001000000
+  repairCube: {fileID: 0}
+  readytoy: {fileID: 0}
+  almostReadytoys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allPartOfToys:
+  - {fileID: 6841784604164549015, guid: a6bc417a82e3474428e2c5d659f29db0, type: 3}
+  - {fileID: 6207669508642953625, guid: fcb7f1f8f29c706439a8c6937616bda9, type: 3}
+  - {fileID: 2338324654166771482, guid: 5b55c222d08fd81429fe61b2e80f08d4, type: 3}
+  - {fileID: 2338324654166771482, guid: 7f73f721d5a4f6547a27624fedd095e3, type: 3}
+  partOfToys: []
+  toysCollected: []
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  goalPoints: []
+  sizeOfList: 3
+  spotUsed: 000000
+  isRepaired: 000000

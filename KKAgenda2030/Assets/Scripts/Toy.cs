@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ToyType { Nalle, Testikuutiot };
+public enum ToyType { Nalle, Car};
 
 
 public class Toy : MonoBehaviour
