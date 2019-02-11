@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickLennu : MonoBehaviour {
+public class ClickAnimals : MonoBehaviour {
 
     public Animator animator;
     public string animationName;

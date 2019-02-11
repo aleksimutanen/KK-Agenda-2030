@@ -19,6 +19,7 @@ public class TrashGameManager : MonoBehaviour {
     public static TrashGameManager instance = null;
 
     LevelChanger levelChanger;
+    Scene activeScene;
 
     public Slider scoreSlider;
     public Slider endScoreSlider;
@@ -161,11 +162,8 @@ public class TrashGameManager : MonoBehaviour {
             } else if (pd.totalStarAmount > 6) {
                 scoreMeterAnimator.Play("TotalScoreMeter_Good");
             }
-            yield return new WaitForSeconds(3f);
-        }
+            yield return new WaitForSeconds(2f);
 
-        // muu kuin lvl3
-        if (totalScoreSlider != null) {
             totalScoreSlider.gameObject.SetActive(true);
             s = pd.totalStarAmount;
             fillTime = 3f;
@@ -184,14 +182,43 @@ public class TrashGameManager : MonoBehaviour {
                 }
                 yield return null;
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
 
+        //// muu kuin lvl3
+        //if (totalScoreSlider != null) {
+        //    totalScoreSlider.gameObject.SetActive(true);
+        //    s = pd.totalStarAmount;
+        //    fillTime = 3f;
+        //    t = 0f;
+        //    fillSpeed = 1 / fillTime;
+
+        //    while (t <= 1) {
+        //        t += fillSpeed * Time.deltaTime;
+        //        var curvedT = sliderAnimCurve.Evaluate(t);
+        //        totalScoreSlider.value = +(curvedT * s);
+        //        for (int i = 0; i < totalStarImages.Length; i++) {
+        //            if (totalScoreSlider.value >= totalStarScore[i]) {
+        //                totalStarImages[i].gameObject.SetActive(true);
+        //                ui.LevelEndStars2(totalStarImages[i]);
+        //            }
+        //        }
+        //        yield return null;
+        //    }
+        //    yield return new WaitForSeconds(1f);
+        //}
+
         if (spwn.rubbish.Count == 0) {
+            activeScene = SceneManager.GetActiveScene();
             levelCompleted = true;
             statusText.text = "";
 
-            levelChanger.StartCoroutine("LevelChange");
+            if (activeScene.name != "Nikle_devscenelvl3") {
+                levelChanger.StartCoroutine("LevelChange");
+            } else { // vika lvl pelattu, palataan menuun
+                levelChanger.StartCoroutine("LoadToMenu");
+            }
+
 
             // OLD STYLE!
             // Vaihdetaan scene seuraavaan tasoon fadejen kanssa

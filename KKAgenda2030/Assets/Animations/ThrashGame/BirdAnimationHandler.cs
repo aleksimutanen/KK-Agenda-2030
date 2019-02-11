@@ -6,7 +6,7 @@ public class BirdAnimationHandler : MonoBehaviour {
 
     Animator animator;
     public List<string> animationPool;
-    float animTimer;
+    float animTimer = 5F;
     public float minT;
     public float maxT;
 
