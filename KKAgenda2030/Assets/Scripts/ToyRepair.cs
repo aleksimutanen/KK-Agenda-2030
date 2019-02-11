@@ -6,41 +6,51 @@ public class ToyRepair : MonoBehaviour
 {
 
     ToyRepairManager tRM;
-    public Transform goalPoint;
+    public GameObject goalPoint;
+    public List<GameObject> endPoints;
+   
+    public List<GameObject> goalPoints;
+    public List<GameObject> ownGoalPoints;
     public float speed;
 
 
     private void Start()
     {
+        goalPoint = GameObject.FindGameObjectWithTag("GoalPoint");
+       
         gameObject.SetActive(true);
         tRM = GameObject.FindObjectOfType<ToyRepairManager>();
-        
+
+        searchingOfGoalPoints();
+
     }
 
-    //private void OnCollisionEnter(Collision col)  
-    //{
-    //    if (col.gameObject.tag == "RepairCube")
-    //    {
-    //        tRM.toysCollected.Add(gameObject);
-    //        tRM.UseToyPart(this.gameObject);                         
-    //    }      
-
-    //}
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "RepairCube")
-    //    {
-    //        print("Osuu");
-    //        gameObject.GetComponent<Collider>().enabled = false;
-    //        float step = speed * Time.deltaTime;
-    //        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPoint.transform.position, step);
-
-    //        print("Siirtyy paikkaan " + goalPoint);
-    //    }
-    //}
 
 
+    public void searchingOfGoalPoints()
+    {
+
+        GameObject point1 = GameObject.FindWithTag("Top");
+        GameObject point2 = GameObject.FindWithTag("Mid");
+        GameObject point3 = GameObject.FindWithTag("Low");
+
+        endPoints.Add(point1);
+        endPoints.Add(point2);
+        endPoints.Add(point3);
+
+
+        var ep = Random.Range(0, endPoints.Count);
+
+        if (endPoints.Count > 0 )
+        {
+            goalPoints.Add(endPoints[ep]);
+           
+            endPoints.RemoveAt(ep);
+        }
+                                  
+        
+        print("Maali pointti lisätty");
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -48,13 +58,15 @@ public class ToyRepair : MonoBehaviour
 
         if (other.gameObject.tag == "RepairCube")
         {
+            int i = 0;
             print("Osuu " + gameObject.name);
             gameObject.GetComponent<Collider>().enabled = false;
-            while (Vector3.Distance(transform.position, goalPoint.position) > 0.01f) {
-                var newPos = Vector3.MoveTowards(transform.position, goalPoint.position, speed * Time.deltaTime);
+            while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f)
+            {
+                var newPos = Vector3.MoveTowards(transform.position, goalPoints[i].gameObject.transform.position, speed * Time.deltaTime);
                 transform.position = newPos;
             }
-            if (Vector3.Distance(transform.position, goalPoint.position) <= 0.01f)
+            if (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) <= 0.01f)
             {
                 gameObject.GetComponent<Collider>().enabled = true;
 
@@ -63,9 +75,4 @@ public class ToyRepair : MonoBehaviour
             print("Siirtyy paikkaan " + goalPoint);
         }
     }
-
-
-
-
-
 }

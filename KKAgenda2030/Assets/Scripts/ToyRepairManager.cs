@@ -121,7 +121,7 @@ public class ToyRepairManager : MonoBehaviour
       
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
         toys.transform.parent = toysFolder.transform;
-        //  partOfToys.RemoveAt(spawnObjectsIndex);
+        partOfToys.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;        
         
     }
