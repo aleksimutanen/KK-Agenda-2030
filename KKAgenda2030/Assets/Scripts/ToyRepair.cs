@@ -10,9 +10,7 @@ public class ToyRepair : MonoBehaviour
     public List<GameObject> endPoints;
    
     public List<GameObject> goalPoints;
-    public List<GameObject> ownGoalPoints;
     public float speed;
-
 
     private void Start()
     {
@@ -33,19 +31,72 @@ public class ToyRepair : MonoBehaviour
         GameObject point1 = GameObject.FindWithTag("Top");
         GameObject point2 = GameObject.FindWithTag("Mid");
         GameObject point3 = GameObject.FindWithTag("Low");
+        GameObject point4 = GameObject.FindWithTag("TopBear");
+        GameObject point5 = GameObject.FindWithTag("BearMid");
+        GameObject point6 = GameObject.FindWithTag("LowBear");
 
         endPoints.Add(point1);
         endPoints.Add(point2);
         endPoints.Add(point3);
+        endPoints.Add(point4);
+        endPoints.Add(point5);
+        endPoints.Add(point6);
+
 
 
         var ep = Random.Range(0, endPoints.Count);
 
         if (endPoints.Count > 0 )
         {
-            goalPoints.Add(endPoints[ep]);
-           
-            endPoints.RemoveAt(ep);
+            if(gameObject.name == "Car_body(Clone)")
+            {
+               
+                goalPoints.Add(endPoints[0]);
+
+                endPoints.RemoveAt(0);
+            }
+
+            if (gameObject.name == "Car_tyreF(Clone)")
+            {
+
+                goalPoints.Add(endPoints[1]);
+
+                endPoints.RemoveAt(1);
+            }
+
+            if (gameObject.name == "Car_tyreB(Clone)")
+            {
+
+                goalPoints.Add(endPoints[2]);
+
+                endPoints.RemoveAt(2);
+            }
+
+            if (gameObject.name == "BearToy1(Clone)")
+            {
+
+                goalPoints.Add(endPoints[3]);
+
+                endPoints.RemoveAt(3);
+            }
+
+            if (gameObject.name == "BearToy2(Clone)")
+            {
+
+                goalPoints.Add(endPoints[4]);
+
+                endPoints.RemoveAt(4);
+            }
+
+            if (gameObject.name == "BearToy3(Clone)")
+            {
+
+                goalPoints.Add(endPoints[5]);
+
+                endPoints.RemoveAt(5);
+            }
+
+
         }
                                   
         
@@ -72,7 +123,7 @@ public class ToyRepair : MonoBehaviour
 
             }
 
-            print("Siirtyy paikkaan " + goalPoint);
+            print("Siirtyy paikkaan " + goalPoints[i]);
         }
     }
 }

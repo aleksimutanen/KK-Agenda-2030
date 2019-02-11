@@ -12,7 +12,6 @@ public class ToyRepairManager : MonoBehaviour
     public List<ToyType> generateToysTypes;
     public GameObject repairCube;
     private GameObject repairedCube;
-    public GameObject readytoy;
     public List<GameObject> almostReadytoys;
     public List<GameObject> allPartOfToys;
     public List<GameObject> partOfToys;
@@ -191,7 +190,7 @@ public class ToyRepairManager : MonoBehaviour
         if (allRepaired)
         {
 
-            readytoy.SetActive(true);
+          //  readytoy.SetActive(true);
            
             repairCube.SetActive(false);
         }
