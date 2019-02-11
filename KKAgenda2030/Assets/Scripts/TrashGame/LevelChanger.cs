@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class LevelChanger : MonoBehaviour {
 
-    int maxBuildIndex = 2;
     TrashGameManager TGM;
     public Image fakeLoad;
+    Scene activeScene;
 
     private void Awake() {
         TGM = FindObjectOfType<TrashGameManager>();
@@ -21,5 +21,12 @@ public class LevelChanger : MonoBehaviour {
 
         yield return new WaitForSeconds(4.6f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public IEnumerator LoadToMenu() {
+        yield return new WaitForSeconds(1f);
+        TGM.endScoreSlider.gameObject.SetActive(false);
+        yield return new WaitForSeconds(4.6f);
+        SceneManager.LoadScene(0);
     }
 }
