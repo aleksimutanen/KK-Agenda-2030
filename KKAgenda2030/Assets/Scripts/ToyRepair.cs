@@ -27,13 +27,18 @@ public class ToyRepair : MonoBehaviour
 
     public void searchingOfGoalPoints()
     {
-
+        // Haetaan maali pisteet.
         GameObject point1 = GameObject.FindWithTag("Top");
         GameObject point2 = GameObject.FindWithTag("Mid");
         GameObject point3 = GameObject.FindWithTag("Low");
         GameObject point4 = GameObject.FindWithTag("TopBear");
         GameObject point5 = GameObject.FindWithTag("BearMid");
         GameObject point6 = GameObject.FindWithTag("LowBear");
+        GameObject point7 = GameObject.FindWithTag("PlaneTop");
+        GameObject point8 = GameObject.FindWithTag("PlaneMid");
+        GameObject point9 = GameObject.FindWithTag("PlaneLow");
+
+        // Lisätään ne listaan.
 
         endPoints.Add(point1);
         endPoints.Add(point2);
@@ -41,7 +46,11 @@ public class ToyRepair : MonoBehaviour
         endPoints.Add(point4);
         endPoints.Add(point5);
         endPoints.Add(point6);
+        endPoints.Add(point7);
+        endPoints.Add(point8);
+        endPoints.Add(point9);
 
+        // Haetaan jokaiselle osalle oma pisteensä.
 
 
         var ep = Random.Range(0, endPoints.Count);
@@ -96,6 +105,31 @@ public class ToyRepair : MonoBehaviour
                 endPoints.RemoveAt(5);
             }
 
+           
+
+            if (gameObject.name == "PlaneToy1(Clone)")
+            {
+
+                goalPoints.Add(endPoints[6]);
+
+                endPoints.RemoveAt(6);
+            }
+
+            if (gameObject.name == "PlaneToy2(Clone)")
+            {
+
+                goalPoints.Add(endPoints[7]);
+
+                endPoints.RemoveAt(7);
+            }
+
+            if (gameObject.name == "PlaneToy3(Clone)")
+            {
+
+                goalPoints.Add(endPoints[8]);
+
+                endPoints.RemoveAt(8);
+            }
 
         }
                                   
