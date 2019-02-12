@@ -7,11 +7,14 @@ public class ToyGameManager : MonoBehaviour {
     public static ToyGameManager instance = null;
     public GameObject lightOfRed;
     public List<GameObject> kids;
-    public Transform[] kidsPositions;
+    public Transform[] hintsPositions;
     public List<GameObject> toys;
+    public Transform[] toysPositions;
     private ToyCheck[] goals;
     public List<bool> levelIsCompleted;
     public bool[] spotUsed;
+    public bool[] toysSpotUsed;
+
 
 
     void Awake()
@@ -26,9 +29,18 @@ public class ToyGameManager : MonoBehaviour {
         instance = this;
     //    print("ToyGameManager is added to game");
 
-            for (int e = 0; e < kidsPositions.Length; e++)
+            for (int e = 0; e < hintsPositions.Length; e++)
             {
-                   Spawn();
+                   hintsSpawn();
+            }
+
+
+
+            for (int i = 0; i < toys.Count +2; i++)
+            {
+            print("print " + i);
+                toysSpawn();
+                
             }
     }   
     
@@ -67,22 +79,41 @@ public class ToyGameManager : MonoBehaviour {
         return levelIsCompleted[Random.Range(0,3)];
     }
 
-    void Spawn()
+    void hintsSpawn()
     {
         int bools = Random.Range(0, spotUsed.Length);
-        int spawnPointIndex = Random.Range(0, kidsPositions.Length);
+        int spawnPointIndex = Random.Range(0, hintsPositions.Length);
         int spawnObjectsIndex = Random.Range(0, kids.Count);
 
 
         while ((spotUsed[spawnPointIndex] == true))
         {
-            spawnPointIndex = Random.Range(0, kidsPositions.Length);
+            spawnPointIndex = Random.Range(0, hintsPositions.Length);
 
         }
 
-        var childs = Instantiate(kids[spawnObjectsIndex], kidsPositions[spawnPointIndex].position, kidsPositions[spawnPointIndex].rotation);
+        var childs = Instantiate(kids[spawnObjectsIndex], hintsPositions[spawnPointIndex].position, hintsPositions[spawnPointIndex].rotation);
         kids.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;
+
+    }
+
+    void toysSpawn()
+    {
+        int bools = Random.Range(0, toysSpotUsed.Length);
+        int spawnPointIndex = Random.Range(0, toysPositions.Length);
+        int spawnObjectsIndex = Random.Range(0, toys.Count);
+
+
+        while ((toysSpotUsed[spawnPointIndex] == true))
+        {
+            spawnPointIndex = Random.Range(0, toysPositions.Length);
+
+        }
+
+        var toy = Instantiate(toys[spawnObjectsIndex], toysPositions[spawnPointIndex].position, toysPositions[spawnPointIndex].rotation);
+        toys.RemoveAt(spawnObjectsIndex);
+        toysSpotUsed[spawnPointIndex] = true;
 
     }
 
