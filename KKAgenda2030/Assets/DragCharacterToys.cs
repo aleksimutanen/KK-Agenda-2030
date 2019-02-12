@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DragCharacterToys : MonoBehaviour {
 
     Vector3 dist;
     float posX;
     float posY;
-   
+    public ScrollRect sLock;
 
-
+    private void Awake()
+    {
+        sLock = FindObjectOfType<ScrollRect>();
+    }
 
     public void OnMouseDown()
     {
-    
+
+    sLock.vertical = !enabled;
     dist = Camera.main.WorldToScreenPoint(transform.position);
     posX = Input.mousePosition.x - dist.x;
     posY = Input.mousePosition.y - dist.y;
@@ -27,6 +32,12 @@ public class DragCharacterToys : MonoBehaviour {
     //print("Siirtyyy!");
 
 
+    }
+
+    public void OnMouseUp()
+    {
+        sLock.vertical = enabled;
+       
     }
 
 

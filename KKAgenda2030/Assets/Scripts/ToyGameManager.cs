@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToyGameManager : MonoBehaviour {
 
     public static ToyGameManager instance = null;
-    public GameObject lightOfRed;
+    public GameObject toysFolder;
     public List<GameObject> kids;
     public Transform[] hintsPositions;
     public List<GameObject> toys;
@@ -38,7 +38,7 @@ public class ToyGameManager : MonoBehaviour {
 
             for (int i = 0; i < toys.Count +2; i++)
             {
-            print("print " + i);
+           
                 toysSpawn();
                 
             }
@@ -47,8 +47,7 @@ public class ToyGameManager : MonoBehaviour {
     void Start ()
     {
         goals = FindObjectsOfType<ToyCheck>();  
-        lightOfRed.GetComponent<Light>().enabled = false;
-       
+      
     }
 
     public bool AllToycansFull()
@@ -67,12 +66,12 @@ public class ToyGameManager : MonoBehaviour {
             {
             //    print("Odottaa että on valmista!");
                 // lightOfRed.SetActive(false);
-                lightOfRed.GetComponent<Light>().enabled = false;
+             //   lightOfRed.GetComponent<Light>().enabled = false;
 
             }
             else
             {
-               lightOfRed.GetComponent<Light>().enabled = true;
+              // lightOfRed.GetComponent<Light>().enabled = true;
                 
             }
         }
@@ -93,6 +92,7 @@ public class ToyGameManager : MonoBehaviour {
         }
 
         var childs = Instantiate(kids[spawnObjectsIndex], hintsPositions[spawnPointIndex].position, hintsPositions[spawnPointIndex].rotation);
+        childs.transform.parent = toysFolder.transform;
         kids.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;
 
@@ -112,6 +112,7 @@ public class ToyGameManager : MonoBehaviour {
         }
 
         var toy = Instantiate(toys[spawnObjectsIndex], toysPositions[spawnPointIndex].position, toysPositions[spawnPointIndex].rotation);
+        toy.transform.parent = toysFolder.transform;
         toys.RemoveAt(spawnObjectsIndex);
         toysSpotUsed[spawnPointIndex] = true;
 
