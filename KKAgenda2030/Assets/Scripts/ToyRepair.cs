@@ -134,7 +134,6 @@ public class ToyRepair : MonoBehaviour
         }
                                   
         
-        print("Maali pointti lisätty");
     }
 
 
@@ -144,7 +143,6 @@ public class ToyRepair : MonoBehaviour
         if (other.gameObject.tag == "RepairCube")
         {
             int i = 0;
-            print("Osuu " + gameObject.name);
             gameObject.GetComponent<Collider>().enabled = false;
             while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f)
             {
@@ -156,8 +154,6 @@ public class ToyRepair : MonoBehaviour
                 gameObject.GetComponent<Collider>().enabled = true;
 
             }
-
-            print("Siirtyy paikkaan " + goalPoints[i]);
         }
     }
 }
