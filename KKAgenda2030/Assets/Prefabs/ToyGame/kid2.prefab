@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751729527506402968}
-  - component: {fileID: 1751729527506402975}
-  - component: {fileID: 6171162313856582650}
   - component: {fileID: 1091277397756362970}
+  - component: {fileID: 4353714692418122634}
   m_Layer: 0
   m_Name: kid2
   m_TagString: Untagged
@@ -33,35 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1751729527506402975
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751729527506402969}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6171162313856582650
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751729527506402969}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!212 &1091277397756362970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -110,3 +80,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4353714692418122634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751729527506402969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032826fac53da384ebff1e24ea35da57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tGoals:
+  - {fileID: 8664838450966051749, guid: bedba64f6748af148bd02d52d212fe4c, type: 3}
+  - {fileID: 3277226937615869555, guid: c758a6f948820534b9ec727fe3efe8b5, type: 3}
+  wishtoy: {fileID: 5112014259062931908, guid: 6ba5e14c5256a05468afb7c0db0ec41e, type: 3}
