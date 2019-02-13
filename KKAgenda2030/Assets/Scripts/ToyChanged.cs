@@ -42,10 +42,10 @@ public class ToyChanged : MonoBehaviour
         endPoints.Add(point6);
 
 
-        for (int i = 0; i < tGM.kids.Count; i++)
-        {
-            tg.tGoals[i].position = this.goalPoints.Add(tg.tGoals[i].transform.position);
-        }
+        //for (int i = 0; i < tGM.kids.Count; i++)
+        //{
+        //    tg.tGoals[i].position = this.goalPoints.Add(tg.tGoals[i].transform.position);
+        //}
 
         if (endPoints.Count > 0)
 
@@ -95,6 +95,8 @@ public class ToyChanged : MonoBehaviour
                 gameObject.GetComponent<Collider>().enabled = true;
 
             }
+
+            print("Siirrytään kohteeseen" + goalPoints[i]);
         }
     }
 
