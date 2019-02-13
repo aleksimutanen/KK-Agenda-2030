@@ -50,7 +50,8 @@ public class ToyChanged : MonoBehaviour
         if (endPoints.Count > 0)
 
         {
-            if(gameObject.name == "RedCube(Clone)")
+           int i = 0;
+            if(gameObject.name == "AirplaneFinalToy(Clone)")
             {
                 goalPoints.Add(endPoints[0]);
 
@@ -59,7 +60,7 @@ public class ToyChanged : MonoBehaviour
         
 
         
-            if (gameObject.name == "BlueCube(Clone)")
+            if (gameObject.name == "FootballFinalToy(Clone)")
             {
                 goalPoints.Add(endPoints[1]);
                 endPoints.RemoveAt(1);
@@ -68,7 +69,7 @@ public class ToyChanged : MonoBehaviour
         
 
         
-            if (gameObject.name == "YellowCube(Clone)")
+            if (gameObject.name == "BearFinalToy(Clone)")
             {
                 goalPoints.Add(endPoints[2]);
                 endPoints.RemoveAt(2);

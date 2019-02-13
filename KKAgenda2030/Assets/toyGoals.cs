@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class toyGoals : MonoBehaviour
 {
-    public List<Transform> tGoals;
+    public List<GameObject> tGoals;
     public GameObject wishtoy;
  
 }
