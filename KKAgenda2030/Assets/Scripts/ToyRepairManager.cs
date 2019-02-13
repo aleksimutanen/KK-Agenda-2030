@@ -127,9 +127,9 @@ public class ToyRepairManager : MonoBehaviour
         if (toyKind == ToyType.Car) {
             carSilhuette.SetActive(true);
         }
-        //if (toyKind == ToyType.Nalle) {
-        //    nalleSilhuette.SetActive(true);
-        //}
+        if (toyKind == ToyType.Nalle) {
+            nalleSilhuette.SetActive(true);
+        }
         //if (toyKind == ToyType.Plane) {
         //    planeSilhuette.SetActive(true);
         //}
