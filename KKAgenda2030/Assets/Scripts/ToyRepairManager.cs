@@ -130,9 +130,9 @@ public class ToyRepairManager : MonoBehaviour
         if (toyKind == ToyType.Nalle) {
             nalleSilhuette.SetActive(true);
         }
-        //if (toyKind == ToyType.Plane) {
-        //    planeSilhuette.SetActive(true);
-        //}
+        if (toyKind == ToyType.Plane) {
+            planeSilhuette.SetActive(true);
+        }
         toys.transform.parent = toysFolder.transform;
         partOfToys.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;        

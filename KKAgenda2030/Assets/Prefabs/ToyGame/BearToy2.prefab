@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4917098700919445006}
   - component: {fileID: 4649970524230137682}
   m_Layer: 0
-  m_Name: BearToy2
+  m_Name: BearToy_tie
   m_TagString: BrokenToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 362.00592, y: 216.99643, z: -0.33467674}
   m_LocalScale: {x: 2.75, y: 2.7, z: 6}
-  m_Children:
-  - {fileID: 3633276697574145278}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,83 +155,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &6415740736453642626
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8972921193760627024}
-    m_Modifications:
-    - target: {fileID: 5411939333428985657, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_Name
-      value: BearGoalPointMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5411939333428985657, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_TagString
-      value: BearMid
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 17.850006
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 57.59999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7477ac1d35fc1b54aae784d36619f7fc, type: 3}
---- !u!4 &3633276697574145278 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7737949270645339516, guid: 7477ac1d35fc1b54aae784d36619f7fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6415740736453642626}
-  m_PrefabAsset: {fileID: 0}
