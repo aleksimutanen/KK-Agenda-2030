@@ -116,6 +116,11 @@ public class ToyGameManager : MonoBehaviour {
         toys.RemoveAt(spawnObjectsIndex);
         toysSpotUsed[spawnPointIndex] = true;
 
+        if(!toysSpotUsed[spawnPointIndex] == true)
+        {
+            print(toysSpotUsed[spawnPointIndex]);
+        }
+
     }
 
 }   
