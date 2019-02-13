@@ -23,6 +23,10 @@ public class ToyRepairManager : MonoBehaviour
     public bool[] isRepaired;
     int isCollected = 0;
 
+    public GameObject carSilhuette;
+    public GameObject nalleSilhuette;
+    public GameObject planeSilhuette;
+
 
     void Awake()
     {        
@@ -119,6 +123,16 @@ public class ToyRepairManager : MonoBehaviour
 
       
         var toys =  Instantiate(partOfToys[spawnObjectsIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        var toyKind = toys.GetComponent<Toy>().kind;
+        if (toyKind == ToyType.Car) {
+            carSilhuette.SetActive(true);
+        }
+        if (toyKind == ToyType.Nalle) {
+            nalleSilhuette.SetActive(true);
+        }
+        //if (toyKind == ToyType.Plane) {
+        //    planeSilhuette.SetActive(true);
+        //}
         toys.transform.parent = toysFolder.transform;
         partOfToys.RemoveAt(spawnObjectsIndex);
         spotUsed[spawnPointIndex] = true;        
