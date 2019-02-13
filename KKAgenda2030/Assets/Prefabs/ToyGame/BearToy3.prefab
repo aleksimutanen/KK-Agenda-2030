@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5796918584939344087}
   - component: {fileID: 4436321195100791338}
   m_Layer: 0
-  m_Name: BearToy3
+  m_Name: BearToy_body
   m_TagString: BrokenToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 362.00592, y: 216.99643, z: -0.33467674}
   m_LocalScale: {x: 6.3, y: 6.3, z: 6}
-  m_Children:
-  - {fileID: 2416196323668614003}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,83 +155,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &9106406758373102438
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3381752644370859308}
-    m_Modifications:
-    - target: {fileID: 7231540232726004431, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_Name
-      value: BearGoalPointLow
-      objectReference: {fileID: 0}
-    - target: {fileID: 7231540232726004431, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_TagString
-      value: LowBear
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.019989
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 57.59999
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d512ff8bf29bc2a4592cc8ece0124fe2, type: 3}
---- !u!4 &2416196323668614003 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6910907166632495125, guid: d512ff8bf29bc2a4592cc8ece0124fe2,
-    type: 3}
-  m_PrefabInstance: {fileID: 9106406758373102438}
-  m_PrefabAsset: {fileID: 0}
