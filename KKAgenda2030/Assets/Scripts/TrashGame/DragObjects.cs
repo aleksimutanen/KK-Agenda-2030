@@ -48,7 +48,6 @@ public class DragObjects : MonoBehaviour {
             //}
         }
     }
-    // MoveTowards ei toimi coroutinen sisällä oikein, joku workaround?
     IEnumerator ReturnTrash(float wait) {
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(wait);
