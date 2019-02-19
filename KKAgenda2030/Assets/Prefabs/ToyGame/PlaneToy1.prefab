@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5930053102931416117}
   - component: {fileID: 8232456755986817539}
   - component: {fileID: 1958358301573157515}
-  - component: {fileID: 5943395979216979089}
   - component: {fileID: 4485463692003455794}
   - component: {fileID: 2632570572505135660}
   - component: {fileID: 6294260511490650336}
+  - component: {fileID: 6431467326338231246}
   m_Layer: 0
   m_Name: PlaneToy1
   m_TagString: Untagged
@@ -65,20 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
---- !u!114 &5943395979216979089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5036161299492695454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23095a8d545b8e249bbfc62380222295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sLock: {fileID: 0}
-  dragging: 0
 --- !u!212 &4485463692003455794
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,3 +142,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6431467326338231246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036161299492695454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a9934e03a777346bb7a4787681a62e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sLock: {fileID: 0}

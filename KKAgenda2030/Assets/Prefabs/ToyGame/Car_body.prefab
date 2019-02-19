@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6841784604164549004}
   - component: {fileID: 6841784604164549006}
   - component: {fileID: 5130054379460665906}
-  - component: {fileID: 9035598356693690194}
   - component: {fileID: 1464443819761615814}
   - component: {fileID: 2335079858198970873}
   - component: {fileID: 424101297}
+  - component: {fileID: 6529172405337326107}
   m_Layer: 0
   m_Name: Car_body
   m_TagString: BrokenToy
@@ -65,20 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 1
---- !u!114 &9035598356693690194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6841784604164549015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23095a8d545b8e249bbfc62380222295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sLock: {fileID: 0}
-  dragging: 0
 --- !u!212 &1464443819761615814
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,3 +142,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6529172405337326107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841784604164549015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a9934e03a777346bb7a4787681a62e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sLock: {fileID: 0}
