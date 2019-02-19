@@ -181,6 +181,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &792188131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792188132}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &792188132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792188131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -9.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143192393
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,14 +402,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decals:
-  - {fileID: 21300000, guid: 1a135ee527a88f04886fa2268ea71a36, type: 3}
-  - {fileID: 21300000, guid: 1a135ee527a88f04886fa2268ea71a36, type: 3}
-  - {fileID: 21300000, guid: 0ad2923b94109e04383bb5da8487b16c, type: 3}
-  - {fileID: 21300000, guid: 5f4d5582ae02c324a88fb6c5da807a14, type: 3}
-  - {fileID: 21300000, guid: b10f661d9941a6e4d8e4cb0515b7f02c, type: 3}
-  - {fileID: 21300000, guid: 31a1cdf2094a67f41ac6c565ca984109, type: 3}
-  - {fileID: 21300000, guid: 2c0ea9d10d04c9e4587ddf47e41dcdd2, type: 3}
-  - {fileID: 21300000, guid: 2d74d6700f2565f4480610e1ce39f2ed, type: 3}
+  - {fileID: 0}
+  decPos:
+  - {fileID: 792188132}
 --- !u!4 &2090779614
 Transform:
   m_ObjectHideFlags: 0

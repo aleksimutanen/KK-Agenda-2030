@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
-    public List<Sprite> decals;
+    public GameObject[] decals;
+    public Transform[] decPos;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
-        
+        for (int e = 0; e < decals.Length; e++)
+        {
+            decalsSpawn();
+          
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void decalsSpawn()
     {
-        
+
+        var dec = Random.Range(0, decals.Length);
+        var pos = Random.Range(0, decPos.Length);
+
+        var decs = Instantiate(decals[dec], decPos[pos].position, decPos[pos].rotation);
+        print("Spawnaus oli" + dec);
     }
 }
