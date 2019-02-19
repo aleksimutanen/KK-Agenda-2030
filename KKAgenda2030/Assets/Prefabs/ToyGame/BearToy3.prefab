@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4436434406221503725}
   - component: {fileID: 6174031521731933451}
   - component: {fileID: 1355088505681795920}
-  - component: {fileID: 6766892710502252170}
   - component: {fileID: 5796918584939344087}
   - component: {fileID: 4436321195100791338}
+  - component: {fileID: 4928805274987186771}
   m_Layer: 0
   m_Name: BearToy3
   m_TagString: BrokenToy
@@ -78,20 +78,6 @@ MonoBehaviour:
   endPoints: []
   goalPoints: []
   speed: 4
---- !u!114 &6766892710502252170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4329738811275702937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23095a8d545b8e249bbfc62380222295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sLock: {fileID: 0}
-  dragging: 0
 --- !u!54 &5796918584939344087
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,3 +142,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4928805274987186771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329738811275702937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a9934e03a777346bb7a4787681a62e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sLock: {fileID: 0}

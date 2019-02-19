@@ -89,9 +89,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4902572696246009275}
   - component: {fileID: 8185888546170218537}
+  - component: {fileID: 4139613761140278220}
   m_Layer: 0
   m_Name: Toy_emptyFill
-  m_TagString: Untagged
+  m_TagString: DragToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,3 +125,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 10
+--- !u!65 &4139613761140278220
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320765455324247017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.7197957, y: 7.719795, z: 7.7197957}
+  m_Center: {x: 0, y: -0.4281044, z: 0}

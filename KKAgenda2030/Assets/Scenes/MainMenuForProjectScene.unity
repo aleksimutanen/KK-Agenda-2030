@@ -124,6 +124,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 608274719}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &103837383 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9195769450682257603, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &136887250
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +223,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &335349368 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1245289880, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &478888080
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +314,11 @@ MonoBehaviour:
   - {fileID: 8320765455324247017, guid: 7736daa63fd7cb34898598575d9d4f73, type: 3}
   - {fileID: 8320765455324247017, guid: 7736daa63fd7cb34898598575d9d4f73, type: 3}
   wishToys: []
+  animators:
+  - {fileID: 103837383}
+  - {fileID: 1776398443}
+  - {fileID: 335349368}
+  animationPlayed: 000000
 --- !u!4 &490161322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 54212656, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
@@ -1349,6 +1366,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab55209015823744ab963ec39b23f1b, type: 3}
+--- !u!95 &1776398443 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 31244975, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1863162042 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114886620253106704, guid: c1dcf163cef0f134b84f9e16841e4308,

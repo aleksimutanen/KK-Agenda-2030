@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuGameManager : MonoBehaviour
-{
+public class MenuGameManager : MonoBehaviour {
 
-    public List <GameObject> availableWishToys;
-    public List <Transform> wishToyPos;
+    public List<GameObject> availableWishToys;
+    public List<Transform> wishToyPos;
 
 
     public List<GameObject> draggableToys;
@@ -14,8 +13,11 @@ public class MenuGameManager : MonoBehaviour
     public List<GameObject> fillerToys;
     public List<GameObject> wishToys;
 
-    void Start()
-    {
+    public List<Animator> animators;
+    public List<bool> animationPlayed;
+    string animationName;
+
+    void Start() {
         //var wishToys = new List<GameObject>();
         // WishToy arvonta
         for (int i = 0; i < 3; i++) {
@@ -30,7 +32,7 @@ public class MenuGameManager : MonoBehaviour
             var child = wishToy.transform.Find("Sprite").transform.localPosition = new Vector3(0, 0.3f, 0);
             wishToys.Add(wishToy);
             availableWishToys.RemoveAt(rndToy);
-            
+
         }
 
         var spawnToys = new List<GameObject>(wishToys);
@@ -83,6 +85,33 @@ public class MenuGameManager : MonoBehaviour
         return
             spawnToys[0] != wishToys[0] && spawnToys[1] != wishToys[0] &&
             spawnToys[2] != wishToys[1] && spawnToys[3] != wishToys[1] &&
-            spawnToys[4] != wishToys[2] && spawnToys[4] != wishToys[2];
+            spawnToys[4] != wishToys[2] && spawnToys[5] != wishToys[2];
+    }
+
+    public void WishToyCheck() {
+        for (int i = 0; i < 3; i++) {
+            var toy1 = wishToys[i].GetComponent<ToyID>().ID;
+            bool toy1found = FindToyByID(i * 2, toy1) || FindToyByID(i * 2 + 1, toy1);
+
+            if (toy1found && !animationPlayed[i]) {
+                animationPlayed[i] = true;
+                animationName = animators[i].gameObject.GetComponent<ClickAnimals>().animationName;
+                animators[i].Play(animationName);
+            }
+        }
+    }
+
+    bool FindToyByID(int pointIndx, int ID) {
+        var colliders = Physics.OverlapSphere(dragToySPts[pointIndx].position, 1f);
+        foreach (var c in colliders) {
+            var id = c.GetComponent<ToyID>();
+            if (id && id.ID == ID) {
+                c.GetComponent<BoxCollider>().enabled = !enabled;
+
+                // play sound here?
+                return true;
+            }
+        }
+        return false;
     }
 }

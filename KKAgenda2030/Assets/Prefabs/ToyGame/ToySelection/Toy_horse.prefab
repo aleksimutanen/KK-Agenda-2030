@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 639965317774589370}
   m_Layer: 0
   m_Name: Toy_horse
-  m_TagString: Untagged
+  m_TagString: DragToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sLock: {fileID: 0}
-  dragging: 0
 --- !u!54 &639965317774589370
 Rigidbody:
   m_ObjectHideFlags: 0

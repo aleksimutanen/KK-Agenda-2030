@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class DragToys : MonoBehaviour {
 
@@ -38,34 +39,27 @@ public class DragToys : MonoBehaviour {
 
     public void OnMouseUp() {
         //var mask = LayerMask.GetMask(new string[] { "Ignore Raycast" });
-        var colliders = Physics.OverlapSphere(transform.position, 1f, 1 << 2 /*bittishift*/);
-        if (colliders.Length == 0) {
+        var colliders = Physics.OverlapSphere(transform.position, 1f/*1 << 2 /*bittishift*/);
+        //var dragToys = new List<GameObject>();
+        //foreach (var item in colliders) {
+        //    if (item.tag == "DragToy") {
+        //        dragToys.Add(item.gameObject);
+        //    }
+        //}
+
+        // Lista löydettyjä muita leluja(collidereita) overlapin alueelta, sama kuin yllä foreach
+        var dragToys = new List<GameObject>(colliders.Where(c => c.tag == "DragToy" && c.gameObject != gameObject).Select(c => c.gameObject));
+        if (dragToys.Count == 0) {
             transform.position = startPos;
         } else {
-            // TODO valitse lähin collider
-            transform.position = colliders[0].transform.position;
+            transform.position = dragToys[0].transform.position;
+            dragToys[0].transform.position = startPos;
         }
-        // Toyswap nextinä
+
+        mgm.WishToyCheck();
         dragging = false;
+
         sLock.vertical = enabled;
-
-
-    }
-
-    //private void OnTriggerStay(Collider other) {
-    //    if (!dragging) {
-    //        transform.position = other.transform.position;
-    //        WishToyCheck();
-    //        //ToySwap();
-    //        //gameobject check mikä lelu on nyt kohdalla vrt wishtoy
-    //    }
-    //}
-
-    void WishToyCheck() {
-        var toyID = GetComponent<ToyID>().ID;
-        for (int i = 0; i < mgm.wishToys.Count; i++) {
-
-        }
     }
 }
 
