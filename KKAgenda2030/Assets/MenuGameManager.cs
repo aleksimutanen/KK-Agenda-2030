@@ -121,7 +121,15 @@ public class MenuGameManager : MonoBehaviour {
         if (!animationPlayed.Contains(false)) {
             // DO SUMTHING
 
+            for (int i = 0; i < speechBubbles.Count; i++) {
+                speechBubbles[i].SetActive(false);
+            }
 
+            for (int j = 0; j < animators.Count; j++) {
+                animationName = animators[j].gameObject.GetComponent<ClickAnimals>().animationName;
+                animators[j].Play(animationName);
+                //maybe longer animations for final "dance"?
+            }
             // Reset booleans
             for (int i = 0; i < animationPlayed.Count; i++) {
                 animationPlayed[i] = false;
