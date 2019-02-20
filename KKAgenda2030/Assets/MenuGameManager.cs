@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MenuGameManager : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class MenuGameManager : MonoBehaviour {
     public List<Transform> dragToySPts;
     public List<GameObject> fillerToys;
     public List<GameObject> wishToys;
+    public List<GameObject> speechBubbles;
 
     public List<Animator> animators;
     public List<bool> animationPlayed;
@@ -107,11 +109,26 @@ public class MenuGameManager : MonoBehaviour {
             var id = c.GetComponent<ToyID>();
             if (id && id.ID == ID) {
                 c.GetComponent<BoxCollider>().enabled = !enabled;
-
+                c.GetComponentInChildren<ParticleSystem>().Play();
                 // play sound here?
                 return true;
             }
         }
         return false;
+    }
+
+    private void Update() {
+        if (!animationPlayed.Contains(false)) {
+            // DO SUMTHING
+
+
+            // Reset booleans
+            for (int i = 0; i < animationPlayed.Count; i++) {
+                animationPlayed[i] = false;
+            }
+
+            // another option
+            //animationPlayed.ConvertAll(x => false);
+        }
     }
 }
