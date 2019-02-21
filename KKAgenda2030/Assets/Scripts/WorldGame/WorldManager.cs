@@ -25,6 +25,7 @@ public class WorldManager : MonoBehaviour
         var pos = Random.Range(0, decPos.Length);
 
         var decs = Instantiate(decals[dec], decPos[pos].position, decPos[pos].rotation);
+        
         print("Spawnaus oli" + dec);
     }
 }
