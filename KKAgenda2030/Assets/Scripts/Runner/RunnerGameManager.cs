@@ -11,10 +11,14 @@ public class RunnerGameManager : MonoBehaviour {
 
 
     // Game logic
+    [SerializeField] int levelIndex;
+
     [SerializeField] List<TimerType> timerTypes = new List<TimerType>();
     [SerializeField] List<float> scoreTimers = new List<float>();
 
-    public float timerLength;
+    [Range(1f,5f)]public float uiScoreSliderAnimationTime;
+
+    [SerializeField] GameObject[] levels;
 
     [SerializeField] float gainSmallScore;
     [SerializeField] float gainBigScore;
@@ -38,11 +42,17 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] Color hitCollectableColor;
 
     //
+
+    RunnerController character;
+    Vector3 mapStartPos;
+
     void Start() {
         if (instance)
             Debug.LogError("2+ RunnerManagers found!");
         instance = this;
         maxLives = livesLeft;
+        character = FindObjectOfType<RunnerController>();
+        levelIndex = 0;
     }
 
     void Update() {
@@ -54,13 +64,13 @@ public class RunnerGameManager : MonoBehaviour {
                 timerTypes.RemoveAt(i);
             } else {
                 if (timerTypes[i] == TimerType.LoseSmall)
-                    LoseScore(loseSmallScore / timerLength);
+                    LoseScore(loseSmallScore / uiScoreSliderAnimationTime);
                 else if (timerTypes[i] == TimerType.LoseBig)
-                    LoseScore(loseBigScore / timerLength);
+                    LoseScore(loseBigScore / uiScoreSliderAnimationTime);
                 else if (timerTypes[i] == TimerType.GainSmall)
-                    GainScore(gainSmallScore / timerLength);
+                    GainScore(gainSmallScore / uiScoreSliderAnimationTime);
                 else if (timerTypes[i] == TimerType.GainBig)
-                    GainScore(gainBigScore / timerLength);
+                    GainScore(gainBigScore / uiScoreSliderAnimationTime);
                 i++;
             }
         }
@@ -71,7 +81,7 @@ public class RunnerGameManager : MonoBehaviour {
             Debug.LogError("Wrong type used in collectable");
             return;
         }
-        scoreTimers.Add(timerLength);
+        scoreTimers.Add(uiScoreSliderAnimationTime);
         timerTypes.Add(type);
         StartCoroutine(HitGameObject(sliderFillColor, hitCollectableColor));
     }
@@ -81,7 +91,7 @@ public class RunnerGameManager : MonoBehaviour {
             Debug.LogError("Wrong type used in avoidable");
             return;
         }
-        scoreTimers.Add(timerLength);
+        scoreTimers.Add(uiScoreSliderAnimationTime);
         timerTypes.Add(type);
         StartCoroutine(HitGameObject(sliderFillColor, hitAvoidableColor));
     }
@@ -95,7 +105,9 @@ public class RunnerGameManager : MonoBehaviour {
     }
 
     public IEnumerator HitGameObject(Color currentColor, Color newColor) {
-        float fillTime = timerLength;
+        //modify scoreslider
+
+        float fillTime = uiScoreSliderAnimationTime;
         float t = 0f;
         float fillSpeed = 1 / fillTime;
 
@@ -111,11 +123,18 @@ public class RunnerGameManager : MonoBehaviour {
         sliderFill.color = Color.white;
     }
 
+    public void RestartLevel() {
+        //character.transform.position = charStartPos;
+        GameObject levelClone = Instantiate(levels[levelIndex], Vector3.zero, transform.rotation);
+        Destroy(levels[levelIndex]);
+        levels[levelIndex] = levelClone;
+    }
+
     public void LoseLife() {
         livesLeft--;
         livesLeftText.text = livesLeft + " / " + maxLives;
         if (livesLeft == 0) {
-
+            RestartLevel();
         }
     }
 }
