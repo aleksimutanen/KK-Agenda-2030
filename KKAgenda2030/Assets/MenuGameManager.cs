@@ -19,6 +19,9 @@ public class MenuGameManager : MonoBehaviour {
     public List<bool> animationPlayed;
     string animationName;
 
+
+    public ParticleSystem victoryParticles;
+
     void Start() {
         //var wishToys = new List<GameObject>();
         // WishToy arvonta
@@ -50,8 +53,7 @@ public class MenuGameManager : MonoBehaviour {
             var draggableToy = Instantiate(draggablePrefab, dragToySPts[i].position, Quaternion.identity);
             draggableToy.transform.parent = dragToySPts[i].transform;
         }
-
-
+       
         // DragToy arvonta
         //for (int i = 0; i < wishToys.Count; i++) {
         //    //spawnataan varsinainen draggable lelu, niin että ei ole wishToyn kanssa sama positio / luku.
@@ -73,6 +75,7 @@ public class MenuGameManager : MonoBehaviour {
         //    draggableToy.transform.parent = dragToySPts[i].transform;
         //}
     }
+
     // Fisher-Yates algo
     void Shuffle(List<GameObject> l) {
         for (int j = 0; j < l.Count; j++) {
@@ -99,6 +102,7 @@ public class MenuGameManager : MonoBehaviour {
                 animationPlayed[i] = true;
                 animationName = animators[i].gameObject.GetComponent<ClickAnimals>().animationName;
                 animators[i].Play(animationName);
+                
             }
         }
     }
@@ -110,6 +114,7 @@ public class MenuGameManager : MonoBehaviour {
             if (id && id.ID == ID) {
                 c.GetComponent<BoxCollider>().enabled = !enabled;
                 c.GetComponentInChildren<ParticleSystem>().Play();
+                c.transform.Find("Halo").gameObject.SetActive(true);
                 // play sound here?
                 return true;
             }
@@ -129,13 +134,17 @@ public class MenuGameManager : MonoBehaviour {
                 animationName = animators[j].gameObject.GetComponent<ClickAnimals>().animationName;
                 animators[j].Play(animationName);
                 //maybe longer animations for final "dance"?
+
             }
+
+            victoryParticles.Play();
+
             // Reset booleans
             for (int i = 0; i < animationPlayed.Count; i++) {
                 animationPlayed[i] = false;
             }
 
-            // another option
+            // another option for reset
             //animationPlayed.ConvertAll(x => false);
         }
     }

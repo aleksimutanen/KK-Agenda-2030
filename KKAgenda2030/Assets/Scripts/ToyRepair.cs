@@ -12,6 +12,8 @@ public class ToyRepair : MonoBehaviour
     public List<GameObject> goalPoints;
     public float speed;
 
+    public Animator animator;
+
     private void Start()
     {
         goalPoint = GameObject.FindGameObjectWithTag("GoalPoint");
@@ -130,11 +132,16 @@ public class ToyRepair : MonoBehaviour
 
                 endPoints.RemoveAt(8);
             }
-
         }
-                                  
-        
     }
+ 
+
+    //private void Update() {
+    //if (Vector3.Distance(transform.position, goalPoints[0].transform.position) <= 0) {
+    //        print("snapped");
+    //        animator.Play("New State");
+    //    }
+    //}
 
 
     private void OnTriggerEnter(Collider other)
@@ -144,14 +151,15 @@ public class ToyRepair : MonoBehaviour
         {
             int i = 0;
             gameObject.GetComponent<Collider>().enabled = false;
-            while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f)
-            {
+            while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f) {
                 var newPos = Vector3.MoveTowards(transform.position, goalPoints[i].gameObject.transform.position, speed * Time.deltaTime);
                 transform.position = newPos;
             }
             if (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) <= 0.01f)
             {
                 gameObject.GetComponent<Collider>().enabled = true;
+                animator.Play("New State");
+                //tRM.toysInPlace++;
 
             }
         }
