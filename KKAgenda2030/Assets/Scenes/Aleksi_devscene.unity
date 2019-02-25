@@ -5406,9 +5406,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7a7e65c8065e14388f537de8a613eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelIndex: 0
   timerTypes: 
   scoreTimers: []
-  timerLength: 1.01
+  uiScoreSliderAnimationTime: 1
+  levels:
+  - {fileID: 1948538729}
   gainSmallScore: 10
   gainBigScore: 10
   loseSmallScore: 5
@@ -8219,7 +8222,7 @@ GameObject:
   - component: {fileID: 1948538731}
   - component: {fileID: 1948538732}
   m_Layer: 0
-  m_Name: Map
+  m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
