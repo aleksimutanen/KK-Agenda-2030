@@ -22,7 +22,7 @@ public class DragToys : MonoBehaviour {
     }
 
     public void OnMouseDown() {
-        //startPos talteen Swappia varten?
+        //startPos talteen Swappia varten
         startPos = transform.position;
         dragging = true;
         sLock.vertical = !enabled;

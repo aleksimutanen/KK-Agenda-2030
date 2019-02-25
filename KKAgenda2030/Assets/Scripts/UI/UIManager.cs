@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour {
 
     public void LaunchTrashGame() {
         GrandManager.instance.LaunchTrashGame();
-        DisableMenuButtons();
+        //DisableMenuButtons();
     }
 
     public void DisableMenuButtons() {

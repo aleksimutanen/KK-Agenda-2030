@@ -7,9 +7,9 @@ public class ClickAnimals : MonoBehaviour {
     public Animator animator;
     public string animationName;
 
-    //private void OnMouseDown() {
-    //    animator.Play(animationName);
-    //}
+    private void OnMouseDown() {
+        animator.Play(animationName);
+    }
 
     public void PlayAnim() {
         animator.Play(animationName);

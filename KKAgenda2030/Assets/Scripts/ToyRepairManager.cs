@@ -23,13 +23,13 @@ public class ToyRepairManager : MonoBehaviour
     public bool[] isRepaired;
     int isCollected = 0;
 
-    public int toysInPlace;
-
     public GameObject carSilhuette;
     public GameObject nalleSilhuette;
     public GameObject planeSilhuette;
 
     public Animator lennuAnimator;
+
+    public int toysInPlace;
 
 
     void Awake()
@@ -42,13 +42,6 @@ public class ToyRepairManager : MonoBehaviour
         for (int E = 0; E < spawnPoints.Length; E++)
         {
             Spawn();
-        }
-    }
-
-    private void Update() {
-        if (toysInPlace == 3) {
-            lennuAnimator.Play("Lennu_happy");
-            toysInPlace = 0;
         }
     }
 
