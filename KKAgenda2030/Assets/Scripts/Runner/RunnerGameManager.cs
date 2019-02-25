@@ -16,9 +16,11 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] List<TimerType> timerTypes = new List<TimerType>();
     [SerializeField] List<float> scoreTimers = new List<float>();
 
-    [Range(1f,5f)]public float uiScoreSliderAnimationTime;
+    [Range(0.5f, 5f)] public float uiScoreSliderAnimationTime;
 
+    [SerializeField] GameObject[] levelPrefabs;
     [SerializeField] GameObject[] levels;
+    [SerializeField] GameObject levelFolder;
 
     [SerializeField] float gainSmallScore;
     [SerializeField] float gainBigScore;
@@ -28,6 +30,7 @@ public class RunnerGameManager : MonoBehaviour {
 
     public int livesLeft;
     int maxLives;
+    [SerializeField] int foodCollected;
 
     //
 
@@ -44,7 +47,7 @@ public class RunnerGameManager : MonoBehaviour {
     //
 
     RunnerController character;
-    Vector3 mapStartPos;
+    Vector3 charStartPos;
 
     void Start() {
         if (instance)
@@ -52,7 +55,15 @@ public class RunnerGameManager : MonoBehaviour {
         instance = this;
         maxLives = livesLeft;
         character = FindObjectOfType<RunnerController>();
+        charStartPos = character.transform.position;
         levelIndex = 0;
+        LauchGame();
+    }
+
+    void LauchGame() {
+        GameObject go = Instantiate(levelPrefabs[levelIndex], Vector3.zero, transform.rotation);
+        go.transform.parent = levelFolder.transform;
+        levels[levelIndex] = go;
     }
 
     void Update() {
@@ -73,6 +84,14 @@ public class RunnerGameManager : MonoBehaviour {
                     GainScore(gainBigScore / uiScoreSliderAnimationTime);
                 i++;
             }
+        }
+    }
+
+    public void HitFlower() {
+        foodCollected++;
+        if (foodCollected == 10) {
+            NextLevel();
+            //blah blah
         }
     }
 
@@ -114,7 +133,7 @@ public class RunnerGameManager : MonoBehaviour {
         while (t <= 1) {
             t += fillSpeed * Time.deltaTime;
             var curvedT = fillColor.Evaluate(t);
-            print(curvedT);
+            //print(curvedT);
             sliderFill.color = Color.Lerp(currentColor, newColor, curvedT);
             yield return null;
             //foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, ateTrashColor, curvedT);
@@ -123,19 +142,44 @@ public class RunnerGameManager : MonoBehaviour {
         sliderFill.color = Color.white;
     }
 
+    public void NextLevel() {
+        levelIndex++;
+        Destroy(levels[levelIndex - 1]);
+        levels[levelIndex].SetActive(true);
+        scoreSlider.value = 0f;
+    }
+
     public void RestartLevel() {
-        //character.transform.position = charStartPos;
-        GameObject levelClone = Instantiate(levels[levelIndex], Vector3.zero, transform.rotation);
+        //destroy and spawn map for current level
+        GameObject levelClone = Instantiate(levelPrefabs[levelIndex], Vector3.zero, transform.rotation);
         Destroy(levels[levelIndex]);
         levels[levelIndex] = levelClone;
+        levels[levelIndex].transform.parent = levelFolder.transform;
+
+        //reset lives, UI and character position
+        livesLeft = maxLives;
+        livesLeftText.text = livesLeft + " / " + maxLives;
+        scoreSlider.value = 0f;
+        foodCollected = 0;
+
+        //character.transform.position = charStartPos;
+        //character.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        character.ResetCharacter();
     }
 
     public void LoseLife() {
         livesLeft--;
         livesLeftText.text = livesLeft + " / " + maxLives;
         if (livesLeft == 0) {
-            RestartLevel();
+            StartCoroutine("LevelTransition");
         }
+    }
+
+    IEnumerator LevelTransition() {
+        FindObjectOfType<Map>().tfSpeed = 0f;
+        yield return new WaitForSeconds(2f);
+        RestartLevel();
+        FindObjectOfType<Map>().tfSpeed = 1.5f;
     }
 }
 
