@@ -58,8 +58,9 @@ public class DragToys : MonoBehaviour {
 
         mgm.WishToyCheck();
         dragging = false;
-
         sLock.vertical = enabled;
+
+
     }
 }
 

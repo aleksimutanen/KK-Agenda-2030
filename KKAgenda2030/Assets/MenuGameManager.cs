@@ -19,6 +19,7 @@ public class MenuGameManager : MonoBehaviour {
     public List<bool> animationPlayed;
     string animationName;
 
+
     public ParticleSystem victoryParticles;
 
     void Start() {
@@ -101,6 +102,7 @@ public class MenuGameManager : MonoBehaviour {
                 animationPlayed[i] = true;
                 animationName = animators[i].gameObject.GetComponent<ClickAnimals>().animationName;
                 animators[i].Play(animationName);
+                
             }
         }
     }
@@ -112,6 +114,7 @@ public class MenuGameManager : MonoBehaviour {
             if (id && id.ID == ID) {
                 c.GetComponent<BoxCollider>().enabled = !enabled;
                 c.GetComponentInChildren<ParticleSystem>().Play();
+                c.transform.Find("Halo").gameObject.SetActive(true);
                 // play sound here?
                 return true;
             }
