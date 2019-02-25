@@ -13,6 +13,7 @@ public class ToyRepair : MonoBehaviour
     public float speed;
 
     public Animator animator;
+    bool dragging;
 
     private void Start()
     {
@@ -134,34 +135,46 @@ public class ToyRepair : MonoBehaviour
             }
         }
     }
- 
 
-    //private void Update() {
-    //if (Vector3.Distance(transform.position, goalPoints[0].transform.position) <= 0) {
-    //        print("snapped");
-    //        animator.Play("New State");
-    //    }
-    //}
+    private void OnMouseDown() {
+        dragging = true;
+    }
+
+    private void OnMouseUp() {
+        dragging = false;
+    }
 
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
-
-        if (other.gameObject.tag == "RepairCube")
+        if (other.gameObject.tag == "RepairCube" && !dragging)
         {
-            int i = 0;
+            transform.position = goalPoints[0].transform.position;
             gameObject.GetComponent<Collider>().enabled = false;
-            while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f) {
-                var newPos = Vector3.MoveTowards(transform.position, goalPoints[i].gameObject.transform.position, speed * Time.deltaTime);
-                transform.position = newPos;
-            }
-            if (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) <= 0.01f)
-            {
-                gameObject.GetComponent<Collider>().enabled = true;
-                animator.Play("New State");
-                //tRM.toysInPlace++;
+            animator.Play("New State");
+            gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            tRM.toysInPlace++;
 
-            }
+            //int i = 0;
+            //gameObject.GetComponent<Collider>().enabled = false;
+            //while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f) {
+            //    var newPos = Vector3.MoveTowards(transform.position, goalPoints[i].gameObject.transform.position, speed * Time.deltaTime);
+            //    transform.position = newPos;
+            //}
+            //if (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) <= 0.01f)
+            //{
+            //    gameObject.GetComponent<Collider>().enabled = true;
+            //    animator.Play("New State");
+            //    ToyPosCheck();
+            //    //tRM.toysInPlace++;
+
+            //}
         }
+    }
+
+    void ToyPosCheck() {
+                print("snapped");
+                //animator.Play("New State");
     }
 }
