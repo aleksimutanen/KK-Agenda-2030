@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Pages { Cover, Sea, Earth };
+public enum Pages { Cover, Sea, Earth, Bee };
 
 public class PageTurner : MonoBehaviour {
 
@@ -21,8 +21,11 @@ public class PageTurner : MonoBehaviour {
     PersistentData pd;
     public GameObject pdPrefab;
 
+    public List<Image> rightArrows;
+    public List<Image> leftArrows;
 
-    void Start () {
+
+    void Awake () {
 
         pd = FindObjectOfType<PersistentData>();
         if (pd == null) {
@@ -74,6 +77,7 @@ public class PageTurner : MonoBehaviour {
             foreach (Button b in buttons) b.interactable = true;
             if (pageIndex == 0) previousPageButton.SetActive(false);
             page = Pages.Cover + pageIndex;
+            ButtonToggle();
         }
     }
 
@@ -100,6 +104,19 @@ public class PageTurner : MonoBehaviour {
             foreach (Button b in buttons) b.interactable = true;
             if (pageIndex == pages.Length - 1) nextPageButton.SetActive(false);
             page = Pages.Cover + pageIndex;
+            ButtonToggle();
         }
     }
+
+    void ButtonToggle() {
+        foreach (var item in rightArrows) {
+            item.gameObject.SetActive(false);
+        }
+        rightArrows[pageIndex].gameObject.SetActive(true);
+        foreach (var item in leftArrows) {
+            item.gameObject.SetActive(false);
+        }
+        leftArrows[pageIndex].gameObject.SetActive(true);
+    }
+
 }
