@@ -123,6 +123,13 @@ public class MenuGameManager : MonoBehaviour {
     }
 
     private void Update() {
+        //if (Input.GetKeyDown(KeyCode.Space)) {
+        //    // Reset somehow?
+        //    availableWishToys.Clear();
+        //    wishToys.Clear();
+        //    Start();
+        //}
+
         if (!animationPlayed.Contains(false)) {
             // DO SUMTHING
 

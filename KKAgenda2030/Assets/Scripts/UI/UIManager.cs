@@ -94,6 +94,17 @@ public class UIManager : MonoBehaviour {
         foreach (Button b in menuButtons) b.interactable = true;
     }
 
+    public void ReloadRunnerGame() {
+        StartCoroutine("ReloadRunnerGameFade");
+    }
+
+    IEnumerator ReloadRunnerGameFade() {
+        //moromoro
+        RunnerGameManager.instance.RestartLevel();
+        PauseButton();
+        yield return null;
+    }
+
     public void ReloadOceanGameLevel() {
         //OceanGameManager.instance.ReloadLevel();
         //PauseButton();

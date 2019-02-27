@@ -16,10 +16,12 @@ public class RunnerController : MonoBehaviour {
     [SerializeField] LayerMask background;
 
     Rigidbody rb;
+    Vector3 charStartPos;
 
     float tfSpeed = 1.5f;
 
     void Start() {
+        charStartPos = transform.position;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -111,7 +113,12 @@ public class RunnerController : MonoBehaviour {
         //Camera.main.transform.position = camPos;
     }
 
-    
+    public void ResetCharacter() {
+        rb.velocity = Vector3.zero;
+        transform.position = charStartPos;
+        speedFactor = 0f;
+    }
+
 }
 
 

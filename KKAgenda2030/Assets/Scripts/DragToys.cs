@@ -10,14 +10,14 @@ public class DragToys : MonoBehaviour {
     float posX;
     float posY;
     public ScrollRect sLock;
-    GameObject EarthGO;
+    GameObject lennuScrollRect;
     bool dragging;
     MenuGameManager mgm;
     Vector3 startPos;
 
     private void Start() {
-        EarthGO = GameObject.Find("Earth");
-        sLock = EarthGO.GetComponent<ScrollRect>();
+        lennuScrollRect = GameObject.Find("Page1_Lennu");
+        sLock = lennuScrollRect.GetComponent<ScrollRect>();
         mgm = FindObjectOfType<MenuGameManager>();
     }
 
