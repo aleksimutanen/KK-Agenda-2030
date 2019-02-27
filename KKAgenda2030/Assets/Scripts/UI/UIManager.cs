@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour {
     public void LaunchOceanGame() {
         //GrandManager.instance.LaunchOceanGame();
         GrandManager.instance.StartCoroutine("LaunchOceanGame");
-        DisableMenuButtons();
+        //DisableMenuButtons();
     }
 
     public void LaunchTrashGame() {

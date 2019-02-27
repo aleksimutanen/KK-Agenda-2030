@@ -108,7 +108,7 @@ public class GrandManager : MonoBehaviour {
         activeScene = mainMenu;
         activeScene.SetActive(true);
         scene = SceneActive.Menu;
-        FindObjectOfType<UIManager>().EnableMenuButtons();
+        //FindObjectOfType<UIManager>().EnableMenuButtons();
         //optionsButton.SetActive(true);
         //previousPageButton.SetActive(true);
         //nextPageButton.SetActive(true);
