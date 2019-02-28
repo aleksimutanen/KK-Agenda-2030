@@ -102,6 +102,11 @@ public class GrandManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LaunchBeeGame() {
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
+        SceneManager.LoadScene("Aleksi_devscene");
+    }
+
     public void BackToMainMenu() {
         previousScene = activeScene;
         previousScene.SetActive(false);
