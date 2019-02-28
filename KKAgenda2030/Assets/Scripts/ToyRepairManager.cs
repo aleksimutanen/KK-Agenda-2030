@@ -29,6 +29,7 @@ public class ToyRepairManager : MonoBehaviour {
     public Animator lennuAnimator;
 
     public int toysInPlace;
+    public bool haloVisible;
 
 
     void Awake() {

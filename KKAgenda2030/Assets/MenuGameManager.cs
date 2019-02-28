@@ -22,11 +22,14 @@ public class MenuGameManager : MonoBehaviour {
     public List<GameObject> destroyableToys;
 
     public ParticleSystem victoryParticles;
+    public bool animalsClickable;
 
     void Start() {
         if (Time.timeScale != 1) {
             Time.timeScale = 1;
         }
+        animalsClickable = false;
+
         //var wishToys = new List<GameObject>();
         // WishToy arvonta
         var wishToyPrefabsInUse = new List<GameObject>();
@@ -109,7 +112,7 @@ public class MenuGameManager : MonoBehaviour {
 
             if (toy1found && !animationPlayed[i]) {
                 animationPlayed[i] = true;
-                animationName = animators[i].gameObject.GetComponent<ClickAnimals>().animationName;
+                animationName = animators[i].gameObject.GetComponent<ClickAnimals>().happyAnimation;
                 animators[i].Play(animationName);
             }
         }
@@ -155,13 +158,14 @@ public class MenuGameManager : MonoBehaviour {
 
         if (!animationPlayed.Contains(false)) {
             // DO SUMTHING
+            animalsClickable = true;
 
             for (int i = 0; i < speechBubbles.Count; i++) {
                 speechBubbles[i].SetActive(false);
             }
 
             for (int j = 0; j < animators.Count; j++) {
-                animationName = animators[j].gameObject.GetComponent<ClickAnimals>().animationName;
+                animationName = animators[j].gameObject.GetComponent<ClickAnimals>().happyAnimation;
                 animators[j].Play(animationName);
                 //maybe longer animations for final "dance"?
             }

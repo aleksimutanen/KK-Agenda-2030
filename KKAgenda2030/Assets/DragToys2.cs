@@ -10,7 +10,7 @@ public class DragToys2 : MonoBehaviour {
     float posY;
     public ScrollRect sLock;
     GameObject lennuScrollRect;
-    bool dragging;
+    public bool dragging;
 
 
     private void Start() {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Pages { Cover, Sea, Earth, Bee };
+public enum Pages { CoverPage, Page1, Page2, Page3 };
 
 public class PageTurner : MonoBehaviour {
 
@@ -76,7 +76,7 @@ public class PageTurner : MonoBehaviour {
             pageIndex--;
             foreach (Button b in buttons) b.interactable = true;
             if (pageIndex == 0) previousPageButton.SetActive(false);
-            page = Pages.Cover + pageIndex;
+            page = Pages.CoverPage + pageIndex;
             ButtonToggle();
         }
     }
@@ -103,7 +103,7 @@ public class PageTurner : MonoBehaviour {
             pageIndex++;
             foreach (Button b in buttons) b.interactable = true;
             if (pageIndex == pages.Length - 1) nextPageButton.SetActive(false);
-            page = Pages.Cover + pageIndex;
+            page = Pages.CoverPage + pageIndex;
             ButtonToggle();
         }
     }
