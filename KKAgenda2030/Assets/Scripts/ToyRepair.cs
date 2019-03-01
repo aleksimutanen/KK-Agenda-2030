@@ -19,6 +19,7 @@ public class ToyRepair : MonoBehaviour {
         dt2 = GetComponent<DragToys2>();
         gameObject.SetActive(true);
         searchingOfGoalPoints();
+        animator.Play("ToyPartFloat");
     }
 
 
@@ -104,7 +105,7 @@ public class ToyRepair : MonoBehaviour {
         if (other.gameObject.tag == "RepairCube" && !dt2.dragging) {
             transform.position = goalPoints[0].transform.position;
             gameObject.GetComponent<Collider>().enabled = false;
-            animator.Play("New State");
+            animator.Play("EndNoFloat");
             gameObject.GetComponentInChildren<ParticleSystem>().Play();
             tRM.toysInPlace++;
         }

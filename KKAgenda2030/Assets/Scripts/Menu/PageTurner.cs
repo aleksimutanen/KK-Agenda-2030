@@ -78,6 +78,7 @@ public class PageTurner : MonoBehaviour {
             if (pageIndex == 0) previousPageButton.SetActive(false);
             page = Pages.CoverPage + pageIndex;
             ButtonToggle();
+
         }
     }
 
@@ -96,7 +97,7 @@ public class PageTurner : MonoBehaviour {
             pageContent[pageIndex + 1].GetComponent<RectTransform>().localPosition = pos;
 
             pages[pageIndex].GetComponent<Animator>().Play("Page");
-
+            
             yield return new WaitForSeconds(0.5f);
 
             pages[pageIndex].SetActive(false);
