@@ -7,22 +7,30 @@ public class decalsSprites : MonoBehaviour
 
    private WorldManager wGM;
 
-    private void Start()
+    void Start()
     {
-        wGM = GetComponent<WorldManager>();
+       
+        wGM = FindObjectOfType<WorldManager>();
     }
 
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(UnityEngine.Collision hit)
     {
-       if (other.gameObject.tag == "Decal")
+        if (hit.gameObject.tag == "Decal")        
         {
-            wGM.decalsSpawn();
+            print("osuu " + hit.gameObject.name);
 
-            print("Uusi spawni");
-
+            wGM.decals.Add(hit.gameObject);
+            print("Lisätty listaan " + hit.gameObject.name);
+           
         }
 
+        int i = 0;
+        if(wGM.decals.Count > i)
+        {
+            wGM.decalsSpawn();
+            print("installoidaan " + hit.gameObject.name);
+        }
     }
 
 }
