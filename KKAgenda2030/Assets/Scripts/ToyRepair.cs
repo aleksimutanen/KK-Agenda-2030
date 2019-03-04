@@ -2,34 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToyRepair : MonoBehaviour
-{
+public class ToyRepair : MonoBehaviour {
 
     ToyRepairManager tRM;
     public GameObject goalPoint;
     public List<GameObject> endPoints;
-   
+
     public List<GameObject> goalPoints;
-    public float speed;
 
     public Animator animator;
-    bool dragging;
+    DragToys2 dt2;
 
-    private void Start()
-    {
+    private void Start() {
         goalPoint = GameObject.FindGameObjectWithTag("GoalPoint");
-       
-        gameObject.SetActive(true);
         tRM = GameObject.FindObjectOfType<ToyRepairManager>();
-
+        dt2 = GetComponent<DragToys2>();
+        gameObject.SetActive(true);
         searchingOfGoalPoints();
-
+        animator.Play("ToyPartFloat");
     }
 
 
 
-    public void searchingOfGoalPoints()
-    {
+    public void searchingOfGoalPoints() {
         // Haetaan maali pisteet.
         GameObject point1 = GameObject.FindWithTag("Top");
         GameObject point2 = GameObject.FindWithTag("Mid");
@@ -58,123 +53,61 @@ public class ToyRepair : MonoBehaviour
 
         var ep = Random.Range(0, endPoints.Count);
 
-        if (endPoints.Count > 0 )
-        {
-            if(gameObject.name == "Car_body(Clone)")
-            {
-               
+        if (endPoints.Count > 0) {
+            if (gameObject.name == "Car_body(Clone)") {
                 goalPoints.Add(endPoints[0]);
-
                 endPoints.RemoveAt(0);
             }
 
-            if (gameObject.name == "Car_tyreF(Clone)")
-            {
-
+            if (gameObject.name == "Car_tyreF(Clone)") {
                 goalPoints.Add(endPoints[1]);
-
                 endPoints.RemoveAt(1);
             }
 
-            if (gameObject.name == "Car_tyreB(Clone)")
-            {
-
+            if (gameObject.name == "Car_tyreB(Clone)") {
                 goalPoints.Add(endPoints[2]);
-
                 endPoints.RemoveAt(2);
             }
 
-            if (gameObject.name == "BearToy1(Clone)")
-            {
-
+            if (gameObject.name == "BearToy1(Clone)") {
                 goalPoints.Add(endPoints[3]);
-
                 endPoints.RemoveAt(3);
             }
 
-            if (gameObject.name == "BearToy2(Clone)")
-            {
-
+            if (gameObject.name == "BearToy2(Clone)") {
                 goalPoints.Add(endPoints[4]);
-
                 endPoints.RemoveAt(4);
             }
 
-            if (gameObject.name == "BearToy3(Clone)")
-            {
-
+            if (gameObject.name == "BearToy3(Clone)") {
                 goalPoints.Add(endPoints[5]);
-
                 endPoints.RemoveAt(5);
             }
 
-           
-
-            if (gameObject.name == "PlaneToy1(Clone)")
-            {
-
+            if (gameObject.name == "PlaneToy1(Clone)") {
                 goalPoints.Add(endPoints[6]);
-
                 endPoints.RemoveAt(6);
             }
 
-            if (gameObject.name == "PlaneToy2(Clone)")
-            {
-
+            if (gameObject.name == "PlaneToy2(Clone)") {
                 goalPoints.Add(endPoints[7]);
-
                 endPoints.RemoveAt(7);
             }
 
-            if (gameObject.name == "PlaneToy3(Clone)")
-            {
-
+            if (gameObject.name == "PlaneToy3(Clone)") {
                 goalPoints.Add(endPoints[8]);
-
                 endPoints.RemoveAt(8);
             }
         }
     }
 
-    private void OnMouseDown() {
-        dragging = true;
-    }
-
-    private void OnMouseUp() {
-        dragging = false;
-    }
-
-
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "RepairCube" && !dragging)
-        {
+    private void OnTriggerStay(Collider other) {
+        if (other.gameObject.tag == "RepairCube" && !dt2.dragging) {
             transform.position = goalPoints[0].transform.position;
             gameObject.GetComponent<Collider>().enabled = false;
-            animator.Play("New State");
+            animator.Play("EndNoFloat");
             gameObject.GetComponentInChildren<ParticleSystem>().Play();
             tRM.toysInPlace++;
-
-            //int i = 0;
-            //gameObject.GetComponent<Collider>().enabled = false;
-            //while (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) > 0.01f) {
-            //    var newPos = Vector3.MoveTowards(transform.position, goalPoints[i].gameObject.transform.position, speed * Time.deltaTime);
-            //    transform.position = newPos;
-            //}
-            //if (Vector3.Distance(transform.position, goalPoints[i].gameObject.transform.position) <= 0.01f)
-            //{
-            //    gameObject.GetComponent<Collider>().enabled = true;
-            //    animator.Play("New State");
-            //    ToyPosCheck();
-            //    //tRM.toysInPlace++;
-
-            //}
         }
-    }
-
-    void ToyPosCheck() {
-                print("snapped");
-                //animator.Play("New State");
     }
 }

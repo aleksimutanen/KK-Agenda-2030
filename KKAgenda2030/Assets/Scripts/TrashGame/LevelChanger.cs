@@ -8,6 +8,7 @@ public class LevelChanger : MonoBehaviour {
     TrashGameManager TGM;
     public Image fakeLoad;
     Scene activeScene;
+    public Animator endFadeAnimator;
 
     private void Awake() {
         TGM = FindObjectOfType<TrashGameManager>();
@@ -26,7 +27,8 @@ public class LevelChanger : MonoBehaviour {
     public IEnumerator LoadToMenu() {
         yield return new WaitForSeconds(1f);
         TGM.endScoreSlider.gameObject.SetActive(false);
-        yield return new WaitForSeconds(4.6f);
-        SceneManager.LoadScene(0);
+        endFadeAnimator.Play("FadeOut");
+        yield return new WaitForSeconds(1f);
+        //SceneManager.LoadScene(0);
     }
 }

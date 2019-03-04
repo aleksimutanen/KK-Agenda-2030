@@ -73,15 +73,21 @@ public class UIManager : MonoBehaviour {
         star.GetComponent<Animator>().Play("New State");
     }
 
+
+    // GAME LAUNCH FUNCTIONS //
     public void LaunchOceanGame() {
         //GrandManager.instance.LaunchOceanGame();
         GrandManager.instance.StartCoroutine("LaunchOceanGame");
-        DisableMenuButtons();
+        //DisableMenuButtons();
     }
 
     public void LaunchTrashGame() {
         GrandManager.instance.LaunchTrashGame();
         //DisableMenuButtons();
+    }
+
+    public void LaunchBeeGame() {
+        GrandManager.instance.LaunchBeeGame();
     }
 
     public void DisableMenuButtons() {

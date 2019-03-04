@@ -102,13 +102,18 @@ public class GrandManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LaunchBeeGame() {
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
+        SceneManager.LoadScene("Aleksi_devscene");
+    }
+
     public void BackToMainMenu() {
         previousScene = activeScene;
         previousScene.SetActive(false);
         activeScene = mainMenu;
         activeScene.SetActive(true);
         scene = SceneActive.Menu;
-        FindObjectOfType<UIManager>().EnableMenuButtons();
+        //FindObjectOfType<UIManager>().EnableMenuButtons();
         //optionsButton.SetActive(true);
         //previousPageButton.SetActive(true);
         //nextPageButton.SetActive(true);

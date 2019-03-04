@@ -11,6 +11,7 @@ public class HaloToggle : MonoBehaviour
     void Start()
     {
         trm = FindObjectOfType<ToyRepairManager>();
+        trm.haloVisible = false;
     }
 
     void Update()
@@ -18,6 +19,7 @@ public class HaloToggle : MonoBehaviour
         if (trm.toysInPlace == 3) {
             halo.SetActive(true);
             lennuAnimator.Play("Lennu_happy");
+            trm.haloVisible = true;
             trm.toysInPlace = 0;
         }
     }

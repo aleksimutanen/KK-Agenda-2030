@@ -14,9 +14,9 @@ public class MenuInteractive : MonoBehaviour {
     public Transform pike;
     public Transform roach;
 
-    //TRASHGAME
-    public string lennu_show;
-    public GameObject lennuSquirt;
+    //TRASHGAME (Not in use atm)
+    string lennu_show;
+    GameObject lennuSquirt;
 
 
 

@@ -5,14 +5,26 @@ using UnityEngine;
 public class ClickAnimals : MonoBehaviour {
 
     public Animator animator;
-    public string animationName;
+    public string showAnimation;
+    public string happyAnimation;
+    ToyRepairManager TRM;
+    MenuGameManager MGM;
+
+
+    private void Start() {
+        TRM = FindObjectOfType<ToyRepairManager>();
+        MGM = FindObjectOfType<MenuGameManager>();
+    }
 
     private void OnMouseDown() {
-        animator.Play(animationName);
+        if (!TRM.haloVisible) {
+            animator.Play(showAnimation);
+        }
+        if (MGM.animalsClickable) {
+            animator.Play(happyAnimation);
+        }
+        else {
+            animator.Play(happyAnimation);
+        }
     }
-
-    public void PlayAnim() {
-        animator.Play(animationName);
-    }
-
 }

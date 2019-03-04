@@ -19,16 +19,28 @@ public class MenuGameManager : MonoBehaviour {
     public List<bool> animationPlayed;
     string animationName;
 
+    public List<GameObject> destroyableToys;
 
     public ParticleSystem victoryParticles;
+    public bool animalsClickable;
 
     void Start() {
+        if (Time.timeScale != 1) {
+            Time.timeScale = 1;
+        }
+        animalsClickable = false;
+
         //var wishToys = new List<GameObject>();
         // WishToy arvonta
+        var wishToyPrefabsInUse = new List<GameObject>();
         for (int i = 0; i < 3; i++) {
-            var rndToy = Random.Range(0, availableWishToys.Count);
-            //i = Random.Range(0, wishToyPos.Count);
 
+            int rndToy = 0;
+                do {
+                rndToy = Random.Range(0, availableWishToys.Count);
+            } while (wishToyPrefabsInUse.Contains(availableWishToys[rndToy]));
+
+            wishToyPrefabsInUse.Add(availableWishToys[rndToy]);
             var wishToy = Instantiate(availableWishToys[rndToy], wishToyPos[i].position, Quaternion.identity);
             var bc = wishToy.GetComponent<BoxCollider>();
             bc.enabled = !bc.enabled;
@@ -36,8 +48,7 @@ public class MenuGameManager : MonoBehaviour {
 
             var child = wishToy.transform.Find("Sprite").transform.localPosition = new Vector3(0, 0.3f, 0);
             wishToys.Add(wishToy);
-            availableWishToys.RemoveAt(rndToy);
-
+            //availableWishToys.RemoveAt(rndToy);
         }
 
         var spawnToys = new List<GameObject>(wishToys);
@@ -46,12 +57,13 @@ public class MenuGameManager : MonoBehaviour {
             Shuffle(spawnToys);
         } while (!GoodOrder(spawnToys, wishToys));
 
-        // spawn
+        // Spawn
         for (int i = 0; i < spawnToys.Count; i++) {
             var id = spawnToys[i].GetComponent<ToyID>().ID;
             var draggablePrefab = draggableToys.Find(x => x.GetComponent<ToyID>().ID == id);
             var draggableToy = Instantiate(draggablePrefab, dragToySPts[i].position, Quaternion.identity);
             draggableToy.transform.parent = dragToySPts[i].transform;
+            destroyableToys.Add(draggableToy);
         }
        
         // DragToy arvonta
@@ -100,9 +112,8 @@ public class MenuGameManager : MonoBehaviour {
 
             if (toy1found && !animationPlayed[i]) {
                 animationPlayed[i] = true;
-                animationName = animators[i].gameObject.GetComponent<ClickAnimals>().animationName;
+                animationName = animators[i].gameObject.GetComponent<ClickAnimals>().happyAnimation;
                 animators[i].Play(animationName);
-                
             }
         }
     }
@@ -122,26 +133,41 @@ public class MenuGameManager : MonoBehaviour {
         return false;
     }
 
+    void ResetMiniGame() {
+        foreach (var item in wishToys) {
+            Destroy(item);
+        }
+        wishToys.Clear();
+
+        foreach (var item in destroyableToys) {
+            Destroy(item);
+        }
+        destroyableToys.Clear();
+        // Puhekuplat päälle
+        for (int i = 0; i < speechBubbles.Count; i++) {
+            speechBubbles[i].SetActive(true);
+        }
+
+        Start();
+    }
+
     private void Update() {
-        //if (Input.GetKeyDown(KeyCode.Space)) {
-        //    // Reset somehow?
-        //    availableWishToys.Clear();
-        //    wishToys.Clear();
-        //    Start();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            ResetMiniGame();
+        }
 
         if (!animationPlayed.Contains(false)) {
             // DO SUMTHING
+            animalsClickable = true;
 
             for (int i = 0; i < speechBubbles.Count; i++) {
                 speechBubbles[i].SetActive(false);
             }
 
             for (int j = 0; j < animators.Count; j++) {
-                animationName = animators[j].gameObject.GetComponent<ClickAnimals>().animationName;
+                animationName = animators[j].gameObject.GetComponent<ClickAnimals>().happyAnimation;
                 animators[j].Play(animationName);
                 //maybe longer animations for final "dance"?
-
             }
 
             victoryParticles.Play();
