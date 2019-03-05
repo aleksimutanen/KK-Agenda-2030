@@ -90,7 +90,7 @@ public class RunnerGameManager : MonoBehaviour {
     public void HitFlower() {
         foodCollected++;
         if (foodCollected == 10) {
-            NextLevel();
+            //NextLevel();
             //blah blah
         }
     }

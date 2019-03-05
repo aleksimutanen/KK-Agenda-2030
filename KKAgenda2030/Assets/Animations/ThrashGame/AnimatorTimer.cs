@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdAnimationHandler : MonoBehaviour {
+public class AnimatorTimer : MonoBehaviour {
 
     Animator animator;
     public List<string> animationPool;
