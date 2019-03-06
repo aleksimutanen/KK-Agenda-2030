@@ -24,9 +24,9 @@ public class MenuInteractive : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) {
             Vector3 screenPos = menuCam.ScreenToWorldPoint(Input.mousePosition);
             screenPos.z = 0f;
-            //bubblePopper.SetActive(true);
-            //bubblePopper.transform.position = screenPos;
-            //Invoke("StopTouch", 0.25f);
+            bubblePopper.SetActive(true);
+            bubblePopper.transform.position = screenPos;
+            Invoke("StopTouch", 0.25f);
         }
     }
 
