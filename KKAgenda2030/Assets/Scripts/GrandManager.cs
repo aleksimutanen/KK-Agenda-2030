@@ -74,32 +74,39 @@ public class GrandManager : MonoBehaviour {
         yield return new WaitForSeconds(3f);
 
         ui.transitionCircle.gameObject.SetActive(false);
-        //
-        mainMenu.SetActive(false);
-        oceanGame.SetActive(true);
-        oceanGameUI.gameObject.SetActive(true);
-        OceanGameManager.instance.StartGame();
-        activeScene = oceanGame;
-        scene = SceneActive.Ocean;
-        //
 
-        yield return new WaitForSeconds(1f);
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
 
-        ui.transitionBackGround.GetComponent<Animator>().Play("New State");
+        SceneManager.LoadScene("FishGame_v2");
+        ////
+        //mainMenu.SetActive(false);
+        //oceanGame.SetActive(true);
+        //oceanGameUI.gameObject.SetActive(true);
+        //OceanGameManager.instance.StartGame();
+        //activeScene = oceanGame;
+        //scene = SceneActive.Ocean;
+        ////
 
-        Fabric.EventManager.Instance.PostEvent("stopAmbient");
-        Fabric.EventManager.Instance.PostEvent("sharkMusic");
+        //yield return new WaitForSeconds(1f);
+
+        //ui.transitionBackGround.GetComponent<Animator>().Play("New State");
+
+        //Fabric.EventManager.Instance.PostEvent("stopAmbient");
+        //Fabric.EventManager.Instance.PostEvent("sharkMusic");
 
     }
 
-    public void LaunchTrashGame() {
+    public IEnumerator LaunchTrashGame() {
         //optionsButton.SetActive(false);
         //previousPageButton.SetActive(false);
         //nextPageButton.SetActive(false);
-
+        var ui = FindObjectOfType<UIManager>();
+        ui.trashGameTransition.GetComponent<Animator>().Play("FakeLoading");
+        yield return new WaitForSeconds(3.9f);
         //trashGame.SetActive(true);
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     public void LaunchBeeGame() {

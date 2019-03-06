@@ -78,6 +78,7 @@ public class TrashGameManager : MonoBehaviour {
         spwn = FindObjectOfType<Spawner>();
         Gspwn = FindObjectOfType<GSpawners>();
         levelChanger = FindObjectOfType<LevelChanger>();
+        FindObjectOfType<UIManager>().TrashGameStartFade();
     }
 
     private void Update() {

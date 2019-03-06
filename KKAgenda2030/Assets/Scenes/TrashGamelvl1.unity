@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -185,9 +185,10 @@ MonoBehaviour:
   - {fileID: 973410134}
   transitionBackGround: {fileID: 0}
   transitionCircle: {fileID: 0}
+  trashGameTransition: {fileID: 0}
   sliderImage: {fileID: 0}
   slider: {fileID: 0}
-  fadeTime: 1
+  fadeTime: 0.3
   transition: 0
   animator: {fileID: 1853280883}
 --- !u!4 &153988970
@@ -1598,6 +1599,16 @@ PrefabInstance:
     - target: {fileID: 2217172111312360378, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217172111312360378, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217172110886678900, guid: 7a92723829a92ef4da1d85c5eaf7ea1d,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

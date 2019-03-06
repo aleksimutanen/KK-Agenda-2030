@@ -17,12 +17,15 @@ public class PageTurner : MonoBehaviour {
     public GameObject previousPageButton;
 
     public int pageIndex;
+    public List<Image> fadeImages = new List<Image>();
 
     PersistentData pd;
     public GameObject pdPrefab;
 
     public List<Image> rightArrows;
     public List<Image> leftArrows;
+
+
 
 
     void Awake () {
@@ -45,6 +48,11 @@ public class PageTurner : MonoBehaviour {
             else
                 pages[i].SetActive(true);
         }
+    }
+
+    private void Start() {
+        fadeImages[pageIndex].GetComponent<Animator>().Play("FadeOut");
+        ButtonToggle();
     }
 
     void Update() {

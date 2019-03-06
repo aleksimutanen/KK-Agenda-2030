@@ -147,7 +147,7 @@ public class MenuGameManager : MonoBehaviour {
         for (int i = 0; i < speechBubbles.Count; i++) {
             speechBubbles[i].SetActive(true);
         }
-
+            
         Start();
     }
 
