@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour {
     //=================//
 
     public Animator animator;
+    public MenuGameManager MGM;
 
 	void Start () {
         Time.timeScale = 1f;
@@ -177,6 +178,10 @@ public class UIManager : MonoBehaviour {
 
     public void TrashGameStartFade() {
         animator.Play("FadeOut");
+    }
+
+    public void ReplayMinigame() {
+        MGM.ResetMiniGame();
     }
 
     IEnumerator QuitGameFade() {

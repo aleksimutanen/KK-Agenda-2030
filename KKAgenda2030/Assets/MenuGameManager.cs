@@ -14,6 +14,8 @@ public class MenuGameManager : MonoBehaviour {
     public List<GameObject> fillerToys;
     public List<GameObject> wishToys;
     public List<GameObject> speechBubbles;
+    public GameObject spawnPointFolder;
+    public GameObject replayButton;
 
     public List<Animator> animators;
     public List<bool> animationPlayed;
@@ -22,13 +24,11 @@ public class MenuGameManager : MonoBehaviour {
     public List<GameObject> destroyableToys;
 
     public ParticleSystem victoryParticles;
-    public bool animalsClickable;
 
     void Start() {
         if (Time.timeScale != 1) {
             Time.timeScale = 1;
         }
-        animalsClickable = false;
 
         //var wishToys = new List<GameObject>();
         // WishToy arvonta
@@ -133,7 +133,7 @@ public class MenuGameManager : MonoBehaviour {
         return false;
     }
 
-    void ResetMiniGame() {
+    public void ResetMiniGame() {
         foreach (var item in wishToys) {
             Destroy(item);
         }
@@ -147,7 +147,8 @@ public class MenuGameManager : MonoBehaviour {
         for (int i = 0; i < speechBubbles.Count; i++) {
             speechBubbles[i].SetActive(true);
         }
-            
+        replayButton.SetActive(false);
+        spawnPointFolder.SetActive(true);
         Start();
     }
 
@@ -158,11 +159,12 @@ public class MenuGameManager : MonoBehaviour {
 
         if (!animationPlayed.Contains(false)) {
             // DO SUMTHING
-            animalsClickable = true;
 
             for (int i = 0; i < speechBubbles.Count; i++) {
                 speechBubbles[i].SetActive(false);
             }
+            spawnPointFolder.SetActive(false);
+            replayButton.SetActive(true);
 
             for (int j = 0; j < animators.Count; j++) {
                 animationName = animators[j].gameObject.GetComponent<ClickAnimals>().happyAnimation;
