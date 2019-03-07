@@ -32,10 +32,10 @@ public class GSpawners : MonoBehaviour {
 
         var thrashCan = Instantiate(SpawnerObjects[spawnObjectsIndex], SpawnerPoints[spawnPointIndex].position, SpawnerPoints[spawnPointIndex].rotation);
         var currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "Nikle_devscenelvl2") {
+        if (currentScene.name == "TrashGamelvl2") {
             thrashCan.transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
         }
-        if (currentScene.name == "Nikle_devscenelvl3") {
+        if (currentScene.name == "TrashGamelvl3") {
             thrashCan.transform.localScale = new Vector3(2f, 2f, 2f);
         }
         thrashCan.transform.parent = canFolder.transform;

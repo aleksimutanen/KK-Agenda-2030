@@ -77,7 +77,7 @@ public class GrandManager : MonoBehaviour {
 
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
 
-        SceneManager.LoadScene("FishGame_v2");
+        SceneManager.LoadScene("FishGame");
         ////
         //mainMenu.SetActive(false);
         //oceanGame.SetActive(true);
@@ -111,7 +111,7 @@ public class GrandManager : MonoBehaviour {
 
     public void LaunchBeeGame() {
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
-        SceneManager.LoadScene("Aleksi_devscene");
+        SceneManager.LoadScene("RunnerGame");
     }
 
     public void BackToMainMenu() {

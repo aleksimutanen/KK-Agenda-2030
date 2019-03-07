@@ -214,7 +214,7 @@ public class TrashGameManager : MonoBehaviour {
             levelCompleted = true;
             statusText.text = "";
 
-            if (activeScene.name != "Nikle_devscenelvl3") {
+            if (activeScene.name != "TrashGamelvl3") {
                 levelChanger.StartCoroutine("LevelChange");
             } else { // vika lvl pelattu, palataan menuun
                 levelChanger.StartCoroutine("LoadToMenu");

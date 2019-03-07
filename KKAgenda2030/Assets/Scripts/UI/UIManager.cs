@@ -185,7 +185,7 @@ public class UIManager : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene("MainMenuForProjectScene");
+        SceneManager.LoadScene("MainMenu");
 
         //OceanGameManager.instance.QuitToMenu();
         //GrandManager.instance.BackToMainMenu();
