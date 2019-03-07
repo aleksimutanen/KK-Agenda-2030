@@ -12,6 +12,7 @@ public class ToyRepair : MonoBehaviour {
 
     public Animator animator;
     DragToys2 dt2;
+    bool toyInPlace = false;
 
     private void Start() {
         goalPoint = GameObject.FindGameObjectWithTag("GoalPoint");
@@ -19,9 +20,17 @@ public class ToyRepair : MonoBehaviour {
         dt2 = GetComponent<DragToys2>();
         gameObject.SetActive(true);
         searchingOfGoalPoints();
-        animator.Play("ToyPartFloat");
     }
 
+
+    private void Update() {
+        if (toyInPlace) {
+            animator.Play("EndNoFloat");
+        }
+        else {
+            animator.Play("ToyPartFloat");
+        }
+    }
 
 
     public void searchingOfGoalPoints() {
@@ -105,7 +114,7 @@ public class ToyRepair : MonoBehaviour {
         if (other.gameObject.tag == "RepairCube" && !dt2.dragging) {
             transform.position = goalPoints[0].transform.position;
             gameObject.GetComponent<Collider>().enabled = false;
-            animator.Play("EndNoFloat");
+            toyInPlace = true;
             gameObject.GetComponentInChildren<ParticleSystem>().Play();
             tRM.toysInPlace++;
         }
