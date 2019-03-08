@@ -118,14 +118,17 @@ public class PageTurner : MonoBehaviour {
     }
 
     void ButtonToggle() {
+        // Pageindexin mukaisesta gameobjectista tarvitaan image joka asetetaan target graphiciksi buttoniin
         foreach (var item in rightArrows) {
             item.gameObject.SetActive(false);
         }
         rightArrows[pageIndex].gameObject.SetActive(true);
+        nextPageButton.GetComponent<Button>().targetGraphic = rightArrows[pageIndex];
         foreach (var item in leftArrows) {
             item.gameObject.SetActive(false);
         }
         leftArrows[pageIndex].gameObject.SetActive(true);
+        previousPageButton.GetComponent<Button>().targetGraphic = leftArrows[pageIndex];
     }
 
 }
