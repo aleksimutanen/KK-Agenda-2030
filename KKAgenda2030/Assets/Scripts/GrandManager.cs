@@ -115,11 +115,13 @@ public class GrandManager : MonoBehaviour {
     }
 
     public void BackToMainMenu() {
-        previousScene = activeScene;
-        previousScene.SetActive(false);
-        activeScene = mainMenu;
-        activeScene.SetActive(true);
-        scene = SceneActive.Menu;
+        //previousScene = activeScene;
+        //previousScene.SetActive(false);
+        //activeScene = mainMenu;
+        //activeScene.SetActive(true);
+        //scene = SceneActive.Menu;
+        SceneManager.LoadScene("MainMenu");
+
         //FindObjectOfType<UIManager>().EnableMenuButtons();
         //optionsButton.SetActive(true);
         //previousPageButton.SetActive(true);
