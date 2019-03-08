@@ -29,6 +29,6 @@ public class LevelChanger : MonoBehaviour {
         TGM.endScoreSlider.gameObject.SetActive(false);
         endFadeAnimator.Play("FadeOut");
         yield return new WaitForSeconds(1f);
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 }

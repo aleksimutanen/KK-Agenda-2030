@@ -53,7 +53,6 @@ MonoBehaviour:
   goalPoint: {fileID: 0}
   endPoints: []
   goalPoints: []
-  speed: 4
   animator: {fileID: 3656319599949988913}
 --- !u!114 &1198841523083694474
 MonoBehaviour:
@@ -110,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sLock: {fileID: 0}
+  dragging: 0
 --- !u!95 &3656319599949988913
 Animator:
   serializedVersion: 3
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1252551139
   m_SortingLayer: 3
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 9ec47894e4ae22040b5712dae2e1d10d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -324,6 +324,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670845897115246331, guid: eefcaadf48740ec48a87e5a854594713,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eefcaadf48740ec48a87e5a854594713, type: 3}

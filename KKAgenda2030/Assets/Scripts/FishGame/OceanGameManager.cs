@@ -86,40 +86,9 @@ public class OceanGameManager : MonoBehaviour {
         //SpawnFood(levelFoodAmounts[levelIndex], foodPrefab, foodFolders[levelIndex]);
         //startingScale = FindObjectOfType<CharacterMover>().transform.localScale;
 
-
-        //while (trashAmount > 0) {
-        //    var pos = RandomizePosition();
-        //    if (CheckPosition(pos)) {
-        //        GameObject trash = Instantiate(trashPrefab, pos, transform.rotation);
-        //        trash.transform.parent = trashFolder;
-        //        trashAmount--;
-        //    }
-        //}
-
-        //for (int k = 0; k < trashAmount; k++) {
-        //    if (k == 0) {
-        //        var randomLocation = new Vector3(Random.Range(-8f, 8f), 0.1f, Random.Range(-4.5f, 15.5f));
-        //        g = Instantiate(trashPrefab, randomLocation, transform.rotation);
-        //        g.transform.parent = trashFolder;
-        //        //p = g;
-        //        checkDistance.Add(g);
-        //    } else {
-        //        var randomLocation = new Vector3(Random.Range(-8f, 8f), 0.1f, Random.Range(-4.5f, 15.5f));
-        //        //while (Vector3.Distance(p.transform.position, randomLocation) < objectDistanceThreshold) {
-        //        while (Vector3.Distance(checkDistance[0].transform.position, randomLocation) < objectDistanceThreshold) {
-        //            for (int f = 0; f < checkDistance.Count; f++) {
-        //                if (Vector3.Distance(checkDistance[f].transform.position, randomLocation) < objectDistanceThreshold) {
-        //                    //print("too close to previous");
-        //                    randomLocation = new Vector3(Random.Range(-8f, 8f), 0.1f, Random.Range(-4.5f, 15.5f));
-        //                }
-        //            }
-        //        }
-        //        g = Instantiate(trashPrefab, randomLocation, transform.rotation);
-        //        g.transform.parent = trashFolder;
-        //        checkDistance.Add(g);
-        //        //p = g;
-        //    }
-        //}
+        StartGame();
+        FindObjectOfType<UIManager>().transitionBackGround.GetComponent<Animator>().Play("FadeOut");
+        // create transition ending
     }
 
     public void StartGame() {

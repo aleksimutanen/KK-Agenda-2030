@@ -33,11 +33,11 @@ public class Spawner : MonoBehaviour
             var rnd = Random.Range(0, rubbish.Count);
             var trash = Instantiate(rubbish[rnd], spawnPoint.position, Quaternion.identity);
             var currentScene = SceneManager.GetActiveScene();
-            if (currentScene.name == "Nikle_devscenelvl2") {
+            if (currentScene.name == "TrashGamelvl2") {
                 trashesFolder.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 
             }
-            if (currentScene.name == "Nikle_devscenelvl3") {
+            if (currentScene.name == "TrashGamelvl3") {
                 trashesFolder.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
             }
             trash.transform.parent = trashesFolder.transform;

@@ -78,6 +78,7 @@ public class TrashGameManager : MonoBehaviour {
         spwn = FindObjectOfType<Spawner>();
         Gspwn = FindObjectOfType<GSpawners>();
         levelChanger = FindObjectOfType<LevelChanger>();
+        FindObjectOfType<UIManager>().TrashGameStartFade();
     }
 
     private void Update() {
@@ -112,7 +113,10 @@ public class TrashGameManager : MonoBehaviour {
         //for (int i = 0; i < spriteAppears.Length; i++) {
         //    spriteAppears[i].alphaFade();
         //}
-        Gspwn.canFolder.gameObject.SetActive(false);
+
+        // If trashcan's idle after game complete is wanted, keep this in comments 
+        //Gspwn.canFolder.gameObject.SetActive(false);
+
         trashCountObject.SetActive(false);
         trashAreaBCG.gameObject.SetActive(false);
         //statusText.text = "Taso suoritettu!";
@@ -155,12 +159,14 @@ public class TrashGameManager : MonoBehaviour {
         if (totalScoreSlider != null) {
             totalScoreBCG.SetActive(true);
             // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
+            if (pd.totalStarAmount > 6) {
+                scoreMeterAnimator.Play("TotalScoreMeter_Good");
+            }
+            if (pd.totalStarAmount > 3) {
+                scoreMeterAnimator.Play("TotalScoreMeter_Ok");
+            }
             if (pd.totalStarAmount <= 3) {
                 scoreMeterAnimator.Play("TotalScoreMeter_Bad");
-            } else if (pd.totalStarAmount > 3) {
-                scoreMeterAnimator.Play("TotalScoreMeter_Ok");
-            } else if (pd.totalStarAmount > 6) {
-                scoreMeterAnimator.Play("TotalScoreMeter_Good");
             }
             yield return new WaitForSeconds(2f);
 
@@ -213,7 +219,7 @@ public class TrashGameManager : MonoBehaviour {
             levelCompleted = true;
             statusText.text = "";
 
-            if (activeScene.name != "Nikle_devscenelvl3") {
+            if (activeScene.name != "TrashGamelvl3") {
                 levelChanger.StartCoroutine("LevelChange");
             } else { // vika lvl pelattu, palataan menuun
                 levelChanger.StartCoroutine("LoadToMenu");

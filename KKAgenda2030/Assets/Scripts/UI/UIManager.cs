@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour {
 
     public Image transitionBackGround;
     public Image transitionCircle;
+
+    public Image trashGameTransition;
+
     public Image sliderImage;
     public Slider slider;
     
@@ -28,6 +31,7 @@ public class UIManager : MonoBehaviour {
     //=================//
 
     public Animator animator;
+    public MenuGameManager MGM;
 
 	void Start () {
         Time.timeScale = 1f;
@@ -82,7 +86,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void LaunchTrashGame() {
-        GrandManager.instance.LaunchTrashGame();
+        GrandManager.instance.StartCoroutine("LaunchTrashGame");
         //DisableMenuButtons();
     }
 
@@ -91,12 +95,12 @@ public class UIManager : MonoBehaviour {
     }
 
     public void DisableMenuButtons() {
-        //foreach (Button b in menuButtons) b.gameObject.SetActive(false);
+        foreach (Button b in menuButtons) b.gameObject.SetActive(false);
         foreach (Button b in menuButtons) b.interactable = false;
     }
 
     public void EnableMenuButtons() {
-        //foreach (Button b in menuButtons) b.gameObject.SetActive(true);
+        foreach (Button b in menuButtons) b.gameObject.SetActive(true);
         foreach (Button b in menuButtons) b.interactable = true;
     }
 
@@ -139,8 +143,14 @@ public class UIManager : MonoBehaviour {
 
     public void QuitGame() {
         // palaa roskispelin menuun
-        SceneManager.LoadScene(0);
+        StartCoroutine("QuitTrashGameFade");
+    }
 
+    IEnumerator QuitTrashGameFade() {
+        animator.Play("LevelSwitchNEW");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
     }
 
     public void ReloadTrashGame() {
@@ -166,18 +176,28 @@ public class UIManager : MonoBehaviour {
         yield return null;
     }
 
+    public void TrashGameStartFade() {
+        animator.Play("FadeOut");
+    }
+
+    public void ReplayMinigame() {
+        MGM.ResetMiniGame();
+    }
+
     IEnumerator QuitGameFade() {
         transitionBackGround.GetComponent<Animator>().Play("OceanGameQuickTransition");
         PauseButton();
 
         yield return new WaitForSeconds(1f);
 
-        OceanGameManager.instance.QuitToMenu();
-        GrandManager.instance.BackToMainMenu();
+        SceneManager.LoadScene("MainMenu");
 
-        yield return new WaitForSeconds(1f);
+        //OceanGameManager.instance.QuitToMenu();
+        //GrandManager.instance.BackToMainMenu();
 
-        transitionBackGround.GetComponent<Animator>().Play("New State");
+        //yield return new WaitForSeconds(1f);
+
+        //transitionBackGround.GetComponent<Animator>().Play("New State");
     }
 
     public void NextPage() {

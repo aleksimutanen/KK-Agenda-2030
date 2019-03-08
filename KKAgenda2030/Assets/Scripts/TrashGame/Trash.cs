@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TrashType { Biojäte, Metalli, Lasi, Ongelmajäte, Muovi, PaperiKartonki };
+public enum TrashType { Biojäte, Metalli, Kartonki, Ongelmajäte, Muovi, Paperi };
 
 public class Trash : MonoBehaviour {
     public TrashType kind;

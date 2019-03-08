@@ -17,12 +17,15 @@ public class PageTurner : MonoBehaviour {
     public GameObject previousPageButton;
 
     public int pageIndex;
+    public List<Image> fadeImages = new List<Image>();
 
     PersistentData pd;
     public GameObject pdPrefab;
 
     public List<Image> rightArrows;
     public List<Image> leftArrows;
+
+
 
 
     void Awake () {
@@ -45,6 +48,11 @@ public class PageTurner : MonoBehaviour {
             else
                 pages[i].SetActive(true);
         }
+    }
+
+    private void Start() {
+        fadeImages[pageIndex].GetComponent<Animator>().Play("FadeOut");
+        ButtonToggle();
     }
 
     void Update() {
@@ -110,14 +118,17 @@ public class PageTurner : MonoBehaviour {
     }
 
     void ButtonToggle() {
+        // Pageindexin mukaisesta gameobjectista tarvitaan image joka asetetaan target graphiciksi buttoniin
         foreach (var item in rightArrows) {
             item.gameObject.SetActive(false);
         }
         rightArrows[pageIndex].gameObject.SetActive(true);
+        nextPageButton.GetComponent<Button>().targetGraphic = rightArrows[pageIndex];
         foreach (var item in leftArrows) {
             item.gameObject.SetActive(false);
         }
         leftArrows[pageIndex].gameObject.SetActive(true);
+        previousPageButton.GetComponent<Button>().targetGraphic = leftArrows[pageIndex];
     }
 
 }

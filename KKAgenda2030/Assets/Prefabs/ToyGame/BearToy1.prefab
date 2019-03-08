@@ -67,7 +67,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1252551139
   m_SortingLayer: 3
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: ce3e6002d7119d54cbd960372350dffc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -158,7 +158,6 @@ MonoBehaviour:
   goalPoint: {fileID: 0}
   endPoints: []
   goalPoints: []
-  speed: 4
   animator: {fileID: 13206811}
 --- !u!54 &2443237995995333131
 Rigidbody:
@@ -189,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sLock: {fileID: 0}
+  dragging: 0
 --- !u!95 &13206811
 Animator:
   serializedVersion: 3
