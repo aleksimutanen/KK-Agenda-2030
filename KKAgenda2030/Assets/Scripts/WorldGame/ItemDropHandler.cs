@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
+
 public class ItemDropHandler : MonoBehaviour, IDropHandler
 {
 
@@ -14,7 +16,7 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
 
     public void Start()
     {
-       
+        
     }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
@@ -23,7 +25,7 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
 
         if(!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
         {           
-            print("Drop decal");
+         //   print("Drop decal");
 
         }
     }
@@ -34,14 +36,22 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
         {
             if(images[i].name == item.name)
             {
-                var go = new GameObject("temp").GetComponent<Image>();
+                var go = new GameObject("temp");
                 print("Luodaan objekti");
               
                 go.transform.position = images[i].transform.position;
+               
+                
+                go.AddComponent<Image>();
+                go.GetComponent<Image>().sprite = images[i].sprite;
+                go.layer = 5;
+                go.AddComponent<ItemDragHandler>();
 
-                go.GetComponent<Sprite>();
-                go.GetComponent<Image>();
-                go.GetComponent<SpriteRenderer>();
+               // go.GetComponent<ItemDragHandler>().inventoryPosition = images[i].
+               // go.GetComponent<ItemDragHandler>().IDH = inventory.gameObject;
+
+               
+
             }
         }
     }
