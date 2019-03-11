@@ -39,12 +39,15 @@ public class DragObjects : MonoBehaviour {
             Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             transform.position = worldPos;
-            var dragPoint = Physics.OverlapSphere(transform.position, 0.5f);
+            var dragPoint = Physics.OverlapSphere(transform.position, 0.1f);
             TrashDestroy td = null; 
             if (dragPoint.Length > 0) {
                 foreach (var item in dragPoint) {
                     td = item.GetComponent<TrashDestroy>();
                     if (td) {
+                        if (mouseOverTrash != null && mouseOverTrash != td) {
+                            mouseOverTrash.ResumeIdle();
+                        }
                         td.OpenMouth();
                         mouseOverTrash = td;
                     }

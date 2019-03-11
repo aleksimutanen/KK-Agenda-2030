@@ -160,6 +160,9 @@ public class MenuGameManager : MonoBehaviour {
         if (!animationPlayed.Contains(false)) {
             // DO SUMTHING
 
+            // Start Coroutine here?
+            //StartCoroutine("ResetMinigame");
+
             for (int i = 0; i < speechBubbles.Count; i++) {
                 speechBubbles[i].SetActive(false);
             }
@@ -183,4 +186,25 @@ public class MenuGameManager : MonoBehaviour {
             //animationPlayed.ConvertAll(x => false);
         }
     }
+
+   //// Not in use atm...
+   //IEnumerator ResetMinigame() {
+   //     yield return new WaitForSeconds(2f);
+   //     for (int i = 0; i < speechBubbles.Count; i++) {
+   //         speechBubbles[i].SetActive(false);
+   //     }
+   //     victoryParticles.Play();
+   //     spawnPointFolder.SetActive(false);
+   //     joku fadein replay napille?
+   //     replayButton.SetActive(true);
+   //     for (int j = 0; j < animators.Count; j++) {
+   //         animationName = animators[j].gameObject.GetComponent<ClickAnimals>().happyAnimation;
+   //         animators[j].Play(animationName);
+   //         maybe longer animations for final "dance" ?
+   //     }
+   //     Reset booleans
+   //     for (int i = 0; i < animationPlayed.Count; i++) {
+   //         animationPlayed[i] = false;
+   //     }
+   // }
 }
