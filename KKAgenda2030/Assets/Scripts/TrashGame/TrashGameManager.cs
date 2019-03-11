@@ -160,12 +160,17 @@ public class TrashGameManager : MonoBehaviour {
             totalScoreBCG.SetActive(true);
             // jotain animaatioita ja juttuja ennen totalScore slideria + yield time
             if (pd.totalStarAmount > 6) {
+                print("score yli 6 - paras");
                 scoreMeterAnimator.Play("TotalScoreMeter_Good");
             }
-            if (pd.totalStarAmount > 3) {
+            else if (pd.totalStarAmount > 3) {
+                print("score yli 3 - ok");
+
                 scoreMeterAnimator.Play("TotalScoreMeter_Ok");
             }
-            if (pd.totalStarAmount <= 3) {
+            else if (pd.totalStarAmount <= 3) {
+                print("score alle 3 - huono");
+
                 scoreMeterAnimator.Play("TotalScoreMeter_Bad");
             }
             yield return new WaitForSeconds(2f);
