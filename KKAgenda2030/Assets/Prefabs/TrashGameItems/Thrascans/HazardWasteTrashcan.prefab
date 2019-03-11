@@ -281,6 +281,8 @@ MonoBehaviour:
   childAnimator: {fileID: 6989840116060330098}
   eatAnimation: EatHazard
   spitAnimation: SpitHazard
+  idleAnimation: IdleHazard
+  openMAnimation: OpenM_Hazard
 --- !u!65 &302629847474466386
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,8 +294,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5196025, y: 1.9772534, z: 0.2}
-  m_Center: {x: -0.043140005, y: 1.9030365, z: 0}
+  m_Size: {x: 3.5196028, y: 4.3407445, z: 0.2}
+  m_Center: {x: -0.043140005, y: 0.7212946, z: 0}
 --- !u!95 &2559665505040600752
 Animator:
   serializedVersion: 3

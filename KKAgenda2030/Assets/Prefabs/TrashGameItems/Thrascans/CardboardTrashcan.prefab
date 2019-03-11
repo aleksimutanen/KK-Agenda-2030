@@ -225,7 +225,6 @@ GameObject:
   - component: {fileID: 7112731175493782232}
   - component: {fileID: 4153816109147951053}
   - component: {fileID: 60109918}
-  - component: {fileID: 211231249}
   m_Layer: 0
   m_Name: CardboardTrashcan
   m_TagString: Untagged
@@ -282,6 +281,8 @@ MonoBehaviour:
   childAnimator: {fileID: 388714667}
   eatAnimation: EatGlass
   spitAnimation: SpitGlass
+  idleAnimation: IdleGlass
+  openMAnimation: OpenM_Glass
 --- !u!65 &8789461744148235284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -293,8 +294,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.041253, y: 1.931664, z: 0.2}
-  m_Center: {x: -0.062030658, y: 1.8559345, z: 0}
+  m_Size: {x: 4.0412536, y: 4.4719863, z: 0.2}
+  m_Center: {x: -0.062030658, y: 0.5857763, z: 0}
 --- !u!95 &7112731175493782232
 Animator:
   serializedVersion: 3
@@ -342,19 +343,6 @@ MonoBehaviour:
   blinkAnimation: BlinkParent
   maxT: 6
   minT: 4
---- !u!65 &211231249
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676389456609718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8971760238665739703
 GameObject:
   m_ObjectHideFlags: 0
