@@ -104,6 +104,9 @@ public class UIManager : MonoBehaviour {
         foreach (Button b in menuButtons) b.interactable = true;
     }
 
+
+    ///////// 
+    
     public void ReloadRunnerGame() {
         StartCoroutine("ReloadRunnerGameFade");
     }
@@ -114,6 +117,8 @@ public class UIManager : MonoBehaviour {
         PauseButton();
         yield return null;
     }
+
+    ///////// 
 
     public void ReloadOceanGameLevel() {
         //OceanGameManager.instance.ReloadLevel();
@@ -133,6 +138,9 @@ public class UIManager : MonoBehaviour {
 
         transitionBackGround.GetComponent<Animator>().Play("New State");
     }
+
+    ///////// 
+
 
     public void BackToMainMenu() {
         //OceanGameManager.instance.QuitToMenu();
@@ -174,6 +182,10 @@ public class UIManager : MonoBehaviour {
         //yield return new WaitForSeconds(animation lenght);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return null;
+    }
+
+    public void QuitRunnerGame() {
+        SceneManager.LoadScene(0);
     }
 
     public void TrashGameStartFade() {
