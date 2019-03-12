@@ -379,10 +379,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f3f1552453a4854fab661c0cbab5c30, type: 3}
+  m_SortingLayerID: -1884056175
+  m_SortingLayer: 2
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 3e3ba747a68143148a0e75e797bd1c09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1392,6 +1392,7 @@ GameObject:
   - component: {fileID: 427317806}
   - component: {fileID: 427317808}
   - component: {fileID: 427317809}
+  - component: {fileID: 427317810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1443,9 +1444,9 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427317805}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_Enabled: 0
+  m_SortingLayerID: -1252551139
+  m_SortingLayer: 3
   m_SortingOrder: 2
 --- !u!65 &427317809
 BoxCollider:
@@ -1460,6 +1461,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &427317810
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427317805}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2206c57f506ea4741a815a68f9600d48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &427317811
 Transform:
   m_ObjectHideFlags: 0
@@ -5970,5 +5990,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5267693248649713840, guid: 08ed948617b40c54489b9ada7d360f4f,
+        type: 3}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 427317811}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08ed948617b40c54489b9ada7d360f4f, type: 3}
