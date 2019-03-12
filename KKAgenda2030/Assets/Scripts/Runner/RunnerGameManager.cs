@@ -44,6 +44,8 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] Color hitAvoidableColor;
     [SerializeField] Color hitCollectableColor;
 
+    public GameObject GameoverPanel;
+
     //
 
     RunnerController character;
@@ -67,6 +69,12 @@ public class RunnerGameManager : MonoBehaviour {
     }
 
     void Update() {
+        // for testing only
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Time.timeScale = 0f;
+            GameoverPanel.SetActive(true);
+        }
+
 
         for (int i = 0; i < scoreTimers.Count;) {
             scoreTimers[i] -= Time.deltaTime;
