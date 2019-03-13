@@ -13,14 +13,12 @@ public class MenuManager : MonoBehaviour {
     private AudioSource audioData;
     private string Web =  "https://";
 
-
     void Awake()
     {
         seaVideoPlayer = VideoScreen.GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
         VideoScreen.gameObject.SetActive(false);
         creditsTheGame.gameObject.SetActive(false);
-        
     }
 
     private void Update()
