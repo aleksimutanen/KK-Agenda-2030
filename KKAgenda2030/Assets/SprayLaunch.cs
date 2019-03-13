@@ -24,6 +24,6 @@ public class SprayLaunch : MonoBehaviour
     }
 
     public void StartParticleEmit() {
-        ps.Emit(1);
+        ps.Play();
     }
 }
