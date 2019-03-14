@@ -14,10 +14,6 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
     public GameObject inventory;
 
 
-    public void Start()
-    {
-        
-    }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
@@ -40,14 +36,15 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
                 print("Luodaan objekti");
               
                 go.transform.position = images[i].transform.position;
-               
-                
+
+                go.AddComponent<CreatedItemDragHandler>();
+                go.GetComponent<CreatedItemDragHandler>().SetPosition();
                 go.AddComponent<Image>();
                 go.GetComponent<Image>().sprite = images[i].sprite;
                 go.layer = 5;
-                go.AddComponent<ItemDragHandler>();
+               
 
-               // go.GetComponent<ItemDragHandler>().inventoryPosition = images[i].
+               // go.GetComponent<ItemDragHandler>().startpos;
                // go.GetComponent<ItemDragHandler>().IDH = inventory.gameObject;
 
                

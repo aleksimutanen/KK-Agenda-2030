@@ -5,10 +5,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class ItemDragHandler : MonoBehaviour, IDragHandler
 {
+
+     public Vector2 startpos;
      public GameObject inventoryPosition;
      public ItemDropHandler IDH;
+
+    public void Awake()
+    {
+        startpos = new Vector2(transform.position.x, transform.position.y);
+
+    }
+
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -23,9 +32,10 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+  /*  public void OnBeginDrag(PointerEventData eventData)
     {
          IDH.ImageList(this);
         
-    }
+    }/*/
+
 }
