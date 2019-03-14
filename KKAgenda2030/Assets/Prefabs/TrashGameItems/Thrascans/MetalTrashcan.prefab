@@ -281,6 +281,8 @@ MonoBehaviour:
   childAnimator: {fileID: 5311373070412294009}
   eatAnimation: EatMetal
   spitAnimation: SpitMetal
+  idleAnimation: IdleMetal
+  openMAnimation: OpenM_Metal
 --- !u!65 &3074128139271981743
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,8 +294,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8073792, y: 1.8347766, z: 0.2}
-  m_Center: {x: -0.06903283, y: 1.9212774, z: 0}
+  m_Size: {x: 3.8073795, y: 4.3677382, z: 0.2}
+  m_Center: {x: -0.06903283, y: 0.6547966, z: 0}
 --- !u!95 &8047819669026296734
 Animator:
   serializedVersion: 3

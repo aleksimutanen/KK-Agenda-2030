@@ -281,6 +281,8 @@ MonoBehaviour:
   childAnimator: {fileID: 3386157580664273809}
   eatAnimation: EatPaper
   spitAnimation: SpitPaper
+  idleAnimation: IdlePaper
+  openMAnimation: OpenM_Paper
 --- !u!65 &2366137967442023681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,8 +294,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.10349, y: 2.1375644, z: 0.2}
-  m_Center: {x: 0.059414864, y: 1.6341547, z: 0}
+  m_Size: {x: 4.10349, y: 4.2216444, z: 0.2}
+  m_Center: {x: 0.059414864, y: 0.5921149, z: 0}
 --- !u!95 &8295278022726933764
 Animator:
   serializedVersion: 3

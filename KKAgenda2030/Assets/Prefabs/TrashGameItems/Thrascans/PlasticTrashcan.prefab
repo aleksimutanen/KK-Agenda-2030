@@ -281,6 +281,8 @@ MonoBehaviour:
   childAnimator: {fileID: 1078708209}
   eatAnimation: EatPlastic
   spitAnimation: SpitPlastic
+  idleAnimation: IdlePlastic
+  openMAnimation: OpenM_Plastic
 --- !u!65 &1013099454733537921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,8 +294,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.0333214, y: 2.082478, z: 0.2}
-  m_Center: {x: -0.030667782, y: 1.4744694, z: 0}
+  m_Size: {x: 4.0333214, y: 4.1986194, z: 0.2}
+  m_Center: {x: -0.030667782, y: 0.4163991, z: 0}
 --- !u!95 &849995060650563107
 Animator:
   serializedVersion: 3

@@ -110,6 +110,9 @@ public class GrandManager : MonoBehaviour {
     }
 
     public void LaunchBeeGame() {
+
+        var ui = FindObjectOfType<UIManager>();
+
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("RunnerGame");
     }

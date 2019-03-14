@@ -11,6 +11,8 @@ public class TrashDestroy: MonoBehaviour {
     public Animator childAnimator;
     public string eatAnimation;
     public string spitAnimation;
+    public string idleAnimation;
+    public string openMAnimation;
 
     public void EatTrash(Trash t) {
         childAnimator.Play(eatAnimation);
@@ -20,6 +22,15 @@ public class TrashDestroy: MonoBehaviour {
 
     public void SpitTrash() {
         childAnimator.Play(spitAnimation);
+    }
+
+    public void OpenMouth() {
+        childAnimator.Play(openMAnimation);
+    }
+
+    public void ResumeIdle() {
+        childAnimator.Play(idleAnimation);
+
     }
 
     //private void Update() {

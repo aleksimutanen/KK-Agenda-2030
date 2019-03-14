@@ -16,6 +16,8 @@ public class DragObjects : MonoBehaviour {
 
     GSpawners gs;
 
+    public TrashDestroy mouseOverTrash;
+
 
 
     void Start() {
@@ -32,20 +34,33 @@ public class DragObjects : MonoBehaviour {
             hintTimer = 0f;
         }
 
+
         if (dragging) {
             Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             transform.position = worldPos;
+            var dragPoint = Physics.OverlapSphere(transform.position, 0.1f);
+            TrashDestroy td = null; 
+            if (dragPoint.Length > 0) {
+                foreach (var item in dragPoint) {
+                    td = item.GetComponent<TrashDestroy>();
+                    if (td) {
+                        if (mouseOverTrash != null && mouseOverTrash != td) {
+                            mouseOverTrash.ResumeIdle();
+                        }
+                        td.OpenMouth();
+                        mouseOverTrash = td;
+                    }
+                }
+            }
+
+            if (td == null && mouseOverTrash != null) {
+                mouseOverTrash.ResumeIdle();
+                mouseOverTrash = null;
+            }
+
         } else {
-            //var distance = Vector3.Distance(transform.position, startPos);
-            //if (distance > 0.01f) { // roska liikuu lähtöpistettä kohti
-            //    GetComponent<Collider>().enabled = false;
-            //    var newPos = Vector3.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
-            //    transform.position = newPos;
-            //    if (Vector3.Distance(transform.position, startPos) <= 0.01f) { // roska on lähtöpisteessä
-            //        GetComponent<Collider>().enabled = true;
-            //    }
-            //}
+
         }
     }
     IEnumerator ReturnTrash(float wait) {
