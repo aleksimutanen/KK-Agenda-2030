@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class RunnerGameManager : MonoBehaviour {
 
@@ -27,6 +28,8 @@ public class RunnerGameManager : MonoBehaviour {
 
     [SerializeField] float loseSmallScore;
     [SerializeField] float loseBigScore;
+
+    bool invulnerable;
 
     public int livesLeft;
     int maxLives;
@@ -176,8 +179,15 @@ public class RunnerGameManager : MonoBehaviour {
     }
 
     public void LoseLife() {
+        if (invulnerable) {
+            return;
+        }
+
+        invulnerable = true;
         livesLeft--;
         livesLeftText.text = livesLeft + " / " + maxLives;
+        StartCoroutine("VignetteFlash");
+        StartCoroutine("SpriteFlash");
         if (livesLeft == 0) {
             StartCoroutine("LevelTransition");
         }
@@ -188,6 +198,41 @@ public class RunnerGameManager : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         RestartLevel();
         FindObjectOfType<Map>().tfSpeed = 1.5f;
+    }
+
+    IEnumerator VignetteFlash() {
+        var ppVolume = FindObjectOfType<PostProcessVolume>();
+        var t0 = Time.realtimeSinceStartup;
+        var tEnd = 2f;
+        var timer = 0f;
+
+        while (timer < tEnd) {
+            timer = Time.realtimeSinceStartup - t0;
+            ppVolume.weight = Mathf.Sin(2 * Mathf.PI / (2 * tEnd) * timer);
+            //ppVolume.weight = Mathf.PingPong(timer, 1);
+
+            yield return null;
+        }
+        ppVolume.weight = 0;
+    }
+
+    IEnumerator SpriteFlash() {
+        var spriteR = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>();
+        var t0 = Time.realtimeSinceStartup;
+        var timer = 0f;
+        var waveLength = 1f;
+
+        int flashes = 2;
+
+        while (timer < flashes * waveLength) {
+            timer = Time.realtimeSinceStartup - t0;
+            var alphaSin = 1 - (Mathf.Sin(3 / 2 * Mathf.PI + 2 * Mathf.PI / waveLength * timer) * 0.5f + 0.5f);
+            spriteR.color = new Color(1, 1, 1, alphaSin);
+            yield return null;
+        }
+
+        spriteR.color = Color.white;
+        invulnerable = false;
     }
 }
 
