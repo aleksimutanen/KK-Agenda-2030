@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -283,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 224997915067008330, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -17.900002
+      value: -18.9
       objectReference: {fileID: 0}
     - target: {fileID: 8376519557913323909, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 941901012, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 76.2
+      value: 71.899994
       objectReference: {fileID: 0}
     - target: {fileID: 941901012, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -450,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1986643615475250, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245289881, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_Enabled
@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1589571599, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 867732384, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_SizeDelta.x
@@ -804,6 +804,11 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224280550042261382, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 56.4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 938044401, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
@@ -823,7 +828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &881167480
 RectTransform:
   m_ObjectHideFlags: 0

@@ -37,8 +37,8 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
               
                 go.transform.position = images[i].transform.position;
 
-                go.AddComponent<CreatedItemDragHandler>();
-                go.GetComponent<CreatedItemDragHandler>().SetPosition();
+                //go.AddComponent<CreatedItemDragHandler>();
+                //go.GetComponent<CreatedItemDragHandler>().SetPosition();
                 go.AddComponent<Image>();
                 go.GetComponent<Image>().sprite = images[i].sprite;
                 go.layer = 5;
