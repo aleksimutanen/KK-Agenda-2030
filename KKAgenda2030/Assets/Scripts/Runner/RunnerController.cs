@@ -17,6 +17,8 @@ public class RunnerController : MonoBehaviour {
 
     [SerializeField] LayerMask background;
 
+    [HideInInspector] public bool cameraMove = true;
+    [HideInInspector] public Vector3 deltaPos;
     Rigidbody rb;
     Vector3 charStartPos;
 
@@ -25,6 +27,7 @@ public class RunnerController : MonoBehaviour {
     void Start() {
         charStartPos = transform.position;
         rb = GetComponent<Rigidbody>();
+        cameraMove = true;
     }
 
     void FixedUpdate() {
@@ -110,9 +113,17 @@ public class RunnerController : MonoBehaviour {
 
         //ignore
 
-        //Vector3 camPos = transform.position;
-        //camPos.y += 10f;
-        //Camera.main.transform.position = camPos;
+        tfSpeed += Time.deltaTime * 0.01f;
+        deltaPos = transform.right * tfSpeed * Time.deltaTime;
+        transform.position += deltaPos;
+
+        if (/*bool jtn*/cameraMove) {
+            Vector3 camPos = transform.position;
+            camPos.x += 5f;
+            camPos.y += 10f;
+            camPos.z = 0;
+            Camera.main.transform.position = camPos;
+        }
     }
 
     public void ResetCharacter() {
