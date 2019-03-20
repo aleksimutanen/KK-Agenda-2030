@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15264,6 +15264,7 @@ MonoBehaviour:
   nextPageButton: {fileID: 1811590042}
   previousPageButton: {fileID: 1228810161}
   pageIndex: 0
+  fadeImages: []
   pdPrefab: {fileID: 7965749728950599697, guid: c8ea32f1a1d7fcb45839920e7ae3b687,
     type: 3}
   rightArrows:
@@ -20750,6 +20751,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KostiSpeechParent
       objectReference: {fileID: 0}
+    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
+        type: 3}
+      propertyPath: m_Name
+      value: SBubbleKosti
+      objectReference: {fileID: 0}
     - target: {fileID: 1923512416, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
@@ -20781,11 +20787,6 @@ PrefabInstance:
     - target: {fileID: 721973955, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalScale.y
       value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
-        type: 3}
-      propertyPath: m_Name
-      value: SBubbleKosti
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
@@ -32567,6 +32568,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VilleSpeechParent
       objectReference: {fileID: 0}
+    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
+        type: 3}
+      propertyPath: m_Name
+      value: SBubbleVille
+      objectReference: {fileID: 0}
     - target: {fileID: 1923512416, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
@@ -32598,11 +32604,6 @@ PrefabInstance:
     - target: {fileID: 721973955, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalScale.y
       value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
-        type: 3}
-      propertyPath: m_Name
-      value: SBubbleVille
       objectReference: {fileID: 0}
     - target: {fileID: 721973956, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_FlipX
@@ -64091,13 +64092,16 @@ MonoBehaviour:
   - {fileID: 462548642}
   - {fileID: 203740722}
   - {fileID: 1649690072}
-  transitionBackGround: {fileID: 230575797}
-  transitionCircle: {fileID: 1930771101}
+  fishGameTransition: {fileID: 230575797}
+  fishTransitionCircle: {fileID: 1930771101}
+  trashGameTransition: {fileID: 0}
+  beeGameTransition: {fileID: 0}
   sliderImage: {fileID: 2008180221}
   slider: {fileID: 1938954232}
   fadeTime: 0.3
   transition: 0
   animator: {fileID: 0}
+  MGM: {fileID: 0}
 --- !u!4 &1627138671
 Transform:
   m_ObjectHideFlags: 0
@@ -75500,6 +75504,8 @@ MonoBehaviour:
   - {fileID: 361585404}
   - {fileID: 1695512468}
   - {fileID: 471560464}
+  spawnPointFolder: {fileID: 0}
+  replayButton: {fileID: 0}
   animators:
   - {fileID: 290606507}
   - {fileID: 1085908652}
@@ -75507,7 +75513,6 @@ MonoBehaviour:
   animationPlayed: 000000
   destroyableToys: []
   victoryParticles: {fileID: 350136255}
-  animalsClickable: 0
 --- !u!1 &1978310711
 GameObject:
   m_ObjectHideFlags: 0

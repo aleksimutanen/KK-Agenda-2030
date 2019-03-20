@@ -13,6 +13,8 @@ public class RunnerController : MonoBehaviour {
     [SerializeField] float deceleration;
     [SerializeField] float acceleration;
 
+    [SerializeField] float distanceThreshold;
+
     [SerializeField] LayerMask background;
 
     Rigidbody rb;
@@ -38,7 +40,7 @@ public class RunnerController : MonoBehaviour {
             speedFactor += Time.deltaTime * acceleration;
             speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
 
-            if (hit.point.z > transform.position.z) {
+            if (hit.point.z > transform.position.z && Vector3.Distance(new Vector3(0,0,hit.point.z), new Vector3(0,0,transform.position.z)) > distanceThreshold) {
                 upSpeed += Time.deltaTime * acceleration;
                 upSpeed = Mathf.Clamp01(upSpeed);
                 rb.velocity = dir;
@@ -47,7 +49,7 @@ public class RunnerController : MonoBehaviour {
                 upSpeed = Mathf.Clamp01(upSpeed);
             }
 
-            if (hit.point.z < transform.position.z) {
+            if (hit.point.z < transform.position.z && Vector3.Distance(new Vector3(0, 0, hit.point.z), new Vector3(0, 0, transform.position.z)) > distanceThreshold) {
                 downSpeed += Time.deltaTime * acceleration;
                 downSpeed = Mathf.Clamp01(downSpeed);
                 rb.velocity = dir;

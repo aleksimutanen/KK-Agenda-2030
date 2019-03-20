@@ -41,11 +41,15 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] Slider scoreSlider;
     [SerializeField] Image sliderFill;
     [SerializeField] Text livesLeftText;
+    [SerializeField] List<Image> lifeImages;
+    public List<Image> memList;
 
     [SerializeField] AnimationCurve fillColor;
     [SerializeField] Color sliderFillColor;
     [SerializeField] Color hitAvoidableColor;
     [SerializeField] Color hitCollectableColor;
+
+    [SerializeField] Image fadeImage;
 
     public GameObject GameoverPanel;
 
@@ -57,15 +61,18 @@ public class RunnerGameManager : MonoBehaviour {
     void Start() {
         if (instance)
             Debug.LogError("2+ RunnerManagers found!");
+
+        fadeImage.GetComponent<Animator>().Play("FadeOut");
+        memList = lifeImages;
         instance = this;
         maxLives = livesLeft;
         character = FindObjectOfType<RunnerController>();
         charStartPos = character.transform.position;
         levelIndex = 0;
-        LauchGame();
+        LaunchGame();
     }
 
-    void LauchGame() {
+    void LaunchGame() {
         GameObject go = Instantiate(levelPrefabs[levelIndex], Vector3.zero, transform.rotation);
         go.transform.parent = levelFolder.transform;
         levels[levelIndex] = go;
@@ -173,6 +180,9 @@ public class RunnerGameManager : MonoBehaviour {
         scoreSlider.value = 0f;
         foodCollected = 0;
 
+        foreach (Image i in memList) i.gameObject.SetActive(true);
+        lifeImages = memList;
+
         //character.transform.position = charStartPos;
         //character.GetComponent<Rigidbody>().velocity = Vector3.zero;
         character.ResetCharacter();
@@ -183,9 +193,17 @@ public class RunnerGameManager : MonoBehaviour {
             return;
         }
 
+        for (int i = 0; i < lifeImages.Count; i++) {
+            if (lifeImages[i].IsActive()) {
+                lifeImages[i].gameObject.SetActive(false);
+                break;
+            }
+        }
+
+        HitAvoidable(TimerType.LoseSmall);
         invulnerable = true;
         livesLeft--;
-        livesLeftText.text = livesLeft + " / " + maxLives;
+        //livesLeftText.text = livesLeft + " / " + maxLives;
         StartCoroutine("VignetteFlash");
         StartCoroutine("SpriteFlash");
         if (livesLeft == 0) {

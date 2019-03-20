@@ -65,15 +65,15 @@ public class GrandManager : MonoBehaviour {
         //nextPageButton.SetActive(false);
 
         var ui = FindObjectOfType<UIManager>();
-        ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+        ui.fishGameTransition.GetComponent<Animator>().Play("OceanGameTransition");
 
         yield return new WaitForSeconds(1f);
 
-        ui.transitionCircle.gameObject.SetActive(true);
-        ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
+        ui.fishTransitionCircle.gameObject.SetActive(true);
+        ui.fishTransitionCircle.GetComponent<Animator>().Play("TransitionCircle");
         yield return new WaitForSeconds(3f);
 
-        ui.transitionCircle.gameObject.SetActive(false);
+        ui.fishTransitionCircle.gameObject.SetActive(false);
 
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
 
@@ -109,10 +109,11 @@ public class GrandManager : MonoBehaviour {
 
     }
 
-    public void LaunchBeeGame() {
+    public IEnumerator LaunchBeeGame() {
 
         var ui = FindObjectOfType<UIManager>();
-
+        ui.beeGameTransition.GetComponentInParent<Animator>().Play("RunnerLevelTransition");
+        yield return new WaitForSeconds(3.5f);
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("RunnerGame");
     }

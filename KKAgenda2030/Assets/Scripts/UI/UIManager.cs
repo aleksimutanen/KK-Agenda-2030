@@ -14,10 +14,12 @@ public class UIManager : MonoBehaviour {
     public Button[] pauseMenuButtons;
     public Image[] pauseMenuImageList;
 
-    public Image transitionBackGround;
-    public Image transitionCircle;
+    public Image fishGameTransition;
+    public Image fishTransitionCircle;
 
     public Image trashGameTransition;
+
+    public Image beeGameTransition;
 
     public Image sliderImage;
     public Slider slider;
@@ -57,11 +59,11 @@ public class UIManager : MonoBehaviour {
     }
 
     public void OceanGameBackGroundTransition() {
-        transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+        fishGameTransition.GetComponent<Animator>().Play("OceanGameTransition");
     }
 
     public void OceanGameCircle() {
-        transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
+        fishTransitionCircle.GetComponent<Animator>().Play("TransitionCircle");
     }
 
     public void LevelEndStars(Image star) {
@@ -91,7 +93,8 @@ public class UIManager : MonoBehaviour {
     }
 
     public void LaunchBeeGame() {
-        GrandManager.instance.LaunchBeeGame();
+        GrandManager.instance.StartCoroutine("LaunchBeeGame");
+
     }
 
     public void DisableMenuButtons() {
@@ -127,7 +130,7 @@ public class UIManager : MonoBehaviour {
     }
 
     IEnumerator ReloadGameFade() {
-        transitionBackGround.GetComponent<Animator>().Play("OceanGameQuickTransition");
+        fishGameTransition.GetComponent<Animator>().Play("OceanGameQuickTransition");
         PauseButton();
 
         yield return new WaitForSeconds(1f);
@@ -136,7 +139,7 @@ public class UIManager : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
 
-        transitionBackGround.GetComponent<Animator>().Play("New State");
+        fishGameTransition.GetComponent<Animator>().Play("New State");
     }
 
     ///////// 
@@ -197,7 +200,7 @@ public class UIManager : MonoBehaviour {
     }
 
     IEnumerator QuitGameFade() {
-        transitionBackGround.GetComponent<Animator>().Play("OceanGameQuickTransition");
+        fishGameTransition.GetComponent<Animator>().Play("OceanGameQuickTransition");
         PauseButton();
 
         yield return new WaitForSeconds(1f);
