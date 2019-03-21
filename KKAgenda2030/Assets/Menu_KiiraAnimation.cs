@@ -15,9 +15,7 @@ public class Menu_KiiraAnimation : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        if (gameObject.name == "WateringCan") {
-            childAnimator.Play("Menu_WateringCan");
-        } else {
+        if (gameObject.name == "KiiraBeeParent") {
             childAnimator.Play("MenuKiira_happy");
         }
 
