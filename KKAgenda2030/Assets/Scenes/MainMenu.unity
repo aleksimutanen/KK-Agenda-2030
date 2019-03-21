@@ -182,51 +182,99 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1618065408243939780, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+    - target: {fileID: 1201848287, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452071217258474103, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452071217258474103, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452071217258474103, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452071217258474103, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452071217258474103, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -204.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402961134224108927, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2cca5f0e2140ce34bb7eb13714c68b88,
+        type: 3}
+    - target: {fileID: 6365208695698625530, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365208695698625530, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1252551139
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365208695698625530, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
---- !u!1 &1321585657 stripped
+--- !u!1 &608274720 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5330740817469009409, guid: c1dcf163cef0f134b84f9e16841e4308,
+  m_CorrespondingSourceObject: {fileID: 8696250675020945678, guid: c1dcf163cef0f134b84f9e16841e4308,
     type: 3}
   m_PrefabInstance: {fileID: 608274719}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1321585662
+--- !u!95 &608274721
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608274720}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1b1024d29ddb174598d5e9abca8f5a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &608274722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321585657}
+  m_GameObject: {fileID: 608274720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 335c024a52a91c74f90ed5ea314a99ae, type: 3}
+  m_Script: {fileID: 11500000, guid: b5eb52ba7a948de4ab7d04b296bf85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state0: 0
-  state1: 0
-  state2: 0
-  timer: 10
---- !u!1 &1366182731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2472086280424546997, guid: c1dcf163cef0f134b84f9e16841e4308,
-    type: 3}
-  m_PrefabInstance: {fileID: 608274719}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1366182734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366182731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 922b87bbf9139534ba2d1228d0ac3151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  growingFlower: {fileID: 1321585657}
-  timer: 10
+  animationPool:
+  - Menu_Kosti
+  minT: 4
+  maxT: 6
 --- !u!1001 &1615784714
 PrefabInstance:
   m_ObjectHideFlags: 0
