@@ -207,7 +207,9 @@ public class RunnerGameManager : MonoBehaviour {
         StartCoroutine("VignetteFlash");
         StartCoroutine("SpriteFlash");
         if (livesLeft == 0) {
-            StartCoroutine("LevelTransition");
+            Time.timeScale = 0f;
+            GameoverPanel.SetActive(true);
+            //StartCoroutine("LevelTransition");
         }
     }
 
