@@ -176,7 +176,7 @@ public class RunnerGameManager : MonoBehaviour {
 
         //reset lives, UI and character position
         livesLeft = maxLives;
-        livesLeftText.text = livesLeft + " / " + maxLives;
+        //livesLeftText.text = livesLeft + " / " + maxLives;
         scoreSlider.value = 0f;
         foodCollected = 0;
 

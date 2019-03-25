@@ -67,6 +67,12 @@ public class PageTurner : MonoBehaviour {
     }
 
     IEnumerator PreviousPageAnim() {
+        var activeButtons = pageContent[pageIndex].GetComponentsInChildren<Button>();
+        foreach (var item in activeButtons) {
+            item.GetComponent<Button>().enabled = false;
+            item.GetComponent<Image>().enabled = false;
+        }
+
         if (pageIndex >= 1) {
             if (pageIndex == pages.Length - 1) nextPageButton.SetActive(true);
             foreach (Button b in buttons) b.interactable = false;
@@ -86,7 +92,6 @@ public class PageTurner : MonoBehaviour {
             if (pageIndex == 0) previousPageButton.SetActive(false);
             page = Pages.CoverPage + pageIndex;
             ButtonToggle();
-
         }
     }
 
