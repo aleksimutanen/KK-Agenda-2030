@@ -67,11 +67,13 @@ public class PageTurner : MonoBehaviour {
     }
 
     IEnumerator PreviousPageAnim() {
-        var activeButtons = pageContent[pageIndex].GetComponentsInChildren<Button>();
-        foreach (var item in activeButtons) {
-            item.GetComponent<Button>().enabled = false;
-            item.GetComponent<Image>().enabled = false;
-        }
+        GameObject.Find("ButtonFolder").GetComponent<Animator>().Play("Menu_ButtonFadeOut");
+
+        //var activeButtons = pageContent[pageIndex].GetComponentsInChildren<Button>();
+        //foreach (var item in activeButtons) {
+        //    item.GetComponent<Button>().enabled = false;
+        //    item.GetComponent<Image>().enabled = false;
+        //}
 
         if (pageIndex >= 1) {
             if (pageIndex == pages.Length - 1) nextPageButton.SetActive(true);
@@ -101,6 +103,8 @@ public class PageTurner : MonoBehaviour {
 
     IEnumerator NextPageAnim() {
         if (pageIndex < pages.Length) {
+
+
             if (pageIndex == 0) previousPageButton.SetActive(true);
             foreach (Button b in buttons) b.interactable = false;
             pages[pageIndex + 1].SetActive(true);
@@ -112,6 +116,13 @@ public class PageTurner : MonoBehaviour {
             pages[pageIndex].GetComponent<Animator>().Play("Page");
             
             yield return new WaitForSeconds(0.5f);
+
+            GameObject.Find("ButtonFolder").GetComponent<Animator>().Play("Menu_ButtonFadeIn");
+            //var activeButtons = pageContent[pageIndex + 1].GetComponentsInChildren<Button>();
+            //foreach (var item in activeButtons) {
+            //    item.GetComponent<Button>().enabled = true;
+            //    item.GetComponent<Image>().enabled = true;
+            //}
 
             pages[pageIndex].SetActive(false);
             pageIndex++;
