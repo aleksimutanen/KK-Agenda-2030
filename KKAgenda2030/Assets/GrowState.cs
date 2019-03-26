@@ -5,19 +5,8 @@ using UnityEngine;
 public class GrowState : MonoBehaviour
 {
 
-    public bool state0;
-    public bool state1;
-    public bool state2;
+    [HideInInspector] public bool state0;
+    [HideInInspector] public bool state1;
+    [HideInInspector] public bool state2;
 
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
