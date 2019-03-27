@@ -5,36 +5,47 @@ using UnityEngine.UI;
 
 public class WorldManager : MonoBehaviour
 {
-    public GameObject decalsFolder;   
+    public GameObject decalsFolder;
 
     public GameObject[] images = new GameObject[8];
+    private float range = 1000f;
 
 
     void Update()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
         {
+            //    print("Näppäin checkki");
 
-
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity /*, 1 << 5 LayerMask.GetMask(new string[] { "UI" })*/ ))
             {
-                if (Input.GetMouseButtonDown(0))
-                {
 
-                    print(hit.point);
+
+                print(hit.collider.name);
+
+                var nGo = new GameObject("temp" + " " + hit.collider.name);
+
+                GameObject go = Instantiate(nGo, hit.point, Quaternion.identity);
+                print("Created new decal");
                 
-                    var nGo = new GameObject("temp");
+                go.transform.parent = decalsFolder.transform;
+                go.gameObject.tag = "Decal";
+                go.gameObject.GetComponent<Transform>().transform.position = hit.collider.gameObject.GetComponent<RectTransform>().transform.position;
+                go.gameObject.AddComponent<SpriteRenderer>();
+                go.gameObject.GetComponent<SpriteRenderer>().sprite = hit.collider.gameObject.GetComponent<Image>().sprite;
+                go.gameObject.AddComponent<ItemDragHandler>();
+               
+                go.gameObject.AddComponent<BoxCollider>();
+                go.gameObject.GetComponent<BoxCollider>().size = new Vector3(10.0f, 10.0f, 0.0f);
+                go.gameObject.AddComponent<Rigidbody>();
+                go.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                go.layer = 5;
+                go.transform.position = (Input.mousePosition);
 
-                    GameObject go = Instantiate(nGo, hit.point, Quaternion.identity);
-                    print("Luodaan uusi image");
-                    go.transform.parent = decalsFolder.transform;
-                    go.gameObject.AddComponent<Image>();
-                    // go.gameObject.GetComponent<Image>().sprite = hit.collider.;
-                    go.gameObject.AddComponent<ItemDragHandler>();
-                    go.layer = 5;
-                    // hit.collider.gameObject.SetActive(false);
-                   go.transform.position = (Input.mousePosition);
 
-
-                }
             }
         }
+    }
 }
