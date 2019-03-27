@@ -8,12 +8,14 @@ public class Flower : MonoBehaviour {
     public List<Sprite> berrySprites;
     SpriteRenderer spriteR;
     int spriteIndex;
+    ParticleSystem ps;
 
 
     private void Start() {
         spriteR = GetComponentInChildren<SpriteRenderer>();
         spriteIndex = Random.Range(0, flowerSprites.Count);
         spriteR.sprite = flowerSprites[spriteIndex];
+        ps = GetComponentInChildren<ParticleSystem>();
     }
 
 
@@ -22,6 +24,7 @@ public class Flower : MonoBehaviour {
             RunnerGameManager.instance.HitCollectable(RunnerGameManager.TimerType.GainSmall);
             RunnerGameManager.instance.HitFlower();
             spriteR.sprite = berrySprites[spriteIndex];
+            ps.Play();
             //GetComponentInChildren<SpriteRenderer>().sprite = flowerSprites[1];
             // Play some particles and sounds here?
             GetComponent<BoxCollider>().enabled = false;

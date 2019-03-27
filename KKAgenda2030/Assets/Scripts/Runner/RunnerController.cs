@@ -13,8 +13,12 @@ public class RunnerController : MonoBehaviour {
     [SerializeField] float deceleration;
     [SerializeField] float acceleration;
 
+    [SerializeField] float distanceThreshold;
+
     [SerializeField] LayerMask background;
 
+    [HideInInspector] public bool cameraMove = true;
+    [HideInInspector] public Vector3 deltaPos;
     Rigidbody rb;
     Vector3 charStartPos;
 
@@ -23,6 +27,7 @@ public class RunnerController : MonoBehaviour {
     void Start() {
         charStartPos = transform.position;
         rb = GetComponent<Rigidbody>();
+        cameraMove = true;
     }
 
     void FixedUpdate() {
@@ -38,7 +43,7 @@ public class RunnerController : MonoBehaviour {
             speedFactor += Time.deltaTime * acceleration;
             speedFactor = Mathf.Clamp(speedFactor, 0f, maxSpeed);
 
-            if (hit.point.z > transform.position.z) {
+            if (hit.point.z > transform.position.z && Vector3.Distance(new Vector3(0,0,hit.point.z), new Vector3(0,0,transform.position.z)) > distanceThreshold) {
                 upSpeed += Time.deltaTime * acceleration;
                 upSpeed = Mathf.Clamp01(upSpeed);
                 rb.velocity = dir;
@@ -47,7 +52,7 @@ public class RunnerController : MonoBehaviour {
                 upSpeed = Mathf.Clamp01(upSpeed);
             }
 
-            if (hit.point.z < transform.position.z) {
+            if (hit.point.z < transform.position.z && Vector3.Distance(new Vector3(0, 0, hit.point.z), new Vector3(0, 0, transform.position.z)) > distanceThreshold) {
                 downSpeed += Time.deltaTime * acceleration;
                 downSpeed = Mathf.Clamp01(downSpeed);
                 rb.velocity = dir;
@@ -108,9 +113,17 @@ public class RunnerController : MonoBehaviour {
 
         //ignore
 
-        //Vector3 camPos = transform.position;
-        //camPos.y += 10f;
-        //Camera.main.transform.position = camPos;
+        tfSpeed += Time.deltaTime * 0.01f;
+        deltaPos = transform.right * tfSpeed * Time.deltaTime;
+        transform.position += deltaPos;
+
+        if (/*bool jtn*/cameraMove) {
+            Vector3 camPos = transform.position;
+            camPos.x += 5f;
+            camPos.y += 10f;
+            camPos.z = 0;
+            Camera.main.transform.position = camPos;
+        }
     }
 
     public void ResetCharacter() {

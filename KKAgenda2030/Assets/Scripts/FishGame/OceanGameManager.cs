@@ -87,7 +87,7 @@ public class OceanGameManager : MonoBehaviour {
         //startingScale = FindObjectOfType<CharacterMover>().transform.localScale;
 
         StartGame();
-        FindObjectOfType<UIManager>().transitionBackGround.GetComponent<Animator>().Play("FadeOut");
+        FindObjectOfType<UIManager>().fishGameTransition.GetComponent<Animator>().Play("FadeOut");
         // create transition ending
     }
 
@@ -248,26 +248,26 @@ public class OceanGameManager : MonoBehaviour {
             yield return new WaitForSeconds(3f);
 
             //start transition
-            ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameTransition");
+            ui.fishGameTransition.GetComponent<Animator>().Play("OceanGameTransition");
             Fabric.EventManager.Instance.PostEvent("sharkMusic");
 
             yield return new WaitForSeconds(1f);
 
             //start loading roll
             ui.slider.GetComponent<Animator>().Play("New State");
-            ui.transitionCircle.gameObject.SetActive(true);
-            ui.transitionCircle.GetComponent<Animator>().Play("TransitionCircle");
+            ui.fishTransitionCircle.gameObject.SetActive(true);
+            ui.fishTransitionCircle.GetComponent<Animator>().Play("TransitionCircle");
 
             yield return new WaitForSeconds(3f);
 
-            ui.transitionCircle.gameObject.SetActive(false);
+            ui.fishTransitionCircle.gameObject.SetActive(false);
             roundEndSlider.gameObject.SetActive(false);
             for (int i = 0; i < starImages.Length; i++) starImages[i].gameObject.SetActive(false);
 
             NextLevel();
 
         } else {
-            ui.transitionBackGround.GetComponent<Animator>().Play("OceanGameGameEnd");
+            ui.fishGameTransition.GetComponent<Animator>().Play("OceanGameGameEnd");
 
             yield return new WaitForSeconds(1f);
 
@@ -346,7 +346,7 @@ public class OceanGameManager : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(1f);
-        ui.transitionBackGround.GetComponent<Animator>().Play("New State");
+        ui.fishGameTransition.GetComponent<Animator>().Play("New State");
         pauseButton.interactable = true;
 
     }

@@ -10,19 +10,25 @@ public class Map : MonoBehaviour {
     public List<Transform> parallaxLayers;
     public List<float> parallaxFactors;
 
-
-    Rigidbody rb;
+    RunnerController rc;
+    CameraStopper cs;
+    //Rigidbody rb;
 
     void Start() {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
+        rc = FindObjectOfType<RunnerController>();
+        cs = FindObjectOfType<CameraStopper>();
     }
 
     void Update() {
-        tfSpeed += Time.deltaTime * 0.01f;
-        var deltaPos = -transform.right * tfSpeed * Time.deltaTime;
-        transform.position += deltaPos;
-        for (int i = 0; i < parallaxLayers.Count; i++) {
-            parallaxLayers[i].position += deltaPos * parallaxFactors[i];
+        //tfSpeed += Time.deltaTime * 0.01f;
+        //var deltaPos = -transform.right * tfSpeed * Time.deltaTime;
+        //transform.position += deltaPos;
+        if (!cs.parallaxStop) {
+            for (int i = 0; i < parallaxLayers.Count; i++) {
+                parallaxLayers[i].position += rc.deltaPos * parallaxFactors[i];
+            }
+
         }
 
         //rbSpeed += Time.deltaTime * 1f;

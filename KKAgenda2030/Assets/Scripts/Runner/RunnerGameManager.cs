@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class RunnerGameManager : MonoBehaviour {
 
@@ -28,6 +29,8 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] float loseSmallScore;
     [SerializeField] float loseBigScore;
 
+    bool invulnerable;
+
     public int livesLeft;
     int maxLives;
     [SerializeField] int foodCollected;
@@ -38,11 +41,15 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] Slider scoreSlider;
     [SerializeField] Image sliderFill;
     [SerializeField] Text livesLeftText;
+    [SerializeField] List<Image> lifeImages;
+    public List<Image> memList;
 
     [SerializeField] AnimationCurve fillColor;
     [SerializeField] Color sliderFillColor;
     [SerializeField] Color hitAvoidableColor;
     [SerializeField] Color hitCollectableColor;
+
+    [SerializeField] Image fadeImage;
 
     public GameObject GameoverPanel;
 
@@ -54,15 +61,18 @@ public class RunnerGameManager : MonoBehaviour {
     void Start() {
         if (instance)
             Debug.LogError("2+ RunnerManagers found!");
+
+        fadeImage.GetComponent<Animator>().Play("FadeOut");
+        memList = lifeImages;
         instance = this;
         maxLives = livesLeft;
         character = FindObjectOfType<RunnerController>();
         charStartPos = character.transform.position;
         levelIndex = 0;
-        LauchGame();
+        LaunchGame();
     }
 
-    void LauchGame() {
+    void LaunchGame() {
         GameObject go = Instantiate(levelPrefabs[levelIndex], Vector3.zero, transform.rotation);
         go.transform.parent = levelFolder.transform;
         levels[levelIndex] = go;
@@ -166,9 +176,12 @@ public class RunnerGameManager : MonoBehaviour {
 
         //reset lives, UI and character position
         livesLeft = maxLives;
-        livesLeftText.text = livesLeft + " / " + maxLives;
+        //livesLeftText.text = livesLeft + " / " + maxLives;
         scoreSlider.value = 0f;
         foodCollected = 0;
+
+        foreach (Image i in memList) i.gameObject.SetActive(true);
+        lifeImages = memList;
 
         //character.transform.position = charStartPos;
         //character.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -176,10 +189,27 @@ public class RunnerGameManager : MonoBehaviour {
     }
 
     public void LoseLife() {
+        if (invulnerable) {
+            return;
+        }
+
+        for (int i = 0; i < lifeImages.Count; i++) {
+            if (lifeImages[i].IsActive()) {
+                lifeImages[i].gameObject.SetActive(false);
+                break;
+            }
+        }
+
+        HitAvoidable(TimerType.LoseSmall);
+        invulnerable = true;
         livesLeft--;
-        livesLeftText.text = livesLeft + " / " + maxLives;
+        //livesLeftText.text = livesLeft + " / " + maxLives;
+        StartCoroutine("VignetteFlash");
+        StartCoroutine("SpriteFlash");
         if (livesLeft == 0) {
-            StartCoroutine("LevelTransition");
+            Time.timeScale = 0f;
+            GameoverPanel.SetActive(true);
+            //StartCoroutine("LevelTransition");
         }
     }
 
@@ -188,6 +218,41 @@ public class RunnerGameManager : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         RestartLevel();
         FindObjectOfType<Map>().tfSpeed = 1.5f;
+    }
+
+    IEnumerator VignetteFlash() {
+        var ppVolume = FindObjectOfType<PostProcessVolume>();
+        var t0 = Time.realtimeSinceStartup;
+        var tEnd = 2f;
+        var timer = 0f;
+
+        while (timer < tEnd) {
+            timer = Time.realtimeSinceStartup - t0;
+            ppVolume.weight = Mathf.Sin(2 * Mathf.PI / (2 * tEnd) * timer);
+            //ppVolume.weight = Mathf.PingPong(timer, 1);
+
+            yield return null;
+        }
+        ppVolume.weight = 0;
+    }
+
+    IEnumerator SpriteFlash() {
+        var spriteR = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>();
+        var t0 = Time.realtimeSinceStartup;
+        var timer = 0f;
+        var waveLength = 1f;
+
+        int flashes = 2;
+
+        while (timer < flashes * waveLength) {
+            timer = Time.realtimeSinceStartup - t0;
+            var alphaSin = 1 - (Mathf.Sin(3 / 2 * Mathf.PI + 2 * Mathf.PI / waveLength * timer) * 0.5f + 0.5f);
+            spriteR.color = new Color(1, 1, 1, alphaSin);
+            yield return null;
+        }
+
+        spriteR.color = Color.white;
+        invulnerable = false;
     }
 }
 
