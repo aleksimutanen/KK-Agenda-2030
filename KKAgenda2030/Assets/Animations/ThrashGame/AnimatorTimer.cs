@@ -6,13 +6,14 @@ public class AnimatorTimer : MonoBehaviour {
 
     Animator animator;
     public List<string> animationPool;
-    float animTimer = 5F;
+    float animTimer;
     public float minT;
     public float maxT;
     public bool animatioPlaying = false;
 
     void Start() {
         animator = GetComponent<Animator>();
+        animTimer = Random.Range(4, 7);
     }
 
     void Update() {
