@@ -12,6 +12,8 @@ public class PhoneCamera : MonoBehaviour {
     public RawImage background;
     public AspectRatioFitter fit;
 
+    
+
 
     void Start() {
         defaultBackground = background.texture;
@@ -50,5 +52,7 @@ public class PhoneCamera : MonoBehaviour {
 
         int orient = -frontCam.videoRotationAngle;
         background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+
+
     }
 }
