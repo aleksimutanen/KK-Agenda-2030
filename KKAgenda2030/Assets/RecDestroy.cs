@@ -6,6 +6,7 @@ public class RecDestroy : MonoBehaviour
 {
     WorldManager wm;
     public GameObject[] decals;
+   
 
     void Start()
     {

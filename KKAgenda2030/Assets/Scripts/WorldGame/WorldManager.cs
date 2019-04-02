@@ -7,7 +7,7 @@ public class WorldManager : MonoBehaviour
 {
     public GameObject decalsFolder;
 
-    public GameObject[] images = new GameObject[8];
+    public List<GameObject> images = new List<GameObject>();
     private float range = 1000f;
 
 
@@ -15,7 +15,7 @@ public class WorldManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
         {
-            //    print("Näppäin checkki");
+
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -23,27 +23,43 @@ public class WorldManager : MonoBehaviour
             {
 
 
-                print(hit.collider.name);
+                foreach (var decal in images)
+                {
+                    if (decal.name == hit.collider.name)
+                    {
+                        GameObject go = Instantiate(decal, hit.point, Quaternion.identity);
+                        //go.gameObject.transform.localPosition = new Vector3(0.0F, 0.0f, 0.0f);
+                        go.gameObject.transform.localScale = new Vector3(1.1F, 0.6f, 0.0f);
+                        go.gameObject.AddComponent<Draging>();
+                        print("Created new decal" + " " + decal.name);
 
-                var nGo = new GameObject("temp" + " " + hit.collider.name);
+                        go.transform.parent = decalsFolder.transform;
+                    }
 
-                GameObject go = Instantiate(nGo, hit.point, Quaternion.identity);
-                print("Created new decal");
-                
-                go.transform.parent = decalsFolder.transform;
-                go.gameObject.tag = "Decal";
-                go.gameObject.GetComponent<Transform>().transform.position = hit.collider.gameObject.GetComponent<RectTransform>().transform.position;
-                go.gameObject.AddComponent<SpriteRenderer>();
-                go.gameObject.GetComponent<SpriteRenderer>().sprite = hit.collider.gameObject.GetComponent<Image>().sprite;
-                go.gameObject.AddComponent<ItemDragHandler>();
-               
-                go.gameObject.AddComponent<BoxCollider>();
-                go.gameObject.GetComponent<BoxCollider>().size = new Vector3(10.0f, 10.0f, 0.0f);
-                go.gameObject.AddComponent<Rigidbody>();
-                go.gameObject.GetComponent<Rigidbody>().useGravity = false;
-                go.layer = 5;
-                go.transform.position = (Input.mousePosition);
+                }
 
+                /* 
+              print(hit.collider.name);
+
+              var nGo = new GameObject("temp" + " " + hit.collider.name);
+
+
+              go.gameObject.tag = "Decal";
+              go.gameObject.AddComponent<SpriteRenderer>();
+              go.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Front";
+              go.gameObject.GetComponent<SpriteRenderer>().sprite = hit.collider.gameObject.GetComponent<Image>().sprite;
+              go.gameObject.GetComponent<Transform>().transform.localScale = new Vector3(0.6F, 0.6f, 0.0f);
+           // go.gameObject.GetComponent<Transform>().transform.position = hit.collider.gameObject.GetComponent<RectTransform>().transform.position;
+           // go.gameObject.GetComponent<Transform>().position = hit.collider.gameObject.GetComponent<Transform>().position;
+           // go.gameObject.GetComponent<Transform>().position =    hit.point.x
+              go.gameObject.AddComponent<ItemDragHandler>();               
+              go.gameObject.AddComponent<BoxCollider>();
+              go.gameObject.GetComponent<BoxCollider>().size = new Vector3(7.0f, 8.0f, 0.0f);
+              go.gameObject.AddComponent<Rigidbody>();
+              go.gameObject.GetComponent<Rigidbody>().useGravity = false;
+              go.layer = 5;
+              go.transform.position = (Input.mousePosition);
+          */
 
             }
         }

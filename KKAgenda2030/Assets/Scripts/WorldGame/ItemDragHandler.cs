@@ -21,6 +21,8 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+
+        print("Dragätään...");
         transform.position = Input.mousePosition;
        
     }
