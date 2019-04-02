@@ -28,37 +28,80 @@ public class CameraCapture : MonoBehaviour {
     }
 
     void Update() {
-        //This is to take the picture, save it and stop capturing the camera image.
-        //if (Input.GetMouseButtonDown(0)) {
-        //    SaveImage();
-        //    webcamTexture.Stop();
-        //}
+        // Reset Camera for next picture, DEBUG USE
         if (Input.GetMouseButtonDown(1)) {
             rawimage.texture = webcamTexture;
             rawimage.material.mainTexture = webcamTexture;
             webcamTexture.Play();
+        }
 
+        // Option to click images for new picture or avatar to choose
+
+
+        // when pictures are taken, continue to game
+        if (picturesTaken == playerCount) {
+            // 
         }
     }
 
-    public void SaveImage() {
-        if (picturesTaken < playerCount) {
+    public void SetPlayerTextureFromCam() {
+        SetPlayerTexture(GetCamPicture());
+    }
 
-        //Create a Texture2D with the size of the rendered image on the screen.
-        Texture2D texture = new Texture2D(rawimage.texture.width, rawimage.texture.height, TextureFormat.ARGB32, false);
-
-        //Save the image to the Texture2D
-        texture.SetPixels(webcamTexture.GetPixels());
+    public void SetPlayerTexture(Texture2D tex) {
+        Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
+        texture.SetPixels(tex.GetPixels());
         texture.Apply();
-        mgm.playerPhotoTextures.Add(texture);
-
-        print("image taken");
-        webcamTexture.Stop();
-        mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = mgm.playerPhotoTextures[0];
-        mgm.playerPhotoTextures.Clear();
+        print("avatar texture click");
+        mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = texture;
         mgm.pictureIndx++;
         picturesTaken++;
+
+        if (picturesTaken < playerCount) {
+        
         }
     }
+
+    // voi ottaa monta kuvaa, joista viimesin tallentuu aina aktiivisena olevalle pelaajalle
+    // klikkaamalla avataria vaihdetaan muokattavaa kuvaa
+    // kun molemmissa avatareissa valittu joku kuva niin "jatka" nappi enabloituu, silti voi ottaa vielä uusia kuvia
+
+
+    Texture2D GetCamPicture() {
+        //Create a Texture2D with the size of the rendered image on the screen.
+        Texture2D texture = new Texture2D(rawimage.texture.width, rawimage.texture.height, TextureFormat.ARGB32, false);
+        texture.SetPixels(webcamTexture.GetPixels()); // Save the image to the Texture2D
+        texture.Apply();
+        print("camera image taken");
+        //webcamTexture.Stop();
+        mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = texture;
+        return texture;
+    }
+
+
+
+
+
+    //public void SaveImage() {
+    //    if (picturesTaken < playerCount) {
+
+    //    //Create a Texture2D with the size of the rendered image on the screen.
+    //    Texture2D texture = new Texture2D(rawimage.texture.width, rawimage.texture.height, TextureFormat.ARGB32, false);
+
+    //    //Save the image to the Texture2D
+    //    texture.SetPixels(webcamTexture.GetPixels());
+    //    texture.Apply();
+    //    mgm.playerPhotoTextures.Add(texture);
+
+    //    print("image taken");
+    //    webcamTexture.Stop();
+    //    mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = mgm.playerPhotoTextures[0];
+    //    mgm.playerPhotoTextures.Clear();
+    //    mgm.pictureIndx++;
+    //    picturesTaken++;
+    //    }
+    //}
+
+
 }
 

@@ -17,9 +17,4 @@ public class MemoryGameManager : MonoBehaviour {
 
     }
 
-    public void SaveAvatarPicture() {
-        //playerImages[pictureIndx].GetComponent<RawImage>().texture = playerPhotoTextures[0];
-        //playerPhotoTextures.Clear();
-        //pictureIndx++;
-    }
 }
