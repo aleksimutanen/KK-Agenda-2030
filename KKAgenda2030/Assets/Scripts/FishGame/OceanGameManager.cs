@@ -397,7 +397,7 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void GameComplete() {
-        FindObjectOfType<UIManager>().BackToMainMenu();
+        FindObjectOfType<UIManager>().QuitOceanGame();
     }
 
     public void QuitToMenu() {
