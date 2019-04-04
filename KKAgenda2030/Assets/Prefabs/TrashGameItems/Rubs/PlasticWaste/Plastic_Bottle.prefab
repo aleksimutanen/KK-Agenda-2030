@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
   dragging: 0
+  mouseOverTrash: {fileID: 0}
 --- !u!114 &2231474294773733319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 419756a63ef0283428d0e5b669022abf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5bc639abdfc0a1748818e9624d972b80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,5 +141,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.036431, y: 2.250958, z: 0.2}
-  m_Center: {x: 0.0061309338, y: -0.053768873, z: 0}
+  m_Size: {x: 2.28789, y: 3.9281278, z: 0.2}
+  m_Center: {x: -0.1544497, y: -0.00024294853, z: 0}

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3416179480211233890
+--- !u!1 &3844085796592307182
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2133043936580162392}
-  - component: {fileID: 6341676939562923517}
-  - component: {fileID: 7167799111044960244}
-  - component: {fileID: 5923891230024033494}
-  - component: {fileID: 3417005687722300199}
-  - component: {fileID: 6446916549539940188}
+  - component: {fileID: 6726965284820303608}
+  - component: {fileID: 7552157993912622178}
+  - component: {fileID: 4054358698691067599}
+  - component: {fileID: 8507537023291502517}
+  - component: {fileID: 3309110936190077225}
+  - component: {fileID: 4694719832944724678}
   m_Layer: 0
-  m_Name: Hazard_Halogen
+  m_Name: Paper_notebook
   m_TagString: Compost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2133043936580162392
+--- !u!4 &6726965284820303608
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416179480211233890}
+  m_GameObject: {fileID: 3844085796592307182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.7, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6341676939562923517
+--- !u!114 &7552157993912622178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416179480211233890}
+  m_GameObject: {fileID: 3844085796592307182}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1751b0fc06d59e478d4a2d048a4e532, type: 3}
@@ -49,27 +49,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
   dragging: 0
---- !u!114 &7167799111044960244
+  mouseOverTrash: {fileID: 0}
+--- !u!114 &4054358698691067599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416179480211233890}
+  m_GameObject: {fileID: 3844085796592307182}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5b997bf6d4b01f46a5cf6c0157c23b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kind: 3
---- !u!95 &5923891230024033494
+  kind: 5
+--- !u!95 &8507537023291502517
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416179480211233890}
+  m_GameObject: {fileID: 3844085796592307182}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c44552a9677f1cd418700a90db771617, type: 2}
@@ -81,13 +82,13 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!212 &3417005687722300199
+--- !u!212 &3309110936190077225
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416179480211233890}
+  m_GameObject: {fileID: 3844085796592307182}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -118,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: aeb653c1a4f85af4cb439263fe1b5855, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2dd81c1099356946a0027568fa2498e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,16 +130,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &6446916549539940188
+--- !u!65 &4694719832944724678
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416179480211233890}
+  m_GameObject: {fileID: 3844085796592307182}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2135963, y: 2.846109, z: 0.2}
-  m_Center: {x: 0.030129433, y: 0.03392005, z: 0}
+  m_Size: {x: 2.8431325, y: 2.8862991, z: 0.2}
+  m_Center: {x: 0.04848361, y: 0.050004482, z: 0}
