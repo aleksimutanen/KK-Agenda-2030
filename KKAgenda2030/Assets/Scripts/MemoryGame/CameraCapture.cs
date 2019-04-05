@@ -9,6 +9,8 @@ public class CameraCapture : MonoBehaviour {
     MemoryGameManager mgm;
     public RawImage rawimage;  //Image for rendering what the camera sees.
     WebCamTexture webcamTexture = null;
+    public GameObject AvatarPanel;
+    public GameObject ContinueButtons;
 
     void Awake() {
         mgm = FindObjectOfType<MemoryGameManager>();
@@ -38,6 +40,8 @@ public class CameraCapture : MonoBehaviour {
         if (mgm.pictureIndx == mgm.playerCount) {
             print("player avatars choosed");
             // start some coroutine here where avatars and camera image animates and fades
+            AvatarPanel.GetComponent<Animator>().Play("Panel_Fadeout");
+            ContinueButtons.SetActive(true);
         }
     }
 

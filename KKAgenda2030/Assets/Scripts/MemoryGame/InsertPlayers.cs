@@ -6,6 +6,7 @@ public class InsertPlayers : MonoBehaviour {
 
     MemoryGameManager mgm;
     public GameObject avatarPanel;
+    public GameObject gamePanel;
     public GameObject player1Avatar;
     public GameObject player2Avatar;
 
@@ -18,6 +19,7 @@ public class InsertPlayers : MonoBehaviour {
         mgm.playerCount = 1;
         gameObject.SetActive(false);
         avatarPanel.SetActive(true);
+        gamePanel.SetActive(true);
         player2Avatar.SetActive(false);
     }
 
@@ -25,6 +27,7 @@ public class InsertPlayers : MonoBehaviour {
         mgm.playerCount = 2;
         gameObject.SetActive(false);
         avatarPanel.SetActive(true);
+        gamePanel.SetActive(true);
     }
 
 }

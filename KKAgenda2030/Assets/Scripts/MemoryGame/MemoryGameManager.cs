@@ -38,6 +38,5 @@ public class MemoryGameManager : MonoBehaviour {
             }
 
         }
-        // toggle some effect?
     }
 }
