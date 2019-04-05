@@ -31,7 +31,22 @@ public class WorldManager : MonoBehaviour
                         //go.gameObject.transform.localPosition = new Vector3(0.0F, 0.0f, 0.0f);
                         go.gameObject.transform.localScale = new Vector3(1.1F, 0.6f, 0.0f);
                         go.gameObject.AddComponent<Draging>();
+                      //  go.gameObject.GetComponent<Draging>().OnMouseDown();
                         print("Created new decal" + " " + decal.name);
+                     //   go.gameObject.GetComponent<Draging>().dragging = true;
+                        go.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+
+                        //if (go.gameObject.GetComponent<Draging>().dragging == true)
+                        //{
+                        //    go.gameObject.GetComponent<Draging>().OnMouseDown();
+                        //    print("kohde sprite pois päältä");
+                        //    hit.collider.gameObject.SetActive(false);
+                        //}
+                        //else if (go.gameObject.GetComponent<Draging>().dragging == false)
+                        //{
+                        //    print("kohde sprite päälle");
+                        //    hit.collider.gameObject.SetActive(true);
+                        //}
 
                         go.transform.parent = decalsFolder.transform;
                     }

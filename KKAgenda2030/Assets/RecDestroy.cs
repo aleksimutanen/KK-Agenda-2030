@@ -19,17 +19,15 @@ public class RecDestroy : MonoBehaviour
 
     }
 
-
-
-    void OnCollisionEnter(Collision collision)
-
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Decal")
+        if (other.gameObject.tag == "Decal")
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
 
-            print("Tuhotaan " + collision.gameObject.name);
+            print("Tuhotaan " + other.gameObject.name);
         }
-
     }
+
+    
 }
