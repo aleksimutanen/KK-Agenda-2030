@@ -112,7 +112,7 @@ public class GrandManager : MonoBehaviour {
     public IEnumerator LaunchBeeGame() {
 
         var ui = FindObjectOfType<UIManager>();
-        ui.beeGameTransition.GetComponentInParent<Animator>().Play("RunnerLevelTransition");
+        ui.runnerGameTransition.GetComponentInParent<Animator>().Play("RunnerLevelTransition");
         yield return new WaitForSeconds(3.5f);
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("RunnerGame");

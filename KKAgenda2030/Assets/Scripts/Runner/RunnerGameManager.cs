@@ -168,6 +168,7 @@ public class RunnerGameManager : MonoBehaviour {
     }
 
     public void RestartLevel() {
+        GameoverPanel.SetActive(false);
         //destroy and spawn map for current level
         GameObject levelClone = Instantiate(levelPrefabs[levelIndex], Vector3.zero, transform.rotation);
         Destroy(levels[levelIndex]);
@@ -207,17 +208,16 @@ public class RunnerGameManager : MonoBehaviour {
         StartCoroutine("VignetteFlash");
         StartCoroutine("SpriteFlash");
         if (livesLeft == 0) {
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             GameoverPanel.SetActive(true);
-            //StartCoroutine("LevelTransition");
+            FindObjectOfType<RunnerController>().gameActive = false;
+            StartCoroutine("LevelTransition");
         }
     }
 
     IEnumerator LevelTransition() {
-        FindObjectOfType<Map>().tfSpeed = 0f;
-        yield return new WaitForSeconds(2f);
-        RestartLevel();
-        FindObjectOfType<Map>().tfSpeed = 1.5f;
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<RunnerController>().GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     IEnumerator VignetteFlash() {

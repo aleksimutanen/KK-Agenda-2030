@@ -24,7 +24,7 @@ public class Map : MonoBehaviour {
         //tfSpeed += Time.deltaTime * 0.01f;
         //var deltaPos = -transform.right * tfSpeed * Time.deltaTime;
         //transform.position += deltaPos;
-        if (!cs.parallaxStop) {
+        if (!cs.parallaxStop && !GrandManager.instance.paused && rc.gameActive) {
             for (int i = 0; i < parallaxLayers.Count; i++) {
                 parallaxLayers[i].position += rc.deltaPos * parallaxFactors[i];
             }

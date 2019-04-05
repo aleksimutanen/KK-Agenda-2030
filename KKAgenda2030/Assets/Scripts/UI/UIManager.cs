@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour {
 
     public Image trashGameTransition;
 
-    public Image beeGameTransition;
+    public Image runnerGameTransition;
 
     public Image sliderImage;
     public Slider slider;
@@ -82,9 +82,7 @@ public class UIManager : MonoBehaviour {
 
     // GAME LAUNCH FUNCTIONS //
     public void LaunchOceanGame() {
-        //GrandManager.instance.LaunchOceanGame();
         GrandManager.instance.StartCoroutine("LaunchOceanGame");
-        //DisableMenuButtons();
     }
 
     public void LaunchTrashGame() {
@@ -115,41 +113,61 @@ public class UIManager : MonoBehaviour {
     }
 
     IEnumerator ReloadRunnerGameFade() {
-        //moromoro
-        RunnerGameManager.instance.RestartLevel();
+        runnerGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        //if (!GrandManager.instance.paused) 
         PauseButton();
+        yield return new WaitForSeconds(1f);
+        RunnerGameManager.instance.RestartLevel();
+    }
+
+    public void RestartRunnerGame() {
+        StartCoroutine("RestartRunnerGameFade");
+    }
+
+    IEnumerator RestartRunnerGameFade() {
+        //Time.timeScale = 1f;
+        runnerGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        yield return new WaitForSeconds(1f);
+        RunnerGameManager.instance.RestartLevel();
+    }
+
+    public void ReloadOceanGame() {
+        StartCoroutine("ReloadOceanGameFade");
+    }
+
+    IEnumerator ReloadOceanGameFade() {
+        fishGameTransition.GetComponent<Animator>().Play("OceanGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        OceanGameManager.instance.ReloadLevel();
+        yield return new WaitForSeconds(1f);
+        fishGameTransition.GetComponent<Animator>().Play("New State");
+    }
+
+    public void ReloadTrashGame() {
+        StartCoroutine("ReloadTrashGameFade");
+    }
+
+    IEnumerator ReloadTrashGameFade() {
+        animator.Play("LevelSwitchNEW");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return null;
     }
 
     ///////// 
 
-    public void ReloadOceanGameLevel() {
-        //OceanGameManager.instance.ReloadLevel();
-        //PauseButton();
-        StartCoroutine("ReloadGameFade");
+
+    public void QuitOceanGame() {
+        StartCoroutine("QuitOceanGameFade");
     }
 
-    IEnumerator ReloadGameFade() {
+    IEnumerator QuitOceanGameFade() {
         fishGameTransition.GetComponent<Animator>().Play("OceanGameQuickTransition");
         PauseButton();
-
         yield return new WaitForSeconds(1f);
-
-        OceanGameManager.instance.ReloadLevel();
-
-        yield return new WaitForSeconds(1f);
-
-        fishGameTransition.GetComponent<Animator>().Play("New State");
-    }
-
-    ///////// 
-
-
-    public void BackToMainMenu() {
-        //OceanGameManager.instance.QuitToMenu();
-        //GrandManager.instance.BackToMainMenu();
-        //PauseButton();
-        StartCoroutine("QuitGameFade");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame() {
@@ -164,32 +182,28 @@ public class UIManager : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
-    public void ReloadTrashGame() {
-        //PauseButton();
-        StartCoroutine("ReloadTrashGameFade");
-    }
-
-    IEnumerator ReloadTrashGameFade() {
-        animator.Play("LevelSwitchNEW");
-        PauseButton();
-
-        //insert a proper time frame
-
-        //  I
-        //  I
-        //  V
-
-        yield return new WaitForSeconds(1f);
-
-        //fade image on
-        //yield return new WaitForSeconds(animation lenght);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        yield return null;
-    }
-
     public void QuitRunnerGame() {
+        StartCoroutine("QuitRunnerGameFade");      
+    }
+
+    IEnumerator QuitRunnerGameFade() {
+        runnerGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
     }
+
+    public void ExitRunnerGame() {
+        StartCoroutine("ExitRunnerGameFade");
+    }
+
+    IEnumerator ExitRunnerGameFade() {
+        runnerGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
+    }
+
+
 
     public void TrashGameStartFade() {
         animator.Play("FadeOut");
@@ -198,23 +212,7 @@ public class UIManager : MonoBehaviour {
     public void ReplayMinigame() {
         MGM.ResetMiniGame();
     }
-
-    IEnumerator QuitGameFade() {
-        fishGameTransition.GetComponent<Animator>().Play("OceanGameQuickTransition");
-        PauseButton();
-
-        yield return new WaitForSeconds(1f);
-
-        SceneManager.LoadScene("MainMenu");
-
-        //OceanGameManager.instance.QuitToMenu();
-        //GrandManager.instance.BackToMainMenu();
-
-        //yield return new WaitForSeconds(1f);
-
-        //transitionBackGround.GetComponent<Animator>().Play("New State");
-    }
-
+   
     public void NextPage() {
         pt.NextPage();
     }
@@ -226,15 +224,6 @@ public class UIManager : MonoBehaviour {
     // PAUSE UI ACTIONS //
 
     public void PauseButton() {
-        //if (paused) {
-        //    StartCoroutine(PauseAnim("PauseButtonAnimationOut"));
-        //    paused = false;
-        //} else {
-        //    StartCoroutine(PauseAnim("PauseButtonAnimation"));
-        //    paused = true;
-        //}
-        //print(paused);
-
         StartCoroutine("PauseAnim");
     }
 
@@ -269,10 +258,7 @@ public class UIManager : MonoBehaviour {
             //paused
             transition = true;
 
-            //pause.GetComponent<Animator>().Play(animName);
-
-            //yield return new WaitForSeconds(1f);
-            bool paused = GrandManager.instance.Pause();
+            GrandManager.instance.Pause();
 
             Color[] b = new Color[pauseMenuImageList.Length];
             float[] d = new float[pauseMenuImageList.Length];
@@ -296,7 +282,4 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    public void XD() {
-        print("xd");
-    }
 }
