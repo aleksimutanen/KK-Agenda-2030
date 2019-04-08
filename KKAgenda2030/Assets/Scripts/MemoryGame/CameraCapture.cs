@@ -9,8 +9,6 @@ public class CameraCapture : MonoBehaviour {
     MemoryGameManager mgm;
     public RawImage rawimage;  //Image for rendering what the camera sees.
     WebCamTexture webcamTexture = null;
-    public GameObject AvatarPanel;
-    public GameObject ContinueButtons;
 
     void Awake() {
         mgm = FindObjectOfType<MemoryGameManager>();
@@ -35,40 +33,33 @@ public class CameraCapture : MonoBehaviour {
         //    webcamTexture.Play();
         //}
 
-
-        // when pictures are taken, continue to game. Toggle some panel or sum?
-        if (mgm.pictureIndx == mgm.playerCount) {
-            print("player avatars choosed");
-            // start some coroutine here where avatars and camera image animates and fades
-            AvatarPanel.GetComponent<Animator>().Play("Panel_Fadeout");
-            ContinueButtons.SetActive(true);
-        }
     }
 
     public void SetPlayerTextureFromCam() {
-        if (mgm.pictureIndx == mgm.playerCount) {
-            return;
-        }
-        SetPlayerTexture(GetCamPicture());
+        mgm.SetPlayerTexture(GetCamPicture());
     }
 
-    public void SetPlayerTexture(Texture2D tex) {
-        if (mgm.pictureIndx == mgm.playerCount) {
-            return;
-        }
-        Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
-        texture.SetPixels(tex.GetPixels());
-        texture.Apply();
-        mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = texture;
-        mgm.pictureIndx++;
-    }
+    //public void SetPlayerTexture(Texture2D tex) {
+    //    if (mgm.pictureIndx == mgm.playerCount) {
+    //        return;
+    //    }
+    //    Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
+    //    texture.SetPixels(tex.GetPixels());
+    //    texture.Apply();
+    //    mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = texture;
+    //    mgm.pictureIndx++;
+    //    //mgm.SlotSelected(mgm.pictureIndx);
+    //    if (mgm.pictureIndx == mgm.playerCount) {
+    //        print("player avatars choosed");
+    //        continueArrow.interactable = true;
+    //    }
+    //}
 
     Texture2D GetCamPicture() {
         //Create a Texture2D with the size of the rendered image on the screen.
         Texture2D texture = new Texture2D(rawimage.texture.width, rawimage.texture.height, TextureFormat.ARGB32, false);
         texture.SetPixels(webcamTexture.GetPixels()); // Save the image to the Texture2D
         texture.Apply();
-        mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = texture;
         return texture;
     }
 
