@@ -53,11 +53,13 @@ public class MemoryGameManager : MonoBehaviour {
                 cards[choice].GetComponent<CardBehaviour>().initialized = true;
             }
         }
+
         foreach (var item in cards) {
             item.GetComponent<CardBehaviour>().setupGraphics();
         }
+
         if (!_init) {
-            _init = true;
+        _init = true;
         }
     }
 
@@ -69,7 +71,7 @@ public class MemoryGameManager : MonoBehaviour {
         return cardFace[i - 1];
     }
 
-    void checkCards() {
+    public void checkCards() {
         List<int> c = new List<int>();
         for (int i = 0; i < cards.Length; i++) {
             if (cards[i].GetComponent<CardBehaviour>().state == 1) {
@@ -79,9 +81,11 @@ public class MemoryGameManager : MonoBehaviour {
         if (c.Count == 2) {
             cardComparison(c);
         }
+        //CardBehaviour.DO_NOT = false;
     }
 
     void cardComparison(List<int> c) {
+        print("cardComparisonissa nyt");
         CardBehaviour.DO_NOT = true;
         int x = 0;
         if (cards[c[0]].GetComponent<CardBehaviour>().cardValue == cards[c[1]].GetComponent<CardBehaviour>().cardValue) {

@@ -19,7 +19,7 @@ public class CardBehaviour : MonoBehaviour {
 
     public MemoryGameManager mgm;
 
-    void Start() {
+    void Awake() {
         _state = 1;
     }
 
