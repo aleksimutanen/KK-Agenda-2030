@@ -4,7 +4,8 @@
 AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: SharkSwim
   serializedVersion: 6
   m_Legacy: 0
@@ -47,15 +48,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f5eb6bd98eb52b0448a7e625bbd07dd6, type: 3}
+      value: {fileID: 21300000, guid: 323a6390ced65fa4898b2f501e20e666, type: 3}
     - time: 0.38333333
-      value: {fileID: 21300000, guid: ca6f2ae0625da504eb43abbf045e0988, type: 3}
+      value: {fileID: 21300000, guid: 80ac408fccc199e4b94d6899a94cae8f, type: 3}
     - time: 0.75
-      value: {fileID: 21300000, guid: 11d0fa1056dad8343a8d722e0e576b71, type: 3}
+      value: {fileID: 21300000, guid: 5c00f52999fc6e2459e9713d0c033a67, type: 3}
     - time: 1.1333333
-      value: {fileID: 21300000, guid: ca6f2ae0625da504eb43abbf045e0988, type: 3}
+      value: {fileID: 21300000, guid: 80ac408fccc199e4b94d6899a94cae8f, type: 3}
     - time: 1.5
-      value: {fileID: 21300000, guid: f5eb6bd98eb52b0448a7e625bbd07dd6, type: 3}
+      value: {fileID: 21300000, guid: 323a6390ced65fa4898b2f501e20e666, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -82,11 +83,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f5eb6bd98eb52b0448a7e625bbd07dd6, type: 3}
-    - {fileID: 21300000, guid: ca6f2ae0625da504eb43abbf045e0988, type: 3}
-    - {fileID: 21300000, guid: 11d0fa1056dad8343a8d722e0e576b71, type: 3}
-    - {fileID: 21300000, guid: ca6f2ae0625da504eb43abbf045e0988, type: 3}
-    - {fileID: 21300000, guid: f5eb6bd98eb52b0448a7e625bbd07dd6, type: 3}
+    - {fileID: 21300000, guid: 323a6390ced65fa4898b2f501e20e666, type: 3}
+    - {fileID: 21300000, guid: 80ac408fccc199e4b94d6899a94cae8f, type: 3}
+    - {fileID: 21300000, guid: 5c00f52999fc6e2459e9713d0c033a67, type: 3}
+    - {fileID: 21300000, guid: 80ac408fccc199e4b94d6899a94cae8f, type: 3}
+    - {fileID: 21300000, guid: 323a6390ced65fa4898b2f501e20e666, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -139,5 +140,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_GenerateMotionCurves: 0
   m_Events: []
