@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ColliderRadar : MonoBehaviour
-{    
+{
+    public GameObject rebuildCol;
+
 
     private void OnTriggerEnter(Collider other)
     {

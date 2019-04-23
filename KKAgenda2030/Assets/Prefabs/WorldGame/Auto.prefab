@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1416654227418495571}
   - component: {fileID: 1416654227418495573}
   - component: {fileID: 6458548089690106269}
-  - component: {fileID: 2958294119685490928}
+  - component: {fileID: 678091100}
   m_Layer: 5
   m_Name: Auto
   m_TagString: Decal
@@ -53,8 +53,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.69, y: 4.9, z: 0}
-  m_Center: {x: 0, y: -0.11, z: 0}
+  m_Size: {x: 9.77, y: 6.82, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &6458548089690106269
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &2958294119685490928
+--- !u!54 &678091100
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

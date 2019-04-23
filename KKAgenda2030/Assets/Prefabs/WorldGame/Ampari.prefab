@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6697767304619597218}
   - component: {fileID: 6697767304619597216}
   - component: {fileID: 161758596}
-  - component: {fileID: 6357384051856872964}
+  - component: {fileID: 8459093727722129775}
   m_Layer: 5
   m_Name: Ampari
   m_TagString: Decal
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6697767304619597222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2447, y: 0, z: 0}
-  m_LocalScale: {x: 21.4, y: 17.4, z: 0}
+  m_LocalScale: {x: 31.77472, y: 25.83552, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +53,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 3.3, z: 0}
+  m_Size: {x: 3.13, y: 4.05, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &161758596
 SpriteRenderer:
@@ -89,8 +89,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1252551139
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 5f4d5582ae02c324a88fb6c5da807a14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &6357384051856872964
+--- !u!54 &8459093727722129775
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
