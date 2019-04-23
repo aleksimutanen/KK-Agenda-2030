@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class CardBehaviour : MonoBehaviour {
 
-    public static bool DO_NOT = false;
-
     [SerializeField]
     int _state;
     [SerializeField]
@@ -23,10 +21,9 @@ public class CardBehaviour : MonoBehaviour {
         _state = 1;
     }
 
-    public void setupGraphics() {
+    public void setupGraphics(Sprite s) {
         cardBack = mgm.getCardBack();
-        cardFace = mgm.getCardFace(_cardValue);
-
+        cardFace = s;
         flipCard();
 
     }
@@ -38,12 +35,10 @@ public class CardBehaviour : MonoBehaviour {
         else if(_state == 1) {
             _state = 0;
         }
-
-
-        if (_state == 0 && !DO_NOT) {
+        if (_state == 0) {
             GetComponent<Image>().sprite = cardBack;
         }
-        else if (_state == 1 && !DO_NOT) {
+        else if (_state == 1) {
             GetComponent<Image>().sprite = cardFace;
         }
     }
@@ -74,7 +69,6 @@ public class CardBehaviour : MonoBehaviour {
         }
         else if (_state == 1) {
             GetComponent<Image>().sprite = cardFace;
-            DO_NOT = false;
         }
     }
 }

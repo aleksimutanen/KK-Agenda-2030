@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MemoryGameManager : MonoBehaviour {
-
+    public AnimationCurve pairSlideCurve;
     public int playerCount;
     public int pictureIndx;
     public List<RawImage> playerRawImages;
@@ -13,13 +13,17 @@ public class MemoryGameManager : MonoBehaviour {
     public Button continueArrow;
 
     public Sprite[] cardFace;
+    public Sprite[] cardFace2;
     public Sprite cardBack;
+
     public GameObject[] cards;
 
     bool _init = false;
     public int _matches = 6;
 
-
+    public GameObject SelfiePanel;
+    public RectTransform ReferenceImage, ReferenceImage2;
+    public RectTransform MatchCardPos, MatchCardPos2;
 
     void Start() {
         acb = new List<AvatarClickBehaviour>();
@@ -39,23 +43,21 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
-    void initializeCards() {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 1; j < 7; j++) {
 
+    void initializeCards() {
+        for (int j = 0; j < 6; j++) {
+            for (int i = 0; i < 2; i++) {
                 bool test = false;
                 int choice = 0;
                 while (!test) {
                     choice = Random.Range(0, cards.Length);
                     test = !(cards[choice].GetComponent<CardBehaviour>().initialized);
                 }
-                cards[choice].GetComponent<CardBehaviour>().cardValue = j;
-                cards[choice].GetComponent<CardBehaviour>().initialized = true;
+                var card = cards[choice].GetComponent<CardBehaviour>();
+                card.cardValue = j;
+                card.initialized = true;
+                card.setupGraphics(i == 0 ? cardFace[j] : cardFace2[j]);
             }
-        }
-
-        foreach (var item in cards) {
-            item.GetComponent<CardBehaviour>().setupGraphics();
         }
 
         if (!_init) {
@@ -65,10 +67,6 @@ public class MemoryGameManager : MonoBehaviour {
 
     public Sprite getCardBack() {
         return cardBack;
-    }
-
-    public Sprite getCardFace(int i) {
-        return cardFace[i - 1];
     }
 
     public void checkCards() {
@@ -81,17 +79,20 @@ public class MemoryGameManager : MonoBehaviour {
         if (c.Count == 2) {
             cardComparison(c);
         }
-        //CardBehaviour.DO_NOT = false;
     }
 
     void cardComparison(List<int> c) {
         print("cardComparisonissa nyt");
-        CardBehaviour.DO_NOT = true;
         int x = 0;
         if (cards[c[0]].GetComponent<CardBehaviour>().cardValue == cards[c[1]].GetComponent<CardBehaviour>().cardValue) {
             x = 2;
+            MatchCardPos = cards[c[0]].GetComponent<RectTransform>();
+            MatchCardPos2 = cards[c[1]].GetComponent<RectTransform>();
+
             _matches--;
             print("pari löytyi!");
+            // kameran startti ja kuvan ottaminen here?
+            TakePicture();
             if (_matches == 0) {
                 print("Kaikki parit löydetty");
             }
@@ -100,6 +101,7 @@ public class MemoryGameManager : MonoBehaviour {
             cards[c[i]].GetComponent<CardBehaviour>().state = x;
             cards[c[i]].GetComponent<CardBehaviour>().falseCheck();
         }
+
     }
 
 
@@ -122,7 +124,6 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
-
     public void SlotSelected(int i) {
         if (pictureIndx == i) {
             return;
@@ -135,6 +136,31 @@ public class MemoryGameManager : MonoBehaviour {
                 acb[j].OnDeselected();
             }
         }
+    }
+
+    void TakePicture() {
+        SelfiePanel.SetActive(true);
+        StartCoroutine(TakePictureCoroutine());
+    }
+
+    IEnumerator TakePictureCoroutine() {
+        foreach (var card in cards) {
+            card.GetComponent<Button>().interactable = false;
+        }
+        // siirrä valitu pari selfiepanelin lapseksi
+        // käynnistä kamera 
+        // muita juttuja?
+        var t = 0f;
+        while (t < 1) {
+            t += Time.deltaTime * .6f;
+            var newT = pairSlideCurve.Evaluate(t);
+            MatchCardPos.position = Vector3.Lerp(MatchCardPos.position, ReferenceImage.position, newT);
+            MatchCardPos2.position = Vector3.Lerp(MatchCardPos2.position, ReferenceImage2.position, newT);
+            yield return null;
+        }
+        
+
+
     }
 
     // when player pictures are choosed, start coroutine from button
