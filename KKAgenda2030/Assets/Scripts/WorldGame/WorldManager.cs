@@ -9,6 +9,8 @@ public class WorldManager : MonoBehaviour
 
     public List<GameObject> images = new List<GameObject>();
     private float range = 1000f;
+    private Draging createdObject;
+
 
 
     void Update()
@@ -21,20 +23,34 @@ public class WorldManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity /*, 1 << 5 LayerMask.GetMask(new string[] { "UI" })*/ ))
             {
+                if (createdObject == null)
+                {
+                    var foo= hit.collider.GetComponent<Draging>();
 
+                    if (foo != null)
+                    {
+                        createdObject = foo;
+                    }
+                }
 
                 foreach (var decal in images)
                 {
                     if (decal.name == hit.collider.name)
                     {
-                        GameObject go = Instantiate(decal, hit.point, Quaternion.identity);
-                        //go.gameObject.transform.localPosition = new Vector3(0.0F, 0.0f, 0.0f);
-                        go.gameObject.transform.localScale = new Vector3(1.1F, 0.6f, 0.0f);
-                        go.gameObject.AddComponent<Draging>();
-                      //  go.gameObject.GetComponent<Draging>().OnMouseDown();
+                         var go = Instantiate(decal, hit.point, Quaternion.identity);
                         print("Created new decal" + " " + decal.name);
-                     //   go.gameObject.GetComponent<Draging>().dragging = true;
-                        go.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+
+                        go.gameObject.transform.localScale = /*new Vector3(1.1F, 0.6f, 0.0f)*/Vector3.one;
+                        go.gameObject.AddComponent<Draging>();
+                        createdObject = go.GetComponent<Draging>();
+                        createdObject.MouseDown();
+                        //  go.gameObject.GetComponent<Draging>().OnMouseDrag();
+
+                        createdObject.SpriteRenderer.sortingLayerName = "Front";
+                        //go.gameObject.GetComponent<Draging>().OnMouseDrag();
+                        
+                        //   go.gameObject.GetComponent<Draging>().dragging = true;
+                        createdObject.BoxCollider.isTrigger = true;
 
                         //if (go.gameObject.GetComponent<Draging>().dragging == true)
                         //{
@@ -48,7 +64,7 @@ public class WorldManager : MonoBehaviour
                         //    hit.collider.gameObject.SetActive(true);
                         //}
 
-                        go.transform.parent = decalsFolder.transform;
+                        createdObject.transform.parent = decalsFolder.transform;
                     }
 
                 }
@@ -76,6 +92,24 @@ public class WorldManager : MonoBehaviour
               go.transform.position = (Input.mousePosition);
           */
 
+            }
+        }
+    
+        if (Input.GetMouseButton(0))
+        {
+            if(createdObject != null)
+            {
+                createdObject.MouseDrag();
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (createdObject != null)
+            {
+                createdObject.MouseUp();
+                //createdObject.gameObject.GetComponent<BoxCollider>().enabled = false;
+                createdObject = null;
             }
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3010055176342409394}
   - component: {fileID: 3010055176342409396}
   - component: {fileID: 3822171273003671834}
-  - component: {fileID: 6098900315645291521}
+  - component: {fileID: 5144224037495328613}
   m_Layer: 5
   m_Name: Liito-orava
   m_TagString: Decal
@@ -53,8 +53,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.3, y: 9.1, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 11.34, y: 8.3, z: 0}
+  m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!212 &3822171273003671834
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &6098900315645291521
+--- !u!54 &5144224037495328613
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
