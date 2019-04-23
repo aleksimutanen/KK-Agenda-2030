@@ -6,13 +6,12 @@ public class AvatarClickBehaviour : MonoBehaviour {
 
     MemoryGameManager mgm;
     public int thisPicIndx;
-    Animator animator;
+    public Animator animator;
 
     void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
         animator = GetComponent<Animator>();
     }
-
 
     public void OnSelected() {
         animator.Play("AvatarGlow");
