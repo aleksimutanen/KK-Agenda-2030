@@ -5,12 +5,9 @@ using UnityEngine.UI;
 
 public class CardBehaviour : MonoBehaviour {
 
-    [SerializeField]
-    int _state;
-    [SerializeField]
-    int _cardValue;
-    [SerializeField]
-    bool _initialized = false;
+    [SerializeField] int _state;
+    [SerializeField] int _cardValue;
+    [SerializeField] bool _initialized = false;
 
     Sprite cardBack;
     Sprite cardFace;

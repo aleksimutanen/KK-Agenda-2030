@@ -250,7 +250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &10810956
 GameObject:
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 204765725}
   - component: {fileID: 204765724}
   m_Layer: 5
-  m_Name: Button
+  m_Name: TakePictureButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,7 +765,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 204765725}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1102968033}
+        m_MethodName: SetSelfieTextureFromCam
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 704552239}
+        m_MethodName: CloseSelfiePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &204765725
@@ -1146,7 +1168,7 @@ Transform:
   m_LocalScale: {x: 2, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &513230049
 GameObject:
@@ -1433,7 +1455,7 @@ GameObject:
   - component: {fileID: 625955849}
   - component: {fileID: 625955848}
   m_Layer: 5
-  m_Name: CardPos
+  m_Name: ReferencePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1810,6 +1832,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671989432}
   m_CullTransparentMesh: 0
+--- !u!1 &704552238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 704552240}
+  - component: {fileID: 704552239}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &704552239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704552238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db7048969dd90c49873c693738fea1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelfiePanel: {fileID: 1102968029}
+--- !u!4 &704552240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704552238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714412460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,13 +2750,15 @@ GameObject:
   - component: {fileID: 1102968030}
   - component: {fileID: 1102968031}
   - component: {fileID: 1102968032}
+  - component: {fileID: 1102968033}
+  - component: {fileID: 1102968034}
   m_Layer: 5
   m_Name: TakeSelfiePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1102968030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2751,6 +2819,38 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1102968033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102968029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f02ee9a50dcbce4895b921e98b78693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawimage: {fileID: 1025988208}
+--- !u!95 &1102968034
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102968029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62b809eed48caaa48b6db0b0494b544b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1134336527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,7 +3018,7 @@ RectTransform:
   - {fileID: 1824225701}
   - {fileID: 1102968030}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3355,6 +3455,7 @@ GameObject:
   - component: {fileID: 1461831134}
   - component: {fileID: 1461831136}
   - component: {fileID: 1461831135}
+  - component: {fileID: 1461831137}
   m_Layer: 5
   m_Name: AvatarChoosePanel
   m_TagString: Untagged
@@ -3426,6 +3527,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1461831137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461831132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f02ee9a50dcbce4895b921e98b78693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawimage: {fileID: 1659859404}
 --- !u!1 &1469595385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,7 +4287,7 @@ GameObject:
   - component: {fileID: 1674347176}
   - component: {fileID: 1674347175}
   m_Layer: 5
-  m_Name: Card2Pos
+  m_Name: ReferencePos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4530,7 +4644,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1968430885}
+      - m_Target: {fileID: 1461831137}
         m_MethodName: SetPlayerTextureFromCam
         m_Mode: 1
         m_Arguments:
@@ -5660,7 +5774,6 @@ GameObject:
   - component: {fileID: 1968430883}
   - component: {fileID: 1968430882}
   - component: {fileID: 1968430881}
-  - component: {fileID: 1968430885}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5732,19 +5845,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1968430885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968430880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f02ee9a50dcbce4895b921e98b78693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rawimage: {fileID: 1659859404}
 --- !u!1 &2017262827
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,10 +5937,15 @@ MonoBehaviour:
   - {fileID: 1960932944}
   _matches: 6
   SelfiePanel: {fileID: 1102968029}
-  ReferenceImage: {fileID: 625955847}
-  ReferenceImage2: {fileID: 1674347174}
-  MatchCardPos: {fileID: 0}
-  MatchCardPos2: {fileID: 0}
+  ReferencePos: {fileID: 625955847}
+  ReferencePos2: {fileID: 1674347174}
+  selfieTextures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &2017262829
 Transform:
   m_ObjectHideFlags: 0
