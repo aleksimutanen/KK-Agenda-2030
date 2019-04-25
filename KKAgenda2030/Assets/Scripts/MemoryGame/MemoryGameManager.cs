@@ -22,9 +22,12 @@ public class MemoryGameManager : MonoBehaviour {
 
     public GameObject SelfiePanel;
     public RectTransform ReferencePos, ReferencePos2;
-    RectTransform MatchCardPos, MatchCardPos2;
+    public RectTransform MatchCardPos, MatchCardPos2;
     int lastFoundPairValue = -1; // muuttuva cardValue arvo minkä mukaan laitetaan selfiekuvat talteen oikeaan pariin nähden
     public Texture[] selfieTextures = new Texture[6];
+    public Texture placeHolderTexture; // tekstuuri kuvaan, jos selfie skipataan
+
+    public GameObject[] endPairs;
     
 
     void Start() {
@@ -45,7 +48,7 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
-    // CAMERA CAPTURE FUNCTIONALITY
+    // AVATAR CAMERA CAPTURE FUNCTIONALITY
     public void SetPlayerTexture(Texture2D tex) {
         Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
         texture.SetPixels(tex.GetPixels());
@@ -80,7 +83,7 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
-    //CAMERA FOR SELFIES
+    //CAMERA TEXTURE SAVE FOR SELFIES
     public void SetSelfieTexture(Texture2D tex) {
         Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
         texture.SetPixels(tex.GetPixels());
@@ -90,7 +93,16 @@ public class MemoryGameManager : MonoBehaviour {
 
     }
 
-    // CARDS FUNCTIONALITY
+    // SKIP SELFIE FUNCTIONALITY (not rdy or tested)
+    public void SkipSelfie(Texture2D tex) {
+        Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
+        texture.SetPixels(tex.GetPixels());
+        texture.Apply();
+        placeHolderTexture = texture;
+
+    }
+
+    // CARDS RANDOMISER FUNCTIONALITY
     void initializeCards() {
         for (int j = 0; j < 6; j++) {
             for (int i = 0; i < 2; i++) {
@@ -137,8 +149,7 @@ public class MemoryGameManager : MonoBehaviour {
             lastFoundPairValue = cards[c[0]].GetComponent<CardBehaviour>().cardValue;
             _matches--;
             print("pari löytyi!");
-            // kameran startti ja kuvan ottaminen here?
-            TakingSelfie();
+            ActivateSelfiePanel();
             if (_matches == 0) {
                 print("Kaikki parit löydetty");
             }
@@ -151,7 +162,7 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     // SELFIE FUNCTIONALITY    
-    void TakingSelfie() {
+    void ActivateSelfiePanel() {
         SelfiePanel.SetActive(true);
         StartCoroutine(TakePictureCoroutine());
     }
@@ -163,10 +174,7 @@ public class MemoryGameManager : MonoBehaviour {
         MatchCardPos.gameObject.GetComponent<Button>().enabled = false;
         MatchCardPos2.gameObject.GetComponent<Button>().enabled = false;
 
-        // käynnistä kamera erikseen?
-
-
-        // muita juttuja?
+        // Lerp matched cards to fixed positions
         var t = 0f;
         while (t < 1) {
             t += Time.deltaTime * .2f;
@@ -174,6 +182,20 @@ public class MemoryGameManager : MonoBehaviour {
             MatchCardPos.position = Vector3.Lerp(MatchCardPos.position, ReferencePos.position, newT);
             MatchCardPos2.position = Vector3.Lerp(MatchCardPos2.position, ReferencePos2.position, newT);
             yield return null;
+        }
+    }
+
+    public void InsertPrefabValues() {
+        //var endImageSet = GameObject.FindObjectsOfType<ExpressionID>();
+        foreach (var item in endPairs) {
+            var value = item.GetComponent<ExpressionID>().value;
+            var t = item.transform;
+            var c1 = t.Find("Card1").GetComponent<Image>();
+            c1.sprite = cardFace[value];
+            var c2 = t.Find("Card2").GetComponent<Image>();
+            c2.sprite = cardFace2[value];
+            var selfie = t.Find("SelfiePicture").GetComponent<RawImage>();
+            selfie.texture = selfieTextures[value];
         }
     }
 
