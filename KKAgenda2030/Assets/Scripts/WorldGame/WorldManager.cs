@@ -8,12 +8,13 @@ public class WorldManager : MonoBehaviour
     public GameObject decalsFolder;
 
     public List<GameObject> images = new List<GameObject>();
+    public List<Button> imagesButtons = new List<Button>();
     private float range = 1000f;
     private Draging createdObject;
 
 
 
-    void Update()
+    public void Update()
     {
         if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
         {
@@ -39,7 +40,7 @@ public class WorldManager : MonoBehaviour
                     {
                          var go = Instantiate(decal, hit.point, Quaternion.identity);
                         print("Created new decal" + " " + decal.name);
-
+                       
                         go.gameObject.transform.localScale = /*new Vector3(1.1F, 0.6f, 0.0f)*/Vector3.one;
                         go.gameObject.AddComponent<Draging>();
                         createdObject = go.GetComponent<Draging>();
@@ -69,6 +70,7 @@ public class WorldManager : MonoBehaviour
 
                 }
 
+               
                 /* 
               print(hit.collider.name);
 

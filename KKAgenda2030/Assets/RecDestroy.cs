@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RecDestroy : MonoBehaviour
 {
+    ColliderRadar cR;
     WorldManager wm;
     public GameObject[] decals;
    
@@ -11,6 +12,7 @@ public class RecDestroy : MonoBehaviour
     void Start()
     {
         wm = FindObjectOfType<WorldManager>();
+        cR = FindObjectOfType<ColliderRadar>();
     }
 
     void Update()
@@ -19,12 +21,12 @@ public class RecDestroy : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Decal")
         {
             Destroy(other.gameObject);
-
+           
             print("Tuhotaan " + other.gameObject.name);
             print("Objectin tuhosi " + gameObject.name);
         }
