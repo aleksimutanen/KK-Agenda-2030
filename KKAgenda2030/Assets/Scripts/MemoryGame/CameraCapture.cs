@@ -32,7 +32,6 @@ public class CameraCapture : MonoBehaviour {
         //    rawimage.material.mainTexture = webcamTexture;
         //    webcamTexture.Play();
         //}
-
     }
 
     public void SetPlayerTextureFromCam() {
@@ -40,24 +39,9 @@ public class CameraCapture : MonoBehaviour {
     }
 
     public void SetSelfieTextureFromCam() {
+        mgm.CameraFlash();
         mgm.SetSelfieTexture(GetCamPicture());
     }
-
-    //public void SetPlayerTexture(Texture2D tex) {
-    //    if (mgm.pictureIndx == mgm.playerCount) {
-    //        return;
-    //    }
-    //    Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
-    //    texture.SetPixels(tex.GetPixels());
-    //    texture.Apply();
-    //    mgm.playerImages[mgm.pictureIndx].GetComponent<RawImage>().texture = texture;
-    //    mgm.pictureIndx++;
-    //    //mgm.SlotSelected(mgm.pictureIndx);
-    //    if (mgm.pictureIndx == mgm.playerCount) {
-    //        print("player avatars choosed");
-    //        continueArrow.interactable = true;
-    //    }
-    //}
 
     Texture2D GetCamPicture() {
         //Create a Texture2D with the size of the rendered image on the screen.
