@@ -55,6 +55,8 @@ public class CharacterMover : MonoBehaviour {
     public SpriteRenderer[] faces;
     public List<Collider> items;
 
+    public Vector3 hitPosition;
+
     void Awake() {
         canMove = true;
         am = GetComponentInChildren<Animator>();
@@ -192,6 +194,7 @@ private void OnDrawGizmos() {
             thisWall.Add(other);
         if (other.gameObject.tag == "Wall" && thisWall.Contains(other)) {
             if (!pushing) {
+                hitPosition = transform.position;
                 RaycastHit hitWall;
                 Physics.Raycast(transform.position - transform.forward, transform.forward, out hitWall, Mathf.Infinity, walls);
                 print(hitWall.normal);
@@ -213,7 +216,7 @@ private void OnDrawGizmos() {
                 float maxRD = (turningSpeed / 1.5f) * Time.deltaTime;
                 rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, maxRD);
 
-                pushFactor -= Time.deltaTime * (deceleration * 2);
+                pushFactor -= Time.deltaTime * (deceleration * 2.1f);
                 rb.velocity = transform.forward * pushFactor * sprintFactor * maxCharacterSpeed;
 
                 if (pushFactor < 0) {
