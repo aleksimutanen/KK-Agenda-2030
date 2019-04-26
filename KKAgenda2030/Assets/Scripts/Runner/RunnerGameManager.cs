@@ -42,6 +42,7 @@ public class RunnerGameManager : MonoBehaviour {
     [SerializeField] Slider gameEndSlider;
     [SerializeField] int[] starScore;
     [SerializeField] Image[] starImages;
+    [SerializeField] Image[] gameEndBees;
     [SerializeField] AnimationCurve sliderAnimCurve;
 
     [SerializeField] Slider scoreSlider;
@@ -208,7 +209,7 @@ public class RunnerGameManager : MonoBehaviour {
         gameEndSlider.gameObject.SetActive(true);
         gameEndSlider.GetComponent<Animator>().Play("RunnerGameEndFadeIn");
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         float s = scoreSlider.value;
         float fillTime = 3f;
@@ -230,10 +231,17 @@ public class RunnerGameManager : MonoBehaviour {
             }
             yield return null;
         }
-        yield return new WaitForSeconds(5f);
-        gameEndSlider.gameObject.SetActive(false);
-
         yield return new WaitForSeconds(1f);
+
+        if (gameEndSlider.value > starScore[2]) {
+            gameEndBees[2].GetComponent<Animator>().Play("RunnerGameEndFly");
+        } else if (gameEndSlider.value > starScore[1]) {
+            gameEndBees[1].GetComponent<Animator>().Play("RunnerGameEndFly");
+        } else {
+            gameEndBees[0].GetComponent<Animator>().Play("RunnerGameEndFly");
+        }
+        yield return new WaitForSeconds(6f);
+
         SceneManager.LoadScene(0);
     }
 
