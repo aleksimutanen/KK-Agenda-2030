@@ -54,7 +54,7 @@ public class OceanGameManager : MonoBehaviour {
 
     public Image[] starImages;
     public Image[] totalStars;
-    public Image gameEndShark;
+    public Image[] gameEndSharks;
     public Image happySharkFace;
     public Image unHappySharkFace;
 
@@ -277,8 +277,8 @@ public class OceanGameManager : MonoBehaviour {
 
             ui.slider.GetComponent<Animator>().Play("New State");
 
-            s = 9;
-            //s = starsCollected;
+            //s = 9;
+            s = starsCollected;
 
             fillTime = 3f;
             t = 0f;
@@ -301,33 +301,34 @@ public class OceanGameManager : MonoBehaviour {
 
             yield return new WaitForSeconds(2f);
 
-            gameEndShark.GetComponent<Animator>().Play("UISharkSwim");
+            //gameEndShark.GetComponent<Animator>().Play("UISharkSwim");
             if (starsCollected >= 7)
-                happySharkFace.gameObject.SetActive(true);
-            else if (starsCollected <= 3)
-                unHappySharkFace.gameObject.SetActive(true);
+                gameEndSharks[2].GetComponent<Animator>().Play("UISharkSwim");
+            else if (starsCollected >= 5)
+                gameEndSharks[1].GetComponent<Animator>().Play("UISharkSwim");
+            else
+                gameEndSharks[0].GetComponent<Animator>().Play("UISharkSwim");
+            //if (starsCollected < 9) {
+            //    t = 0;
+            //    s = s - starsCollected;
+            //    while (t <= 1) {
+            //        t += fillSpeed * Time.deltaTime;
+            //        var curvedT = sliderAnimCurve.Evaluate(t);
+            //        gameEndSlider.value = 9f + (curvedT * -s);
+            //        print(gameEndSlider.value);
+            //        for (int i = totalStars.Length - 1; i > -1; i--) {
+            //            if (gameEndSlider.value <= endStarScore[i]) {
+            //                //print(endStarScore[i]);
+            //                totalStars[i].gameObject.SetActive(true);
+            //                ui.DisableStar(totalStars[i]);
+            //                //insert negative audio here
+            //            }
+            //        }
+            //        yield return null;
+            //    }
+            //}
 
-            if (starsCollected < 9) {
-                t = 0;
-                s = s - starsCollected;
-                while (t <= 1) {
-                    t += fillSpeed * Time.deltaTime;
-                    var curvedT = sliderAnimCurve.Evaluate(t);
-                    gameEndSlider.value = 9f + (curvedT * -s);
-                    print(gameEndSlider.value);
-                    for (int i = totalStars.Length - 1; i > -1; i--) {
-                        if (gameEndSlider.value <= endStarScore[i]) {
-                            //print(endStarScore[i]);
-                            totalStars[i].gameObject.SetActive(true);
-                            ui.DisableStar(totalStars[i]);
-                            //insert negative audio here
-                        }
-                    }
-                    yield return null;
-                }
-            }
-
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(6f);
 
             print("slider zero");
             gameEndSlider.value = 0f;
