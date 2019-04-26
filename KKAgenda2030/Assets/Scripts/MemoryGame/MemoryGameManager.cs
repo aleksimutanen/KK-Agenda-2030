@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MemoryGameManager : MonoBehaviour {
-
+    public AnimationCurve pairSlideCurve;
     public int playerCount;
     public int pictureIndx;
     public List<RawImage> playerRawImages;
@@ -13,13 +13,22 @@ public class MemoryGameManager : MonoBehaviour {
     public Button continueArrow;
 
     public Sprite[] cardFace;
+    public Sprite[] cardFace2;
     public Sprite cardBack;
     public GameObject[] cards;
 
     bool _init = false;
     public int _matches = 6;
 
+    public GameObject SelfiePanel;
+    public RectTransform ReferencePos, ReferencePos2;
+    public RectTransform MatchCardPos, MatchCardPos2;
+    int lastFoundPairValue = -1; // muuttuva cardValue arvo minkä mukaan laitetaan selfiekuvat talteen oikeaan pariin nähden
+    public Texture[] selfieTextures = new Texture[6];
+    public Texture placeHolderTexture; // tekstuuri kuvaan, jos selfie skipataan
 
+    public GameObject[] endPairs;
+    
 
     void Start() {
         acb = new List<AvatarClickBehaviour>();
@@ -39,74 +48,12 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
-    void initializeCards() {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 1; j < 7; j++) {
-
-                bool test = false;
-                int choice = 0;
-                while (!test) {
-                    choice = Random.Range(0, cards.Length);
-                    test = !(cards[choice].GetComponent<CardBehaviour>().initialized);
-                }
-                cards[choice].GetComponent<CardBehaviour>().cardValue = j;
-                cards[choice].GetComponent<CardBehaviour>().initialized = true;
-            }
-        }
-
-        foreach (var item in cards) {
-            item.GetComponent<CardBehaviour>().setupGraphics();
-        }
-
-        if (!_init) {
-        _init = true;
-        }
-    }
-
-    public Sprite getCardBack() {
-        return cardBack;
-    }
-
-    public Sprite getCardFace(int i) {
-        return cardFace[i - 1];
-    }
-
-    public void checkCards() {
-        List<int> c = new List<int>();
-        for (int i = 0; i < cards.Length; i++) {
-            if (cards[i].GetComponent<CardBehaviour>().state == 1) {
-                c.Add(i);
-            }
-        }
-        if (c.Count == 2) {
-            cardComparison(c);
-        }
-        //CardBehaviour.DO_NOT = false;
-    }
-
-    void cardComparison(List<int> c) {
-        print("cardComparisonissa nyt");
-        CardBehaviour.DO_NOT = true;
-        int x = 0;
-        if (cards[c[0]].GetComponent<CardBehaviour>().cardValue == cards[c[1]].GetComponent<CardBehaviour>().cardValue) {
-            x = 2;
-            _matches--;
-            print("pari löytyi!");
-            if (_matches == 0) {
-                print("Kaikki parit löydetty");
-            }
-        }
-        for (int i = 0; i < c.Count; i++) {
-            cards[c[i]].GetComponent<CardBehaviour>().state = x;
-            cards[c[i]].GetComponent<CardBehaviour>().falseCheck();
-        }
-    }
-
-
+    // AVATAR CAMERA CAPTURE FUNCTIONALITY
     public void SetPlayerTexture(Texture2D tex) {
         Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
         texture.SetPixels(tex.GetPixels());
         texture.Apply();
+        // Kuvanottoflashi tähän?
         playerRawImages[pictureIndx].GetComponent<RawImage>().texture = texture;
         bool foundEmpty = false;
         for (int i = 0; i < playerRawImages.Count; i++) {
@@ -122,7 +69,6 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
-
     public void SlotSelected(int i) {
         if (pictureIndx == i) {
             return;
@@ -134,6 +80,122 @@ public class MemoryGameManager : MonoBehaviour {
             } else {
                 acb[j].OnDeselected();
             }
+        }
+    }
+
+    //CAMERA TEXTURE SAVE FOR SELFIES
+    public void SetSelfieTexture(Texture2D tex) {
+        Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
+        texture.SetPixels(tex.GetPixels());
+        texture.Apply();
+        // Kuvanottoflashi tähän?
+        selfieTextures[lastFoundPairValue] = texture;
+
+    }
+
+    // SKIP SELFIE FUNCTIONALITY (not rdy or tested)
+    public void SkipSelfie(Texture2D tex) {
+        Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
+        texture.SetPixels(tex.GetPixels());
+        texture.Apply();
+        placeHolderTexture = texture;
+
+    }
+
+    // CARDS RANDOMISER FUNCTIONALITY
+    void initializeCards() {
+        for (int j = 0; j < 6; j++) {
+            for (int i = 0; i < 2; i++) {
+                bool test = false;
+                int choice = 0;
+                while (!test) {
+                    choice = Random.Range(0, cards.Length);
+                    test = !(cards[choice].GetComponent<CardBehaviour>().initialized);
+                }
+                var card = cards[choice].GetComponent<CardBehaviour>();
+                card.cardValue = j;
+                card.initialized = true;
+                card.setupGraphics(i == 0 ? cardFace[j] : cardFace2[j]);
+            }
+        }
+
+        if (!_init) {
+        _init = true;
+        }
+    }
+
+    public Sprite getCardBack() {
+        return cardBack;
+    }
+
+    public void checkCards() {
+        List<int> c = new List<int>();
+        for (int i = 0; i < cards.Length; i++) {
+            if (cards[i].GetComponent<CardBehaviour>().state == 1) {
+                c.Add(i);
+            }
+        }
+        if (c.Count == 2) {
+            cardComparison(c);
+        }
+    }
+
+    void cardComparison(List<int> c) {
+        int x = 0;
+        if (cards[c[0]].GetComponent<CardBehaviour>().cardValue == cards[c[1]].GetComponent<CardBehaviour>().cardValue) {
+            x = 2;
+            MatchCardPos = cards[c[0]].GetComponent<RectTransform>();
+            MatchCardPos2 = cards[c[1]].GetComponent<RectTransform>();
+            lastFoundPairValue = cards[c[0]].GetComponent<CardBehaviour>().cardValue;
+            _matches--;
+            print("pari löytyi!");
+            ActivateSelfiePanel();
+            if (_matches == 0) {
+                print("Kaikki parit löydetty");
+            }
+        }
+        for (int i = 0; i < c.Count; i++) {
+            cards[c[i]].GetComponent<CardBehaviour>().state = x;
+            cards[c[i]].GetComponent<CardBehaviour>().falseCheck();
+        }
+
+    }
+
+    // SELFIE FUNCTIONALITY    
+    void ActivateSelfiePanel() {
+        SelfiePanel.SetActive(true);
+        StartCoroutine(TakePictureCoroutine());
+    }
+
+    IEnumerator TakePictureCoroutine() {
+        // siirrä valitut parit selfiepanelin lapseksi, disabloi niistä button
+        MatchCardPos.gameObject.transform.parent = SelfiePanel.transform;
+        MatchCardPos2.gameObject.transform.parent = SelfiePanel.transform;
+        MatchCardPos.gameObject.GetComponent<Button>().enabled = false;
+        MatchCardPos2.gameObject.GetComponent<Button>().enabled = false;
+
+        // Lerp matched cards to fixed positions
+        var t = 0f;
+        while (t < 1) {
+            t += Time.deltaTime * .2f;
+            var newT = pairSlideCurve.Evaluate(t);
+            MatchCardPos.position = Vector3.Lerp(MatchCardPos.position, ReferencePos.position, newT);
+            MatchCardPos2.position = Vector3.Lerp(MatchCardPos2.position, ReferencePos2.position, newT);
+            yield return null;
+        }
+    }
+
+    public void InsertPrefabValues() {
+        //var endImageSet = GameObject.FindObjectsOfType<ExpressionID>();
+        foreach (var item in endPairs) {
+            var value = item.GetComponent<ExpressionID>().value;
+            var t = item.transform;
+            var c1 = t.Find("Card1").GetComponent<Image>();
+            c1.sprite = cardFace[value];
+            var c2 = t.Find("Card2").GetComponent<Image>();
+            c2.sprite = cardFace2[value];
+            var selfie = t.Find("SelfiePicture").GetComponent<RawImage>();
+            selfie.texture = selfieTextures[value];
         }
     }
 

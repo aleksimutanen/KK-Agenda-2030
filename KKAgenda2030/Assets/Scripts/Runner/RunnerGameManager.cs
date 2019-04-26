@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class RunnerGameManager : MonoBehaviour {
 
@@ -38,6 +39,12 @@ public class RunnerGameManager : MonoBehaviour {
     //
 
     // UI
+    [SerializeField] Slider gameEndSlider;
+    [SerializeField] int[] starScore;
+    [SerializeField] Image[] starImages;
+    [SerializeField] Image[] gameEndBees;
+    [SerializeField] AnimationCurve sliderAnimCurve;
+
     [SerializeField] Slider scoreSlider;
     [SerializeField] Image sliderFill;
     [SerializeField] Text livesLeftText;
@@ -187,6 +194,55 @@ public class RunnerGameManager : MonoBehaviour {
         //character.transform.position = charStartPos;
         //character.GetComponent<Rigidbody>().velocity = Vector3.zero;
         character.ResetCharacter();
+    }
+
+    public void GameComplete() {
+        StartCoroutine("GameEndTransition");
+    }
+
+    IEnumerator GameEndTransition() {
+        var ui = FindObjectOfType<UIManager>();
+        var anim = ui.runnerGameTransition.GetComponent<Animator>();
+        anim.Play("FadeIn");
+        yield return new WaitForSeconds(1f);
+
+        gameEndSlider.gameObject.SetActive(true);
+        gameEndSlider.GetComponent<Animator>().Play("RunnerGameEndFadeIn");
+
+        yield return new WaitForSeconds(3f);
+
+        float s = scoreSlider.value;
+        float fillTime = 3f;
+
+        float t = 0f;
+        float fillSpeed = 1 / fillTime;
+
+        while (t <= 1) {
+            t += fillSpeed * Time.deltaTime;
+            var curvedT = sliderAnimCurve.Evaluate(t);
+            gameEndSlider.value = (curvedT * s);
+            //print(gameEndSlider.value);
+            for (int i = 0; i < starImages.Length; i++) {
+                if (gameEndSlider.value >= starScore[i]) {
+                    starImages[i].gameObject.SetActive(true);
+                    ui.LevelEndStars(starImages[i]);
+                    //Fabric.EventManager.Instance.PostEvent("oneStar");
+                }
+            }
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+
+        if (gameEndSlider.value > starScore[2]) {
+            gameEndBees[2].GetComponent<Animator>().Play("RunnerGameEndFly");
+        } else if (gameEndSlider.value > starScore[1]) {
+            gameEndBees[1].GetComponent<Animator>().Play("RunnerGameEndFly");
+        } else {
+            gameEndBees[0].GetComponent<Animator>().Play("RunnerGameEndFly");
+        }
+        yield return new WaitForSeconds(6f);
+
+        SceneManager.LoadScene(0);
     }
 
     public void LoseLife() {

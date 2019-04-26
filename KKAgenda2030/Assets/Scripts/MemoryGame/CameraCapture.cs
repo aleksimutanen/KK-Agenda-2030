@@ -10,19 +10,19 @@ public class CameraCapture : MonoBehaviour {
     public RawImage rawimage;  //Image for rendering what the camera sees.
     WebCamTexture webcamTexture = null;
 
-    void Awake() {
-        //mgm = FindObjectOfType<MemoryGameManager>();
+    void Start() {
+        mgm = FindObjectOfType<MemoryGameManager>();
 
-        ////Save get the camera devices, in case you have more than 1 camera.
-        //WebCamDevice[] camDevices = WebCamTexture.devices;
+        //Save get the camera devices, in case you have more than 1 camera.
+        WebCamDevice[] camDevices = WebCamTexture.devices;
 
-        ////Get the used camera name for the WebCamTexture initialization.
-        //string camName = camDevices[0].name;
-        //webcamTexture = new WebCamTexture(camName);
+        //Get the used camera name for the WebCamTexture initialization.
+        string camName = camDevices[0].name;
+        webcamTexture = new WebCamTexture(camName);
 
-        ////Render the image in the screen.
-        //rawimage.texture = webcamTexture;
-        //webcamTexture.Play();
+        //Render the image in the screen.
+        rawimage.texture = webcamTexture;
+        webcamTexture.Play();
     }
 
     void Update() {
@@ -37,6 +37,10 @@ public class CameraCapture : MonoBehaviour {
 
     public void SetPlayerTextureFromCam() {
         mgm.SetPlayerTexture(GetCamPicture());
+    }
+
+    public void SetSelfieTextureFromCam() {
+        mgm.SetSelfieTexture(GetCamPicture());
     }
 
     //public void SetPlayerTexture(Texture2D tex) {
