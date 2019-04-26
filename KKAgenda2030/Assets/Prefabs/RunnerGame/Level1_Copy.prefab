@@ -282,6 +282,85 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1905277728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905277729}
+  - component: {fileID: 1905277730}
+  m_Layer: 25
+  m_Name: Dummy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905277729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905277728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6158443988175860675}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1905277730
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905277728}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 61416163d5367264489729e1e07f6b9e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.8285713, y: 3.0214286}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &7094125902832863069
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,11 +482,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -472,6 +546,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (6)
       objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
@@ -798,11 +877,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -867,6 +941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (4)
       objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
@@ -968,11 +1047,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 1169012008166138444, guid: 1ee0b4277392a57448d3ec3a81a33cfd,
-        type: 3}
-      propertyPath: m_Name
-      value: BCGPieces
-      objectReference: {fileID: 0}
     - target: {fileID: 1169012008166138445, guid: 1ee0b4277392a57448d3ec3a81a33cfd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1027,6 +1101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169012008166138444, guid: 1ee0b4277392a57448d3ec3a81a33cfd,
+        type: 3}
+      propertyPath: m_Name
+      value: BCGPieces
       objectReference: {fileID: 0}
     - target: {fileID: 7801930476849495, guid: 1ee0b4277392a57448d3ec3a81a33cfd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1141,12 +1220,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ee0b4277392a57448d3ec3a81a33cfd, type: 3}
---- !u!4 &650807501 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1169012008166138445, guid: 1ee0b4277392a57448d3ec3a81a33cfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1169012008656448128}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7344302182859636450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8490721079497282658, guid: 1ee0b4277392a57448d3ec3a81a33cfd,
@@ -1165,6 +1238,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1169012008656448128}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &650807501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1169012008166138445, guid: 1ee0b4277392a57448d3ec3a81a33cfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1169012008656448128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2536474516131594002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1172,11 +1251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1241,6 +1315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
@@ -1567,11 +1646,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1627,6 +1701,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower
+      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1667,11 +1746,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1737,6 +1811,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1762,11 +1841,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1832,6 +1906,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1857,11 +1936,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 1885929466907219854, guid: ad4332967c41b184292370b76a6e859d,
-        type: 3}
-      propertyPath: m_Name
-      value: Flyswatter (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1885929466907219853, guid: ad4332967c41b184292370b76a6e859d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1917,6 +1991,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1885929466907219854, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: m_Name
+      value: Flyswatter (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 8593478304189198193, guid: ad4332967c41b184292370b76a6e859d,
         type: 3}
       propertyPath: m_Size.y
@@ -1932,11 +2011,22 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 8.900456e-15
       objectReference: {fileID: 0}
+    - target: {fileID: 6223165825054307154, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: ps
+      value: 
+      objectReference: {fileID: 3142944327949249669}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4332967c41b184292370b76a6e859d, type: 3}
 --- !u!4 &2464905856061395534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1885929466907219853, guid: ad4332967c41b184292370b76a6e859d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4042314962887214531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3142944327949249669 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1406472444102699334, guid: ad4332967c41b184292370b76a6e859d,
     type: 3}
   m_PrefabInstance: {fileID: 4042314962887214531}
   m_PrefabAsset: {fileID: 0}
@@ -2097,11 +2187,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3307143999450754974, guid: 418649dd4ed1df948b0a0d18a0651963,
-        type: 3}
-      propertyPath: m_Name
-      value: SprayCan
-      objectReference: {fileID: 0}
     - target: {fileID: 3307143999450754973, guid: 418649dd4ed1df948b0a0d18a0651963,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2157,6 +2242,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3307143999450754974, guid: 418649dd4ed1df948b0a0d18a0651963,
+        type: 3}
+      propertyPath: m_Name
+      value: SprayCan
+      objectReference: {fileID: 0}
     - target: {fileID: 6936831440198416550, guid: 418649dd4ed1df948b0a0d18a0651963,
         type: 3}
       propertyPath: moveWithCustomTransform
@@ -2177,11 +2267,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2246,6 +2331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (7)
       objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
@@ -2347,11 +2437,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3307143999450754974, guid: 418649dd4ed1df948b0a0d18a0651963,
-        type: 3}
-      propertyPath: m_Name
-      value: SprayCan (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3307143999450754973, guid: 418649dd4ed1df948b0a0d18a0651963,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2407,6 +2492,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3307143999450754974, guid: 418649dd4ed1df948b0a0d18a0651963,
+        type: 3}
+      propertyPath: m_Name
+      value: SprayCan (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418649dd4ed1df948b0a0d18a0651963, type: 3}
 --- !u!4 &7704325836601049805 stripped
@@ -2422,11 +2512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 1885929466907219854, guid: ad4332967c41b184292370b76a6e859d,
-        type: 3}
-      propertyPath: m_Name
-      value: Flyswatter
-      objectReference: {fileID: 0}
     - target: {fileID: 1885929466907219853, guid: ad4332967c41b184292370b76a6e859d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2482,6 +2567,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1885929466907219854, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: m_Name
+      value: Flyswatter
+      objectReference: {fileID: 0}
     - target: {fileID: 8593478304189198193, guid: ad4332967c41b184292370b76a6e859d,
         type: 3}
       propertyPath: m_Size.y
@@ -2497,11 +2587,32 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 8.900456e-15
       objectReference: {fileID: 0}
+    - target: {fileID: 6223165825054307154, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: spriteR
+      value: 
+      objectReference: {fileID: 1905277730}
+    - target: {fileID: 6223165825054307154, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: ps
+      value: 
+      objectReference: {fileID: 6692298238809279752}
+    - target: {fileID: 6223165825054307154, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: particleDelayTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4332967c41b184292370b76a6e859d, type: 3}
 --- !u!4 &6158443988175860675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1885929466907219853, guid: ad4332967c41b184292370b76a6e859d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5718193795844990030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6692298238809279752 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1406472444102699334, guid: ad4332967c41b184292370b76a6e859d,
     type: 3}
   m_PrefabInstance: {fileID: 5718193795844990030}
   m_PrefabAsset: {fileID: 0}
@@ -2512,11 +2623,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 4708579268265675781, guid: a8d0a9438a256df4697c9b75474a9179,
-        type: 3}
-      propertyPath: m_Name
-      value: SpiderBranch
-      objectReference: {fileID: 0}
     - target: {fileID: 4708579268265675782, guid: a8d0a9438a256df4697c9b75474a9179,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2572,6 +2678,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4708579268265675781, guid: a8d0a9438a256df4697c9b75474a9179,
+        type: 3}
+      propertyPath: m_Name
+      value: SpiderBranch
+      objectReference: {fileID: 0}
     - target: {fileID: 2359215436038460453, guid: a8d0a9438a256df4697c9b75474a9179,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2622,11 +2733,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 4708579268265675781, guid: a8d0a9438a256df4697c9b75474a9179,
-        type: 3}
-      propertyPath: m_Name
-      value: SpiderBranch (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4708579268265675782, guid: a8d0a9438a256df4697c9b75474a9179,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2691,6 +2797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708579268265675781, guid: a8d0a9438a256df4697c9b75474a9179,
+        type: 3}
+      propertyPath: m_Name
+      value: SpiderBranch (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2359215436038460453, guid: a8d0a9438a256df4697c9b75474a9179,
         type: 3}
@@ -2967,11 +3078,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 1885929466907219854, guid: ad4332967c41b184292370b76a6e859d,
-        type: 3}
-      propertyPath: m_Name
-      value: Flyswatter (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1885929466907219853, guid: ad4332967c41b184292370b76a6e859d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3027,6 +3133,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1885929466907219854, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: m_Name
+      value: Flyswatter (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8593478304189198193, guid: ad4332967c41b184292370b76a6e859d,
         type: 3}
       propertyPath: m_Size.x
@@ -3037,8 +3148,19 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -2.9492607
       objectReference: {fileID: 0}
+    - target: {fileID: 6223165825054307154, guid: ad4332967c41b184292370b76a6e859d,
+        type: 3}
+      propertyPath: ps
+      value: 
+      objectReference: {fileID: 8948382843094447410}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4332967c41b184292370b76a6e859d, type: 3}
+--- !u!198 &8948382843094447410 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1406472444102699334, guid: ad4332967c41b184292370b76a6e859d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8046738419214572660}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8468996210847878137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1885929466907219853, guid: ad4332967c41b184292370b76a6e859d,
@@ -3052,11 +3174,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
-        type: 3}
-      propertyPath: m_Name
-      value: StrawberryFlower (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591371, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3121,6 +3238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392536814852591370, guid: acab59b1d32f511489742ef4b3b45d51,
+        type: 3}
+      propertyPath: m_Name
+      value: StrawberryFlower (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3392536814852591374, guid: acab59b1d32f511489742ef4b3b45d51,
         type: 3}
@@ -3482,11 +3604,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573245200}
     m_Modifications:
-    - target: {fileID: 2312167024757382873, guid: 56fc21f5a093d3844939ac1df7bc1cdc,
-        type: 3}
-      propertyPath: m_Name
-      value: PoisonCloud
-      objectReference: {fileID: 0}
     - target: {fileID: 8013073611744865065, guid: 56fc21f5a093d3844939ac1df7bc1cdc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3541,6 +3658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2312167024757382873, guid: 56fc21f5a093d3844939ac1df7bc1cdc,
+        type: 3}
+      propertyPath: m_Name
+      value: PoisonCloud
       objectReference: {fileID: 0}
     - target: {fileID: 8497480395232461114, guid: 56fc21f5a093d3844939ac1df7bc1cdc,
         type: 3}

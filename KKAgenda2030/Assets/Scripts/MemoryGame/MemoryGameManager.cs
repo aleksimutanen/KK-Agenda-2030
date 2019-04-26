@@ -28,6 +28,8 @@ public class MemoryGameManager : MonoBehaviour {
     public Texture placeHolderTexture; // tekstuuri kuvaan, jos selfie skipataan
 
     public GameObject[] endPairs;
+
+    public GameObject cameraFlash;
     
 
     void Start() {
@@ -58,7 +60,9 @@ public class MemoryGameManager : MonoBehaviour {
         bool foundEmpty = false;
         for (int i = 0; i < playerRawImages.Count; i++) {
             var ri = playerRawImages[i].GetComponent<RawImage>();
-            if (ri.texture == null) {
+            // erilainen check tähän koska paikalla on placeholder siluetti
+            // aiemmin oli null check
+            if (ri.texture.name == "Memorygame_NoAvatar") {
                 foundEmpty = true;
                 SlotSelected(i);
                 break;
@@ -88,9 +92,7 @@ public class MemoryGameManager : MonoBehaviour {
         Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
         texture.SetPixels(tex.GetPixels());
         texture.Apply();
-        // Kuvanottoflashi tähän?
         selfieTextures[lastFoundPairValue] = texture;
-
     }
 
     // SKIP SELFIE FUNCTIONALITY (not rdy or tested)
@@ -181,6 +183,8 @@ public class MemoryGameManager : MonoBehaviour {
             var newT = pairSlideCurve.Evaluate(t);
             MatchCardPos.position = Vector3.Lerp(MatchCardPos.position, ReferencePos.position, newT);
             MatchCardPos2.position = Vector3.Lerp(MatchCardPos2.position, ReferencePos2.position, newT);
+            MatchCardPos.rotation = Quaternion.Lerp(MatchCardPos.rotation, ReferencePos.rotation, newT);
+            MatchCardPos2.rotation = Quaternion.Lerp(MatchCardPos2.rotation, ReferencePos2.rotation, newT);
             yield return null;
         }
     }
@@ -199,6 +203,16 @@ public class MemoryGameManager : MonoBehaviour {
         }
     }
 
+    public void CameraFlash() {
+        StartCoroutine(QuickFlash());
+    }
+
+    IEnumerator QuickFlash() {
+        cameraFlash.GetComponent<Animator>().Play("CameraFlash");
+        yield return new WaitForSeconds(2f);
+    }
+
+    // CONTINUE BUTTON INTERACTION
     // when player pictures are choosed, start coroutine from button
     IEnumerator StartGame() {
 

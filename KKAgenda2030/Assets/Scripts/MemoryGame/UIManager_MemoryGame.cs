@@ -28,11 +28,10 @@ public class UIManager_MemoryGame : MonoBehaviour {
     }
 
     IEnumerator CloseSelfie() {
+        //SelfiePanel.GetComponent<Animator>().Play("Close_SelfiePanel");
+        yield return new WaitForSeconds(2f);
         mgm.MatchCardPos.gameObject.transform.parent = DisabledObjectsFolder.transform;
         mgm.MatchCardPos2.gameObject.transform.parent = DisabledObjectsFolder.transform;
-        //yield return new WaitForSeconds(1f);
-        //SelfiePanel.GetComponent<Animator>().Play("Close_SelfiePanel");
-        yield return new WaitForSeconds(.5f);
         SelfiePanel.SetActive(false);
 
 
