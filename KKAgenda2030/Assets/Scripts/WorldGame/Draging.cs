@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Draging : MonoBehaviour
 {
-    
+    ColliderRadar cR;
     public bool dragging = false;
     Vector3 dist;
     float posX;
@@ -25,7 +25,7 @@ public class Draging : MonoBehaviour
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
         //go.gameObject.GetComponent<Draging>().OnMouseDrag();
-
+        cR = FindObjectOfType<ColliderRadar>();
         //   go.gameObject.GetComponent<Draging>().dragging = true;
         BoxCollider = GetComponent<BoxCollider>();
     }
@@ -41,16 +41,12 @@ public class Draging : MonoBehaviour
 
     public void MouseDrag()
     {
-        
+
 
         Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-        transform.position = worldPos; 
-
-      /* float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-       transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
-       */
+        transform.position = worldPos;
 
         print("Triggeri liikkuu");
     }
@@ -58,6 +54,7 @@ public class Draging : MonoBehaviour
 
     public void MouseUp()
     {
+        
         dragging = false;
         print("Triggeri pysähyi");
     }
