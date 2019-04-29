@@ -41,6 +41,10 @@ public class CameraCapture : MonoBehaviour {
 
     }
 
+    public void SetPlaceholderTexture() {
+        mgm.SkipSelfie(mgm.placeHolderTexture);
+    }
+
     Texture2D GetCamPicture() {
         //Create a Texture2D with the size of the rendered image on the screen.
         Texture2D texture = new Texture2D(rawimage.texture.width, rawimage.texture.height, TextureFormat.ARGB32, false);

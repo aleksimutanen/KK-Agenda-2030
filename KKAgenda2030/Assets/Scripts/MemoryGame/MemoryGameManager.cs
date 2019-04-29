@@ -25,7 +25,7 @@ public class MemoryGameManager : MonoBehaviour {
     public RectTransform MatchCardPos, MatchCardPos2;
     int lastFoundPairValue = -1; // muuttuva cardValue arvo minkä mukaan laitetaan selfiekuvat talteen oikeaan pariin nähden
     public Texture[] selfieTextures = new Texture[6];
-    public Texture placeHolderTexture; // tekstuuri kuvaan, jos selfie skipataan
+    public Texture2D placeHolderTexture; // tekstuuri kuvaan, jos selfie skipataan
 
     public GameObject[] endPairs;
 
@@ -43,9 +43,9 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     void Update() {
-        //if (!_init) {
-        //    InitializeCards();
-        //}
+        if (!_init) {
+            InitializeCards();
+        }
 
         if (Input.GetMouseButtonUp(0)) {
             checkCards();
