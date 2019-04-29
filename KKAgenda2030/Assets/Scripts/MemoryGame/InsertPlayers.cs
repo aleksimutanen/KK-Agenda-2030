@@ -21,6 +21,7 @@ public class InsertPlayers : MonoBehaviour {
         avatarPanel.SetActive(true);
         gamePanel.SetActive(true);
         player2Avatar.SetActive(false);
+        mgm.SlotSelected(0);
     }
 
     public void Insert2Player() {
@@ -28,6 +29,7 @@ public class InsertPlayers : MonoBehaviour {
         gameObject.SetActive(false);
         avatarPanel.SetActive(true);
         gamePanel.SetActive(true);
+        mgm.SlotSelected(0);
     }
 
 }

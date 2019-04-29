@@ -7,8 +7,10 @@ public class UIManager_MemoryGame : MonoBehaviour {
 
     private MemoryGameManager mgm;
 
+    public GameObject AvatarChoosePanel;
     public GameObject SelfiePanel;
     public GameObject GamePanel;
+    public GameObject CardsFolder;
     public GameObject DisabledObjectsFolder;
 
     public GameObject ShowPairsPanel;
@@ -16,6 +18,24 @@ public class UIManager_MemoryGame : MonoBehaviour {
     private void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
     }
+
+    // CONTINUE BUTTON/START GAME INTERACTION
+    // when player pictures are choosed, start coroutine from button
+    public void StartPlaying() {
+        StartCoroutine(StartGame());
+    }
+
+
+    IEnumerator StartGame() {
+        AvatarChoosePanel.SetActive(false);
+        // Avatar images off and back on with delay?
+        mgm.SlotSelected(0);
+        yield return new WaitForSeconds(1f);
+        CardsFolder.SetActive(true);
+        mgm.initializeCards();
+    }
+
+
 
     public void CloseSelfiePanel() {
         if(mgm._matches != 0) {

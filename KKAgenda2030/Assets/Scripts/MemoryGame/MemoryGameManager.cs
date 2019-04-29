@@ -37,13 +37,13 @@ public class MemoryGameManager : MonoBehaviour {
         foreach (var item in playerAvatars) {
             acb.Add(item.GetComponent<AvatarClickBehaviour>());
         }
-        SlotSelected(0);
+        //SlotSelected(0);
     }
 
     void Update() {
-        if (!_init) {
-            initializeCards();
-        }
+        //if (!_init) {
+        //    initializeCards();
+        //}
 
         if (Input.GetMouseButtonUp(0)) {
             checkCards();
@@ -55,21 +55,24 @@ public class MemoryGameManager : MonoBehaviour {
         Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
         texture.SetPixels(tex.GetPixels());
         texture.Apply();
-        // Kuvanottoflashi tähän?
         playerRawImages[pictureIndx].GetComponent<RawImage>().texture = texture;
         bool foundEmpty = false;
-        for (int i = 0; i < playerRawImages.Count; i++) {
-            var ri = playerRawImages[i].GetComponent<RawImage>();
-            // erilainen check tähän koska paikalla on placeholder siluetti
-            // aiemmin oli null check
-            if (ri.texture.name == "Memorygame_NoAvatar") {
-                foundEmpty = true;
-                SlotSelected(i);
-                break;
-            }
-        }
-        if (!foundEmpty) {
+        if (playerCount == 1) {
             continueArrow.interactable = true;
+        } else {
+            for (int i = 0; i < playerRawImages.Count; i++) {
+                var ri = playerRawImages[i].GetComponent<RawImage>();
+                // erilainen check tähän koska paikalla on placeholder siluetti
+                // aiemmin oli null check
+                if (ri.texture.name == "Memorygame_NoAvatar") {
+                    foundEmpty = true;
+                    SlotSelected(i);
+                    break;
+                }
+            }
+            if (!foundEmpty) {
+                continueArrow.interactable = true;
+            }
         }
     }
 
@@ -105,7 +108,7 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     // CARDS RANDOMISER FUNCTIONALITY
-    void initializeCards() {
+    public void initializeCards() {
         for (int j = 0; j < 6; j++) {
             for (int i = 0; i < 2; i++) {
                 bool test = false;
@@ -212,10 +215,5 @@ public class MemoryGameManager : MonoBehaviour {
         yield return new WaitForSeconds(2f);
     }
 
-    // CONTINUE BUTTON INTERACTION
-    // when player pictures are choosed, start coroutine from button
-    IEnumerator StartGame() {
 
-        return null;
-    }
 }

@@ -35,6 +35,7 @@ public class CameraCapture : MonoBehaviour {
     }
 
     public void SetPlayerTextureFromCam() {
+        mgm.CameraFlash();
         mgm.SetPlayerTexture(GetCamPicture());
     }
 
