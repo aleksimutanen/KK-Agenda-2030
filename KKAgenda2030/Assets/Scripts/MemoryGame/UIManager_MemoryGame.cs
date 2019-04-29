@@ -32,7 +32,7 @@ public class UIManager_MemoryGame : MonoBehaviour {
         mgm.SlotSelected(0);
         yield return new WaitForSeconds(1f);
         CardsFolder.SetActive(true);
-        mgm.initializeCards();
+        mgm.InitializeCards();
     }
 
 
@@ -49,7 +49,7 @@ public class UIManager_MemoryGame : MonoBehaviour {
 
     IEnumerator CloseSelfie() {
         //SelfiePanel.GetComponent<Animator>().Play("Close_SelfiePanel");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         mgm.MatchCardPos.gameObject.transform.parent = DisabledObjectsFolder.transform;
         mgm.MatchCardPos2.gameObject.transform.parent = DisabledObjectsFolder.transform;
         SelfiePanel.SetActive(false);

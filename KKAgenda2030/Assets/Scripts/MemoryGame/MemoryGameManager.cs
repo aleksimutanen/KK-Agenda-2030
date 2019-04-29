@@ -30,6 +30,8 @@ public class MemoryGameManager : MonoBehaviour {
     public GameObject[] endPairs;
 
     public GameObject cameraFlash;
+    public WebCam cam;
+    int selectedPlayer = 0;
     
 
     void Start() {
@@ -42,7 +44,7 @@ public class MemoryGameManager : MonoBehaviour {
 
     void Update() {
         //if (!_init) {
-        //    initializeCards();
+        //    InitializeCards();
         //}
 
         if (Input.GetMouseButtonUp(0)) {
@@ -108,7 +110,7 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     // CARDS RANDOMISER FUNCTIONALITY
-    public void initializeCards() {
+    public void InitializeCards() {
         for (int j = 0; j < 6; j++) {
             for (int i = 0; i < 2; i++) {
                 bool test = false;
@@ -120,7 +122,7 @@ public class MemoryGameManager : MonoBehaviour {
                 var card = cards[choice].GetComponent<CardBehaviour>();
                 card.cardValue = j;
                 card.initialized = true;
-                card.setupGraphics(i == 0 ? cardFace[j] : cardFace2[j]);
+                card.SetupGraphics(i == 0 ? cardFace[j] : cardFace2[j]);
             }
         }
 
@@ -162,6 +164,11 @@ public class MemoryGameManager : MonoBehaviour {
         for (int i = 0; i < c.Count; i++) {
             cards[c[i]].GetComponent<CardBehaviour>().state = x;
             cards[c[i]].GetComponent<CardBehaviour>().falseCheck();
+        }
+        // vuoron vaihto toiselle
+        if (playerCount == 2) {
+            selectedPlayer = 1 - selectedPlayer;
+            SlotSelected(selectedPlayer);
         }
 
     }

@@ -8,6 +8,7 @@ public class AvatarClickBehaviour : MonoBehaviour {
     public int thisPicIndx;
     public Animator animator;
     public GameObject halo;
+    public GameObject grayImage;
 
     void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
@@ -17,11 +18,13 @@ public class AvatarClickBehaviour : MonoBehaviour {
     public void OnSelected() {
         animator.Play("AvatarGlow");
         halo.SetActive(true);
+        grayImage.SetActive(false);
     }
 
     public void OnDeselected() {
         animator.Play("New State");
         halo.SetActive(false);
+        grayImage.SetActive(true);
 
     }
 

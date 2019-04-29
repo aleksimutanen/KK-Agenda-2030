@@ -18,7 +18,7 @@ public class CardBehaviour : MonoBehaviour {
         _state = 1;
     }
 
-    public void setupGraphics(Sprite s) {
+    public void SetupGraphics(Sprite s) {
         cardBack = mgm.getCardBack();
         cardFace = s;
         flipCard();
