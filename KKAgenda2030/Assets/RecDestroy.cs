@@ -27,7 +27,7 @@ public class RecDestroy : MonoBehaviour
         {
             Destroy(other.gameObject);
            
-            print("Tuhotaan " + other.gameObject.name);
+           
             print("Objectin tuhosi " + gameObject.name);
         }
     }
