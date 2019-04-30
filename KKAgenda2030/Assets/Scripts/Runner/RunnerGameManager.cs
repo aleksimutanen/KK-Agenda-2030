@@ -164,7 +164,7 @@ public class RunnerGameManager : MonoBehaviour {
             //foreach (SpriteRenderer sr in sharkSprites) sr.color = Color.Lerp(Color.white, ateTrashColor, curvedT);
         }
 
-        sliderFill.color = Color.white;
+        //sliderFill.color = Color.white;
     }
 
     public void NextLevel() {

@@ -190,7 +190,7 @@ MonoBehaviour:
   fishGameTransition: {fileID: 0}
   fishTransitionCircle: {fileID: 0}
   trashGameTransition: {fileID: 0}
-  beeGameTransition: {fileID: 0}
+  runnerGameTransition: {fileID: 0}
   sliderImage: {fileID: 0}
   slider: {fileID: 0}
   fadeTime: 1
@@ -366,6 +366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BirdsAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129572648849446314, guid: 7c6f03081f235404986a340eecb3acc4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129572648849446315, guid: 7c6f03081f235404986a340eecb3acc4,
         type: 3}
@@ -708,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 7527918881124093070, guid: fa6fa7aef33c23e44b9d4930b6113600,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.7921569
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 7527918881124093070, guid: fa6fa7aef33c23e44b9d4930b6113600,
         type: 3}
@@ -724,6 +729,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: -50.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527918880671681562, guid: fa6fa7aef33c23e44b9d4930b6113600,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527918880671681562, guid: fa6fa7aef33c23e44b9d4930b6113600,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527918880671681562, guid: fa6fa7aef33c23e44b9d4930b6113600,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6fa7aef33c23e44b9d4930b6113600, type: 3}
@@ -2385,6 +2405,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8677990905145630218, guid: b75f485876da441429bbb47c4917062d,
+        type: 3}
+      propertyPath: trashCanFolder
+      value: 
+      objectReference: {fileID: 806157508}
     - target: {fileID: 767213942, guid: b75f485876da441429bbb47c4917062d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -2393,11 +2418,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677990905145630218, guid: b75f485876da441429bbb47c4917062d,
-        type: 3}
-      propertyPath: trashCanFolder
-      value: 
-      objectReference: {fileID: 806157508}
     - target: {fileID: 1421772891, guid: b75f485876da441429bbb47c4917062d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0

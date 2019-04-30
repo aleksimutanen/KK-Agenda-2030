@@ -1031,8 +1031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -9.299999, y: -0.0800004}
-  m_SizeDelta: {x: 13, y: 4}
+  m_AnchoredPosition: {x: -9.299999, y: -0.253}
+  m_SizeDelta: {x: 13, y: 5.159}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &261540133
 Animator:
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9411765, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4154,7 +4154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9411765, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4292,7 +4292,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  sliderFillColor: {r: 1, g: 1, b: 1, a: 1}
+  sliderFillColor: {r: 1, g: 0.9411765, b: 0, a: 1}
   hitAvoidableColor: {r: 0.8862745, g: 0, b: 0.007843138, a: 1}
   hitCollectableColor: {r: 0, g: 0.8862745, b: 0.03137255, a: 1}
   fadeImage: {fileID: 723150813}

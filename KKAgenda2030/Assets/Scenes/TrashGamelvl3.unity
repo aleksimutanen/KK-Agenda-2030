@@ -168,7 +168,7 @@ MonoBehaviour:
   fishGameTransition: {fileID: 0}
   fishTransitionCircle: {fileID: 0}
   trashGameTransition: {fileID: 0}
-  beeGameTransition: {fileID: 0}
+  runnerGameTransition: {fileID: 0}
   sliderImage: {fileID: 0}
   slider: {fileID: 0}
   fadeTime: 1
@@ -651,6 +651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BirdsAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129572648849446314, guid: 7c6f03081f235404986a340eecb3acc4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129572648849446315, guid: 7c6f03081f235404986a340eecb3acc4,
         type: 3}
@@ -1586,6 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c50f88c4e9765d47ac92169ced9f520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!1 &1586167525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,7 +2147,7 @@ PrefabInstance:
     - target: {fileID: 701119071962754989, guid: 953623682a28bdf41900244d07d7286c,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.7921569
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 701119071962754989, guid: 953623682a28bdf41900244d07d7286c,
         type: 3}
@@ -2333,9 +2339,24 @@ PrefabInstance:
     - target: {fileID: 7527918881124093070, guid: fa6fa7aef33c23e44b9d4930b6113600,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.7921569
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 7527918881124093070, guid: fa6fa7aef33c23e44b9d4930b6113600,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527918880671681562, guid: fa6fa7aef33c23e44b9d4930b6113600,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527918880671681562, guid: fa6fa7aef33c23e44b9d4930b6113600,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527918880671681562, guid: fa6fa7aef33c23e44b9d4930b6113600,
         type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -3222,7 +3243,7 @@ PrefabInstance:
     - target: {fileID: 8364943510033799052, guid: f29f943de99f37640b53a4154cde100e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30.6
+      value: 30.599976
       objectReference: {fileID: 0}
     - target: {fileID: 8364943510033799052, guid: f29f943de99f37640b53a4154cde100e,
         type: 3}
@@ -3342,10 +3363,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 767213943, guid: b75f485876da441429bbb47c4917062d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8677990905145630218, guid: b75f485876da441429bbb47c4917062d,
         type: 3}
       propertyPath: endFadeAnimator
@@ -3356,6 +3373,10 @@ PrefabInstance:
       propertyPath: trashCanFolder
       value: 
       objectReference: {fileID: 806157508}
+    - target: {fileID: 767213943, guid: b75f485876da441429bbb47c4917062d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b75f485876da441429bbb47c4917062d, type: 3}
 --- !u!4 &8677990905012391393 stripped
