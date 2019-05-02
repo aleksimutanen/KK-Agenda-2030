@@ -52,9 +52,6 @@ public class TrashGameManager : MonoBehaviour {
     public GameObject pdPrefab;
 
 
-    //AUDIO
-    public string netHit;
-
 
     void Awake() {
         //Check if instance already exists
