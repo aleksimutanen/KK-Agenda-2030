@@ -11,6 +11,8 @@ public class CameraCapture : MonoBehaviour {
     WebCamTexture webcamTexture = null;
     public WebCam cam;
 
+    public UIManager_MemoryGame uiM;
+
     void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
         rawimage.texture = cam.tex;
@@ -27,6 +29,7 @@ public class CameraCapture : MonoBehaviour {
     }
 
     public void SetPlayerTextureFromCam() {
+        uiM.CameraButton.interactable = false;
         mgm.CameraFlash();
         mgm.SetPlayerTexture(GetCamPicture());
         cam.tex.Stop();
@@ -37,12 +40,13 @@ public class CameraCapture : MonoBehaviour {
         mgm.CameraFlash();
         mgm.SetSelfieTexture(GetCamPicture());
         cam.tex.Stop();
-        StartCoroutine(CameraRestart());
-
+        StartCoroutine(SelfieCameraRestart());
+        mgm.SwitchTurn();
     }
 
     public void SetPlaceholderTexture() {
-        mgm.SkipSelfie(mgm.placeHolderTexture);
+        mgm.SetSelfieTexture(mgm.placeHolderTexture);
+        mgm.SwitchTurn();
     }
 
     Texture2D GetCamPicture() {
@@ -54,6 +58,12 @@ public class CameraCapture : MonoBehaviour {
     }
 
     IEnumerator CameraRestart() {
+        yield return new WaitForSeconds(1.5f);
+        cam.tex.Play();
+        uiM.CameraButton.interactable = true;
+    }
+
+    IEnumerator SelfieCameraRestart() {
         yield return new WaitForSeconds(1.5f);
         cam.tex.Play();
     }
