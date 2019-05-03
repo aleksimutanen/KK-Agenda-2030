@@ -117,8 +117,16 @@ public class GrandManager : MonoBehaviour {
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("RunnerGame");
     }
+    public IEnumerator LaunchMemoryGame() {
 
-    public void BackToMainMenu() {
+        var ui = FindObjectOfType<UIManager>();
+        ui.memoryGameTransition.GetComponent<Animator>().Play("MemoryTransition");
+        yield return new WaitForSeconds(3.5f);
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
+        SceneManager.LoadScene("MemoryGame");
+    }
+
+        public void BackToMainMenu() {
         //previousScene = activeScene;
         //previousScene.SetActive(false);
         //activeScene = mainMenu;
