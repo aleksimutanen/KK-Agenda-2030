@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour {
     public Image trashGameTransition;
 
     public Image runnerGameTransition;
+    public Image memoryGameTransition;
+
 
     public Image sliderImage;
     public Slider slider;
@@ -94,6 +96,10 @@ public class UIManager : MonoBehaviour {
         GrandManager.instance.StartCoroutine("LaunchBeeGame");
 
     }
+    public void LaunchMemoryGame() {
+        GrandManager.instance.StartCoroutine("LaunchMemoryGame");
+
+    }
 
     public void DisableMenuButtons() {
         foreach (Button b in menuButtons) b.gameObject.SetActive(false);
@@ -153,7 +159,16 @@ public class UIManager : MonoBehaviour {
         PauseButton();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        yield return null;
+    }
+    public void ReloadMemoryGame() {
+        StartCoroutine("ReloadMemoryGameFade");
+    }
+
+    IEnumerator ReloadMemoryGameFade() {
+        memoryGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     ///////// 
@@ -192,13 +207,13 @@ public class UIManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
     }
-
-    public void ExitRunnerGame() {
-        StartCoroutine("ExitRunnerGameFade");
+    public void QuitMemoryGame() {
+        StartCoroutine("QuitMemoryGameFade");
     }
 
-    IEnumerator ExitRunnerGameFade() {
-        runnerGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+    IEnumerator QuitMemoryGameFade() {
+        memoryGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
     }

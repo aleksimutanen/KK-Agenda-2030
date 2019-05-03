@@ -36,9 +36,14 @@ public class MemoryGameManager : MonoBehaviour {
     public GameObject cameraFlash;
     public WebCam cam;
     public int selectedPlayer = 0;
+
+    public Image fadeOut;
     
 
     void Start() {
+        // play transition animation
+        fadeOut.GetComponent<Animator>().Play("FadeOut");
+
         acb = new List<AvatarClickBehaviour>();
         foreach (var item in playerAvatars) {
             acb.Add(item.GetComponent<AvatarClickBehaviour>());
