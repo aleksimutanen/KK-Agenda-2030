@@ -40,7 +40,18 @@ public class WorldManager : MonoBehaviour
                          var go = Instantiate(decal, hit.point, Quaternion.identity);
                         print("Created new decal" + " " + decal.name);
                        
+                        // Skaalaus kuntoon per objekti...
                         go.gameObject.transform.localScale = new Vector3(3.0F, 3.0f, 0.0f);
+
+                        if(decal.name == "Puu")
+                        {
+                            go.gameObject.transform.localScale = new Vector3(2.0F, 1.0f, 0.0f);
+                        }
+
+                        if (decal.name == "Ahven")
+                        {
+                            go.gameObject.transform.localScale = new Vector3(5.0F, 5.0f, 0.0f);
+                        }
                         go.gameObject.AddComponent<Draging>();
                         createdObject = go.GetComponent<Draging>();
                         Destroy(createdObject.GetComponent<ColliderRadar>());

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3529406624030058826}
   - component: {fileID: 201026539075649390}
   - component: {fileID: 1972170303372412649}
-  - component: {fileID: 8253880930540093705}
+  - component: {fileID: 6713272872857930487}
   m_Layer: 0
   m_Name: Vene
-  m_TagString: Untagged
+  m_TagString: Decal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,9 +118,9 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &8253880930540093705
+--- !u!114 &6713272872857930487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3159934058950820429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bd9111a75c881241a551a21c8d584fb, type: 3}
+  m_Script: {fileID: 11500000, guid: fe0c4f6bb1111ce428a0b47318b337df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Collider: {fileID: 3529406624030058826}
+  originalObject: {fileID: 3159934058950820429}
+  originalCollider: {fileID: 3529406624030058826}
