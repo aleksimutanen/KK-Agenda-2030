@@ -10,6 +10,8 @@ public class Flower : MonoBehaviour {
     int spriteIndex;
     ParticleSystem ps;
 
+    public string pollenate;
+
 
     private void Start() {
         spriteR = GetComponentInChildren<SpriteRenderer>();
@@ -21,6 +23,7 @@ public class Flower : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "Player") {
+            Fabric.EventManager.Instance.PostEvent("pollenate");
             RunnerGameManager.instance.HitCollectable(RunnerGameManager.TimerType.GainSmall);
             RunnerGameManager.instance.HitFlower();
             spriteR.sprite = berrySprites[spriteIndex];

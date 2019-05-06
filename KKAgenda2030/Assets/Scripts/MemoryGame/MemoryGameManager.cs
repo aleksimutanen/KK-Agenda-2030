@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MemoryGameManager : MonoBehaviour {
+
+    public UIManager_MemoryGame uiM;
+
     public AnimationCurve pairSlideCurve;
     public int playerCount;
     public int pictureIndx;
     public List<RawImage> playerRawImages;
     public List<GameObject> playerAvatars;
     List<AvatarClickBehaviour> acb;
-    public Button continueArrow;
+    public Button ContinueButton;
 
     public Sprite[] cardFace;
     public Sprite[] cardFace2;
@@ -23,18 +26,24 @@ public class MemoryGameManager : MonoBehaviour {
     public GameObject SelfiePanel;
     public RectTransform ReferencePos, ReferencePos2;
     public RectTransform MatchCardPos, MatchCardPos2;
-    int lastFoundPairValue = -1; // muuttuva cardValue arvo minkä mukaan laitetaan selfiekuvat talteen oikeaan pariin nähden
+    public int lastFoundPairValue = -1; // muuttuva cardValue arvo minkä mukaan laitetaan selfiekuvat talteen oikeaan pariin nähden
     public Texture[] selfieTextures = new Texture[6];
     public Texture2D placeHolderTexture; // tekstuuri kuvaan, jos selfie skipataan
+    public List<GameObject> emotions;
 
     public GameObject[] endPairs;
 
     public GameObject cameraFlash;
     public WebCam cam;
-    int selectedPlayer = 0;
+    public int selectedPlayer = 0;
+
+    public Image fadeOut;
     
 
     void Start() {
+        // play transition animation
+        fadeOut.GetComponent<Animator>().Play("FadeOut");
+
         acb = new List<AvatarClickBehaviour>();
         foreach (var item in playerAvatars) {
             acb.Add(item.GetComponent<AvatarClickBehaviour>());
@@ -43,9 +52,9 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     void Update() {
-        if (!_init) {
-            InitializeCards();
-        }
+        //if (!_init) {
+        //    InitializeCards();
+        //}
 
         if (Input.GetMouseButtonUp(0)) {
             checkCards();
@@ -60,7 +69,7 @@ public class MemoryGameManager : MonoBehaviour {
         playerRawImages[pictureIndx].GetComponent<RawImage>().texture = texture;
         bool foundEmpty = false;
         if (playerCount == 1) {
-            continueArrow.interactable = true;
+            ContinueButton.interactable = true;
         } else {
             for (int i = 0; i < playerRawImages.Count; i++) {
                 var ri = playerRawImages[i].GetComponent<RawImage>();
@@ -73,7 +82,8 @@ public class MemoryGameManager : MonoBehaviour {
                 }
             }
             if (!foundEmpty) {
-                continueArrow.interactable = true;
+                ContinueButton.interactable = true;
+                ContinueButton.GetComponent<Animator>().Play("ContinueButtonScale");
             }
         }
     }
@@ -98,15 +108,6 @@ public class MemoryGameManager : MonoBehaviour {
         texture.SetPixels(tex.GetPixels());
         texture.Apply();
         selfieTextures[lastFoundPairValue] = texture;
-    }
-
-    // SKIP SELFIE FUNCTIONALITY (not rdy or tested)
-    public void SkipSelfie(Texture2D tex) {
-        Texture2D texture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
-        texture.SetPixels(tex.GetPixels());
-        texture.Apply();
-        placeHolderTexture = texture;
-
     }
 
     // CARDS RANDOMISER FUNCTIONALITY
@@ -148,6 +149,9 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     void cardComparison(List<int> c) {
+        foreach (var item in cards) {
+            item.GetComponent<Button>().interactable = false;
+        }
         int x = 0;
         if (cards[c[0]].GetComponent<CardBehaviour>().cardValue == cards[c[1]].GetComponent<CardBehaviour>().cardValue) {
             x = 2;
@@ -161,16 +165,35 @@ public class MemoryGameManager : MonoBehaviour {
                 print("Kaikki parit löydetty");
             }
         }
+        else {
+            SwitchTurn();
+        }
+
         for (int i = 0; i < c.Count; i++) {
             cards[c[i]].GetComponent<CardBehaviour>().state = x;
             cards[c[i]].GetComponent<CardBehaviour>().falseCheck();
         }
         // vuoron vaihto toiselle
+        //if (playerCount == 2) {
+        //    selectedPlayer = 1 - selectedPlayer;
+        //    SlotSelected(selectedPlayer);
+        //}
+
+    }
+
+    public void SwitchTurn() {
+        StartCoroutine(ISwitchTurn());
+    }
+
+    IEnumerator ISwitchTurn() {
+        yield return new WaitForSeconds(1.5f);
         if (playerCount == 2) {
             selectedPlayer = 1 - selectedPlayer;
             SlotSelected(selectedPlayer);
+            foreach (var item in cards) {
+                item.GetComponent<Button>().interactable = true;
+            }
         }
-
     }
 
     // SELFIE FUNCTIONALITY    
@@ -185,6 +208,7 @@ public class MemoryGameManager : MonoBehaviour {
         MatchCardPos2.gameObject.transform.parent = SelfiePanel.transform;
         MatchCardPos.gameObject.GetComponent<Button>().enabled = false;
         MatchCardPos2.gameObject.GetComponent<Button>().enabled = false;
+        emotions[lastFoundPairValue].SetActive(true);
 
         // Lerp matched cards to fixed positions
         var t = 0f;
@@ -200,7 +224,6 @@ public class MemoryGameManager : MonoBehaviour {
     }
 
     public void InsertPrefabValues() {
-        //var endImageSet = GameObject.FindObjectsOfType<ExpressionID>();
         foreach (var item in endPairs) {
             var value = item.GetComponent<ExpressionID>().value;
             var t = item.transform;

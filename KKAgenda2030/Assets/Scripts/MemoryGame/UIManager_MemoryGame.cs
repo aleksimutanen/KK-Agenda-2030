@@ -12,8 +12,8 @@ public class UIManager_MemoryGame : MonoBehaviour {
     public GameObject GamePanel;
     public GameObject CardsFolder;
     public GameObject DisabledObjectsFolder;
-
     public GameObject ShowPairsPanel;
+    public Button CameraButton;
 
     private void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
@@ -30,12 +30,15 @@ public class UIManager_MemoryGame : MonoBehaviour {
         AvatarChoosePanel.SetActive(false);
         // Avatar images off and back on with delay?
         mgm.SlotSelected(0);
+        foreach (var item in mgm.playerAvatars) {
+            var avatar = item.transform;
+            var buttonParent = avatar.Find("Parent");
+            buttonParent.GetComponentInChildren<Button>().interactable = false;
+        }
         yield return new WaitForSeconds(1f);
         CardsFolder.SetActive(true);
         mgm.InitializeCards();
     }
-
-
 
     public void CloseSelfiePanel() {
         if(mgm._matches != 0) {
@@ -48,10 +51,12 @@ public class UIManager_MemoryGame : MonoBehaviour {
     }
 
     IEnumerator CloseSelfie() {
-        //SelfiePanel.GetComponent<Animator>().Play("Close_SelfiePanel");
         yield return new WaitForSeconds(1.5f);
+        //SelfiePanel.GetComponent<Animator>().Play("Close_SelfiePanel");
+        //yield return new WaitForSeconds(1f);
         mgm.MatchCardPos.gameObject.transform.parent = DisabledObjectsFolder.transform;
         mgm.MatchCardPos2.gameObject.transform.parent = DisabledObjectsFolder.transform;
+        mgm.emotions[mgm.lastFoundPairValue].SetActive(false);
         SelfiePanel.SetActive(false);
 
 

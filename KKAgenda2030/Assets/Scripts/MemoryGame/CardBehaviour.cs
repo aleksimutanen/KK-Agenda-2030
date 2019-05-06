@@ -57,6 +57,7 @@ public class CardBehaviour : MonoBehaviour {
 
     public void falseCheck() {
         StartCoroutine(Delay());
+
     }
 
     IEnumerator Delay() {
@@ -67,5 +68,6 @@ public class CardBehaviour : MonoBehaviour {
         else if (_state == 1) {
             GetComponent<Image>().sprite = cardFace;
         }
+        //mgm.SwitchTurn();
     }
 }

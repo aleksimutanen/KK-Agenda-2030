@@ -11,6 +11,9 @@ public class DragObjects : MonoBehaviour {
     float returnSpeed = 20;
     float hintTimer;
 
+    public string trashGrab;
+    public string trashDrop;
+
     public Vector3 startPos;
     public bool dragging = false;
 
@@ -78,6 +81,7 @@ public class DragObjects : MonoBehaviour {
 
     public void OnDraggingEnd() {
         dragging = false;
+        Fabric.EventManager.Instance.PostEvent("trashDrop");
         var mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
         TrashDestroy td = null;
         RaycastHit hit;
@@ -134,6 +138,7 @@ public class DragObjects : MonoBehaviour {
 
     void OnMouseDown() {
         dragging = true;
+        Fabric.EventManager.Instance.PostEvent("trashGrab");
         dist = Camera.main.WorldToScreenPoint(transform.position);
         posX = Input.mousePosition.x - dist.x;
         posY = Input.mousePosition.y - dist.y;
