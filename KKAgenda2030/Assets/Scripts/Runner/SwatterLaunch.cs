@@ -7,6 +7,9 @@ public class SwatterLaunch : MonoBehaviour
     Animator animator;
     ParticleSystem ps;
 
+    public AudioSource swatAudio;
+    public AudioClip swat;
+
     private void Awake() {
         animator = GetComponent<Animator>();
         ps = GetComponentInChildren<ParticleSystem>();
@@ -14,6 +17,7 @@ public class SwatterLaunch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.name == "Player") {
+            swatAudio.PlayOneShot(swat);
             LaunchSwatAnim();
         }
     }

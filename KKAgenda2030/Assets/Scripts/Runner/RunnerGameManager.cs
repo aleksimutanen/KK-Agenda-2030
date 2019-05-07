@@ -36,6 +36,9 @@ public class RunnerGameManager : MonoBehaviour {
     int maxLives;
     [SerializeField] int foodCollected;
 
+    public AudioSource playerAudio;
+    public AudioClip hurt;
+
     //
 
     // UI
@@ -259,6 +262,7 @@ public class RunnerGameManager : MonoBehaviour {
 
         HitAvoidable(TimerType.LoseSmall);
         invulnerable = true;
+        playerAudio.PlayOneShot(hurt);
         livesLeft--;
         //livesLeftText.text = livesLeft + " / " + maxLives;
         StartCoroutine("VignetteFlash");

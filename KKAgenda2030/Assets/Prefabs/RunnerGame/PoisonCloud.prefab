@@ -170,6 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7addbf1ea3fd3945bc0a46ed98dc46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprayAudio: {fileID: 0}
+  raid: {fileID: 0}
 --- !u!1 &5041955061470569257
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,7 +4879,7 @@ ParticleSystem:
 --- !u!199 &5950806571714088916
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
