@@ -8,11 +8,13 @@ public class WorldManager : MonoBehaviour
     public GameObject decalsFolder;
 
     public List<GameObject> images = new List<GameObject>();
+    public List<Sprite> Backgrounds = new List<Sprite>();
+    public GameObject BackgroundSpawnpoint;
+    public Canvas ButtonCanvas;
     private float range = 1000f;
     private Draging createdObject;
-
-
-
+    
+    
     public void Update()
     {
         if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
@@ -126,4 +128,40 @@ public class WorldManager : MonoBehaviour
             }
         }
     }
+
+
+
+
+    public void FirstWorld()
+    {
+        BackgroundSpawnpoint.GetComponent<SpriteRenderer>().sprite = Backgrounds[0];
+       // BackgroundSpawnpoint.transform.localScale = new Vector3(7.0F, 6.0f, 0.0f);
+        ButtonCanvas.enabled = false;
+
+    }
+
+
+    public void SecondWorld()
+    {
+
+        BackgroundSpawnpoint.GetComponent<SpriteRenderer>().sprite = Backgrounds[1];
+        ButtonCanvas.enabled = false;
+    }
+
+
+    public void ThirdWorld()
+    {
+
+        BackgroundSpawnpoint.GetComponent<SpriteRenderer>().sprite = Backgrounds[2];
+        ButtonCanvas.enabled = false;
+    }
+
+
+    public void FourthWorld()
+    {
+
+        BackgroundSpawnpoint.GetComponent<SpriteRenderer>().sprite = Backgrounds[3];
+        ButtonCanvas.enabled = false;
+    }
+
 }
