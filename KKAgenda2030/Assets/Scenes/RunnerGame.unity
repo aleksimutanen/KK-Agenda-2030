@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1546,6 +1546,7 @@ GameObject:
   - component: {fileID: 427317806}
   - component: {fileID: 427317809}
   - component: {fileID: 427317810}
+  - component: {fileID: 427317808}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1582,6 +1583,7 @@ MonoBehaviour:
   cameraMove: 1
   deltaPos: {x: 0, y: 0, z: 0}
   goalPosition: {fileID: 385069977}
+  playerAudio: {fileID: 427317808}
 --- !u!54 &427317807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1598,6 +1600,102 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &427317808
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427317805}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &427317809
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2664,6 +2762,7 @@ MonoBehaviour:
   cameraMove: 0
   deltaPos: {x: 0, y: 0, z: 0}
   goalPosition: {fileID: 0}
+  playerAudio: {fileID: 0}
 --- !u!54 &771060678
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3686,6 +3785,7 @@ MonoBehaviour:
   fishTransitionCircle: {fileID: 0}
   trashGameTransition: {fileID: 0}
   runnerGameTransition: {fileID: 723150813}
+  memoryGameTransition: {fileID: 0}
   sliderImage: {fileID: 261540134}
   slider: {fileID: 0}
   fadeTime: 0.5
@@ -3925,6 +4025,8 @@ MonoBehaviour:
   loseBigScore: 10
   livesLeft: 3
   foodCollected: 0
+  playerAudio: {fileID: 427317808}
+  hurt: {fileID: 8300000, guid: 3af63729cc5c1e1409c834bee5dfcc4c, type: 3}
   gameEndSlider: {fileID: 222665160}
   starScore: a0000000d200000004010000
   starImages:

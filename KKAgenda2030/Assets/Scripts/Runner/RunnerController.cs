@@ -29,6 +29,7 @@ public class RunnerController : MonoBehaviour {
     Vector3 charStartPos;
     [SerializeField] GameObject goalPosition;
 
+    public AudioSource playerAudio;
 
     void Start() {
         tfSpeedOnStart = tfSpeed;
