@@ -9,8 +9,12 @@ public class Block : MonoBehaviour
     public ParticleSystem ps;
     public float particleDelayTime;
 
+    public AudioSource spiderAudio;
+    public AudioClip webhit;
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "Player") {
+            spiderAudio.PlayOneShot(webhit);
             //RunnerGameManager.instance.HitAvoidable(RunnerGameManager.TimerType.LoseSmall);
             RunnerGameManager.instance.LoseLife();
             FindObjectOfType<UIManager>().HitAvoidable();

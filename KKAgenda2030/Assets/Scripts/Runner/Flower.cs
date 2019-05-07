@@ -10,7 +10,8 @@ public class Flower : MonoBehaviour {
     int spriteIndex;
     ParticleSystem ps;
 
-    public string pollenate;
+    public AudioSource flowerAudio;
+    public AudioClip pollen;
 
 
     private void Start() {
@@ -23,7 +24,7 @@ public class Flower : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "Player") {
-            Fabric.EventManager.Instance.PostEvent("pollenate");
+            flowerAudio.PlayOneShot(pollen);
             RunnerGameManager.instance.HitCollectable(RunnerGameManager.TimerType.GainSmall);
             RunnerGameManager.instance.HitFlower();
             spriteR.sprite = berrySprites[spriteIndex];

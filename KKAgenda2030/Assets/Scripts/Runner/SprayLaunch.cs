@@ -7,6 +7,9 @@ public class SprayLaunch : MonoBehaviour
     Animator animator;
     ParticleSystem ps;
 
+    public AudioSource sprayAudio;
+    public AudioClip raid;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,6 +18,7 @@ public class SprayLaunch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.name == "Player") {
+            sprayAudio.PlayOneShot(raid);
             LaunchSprayAnim();
         }
     }
