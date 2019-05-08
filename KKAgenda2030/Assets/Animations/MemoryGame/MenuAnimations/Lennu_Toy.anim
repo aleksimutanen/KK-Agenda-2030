@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle_Lennu
+  m_Name: Lennu_Toy
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,16 +19,10 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
+    - time: 0.016666668
+      value: {fileID: 21300000, guid: 5deb6efd2c9e57144894c9d63f00c92f, type: 3}
     - time: 0
-      value: {fileID: 21300000, guid: 82e65ef2b55c82941b5cd21ba185e633, type: 3}
-    - time: 0.38333333
-      value: {fileID: 21300000, guid: 8970b8b61c1ae614aaf2e6983ee052f7, type: 3}
-    - time: 0.76666665
-      value: {fileID: 21300000, guid: 82e65ef2b55c82941b5cd21ba185e633, type: 3}
-    - time: 1.1166667
-      value: {fileID: 21300000, guid: 8dde2b1395fa743429c6e6d88fc9dd77, type: 3}
-    - time: 1.5
-      value: {fileID: 21300000, guid: 82e65ef2b55c82941b5cd21ba185e633, type: 3}
+      value: {fileID: 21300000, guid: 5deb6efd2c9e57144894c9d63f00c92f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +42,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 82e65ef2b55c82941b5cd21ba185e633, type: 3}
-    - {fileID: 21300000, guid: 8970b8b61c1ae614aaf2e6983ee052f7, type: 3}
-    - {fileID: 21300000, guid: 82e65ef2b55c82941b5cd21ba185e633, type: 3}
-    - {fileID: 21300000, guid: 8dde2b1395fa743429c6e6d88fc9dd77, type: 3}
-    - {fileID: 21300000, guid: 82e65ef2b55c82941b5cd21ba185e633, type: 3}
+    - {fileID: 21300000, guid: 5deb6efd2c9e57144894c9d63f00c92f, type: 3}
+    - {fileID: 21300000, guid: 5deb6efd2c9e57144894c9d63f00c92f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5166667
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
