@@ -21,8 +21,10 @@ public class RecDestroy : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+
+        print(other.name);
         if (other.gameObject.tag == "Decal")
         {
             Destroy(other.gameObject);
