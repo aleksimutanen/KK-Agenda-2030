@@ -14,18 +14,22 @@ public class TrashDestroy: MonoBehaviour {
     public string idleAnimation;
     public string openMAnimation;
 
-    public string eat;
-    public string spit;
+    public AudioSource trashAudio;
+    public AudioClip eatSound;
+    public AudioClip spitSound;
+
+    //public string eat;
+    //public string spit;
 
     public void EatTrash(Trash t) {
-        //Fabric.EventManager.Instance.PostEvent("eat");
+        trashAudio.PlayOneShot(eatSound);
         childAnimator.Play(eatAnimation);
         Success.Add(t.gameObject);
         sizeOfList = Success.Count;
     }
 
     public void SpitTrash() {
-        //Fabric.EventManager.Instance.PostEvent("spit");
+        trashAudio.PlayOneShot(spitSound);
         childAnimator.Play(spitAnimation);
     }
 
