@@ -7,13 +7,11 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
     Vector3 snapPos;
     public MenuKaarlo_drag mkd;
     public string snapPosName;
-    //public GameObject parentFolder;
-
+    AnimationManager_MemoryGame aMM;
 
     public void Start() {
         snapPos = GameObject.Find(snapPosName).transform.position;
-        //transform.parent = parentFolder.transform;
-
+        aMM = GameObject.Find("AnimationManager").GetComponent<AnimationManager_MemoryGame>();
     }
 
     void Update() {
@@ -27,19 +25,21 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
     }
 
     public void OnEndDrag() {
-        print("onmouseup NOW");
         var colliders = Physics.OverlapSphere(transform.position, 1f);
         bool found = false;
         foreach (var item in colliders) {
-            if (item.tag == "Decal")
+            if (item.tag == "Halo")
                 found = true;
         }
         if (found) {
-            print("decal hit");
             transform.position = snapPos;
+            mkd.ResetHalo();
+            aMM.AddAnimalCount();
             this.enabled = false;
+
         } else {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
             mkd.ResetState();
         }
     }

@@ -167,20 +167,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1390340661, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
-      propertyPath: draggableObject
-      value: 
-      objectReference: {fileID: 3507848389540188074, guid: 1378f568ee1adf24294738358778d828,
+    - target: {fileID: 269039710, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 269039710, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 269039710, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212830623, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212830623, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212830623, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621290867, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 656038384333261700, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4638991682641224862, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4638991683106893186, guid: c1dcf163cef0f134b84f9e16841e4308,
+    - target: {fileID: 6043829520534524646, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
-      propertyPath: snapPosName
-      value: SnapPos
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520124240237534757, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}

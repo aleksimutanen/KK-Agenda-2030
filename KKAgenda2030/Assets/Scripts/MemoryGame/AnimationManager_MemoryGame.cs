@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class AnimationManager_MemoryGame : MonoBehaviour {
 
-    public List<int> animalsOnBoard;
     public int animalsCount = 0;
     public List<AnimationClip> jigsawState;
+    public List<AnimationClip> jigsawRepeatorState;
     Animator jigsawAnimator;
+    public Animator dragAnimalsFolder;
     AnimatorTimer at;
     public GameObject jigsawGO;
     
@@ -34,5 +35,11 @@ public class AnimationManager_MemoryGame : MonoBehaviour {
 
     public void SetJigsawState() {
         jigsawAnimator.Play(jigsawState[animalsCount].name);
+    }
+
+    public void AddAnimalCount() {
+        animalsCount++;
+        jigsawAnimator.Play(jigsawState[animalsCount].name);
+        dragAnimalsFolder.Play(jigsawRepeatorState[animalsCount-1].name);
     }
 }
