@@ -15,9 +15,9 @@ public class WorldManager : MonoBehaviour
 
 
     [Header("Other objects")]
+    public GameObject imageDestroyer;
     public List<Button> worldSelectionButtons = new List<Button>();
     public List<GameObject> imageHolders = new List<GameObject>();
-    public GameObject imageDestroyer;
 
 
     private float range = 1000f;
@@ -31,6 +31,7 @@ public class WorldManager : MonoBehaviour
           
         }
 
+        targetImage.sprite = selectionBackimage.sprite;
       
     }
 
