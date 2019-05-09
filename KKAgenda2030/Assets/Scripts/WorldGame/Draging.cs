@@ -5,7 +5,7 @@ using UnityEngine;
 public class Draging : MonoBehaviour
 {
     ColliderRadar cR;
-    public bool dragging = false;
+    private bool dragging = false;
     Vector3 dist;
     float posX;
     float posY;
