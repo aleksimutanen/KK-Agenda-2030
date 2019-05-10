@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4706712312310395893}
   - component: {fileID: 8070138279122744325}
   - component: {fileID: 7050122038411492572}
+  - component: {fileID: 205958125935806414}
   m_Layer: 0
   m_Name: Draggable_Kiira
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4706712311844731625}
-  m_LocalRotation: {x: 0, y: 0, z: 0.08715578, w: 0.9961947}
-  m_LocalPosition: {x: 118.6, y: -132.9, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.08990711, w: 0.99595016}
+  m_LocalPosition: {x: 27.8, y: 24.98, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.317}
 --- !u!210 &4706712311844731622
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -108,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mkd: {fileID: 0}
   snapPosName: SnapPos_Kiira
+  idleAnimation: draggable_KiiraIdle
 --- !u!65 &8070138279122744325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,3 +139,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &205958125935806414
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4706712311844731625}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35717b449b5934a4b8401262026616a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

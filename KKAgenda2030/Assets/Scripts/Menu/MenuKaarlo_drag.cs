@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class MenuKaarlo_drag : MonoBehaviour {
 
+    public AnimationManager_MemoryGame aMM;
+
     public Sprite dragSprite;
     public GameObject draggableObject;
+    GameObject dragAnimal;
     Animator animator;
     public string emptyAnimation;
     public string defaultAnimation;
@@ -39,6 +42,8 @@ public class MenuKaarlo_drag : MonoBehaviour {
         this.enabled = true;
         sLock.vertical = enabled;
         jigsawHalo.SetActive(false);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        aMM.draggablesAnimator.Add(dragAnimal);
     }
 
     private void OnMouseDown() {
@@ -53,10 +58,11 @@ public class MenuKaarlo_drag : MonoBehaviour {
         jigsawHalo.SetActive(true);
         sLock.vertical = !enabled;
         animator.Play(emptyAnimation);
-        var dragAnimal = Instantiate(draggableObject, transform.position, Quaternion.identity);
+        dragAnimal = Instantiate(draggableObject, transform.position, Quaternion.identity);
         dragAnimal.GetComponent<Transform>().parent = draggablesFolder.transform;
         dragAnimal.GetComponent<AnimalDrag_Kaarlo>().mkd = this;
         this.enabled = false;
+
     }
 
     
