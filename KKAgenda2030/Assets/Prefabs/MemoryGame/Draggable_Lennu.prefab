@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3507848389066327734}
   - component: {fileID: 2162040557175226694}
   - component: {fileID: 1164436463956593055}
+  - component: {fileID: 6909986765480260566}
   m_Layer: 0
   m_Name: Draggable_Lennu
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3507848389540188074}
-  m_LocalRotation: {x: 0, y: 0, z: 0.08715578, w: 0.9961947}
-  m_LocalPosition: {x: 139.9, y: -117.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.10383716, w: 0.99459434}
+  m_LocalPosition: {x: 34.26, y: 31.02, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 11.920001}
 --- !u!210 &3507848389540188069
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -108,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mkd: {fileID: 0}
   snapPosName: SnapPos_Lennu
+  idleAnimation: draggable_LennuIdle
 --- !u!65 &2162040557175226694
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,3 +139,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &6909986765480260566
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507848389540188074}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b035d7de1300e04d8375e68e8a9c1b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
