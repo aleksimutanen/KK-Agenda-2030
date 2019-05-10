@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1751541030161916877}
   - component: {fileID: 221150325995877716}
   - component: {fileID: 6790410998419004914}
+  - component: {fileID: 2525396708678217457}
   m_Layer: 5
   m_Name: AhvenImage
   m_TagString: Decal
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -47.3}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 51, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5193010955914219537
 CanvasRenderer:
@@ -121,5 +122,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 51, y: 31}
   m_EdgeRadius: 0
+--- !u!114 &2525396708678217457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403158865624178880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293076d59f6faa24fb7eb7a2dffd6b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rec: {fileID: 2516654246533758320}
