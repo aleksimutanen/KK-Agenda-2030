@@ -25,6 +25,9 @@ public class PageTurner : MonoBehaviour {
     public List<Image> rightArrows;
     public List<Image> leftArrows;
 
+    public AudioSource BookSounds;
+    public AudioClip nextPageSound;
+    public AudioClip prevPageSound;
 
 
 
@@ -64,6 +67,7 @@ public class PageTurner : MonoBehaviour {
 
     public void PreviousPage() {
         StartCoroutine("PreviousPageAnim");
+        BookSounds.PlayOneShot(prevPageSound);
     }
 
     IEnumerator PreviousPageAnim() {
@@ -99,6 +103,7 @@ public class PageTurner : MonoBehaviour {
 
     public void NextPage() {
         StartCoroutine("NextPageAnim");
+        BookSounds.PlayOneShot(nextPageSound);
     }
 
     IEnumerator NextPageAnim() {
