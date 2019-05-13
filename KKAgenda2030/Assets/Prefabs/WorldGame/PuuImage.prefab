@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5425998757273674065}
   - component: {fileID: 2229517408738318693}
   - component: {fileID: 6898104956987053277}
+  - component: {fileID: 2152896902544539339}
   m_Layer: 5
   m_Name: PuuImage
   m_TagString: Decal
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 43, y: 53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3388565139736827267
 CanvasRenderer:
@@ -121,5 +122,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 45, y: 45}
+  m_Size: {x: 43, y: 53}
   m_EdgeRadius: 0
+--- !u!114 &2152896902544539339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457710498585517583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293076d59f6faa24fb7eb7a2dffd6b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rec: {fileID: 7788266194610142737}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 564516535887401052}
   - component: {fileID: 1380586812}
   - component: {fileID: 1380586811}
+  - component: {fileID: 8620345773717850872}
   m_Layer: 5
   m_Name: VarisImage
   m_TagString: Decal
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 46, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4918050105503995914
 CanvasRenderer:
@@ -121,5 +122,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 45, y: 45}
+  m_Size: {x: 46, y: 55}
   m_EdgeRadius: 0
+--- !u!114 &8620345773717850872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434576114199428380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293076d59f6faa24fb7eb7a2dffd6b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rec: {fileID: 7480132909178258088}
