@@ -35,6 +35,7 @@ public class MenuKaarlo_drag : MonoBehaviour {
         this.enabled = true;
         animator.Play(defaultAnimation);
         sLock.vertical = enabled;
+        gameObject.GetComponent<BoxCollider>().enabled = true;
         jigsawHalo.SetActive(false);
     }
 

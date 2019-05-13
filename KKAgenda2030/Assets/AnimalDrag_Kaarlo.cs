@@ -37,7 +37,9 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
             transform.rotation = snapPos.rotation;
             mkd.ResetHalo();
             aMM.AddAnimalCount();
+            PlayIdleAnimation();
             this.enabled = false;
+
 
         } else {
             //gameObject.SetActive(false);
