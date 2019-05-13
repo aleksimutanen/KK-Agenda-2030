@@ -15,6 +15,7 @@ public class AnimationManager_MemoryGame : MonoBehaviour {
 
     public GameObject siniGO;
     public GameObject jigsawGO;
+    public GameObject replayButton;
 
     float swingTimer = 6f;
     bool swinging;
@@ -38,17 +39,25 @@ public class AnimationManager_MemoryGame : MonoBehaviour {
             }
         }
 
+        //if (swinging) {
+        //    swingTimer -= Time.deltaTime;
+        //    if (swingTimer <= 0f) {
+        //        swinging = false;
+        //        jigsawAnimator.Play("JigsawState_middle");
+        //        dragAnimalsFolder.Play("JigsawRepeatState_middle");
+        //        foreach (var item in draggablesAnimator) {
+        //            item.GetComponent<AnimalDrag_Kaarlo>().PlayIdleAnimation();
+        //        }
+        //        siniGO.GetComponent<AnimatorTimer>().enabled = true;
+        //    }
+        //}
+
         if (swinging) {
-            swingTimer -= Time.deltaTime;
-            if (swingTimer <= 0f) {
-                swinging = false;
-                jigsawAnimator.Play("JigsawState_middle");
-                dragAnimalsFolder.Play("JigsawRepeatState_middle");
-                foreach (var item in draggablesAnimator) {
-                    item.GetComponent<AnimalDrag_Kaarlo>().PlayIdleAnimation();
-                }
-                siniGO.GetComponent<AnimatorTimer>().enabled = true;
-            }
+           foreach (var item in draggablesAnimator) {
+           item.GetComponent<Animator>().Play("New State");
+           }
+            // toggle resetbutton on
+            replayButton.SetActive(true);
         }
     }
 
@@ -71,5 +80,22 @@ public class AnimationManager_MemoryGame : MonoBehaviour {
 
     public void StopSiniAnimation() {
         siniGO.GetComponent<AnimatorTimer>().enabled = false;
+    }
+
+    public void ResetMinigame() {
+        animalsCount = 0;
+        SetJigsawState();
+        dragAnimalsFolder.Play("New State");
+        foreach (var item in draggablesAnimator) {
+        Destroy(item);
+        }
+        draggablesAnimator.Clear();
+        var temp = GameObject.FindObjectsOfType<MenuKaarlo_drag>();
+        foreach (var item in temp) {
+            item.ResetState();
+        }
+        siniGO.GetComponent<AnimatorTimer>().enabled = true;
+        swinging = false;
+        replayButton.SetActive(false);
     }
 }
