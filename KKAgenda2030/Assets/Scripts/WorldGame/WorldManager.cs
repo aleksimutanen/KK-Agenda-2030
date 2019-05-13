@@ -12,12 +12,14 @@ public class WorldManager : MonoBehaviour
     public Image selectionBackimage;
     public List<Image> images = new List<Image>();
     public List<Sprite> BackgroundImages = new List<Sprite>();
+    private RectTransform rt;
 
 
     [Header("Other objects")]
     public GameObject imageDestroyer;
     public List<Button> worldSelectionButtons = new List<Button>();
     public List<GameObject> imageHolders = new List<GameObject>();
+    
 
 
     private float range = 1000f;
@@ -25,14 +27,17 @@ public class WorldManager : MonoBehaviour
 
     private void Start()
     {
+
+
+
         foreach (var pressed in worldSelectionButtons)
         {
             pressed.GetComponent<Image>().enabled = true;
-          
+
         }
 
         targetImage.sprite = selectionBackimage.sprite;
-      
+
     }
 
 
@@ -136,22 +141,26 @@ public class WorldManager : MonoBehaviour
         }
 
         if (Input.GetMouseButton(0))
-           {
-               if (createdObject != null)
-               {
-                   createdObject.MouseDrag();
-               }
-           }
+        {
+           
 
-           if (Input.GetMouseButtonUp(0))
-           {
-               if (createdObject != null)
-               {
-                   print(createdObject);
-                   createdObject.MouseUp();
-                   createdObject = null;
-               }
-           }
+            if (createdObject != null)
+            {
+                print(createdObject.GetComponent<RectTransform>().localScale);
+                createdObject.MouseDrag();
+                
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (createdObject != null)
+            {
+              
+                createdObject.MouseUp();
+                createdObject = null;
+            }
+        }
     }
 
     private void ImagesRaycasting()
@@ -159,6 +168,7 @@ public class WorldManager : MonoBehaviour
 
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+      
 
         foreach (var im in images)
         {
@@ -181,20 +191,17 @@ public class WorldManager : MonoBehaviour
             {
                 var go = Instantiate(im, hit.point, Quaternion.identity);
                 print("Created new decal" + " " + hit.collider.name);
-                
+               
                 go.gameObject.AddComponent<Draging>();
-                
+              
+
                 createdObject = go.GetComponent<Draging>();
+                createdObject.GetComponent<RectScaler>().enabled = true;
                 createdObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                createdObject.GetComponent<BoxCollider2D>().size = new Vector2(45.0f, 45.0f);
-                createdObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 45.0f);
-                createdObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 45.0f);
-                createdObject.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f,1.0f);
-               // var rt = createdObject.GetComponent<RectTransform>();
-               // rt.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-
-
+                //createdObject.GetComponent<BoxCollider2D>().size = new Vector2(45.0f, 45.0f);
+              //  createdObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 45.0f);
+              //  createdObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 45.0f);
+                
                 createdObject.transform.SetParent(decalsFolder.transform);
             }
         }

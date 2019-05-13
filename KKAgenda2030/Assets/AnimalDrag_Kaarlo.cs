@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class AnimalDrag_Kaarlo : MonoBehaviour {
 
-    Vector3 snapPos;
+    Transform snapPos;
     public MenuKaarlo_drag mkd;
     public string snapPosName;
     AnimationManager_MemoryGame aMM;
+    public string idleAnimation;
 
     public void Start() {
-        snapPos = GameObject.Find(snapPosName).transform.position;
+        snapPos = GameObject.Find(snapPosName).transform;
         aMM = GameObject.Find("AnimationManager").GetComponent<AnimationManager_MemoryGame>();
     }
 
@@ -32,7 +33,8 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
                 found = true;
         }
         if (found) {
-            transform.position = snapPos;
+            transform.position = snapPos.position;
+            transform.rotation = snapPos.rotation;
             mkd.ResetHalo();
             aMM.AddAnimalCount();
             this.enabled = false;
@@ -42,5 +44,9 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
             Destroy(gameObject);
             mkd.ResetState();
         }
+    }
+
+    public void PlayIdleAnimation() {
+        gameObject.GetComponent<Animator>().Play(idleAnimation);
     }
 }

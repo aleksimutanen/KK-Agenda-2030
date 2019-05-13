@@ -4,31 +4,15 @@ using UnityEngine;
 
 public class Draging : MonoBehaviour
 {
-    ColliderRadar cR;
+    
     private bool dragging = false;
     Vector3 dist;
     float posX;
     float posY;
+    RectScaler rSc;
 
-    public SpriteRenderer SpriteRenderer
-    {
-        get;
-        private set;
-    }
-    public BoxCollider BoxCollider
-    {
-        get;
-        private set;
-    }
 
-    private void Awake()
-    {
-        SpriteRenderer = GetComponent<SpriteRenderer>();
-        //go.gameObject.GetComponent<Draging>().OnMouseDrag();
-        cR = FindObjectOfType<ColliderRadar>();
-        //   go.gameObject.GetComponent<Draging>().dragging = true;
-        BoxCollider = GetComponent<BoxCollider>();
-    }
+
 
     public void MouseDown()
     {
@@ -41,7 +25,7 @@ public class Draging : MonoBehaviour
 
     public void MouseDrag()
     {
-
+     
 
         Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
 
@@ -54,7 +38,7 @@ public class Draging : MonoBehaviour
 
     public void MouseUp()
     {
-        
+       
         dragging = false;
         print("Triggeri pysähyi");
     }
