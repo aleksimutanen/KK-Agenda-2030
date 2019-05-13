@@ -23,7 +23,7 @@ public class MenuKaarlo_drag : MonoBehaviour {
 
     
     void Start() {
-        kaarloScrollRect = GameObject.Find("Page5_Kaarlo");
+        kaarloScrollRect = GameObject.Find("Page6_Kaarlo");
         sLock = kaarloScrollRect.GetComponent<ScrollRect>();
         animator = GetComponent<Animator>();
     }

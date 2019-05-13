@@ -16,7 +16,7 @@ public class DragToys : MonoBehaviour {
     Vector3 startPos;
 
     private void Start() {
-        lennuScrollRect = GameObject.Find("Page1_Lennu");
+        lennuScrollRect = GameObject.Find("Page2_Lennu");
         sLock = lennuScrollRect.GetComponent<ScrollRect>();
         mgm = FindObjectOfType<MenuGameManager>();
     }
