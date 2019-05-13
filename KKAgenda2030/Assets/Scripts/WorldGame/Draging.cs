@@ -27,12 +27,13 @@ public class Draging : MonoBehaviour
     {
      
 
-        Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
+        Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 0);
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+        worldPos.z = 0f;
         transform.position = worldPos;
 
-        print("Triggeri liikkuu");
+       
     }
 
 
@@ -40,6 +41,6 @@ public class Draging : MonoBehaviour
     {
        
         dragging = false;
-        print("Triggeri pysähyi");
+       
     }
 }

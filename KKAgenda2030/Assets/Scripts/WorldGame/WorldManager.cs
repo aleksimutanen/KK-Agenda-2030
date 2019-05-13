@@ -19,6 +19,7 @@ public class WorldManager : MonoBehaviour
     public GameObject imageDestroyer;
     public List<Button> worldSelectionButtons = new List<Button>();
     public List<GameObject> imageHolders = new List<GameObject>();
+    public Button pauseButton;
     
 
 
@@ -27,8 +28,6 @@ public class WorldManager : MonoBehaviour
 
     private void Start()
     {
-
-
 
         foreach (var pressed in worldSelectionButtons)
         {
@@ -198,16 +197,13 @@ public class WorldManager : MonoBehaviour
                 createdObject = go.GetComponent<Draging>();
                 createdObject.GetComponent<RectScaler>().enabled = true;
                 createdObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                //createdObject.GetComponent<BoxCollider2D>().size = new Vector2(45.0f, 45.0f);
-              //  createdObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 45.0f);
-              //  createdObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 45.0f);
-                
+             
                 createdObject.transform.SetParent(decalsFolder.transform);
             }
         }
 
 
-    }
+    }  
 
     public void OnBackgroudnIMage(Image ima)
     {
@@ -224,8 +220,7 @@ public class WorldManager : MonoBehaviour
         }
 
         imageDestroyer.SetActive(true);
+        pauseButton.GetComponent<Image>().enabled = true;
     }
-
-
 
 }
