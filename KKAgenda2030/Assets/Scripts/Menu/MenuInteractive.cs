@@ -18,7 +18,11 @@ public class MenuInteractive : MonoBehaviour {
     string lennu_show;
     GameObject lennuSquirt;
 
-
+    //AUDIO
+    public AudioSource menuSounds;
+    public AudioClip pikeSound;
+    public AudioClip siniSound;
+    public AudioClip roachSwim;
 
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) {
@@ -36,14 +40,17 @@ public class MenuInteractive : MonoBehaviour {
 
     public void PlaySiniSimpukkaAnim() {
         siniSimpukka.GetComponent<Animator>().Play(siniSimpukkaAnim);
+        menuSounds.PlayOneShot(siniSound);
     }
 
     public void PlayPikeAnim() {
         pike.GetComponent<Animator>().Play(pikeAnim);
+        menuSounds.PlayOneShot(pikeSound);
     }
 
     public void PlayRoachAnim() {
         roach.GetComponent<Animator>().Play(roachAnim);
+        menuSounds.PlayOneShot(roachSwim);
     }
 
 

@@ -1,22 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrashBehaivor : MonoBehaviour {
 
     public Animal animal;
-    public string happy_animation;
+    ParticleSystem ps;
 
+    private void Start() {
+        ps = GetComponentInChildren<ParticleSystem>();
+    }
 
     public void TrashClick() {
-        gameObject.SetActive(false);
-        // play particles
+        ps.Play();
         // play sound
-        animal.trashesLeft--;
-        if (animal.trashesLeft == 0) {
-            animal.GetComponent<AnimatorTimer>().enabled = false;
-            animal.GetComponent<Animator>().Play(happy_animation);
-        }
+        animal.TrashPicked();
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Button>().enabled = false;
+
     }
 
 }

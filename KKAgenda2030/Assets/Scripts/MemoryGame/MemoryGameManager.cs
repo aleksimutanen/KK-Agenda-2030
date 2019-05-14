@@ -38,7 +38,12 @@ public class MemoryGameManager : MonoBehaviour {
     public int selectedPlayer = 0;
 
     public Image fadeOut;
-    
+
+    //AUDIO
+    public AudioSource memorySound;
+    public AudioClip pairSound;
+    public AudioClip winSound;
+    public AudioClip cardSound;
 
     void Start() {
         // play transition animation
@@ -57,6 +62,7 @@ public class MemoryGameManager : MonoBehaviour {
         //}
 
         if (Input.GetMouseButtonUp(0)) {
+            //memorySound.PlayOneShot(cardSound);
             checkCards();
         }
     }
@@ -141,6 +147,7 @@ public class MemoryGameManager : MonoBehaviour {
         for (int i = 0; i < cards.Length; i++) {
             if (cards[i].GetComponent<CardBehaviour>().state == 1) {
                 c.Add(i);
+                memorySound.PlayOneShot(cardSound);
             }
         }
         if (c.Count == 2) {
@@ -160,9 +167,11 @@ public class MemoryGameManager : MonoBehaviour {
             lastFoundPairValue = cards[c[0]].GetComponent<CardBehaviour>().cardValue;
             _matches--;
             print("pari löytyi!");
+            memorySound.PlayOneShot(pairSound);
             ActivateSelfiePanel();
             if (_matches == 0) {
                 print("Kaikki parit löydetty");
+                memorySound.PlayOneShot(winSound);
             }
         }
         else {
