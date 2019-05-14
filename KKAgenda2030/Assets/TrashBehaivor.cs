@@ -7,23 +7,14 @@ public class TrashBehaivor : MonoBehaviour {
     public Animal animal;
     public string happy_animation;
 
-    void Start() {
-
-    }
-
-    void Update() {
-
-    }
 
     public void TrashClick() {
-        // toggle object off
+        gameObject.SetActive(false);
         // play particles
         // play sound
-        gameObject.SetActive(false);
-
-
         animal.trashesLeft--;
         if (animal.trashesLeft == 0) {
+            animal.GetComponent<AnimatorTimer>().enabled = false;
             animal.GetComponent<Animator>().Play(happy_animation);
         }
     }
