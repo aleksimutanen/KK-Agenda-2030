@@ -112,6 +112,29 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &146475261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146475261, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &146475262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146475261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5eb52ba7a948de4ab7d04b296bf85b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationPool:
+  - Sini_idle
+  minT: 2
+  maxT: 3
+  animatioPlaying: 0
 --- !u!1001 &608274719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,8 +190,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 146475261, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Name
+      value: Sini
+      objectReference: {fileID: 0}
+    - target: {fileID: 146475262, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 147
+      objectReference: {fileID: 0}
+    - target: {fileID: 146475262, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -215.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 146475262, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 146475262, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 146475262, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 146475264, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 56d607e017332744d9282ef4ca986c34,
+        type: 3}
+    - target: {fileID: 3230375169512420452, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5a64a16e7f27242438cba485d41ce969, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+--- !u!1 &608274721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2288261672673930987, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &608274722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608274721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd635d259fd20641b000542338c4d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 0}
+  happy_animation: 
 --- !u!1001 &1615784714
 PrefabInstance:
   m_ObjectHideFlags: 0

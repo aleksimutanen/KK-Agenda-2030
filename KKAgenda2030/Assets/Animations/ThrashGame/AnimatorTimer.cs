@@ -13,7 +13,7 @@ public class AnimatorTimer : MonoBehaviour {
 
     void Start() {
         animator = GetComponent<Animator>();
-        animTimer = Random.Range(4, 7);
+        animTimer = Random.Range(2, 5);
     }
 
     void Update() {
