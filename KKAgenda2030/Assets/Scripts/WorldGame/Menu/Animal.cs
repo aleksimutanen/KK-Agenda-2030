@@ -6,6 +6,8 @@ using System.Linq;
 public class Animal : MonoBehaviour {
 
     public int trashesLeft;
+    public string happy_animation;
+
 
     void Start() {
         trashesLeft = FindObjectsOfType<TrashBehaivor>().Count(t => t.animal == this);
@@ -16,12 +18,13 @@ public class Animal : MonoBehaviour {
     //    return t.animal == this;
     //}
 
-
-
-    void CheckTrashAmount() {
-        // if all trashes are collected, play that animals animation
-
-    }
+     public void TrashPicked() { 
+        trashesLeft--;
+        if (trashesLeft == 0) {
+            GetComponent<AnimatorTimer>().enabled = false;
+            GetComponent<Animator>().Play(happy_animation);
+        }
+     }
 
 
 
