@@ -79,7 +79,7 @@ public class WorldManager : MonoBehaviour
                               go.gameObject.transform.localScale = new Vector3(2.0F, 1.0f, 0.0f);
                           }
 
-                          if (decal.name == "Ahven")
+                          if (decal.name == "AutoImage")
                           {
                               go.gameObject.transform.localScale = new Vector3(5.0F, 5.0f, 0.0f);
                           }
@@ -189,10 +189,9 @@ public class WorldManager : MonoBehaviour
             if (im.name == hit.collider.name)
             {
                 var go = Instantiate(im, hit.point, Quaternion.identity);
-                print("Created new decal" + " " + hit.collider.name);
-               
-                go.gameObject.AddComponent<Draging>();
-              
+                print("Created new decal" + " " + hit.collider.name);               
+
+                go.gameObject.AddComponent<Draging>();              
 
                 createdObject = go.GetComponent<Draging>();
                 createdObject.GetComponent<RectScaler>().enabled = true;
