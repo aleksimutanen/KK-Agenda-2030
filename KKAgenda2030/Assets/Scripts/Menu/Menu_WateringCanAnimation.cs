@@ -10,6 +10,13 @@ public class Menu_WateringCanAnimation : MonoBehaviour {
     bool timerStart;
     public float timer;
 
+    public AudioSource waterAudio;
+    public AudioClip waterCan;
+    public AudioClip flowGrow1;
+    public AudioClip flowGrow2;
+    public AudioClip flowGrow3;
+    public AudioClip flowFade;
+
     void Start() {
         animator = GetComponent<Animator>();
         gs = growingFlower.GetComponent<GrowState>();
@@ -21,6 +28,7 @@ public class Menu_WateringCanAnimation : MonoBehaviour {
             timer -= Time.deltaTime;
             if (timer < 0) {
                 growingFlower.GetComponent<Animator>().Play("Menu_FlowerShrinken");
+                waterAudio.PlayOneShot(flowFade);
                 timerStart = false;
                 timer = 10f;
                 gs.state0 = false;
@@ -35,18 +43,24 @@ public class Menu_WateringCanAnimation : MonoBehaviour {
     private void OnMouseDown() {
         if (gameObject.name == "WateringCan" && gs.state1) {
             animator.Play("Menu_WateringCan");
+            waterAudio.PlayOneShot(waterCan);
             gs.state2 = true;
             growingFlower.GetComponent<Animator>().Play("Menu_Flowergrow3");
+            waterAudio.PlayOneShot(flowGrow3);
             timerStart = true;
         } else if (gameObject.name == "WateringCan" && gs.state0) {
             animator.Play("Menu_WateringCan");
+            waterAudio.PlayOneShot(waterCan);
             gs.state1 = true;
             growingFlower.GetComponent<Animator>().Play("Menu_Flowergrow2");
+            waterAudio.PlayOneShot(flowGrow2);
         }
         else if (gameObject.name == "WateringCan" && !gs.state0) {
             animator.Play("Menu_WateringCan");
+            waterAudio.PlayOneShot(waterCan);
             gs.state0 = true;
             growingFlower.GetComponent<Animator>().Play("Menu_Flowergrow1");
+            waterAudio.PlayOneShot(flowGrow1);
         }
     }
 }
