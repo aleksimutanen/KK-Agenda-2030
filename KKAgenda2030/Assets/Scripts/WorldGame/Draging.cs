@@ -5,7 +5,7 @@ using UnityEngine;
 public class Draging : MonoBehaviour
 {
     
-    private bool dragging = false;
+    public bool dragging = false;
     Vector3 dist;
     float posX;
     float posY;
@@ -25,8 +25,8 @@ public class Draging : MonoBehaviour
 
     public void MouseDrag()
     {
-     
-
+        dragging = true;
+        print(dragging);
         Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 0);
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
@@ -41,6 +41,6 @@ public class Draging : MonoBehaviour
     {
        
         dragging = false;
-       
+        print(dragging);
     }
 }
