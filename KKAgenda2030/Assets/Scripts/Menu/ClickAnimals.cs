@@ -9,6 +9,8 @@ public class ClickAnimals : MonoBehaviour {
     public string happyAnimation;
     ToyRepairManager TRM;
 
+    public AudioSource AnimalSound;
+    public AudioClip AnimalNoise;
 
     private void Start() {
         TRM = FindObjectOfType<ToyRepairManager>();
@@ -20,6 +22,7 @@ public class ClickAnimals : MonoBehaviour {
         }
         else {
             animator.Play(happyAnimation);
+            AnimalSound.PlayOneShot(AnimalNoise);
         }
     }
 }
