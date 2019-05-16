@@ -10,7 +10,7 @@ public class Animal : MonoBehaviour {
 
 
     void Start() {
-        trashesLeft = FindObjectsOfType<TrashBehaivor>().Count(t => t.animal == this);
+        FindTrashes();
     }
 
     
@@ -18,7 +18,13 @@ public class Animal : MonoBehaviour {
     //    return t.animal == this;
     //}
 
-     public void TrashPicked() { 
+    public void FindTrashes() {
+        trashesLeft = FindObjectsOfType<TrashBehaivor>().Count(t => t.animal == this);
+        GetComponent<AnimatorTimer>().enabled = true;
+
+    }
+
+    public void TrashPicked() { 
         trashesLeft--;
         if (trashesLeft == 0) {
             GetComponent<AnimatorTimer>().enabled = false;
