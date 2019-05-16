@@ -6,12 +6,15 @@ public class RecDestroy : MonoBehaviour
 {
     ColliderRadar cR;
     WorldManager wm;
+
     public GameObject[] decals;
-   
+    public List<GameObject> dragged = new List<GameObject>();
+
 
     void Start()
     {
         wm = FindObjectOfType<WorldManager>();
+
         cR = FindObjectOfType<ColliderRadar>();
     }
 
@@ -21,6 +24,9 @@ public class RecDestroy : MonoBehaviour
 
     }
 
+
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -28,11 +34,12 @@ public class RecDestroy : MonoBehaviour
         if (other.gameObject.tag == "Decal")
         {
             Destroy(other.gameObject);
-           
-           
+
+
             print("Objectin tuhosi " + gameObject.name);
         }
+
     }
 
-    
+
 }

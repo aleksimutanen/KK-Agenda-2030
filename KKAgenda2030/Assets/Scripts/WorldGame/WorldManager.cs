@@ -17,10 +17,12 @@ public class WorldManager : MonoBehaviour
 
     [Header("Other objects")]
     public GameObject imageDestroyer;
+    public CircleCollider2D reguiredArea;
+    public BoxCollider2D reguiredAreaBox;
     public List<Button> worldSelectionButtons = new List<Button>();
     public List<GameObject> imageHolders = new List<GameObject>();
     public Button pauseButton;
-    
+
 
 
     private float range = 1000f;
@@ -141,13 +143,19 @@ public class WorldManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-           
+
 
             if (createdObject != null)
             {
                 print(createdObject.GetComponent<RectTransform>().localScale);
                 createdObject.MouseDrag();
-                
+
+                foreach (var im in images)
+                {
+                    im.GetComponent<BoxCollider2D>().enabled = false;
+                }
+                imageDestroyer.GetComponent<BoxCollider2D>().enabled = false;
+
             }
         }
 
@@ -155,8 +163,16 @@ public class WorldManager : MonoBehaviour
         {
             if (createdObject != null)
             {
-              
+
                 createdObject.MouseUp();
+
+                foreach (var im in images)
+                {
+                    im.GetComponent<BoxCollider2D>().enabled = true;
+                }
+
+                imageDestroyer.GetComponent<BoxCollider2D>().enabled = true;
+
                 createdObject = null;
             }
         }
@@ -167,7 +183,7 @@ public class WorldManager : MonoBehaviour
 
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-      
+
 
         foreach (var im in images)
         {
@@ -189,24 +205,34 @@ public class WorldManager : MonoBehaviour
             if (im.name == hit.collider.name)
             {
                 var go = Instantiate(im, hit.point, Quaternion.identity);
-                print("Created new decal" + " " + hit.collider.name);               
+                print("Created new decal" + " " + hit.collider.name);
 
-                go.gameObject.AddComponent<Draging>();              
+                go.gameObject.AddComponent<Draging>();
 
                 createdObject = go.GetComponent<Draging>();
                 createdObject.GetComponent<RectScaler>().enabled = true;
                 createdObject.GetComponent<BoxCollider2D>().isTrigger = true;
-             
+
                 createdObject.transform.SetParent(decalsFolder.transform);
             }
         }
 
 
-    }  
+    }
 
     public void OnBackgroudnIMage(Image ima)
     {
         targetImage.sprite = ima.sprite;
+
+        if (targetImage.sprite.name.Contains("Space"))
+        {
+            reguiredArea.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
+        if (targetImage.sprite.name.Contains("Map"))
+        {
+            reguiredAreaBox.GetComponent<BoxCollider2D>().enabled = true;
+        }
 
         foreach (var pressed in worldSelectionButtons)
         {
