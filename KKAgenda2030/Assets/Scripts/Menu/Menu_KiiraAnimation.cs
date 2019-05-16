@@ -6,6 +6,9 @@ public class Menu_KiiraAnimation : MonoBehaviour {
 
     public Animator childAnimator;
 
+    public AudioSource beeAudio;
+    public AudioClip beeHappySound;
+
     public void ToMoveAnimation() {
         childAnimator.Play("MenuKiira_move");
     }
@@ -17,6 +20,7 @@ public class Menu_KiiraAnimation : MonoBehaviour {
     private void OnMouseDown() {
         if (gameObject.name == "KiiraBeeParent") {
             childAnimator.Play("MenuKiira_happy");
+            beeAudio.PlayOneShot(beeHappySound, 0.8f);
         }
 
     }
