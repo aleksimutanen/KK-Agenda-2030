@@ -7,6 +7,7 @@ public class Animal : MonoBehaviour {
 
     public int trashesLeft;
     public string happy_animation;
+    public GameObject lightsFolder;
 
 
     void Start() {
@@ -29,6 +30,7 @@ public class Animal : MonoBehaviour {
         if (trashesLeft == 0) {
             GetComponent<AnimatorTimer>().enabled = false;
             GetComponent<Animator>().Play(happy_animation);
+            lightsFolder.SetActive(true);
         }
      }
 
