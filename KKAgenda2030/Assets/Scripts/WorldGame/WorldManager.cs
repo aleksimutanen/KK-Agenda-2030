@@ -8,7 +8,9 @@ public class WorldManager : MonoBehaviour
     [Header("Folder for created objects")]
     public GameObject decalsFolder;
     [Header("Images for the Game")]
+    public Image BCG;
     public Image targetImage;
+    public List<Sprite> targetImages = new List<Sprite>();
     public Image selectionBackimage;
     public List<Image> images = new List<Image>();
     public List<Sprite> BackgroundImages = new List<Sprite>();
@@ -227,7 +229,7 @@ public class WorldManager : MonoBehaviour
     {
         targetImage.sprite = ima.sprite;
 
-        if (targetImage.sprite.name.Contains("Space"))
+        if (targetImage.sprite.name.Contains("Final"))
         {
             foreach (var req in reguiredAvoidedAreas)
             {
@@ -238,7 +240,7 @@ public class WorldManager : MonoBehaviour
             }
         }
 
-        if (targetImage.sprite.name.Contains("Map"))
+        if (targetImage.sprite.name.Contains("Kartta"))
         {
             foreach (var req in reguiredAvoidedAreas)
             {
