@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class RequiredAreaFilling : MonoBehaviour
 {
-    public CircleCollider2D worldsArea;
-    public BoxCollider2D mapArea;
 
 
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<Draging>().dragging == true)
+        {
+            print("Alueelle tulee" + other.gameObject.name);
+        }
+            
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        other.gameObject.transform.position = worldsArea.transform.position;
-        other.gameObject.transform.position = mapArea.transform.position;
-        
+        if (other.GetComponent<Draging>().dragging == true)
+        {
+            print("Alueella on" + other.gameObject.name);
+
+        }
+
+        if (other.GetComponent<Draging>().dragging == false)
+        {
+            Destroy(other.gameObject);
+
+            print("Alueelta tuhottu" + other.gameObject.name);
+
+        }       
+
+
     }
 }

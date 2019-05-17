@@ -17,11 +17,14 @@ public class WorldManager : MonoBehaviour
 
     [Header("Other objects")]
     public GameObject imageDestroyer;
-    public CircleCollider2D reguiredArea;
-    public BoxCollider2D reguiredAreaBox;
+    public List<BoxCollider2D> reguiredAvoidedAreas = new List<BoxCollider2D>();
+
     public List<Button> worldSelectionButtons = new List<Button>();
     public List<GameObject> imageHolders = new List<GameObject>();
     public Button pauseButton;
+
+
+
 
 
 
@@ -226,12 +229,24 @@ public class WorldManager : MonoBehaviour
 
         if (targetImage.sprite.name.Contains("Space"))
         {
-            reguiredArea.GetComponent<CircleCollider2D>().enabled = true;
+            foreach (var req in reguiredAvoidedAreas)
+            {
+                if (!req.name.Contains("Map"))
+                {
+                    req.gameObject.SetActive(true);
+                }
+            }
         }
 
         if (targetImage.sprite.name.Contains("Map"))
         {
-            reguiredAreaBox.GetComponent<BoxCollider2D>().enabled = true;
+            foreach (var req in reguiredAvoidedAreas)
+            {
+                if (req.name.Contains("Map"))
+                {
+                    req.gameObject.SetActive(true);
+                }
+            }
         }
 
         foreach (var pressed in worldSelectionButtons)
