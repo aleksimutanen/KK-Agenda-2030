@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899010268803009219}
   - component: {fileID: 6534113946500657469}
+  - component: {fileID: 1066984437}
   m_Layer: 5
   m_Name: BoxAreaSnipping
   m_TagString: Untagged
@@ -43,7 +44,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835600786958562535}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -60,5 +61,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 591, y: 407}
+  m_Size: {x: 523, y: 380}
   m_EdgeRadius: 0
+--- !u!114 &1066984437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835600786958562535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f9735a0d63d704daec506d1210c237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillingReqAreas:
+  - {fileID: 0}
+  - {fileID: 0}
