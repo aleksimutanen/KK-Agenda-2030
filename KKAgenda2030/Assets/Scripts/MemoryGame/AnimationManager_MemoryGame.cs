@@ -9,7 +9,7 @@ public class AnimationManager_MemoryGame : MonoBehaviour {
     public List<AnimationClip> jigsawRepeatorState;
     public List<GameObject> draggablesAnimator;
 
-    Animator jigsawAnimator;
+    public Animator jigsawAnimator;
     public Animator dragAnimalsFolder;
     AnimatorTimer at;
 
