@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MenuKaarlo_drag : MonoBehaviour {
 
+    // this script is on every draggable animal
+
     public AnimationManager_MemoryGame aMM;
 
     public Sprite dragSprite;
@@ -21,12 +23,17 @@ public class MenuKaarlo_drag : MonoBehaviour {
 
     AnimatorTimer at;
 
-    
-    void Start() {
+    void Awake() {
         kaarloScrollRect = GameObject.Find("Page6_Kaarlo");
         sLock = kaarloScrollRect.GetComponent<ScrollRect>();
         animator = GetComponent<Animator>();
     }
+
+    //void Start() {
+    //    kaarloScrollRect = GameObject.Find("Page6_Kaarlo");
+    //    sLock = kaarloScrollRect.GetComponent<ScrollRect>();
+    //    animator = GetComponent<Animator>();
+    //}
 
     public void ResetState() {
         if (at) {

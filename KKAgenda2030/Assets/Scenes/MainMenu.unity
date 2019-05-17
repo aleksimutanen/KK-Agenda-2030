@@ -4946,6 +4946,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &492026431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1355999944, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b007177de3985db45ae0059acd9ad4f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &546160398
 GameObject:
   m_ObjectHideFlags: 0
@@ -5100,6 +5112,23 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -216.1
       objectReference: {fileID: 0}
+    - target: {fileID: 354108075, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821290047, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922397145066352, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411624453941657544, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4411624453941657545, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
       propertyPath: animalHalos.Array.size
@@ -5177,6 +5206,15 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 771665963, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 94ab75c0d47c6084cbf4110ed2240f0a,
+        type: 3}
+    - target: {fileID: 1030565799, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: minT
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1182688095, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -5185,6 +5223,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1355999944, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: jigsawAnimator
+      value: 
+      objectReference: {fileID: 1063995851}
     - target: {fileID: 2136808670, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_SortingOrder
       value: 4
@@ -10278,6 +10320,12 @@ SortingGroup:
   m_SortingLayerID: -1884056175
   m_SortingLayer: 2
   m_SortingOrder: 1
+--- !u!95 &1063995851 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 608274724, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1125439634
 GameObject:
   m_ObjectHideFlags: 0
@@ -15430,6 +15478,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1474933388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 354108075, guid: c1dcf163cef0f134b84f9e16841e4308,
+    type: 3}
+  m_PrefabInstance: {fileID: 608274719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1474933395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474933388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732795f5c68bd47448404cfc6536ff33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amm: {fileID: 492026431}
 --- !u!1 &1603659449
 GameObject:
   m_ObjectHideFlags: 0
