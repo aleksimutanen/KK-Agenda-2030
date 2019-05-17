@@ -10,25 +10,19 @@ public class WorldManager : MonoBehaviour
     [Header("Images for the Game")]
     public Image BCG;
     public Image targetImage;
-    public List<Sprite> targetImages = new List<Sprite>();
+    public Image spaceImage;
+    public Image woodtableImage;
     public Image selectionBackimage;
     public List<Image> images = new List<Image>();
     public List<Sprite> BackgroundImages = new List<Sprite>();
-    private RectTransform rt;
 
 
     [Header("Other objects")]
     public GameObject imageDestroyer;
     public List<BoxCollider2D> reguiredAvoidedAreas = new List<BoxCollider2D>();
-
     public List<Button> worldSelectionButtons = new List<Button>();
     public List<GameObject> imageHolders = new List<GameObject>();
     public Button pauseButton;
-
-
-
-
-
 
     private float range = 1000f;
     private Draging createdObject;
@@ -43,6 +37,8 @@ public class WorldManager : MonoBehaviour
         }
 
         targetImage.sprite = selectionBackimage.sprite;
+
+        BCG.GetComponent<Image>().enabled = false;
 
     }
 
@@ -227,10 +223,14 @@ public class WorldManager : MonoBehaviour
 
     public void OnBackgroudnIMage(Image ima)
     {
-        targetImage.sprite = ima.sprite;
+        BCG.GetComponent<Image>().enabled = true;
 
-        if (targetImage.sprite.name.Contains("Final"))
+        BCG.sprite = ima.sprite;
+
+        if (BCG.sprite.name.Contains("Final"))
         {
+            targetImage.sprite = spaceImage.sprite;
+
             foreach (var req in reguiredAvoidedAreas)
             {
                 if (!req.name.Contains("Map"))
@@ -240,8 +240,11 @@ public class WorldManager : MonoBehaviour
             }
         }
 
-        if (targetImage.sprite.name.Contains("Kartta"))
+        if (BCG.sprite.name.Contains("Kartta"))
         {
+
+            targetImage.sprite = woodtableImage.sprite;
+
             foreach (var req in reguiredAvoidedAreas)
             {
                 if (req.name.Contains("Map"))
