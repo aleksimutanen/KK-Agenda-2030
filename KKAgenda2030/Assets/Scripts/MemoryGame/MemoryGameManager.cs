@@ -42,6 +42,7 @@ public class MemoryGameManager : MonoBehaviour {
     //AUDIO
     public AudioSource memorySound;
     public AudioClip pairSound;
+    public AudioClip noPairSound;
     public AudioClip winSound;
     public AudioClip cardSound;
 
@@ -175,6 +176,7 @@ public class MemoryGameManager : MonoBehaviour {
             }
         }
         else {
+            memorySound.PlayOneShot(noPairSound);
             SwitchTurn();
         }
 
