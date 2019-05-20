@@ -10,12 +10,16 @@ public class AvatarClickBehaviour : MonoBehaviour {
     public GameObject halo;
     public GameObject grayImage;
 
+    public AudioSource memorySound;
+    public AudioClip changeTurn;
+
     void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
         animator = GetComponent<Animator>();
     }
 
     public void OnSelected() {
+        memorySound.PlayOneShot(changeTurn);
         animator.Play("AvatarGlow");
         halo.SetActive(true);
         grayImage.SetActive(false);

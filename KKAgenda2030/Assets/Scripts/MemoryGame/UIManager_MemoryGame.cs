@@ -15,6 +15,10 @@ public class UIManager_MemoryGame : MonoBehaviour {
     public GameObject ShowPairsPanel;
     public Button CameraButton;
 
+    public AudioSource memorySound;
+    public AudioClip winSound;
+    public AudioClip exitButton;
+
     private void Start() {
         mgm = FindObjectOfType<MemoryGameManager>();
     }
@@ -51,6 +55,7 @@ public class UIManager_MemoryGame : MonoBehaviour {
     }
 
     IEnumerator CloseSelfie() {
+        memorySound.PlayOneShot(exitButton, 1.2f);
         yield return new WaitForSeconds(1.5f);
         //SelfiePanel.GetComponent<Animator>().Play("Close_SelfiePanel");
         //yield return new WaitForSeconds(1f);
@@ -64,6 +69,7 @@ public class UIManager_MemoryGame : MonoBehaviour {
 
     IEnumerator ShowAllPairs() {
         print("näytä kaikki parit nyt");
+        memorySound.PlayOneShot(winSound);
         GamePanel.SetActive(false);
         SelfiePanel.SetActive(false);
         mgm.MatchCardPos.gameObject.transform.parent = DisabledObjectsFolder.transform;

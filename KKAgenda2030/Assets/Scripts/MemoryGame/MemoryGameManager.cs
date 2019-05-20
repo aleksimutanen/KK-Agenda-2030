@@ -43,7 +43,6 @@ public class MemoryGameManager : MonoBehaviour {
     public AudioSource memorySound;
     public AudioClip pairSound;
     public AudioClip noPairSound;
-    public AudioClip winSound;
     public AudioClip cardSound;
 
     void Start() {
@@ -172,7 +171,6 @@ public class MemoryGameManager : MonoBehaviour {
             ActivateSelfiePanel();
             if (_matches == 0) {
                 print("Kaikki parit löydetty");
-                memorySound.PlayOneShot(winSound);
             }
         }
         else {
