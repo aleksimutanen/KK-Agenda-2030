@@ -138,6 +138,35 @@ public class PageTurner : MonoBehaviour {
         }
     }
 
+    // NOT IN USE YET, NICETOHAVES
+    public void JumpPageFromIndex(int page) {
+        pageIndex = page;
+        StartCoroutine("JumpFromIndex");
+        BookSounds.PlayOneShot(nextPageSound);
+    }
+
+    IEnumerator JumpFromIndex() {
+        if (pageIndex < pages.Length) {
+            foreach (Button b in buttons) b.interactable = false;
+            pages[0].GetComponent<Animator>().Play("Page");
+            // painettu sivu aktiiviseksi
+            pages[pageIndex].SetActive(true);
+            Vector3 pos = Vector3.zero;
+            // painettu sivu aktiiviseksi
+            pageContent[pageIndex].GetComponent<RectTransform>().localPosition = pos;
+            yield return new WaitForSeconds(0.5f);
+            GameObject.Find("ButtonFolder").GetComponent<Animator>().Play("Menu_ButtonFadeIn");
+            pages[0].SetActive(false);
+            foreach (Button b in buttons) b.interactable = true;
+            page = Pages.CoverPage + pageIndex;
+            ButtonToggle();
+        }
+    }
+    //
+
+
+
+
     void ButtonToggle() {
         // Pageindexin mukaisesta gameobjectista tarvitaan image joka asetetaan target graphiciksi buttoniin
         foreach (var item in rightArrows) {
