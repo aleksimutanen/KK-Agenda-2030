@@ -5515,7 +5515,7 @@ PrefabInstance:
     - target: {fileID: 4411624453941657544, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4411624453941657545, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
@@ -5638,6 +5638,75 @@ PrefabInstance:
     - target: {fileID: 1986643615475250, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395087979, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589571599, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204290280897874, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427893185649020, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: musicClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: musicClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f483ab7adafa4d49b42f2b857ab3a00, type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: musicClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7eb9b0714160b954fb8c758ddfe6bec2, type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: musicClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f702fe1dc0e98741a7e96097b09c111, type: 3}
+    - target: {fileID: 264693691, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 264693691, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 264693691, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 264693691, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 264693691, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 90e072a97c034fd45a212130951ba5d6,
+        type: 3}
+    - target: {fileID: 1252766751, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252766751, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252766751, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}

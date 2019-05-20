@@ -7,6 +7,8 @@ public enum Pages { CoverPage, Page1, Page2, Page3 };
 
 public class PageTurner : MonoBehaviour {
 
+    MenuManager mm;
+
     public Pages page;
 
     public GameObject[] pages;
@@ -32,7 +34,7 @@ public class PageTurner : MonoBehaviour {
 
 
     void Awake () {
-
+        mm = FindObjectOfType<MenuManager>();
         pd = FindObjectOfType<PersistentData>();
         if (pd == null) {
             var pdgo = Instantiate(pdPrefab);
@@ -66,6 +68,7 @@ public class PageTurner : MonoBehaviour {
     }
 
     public void PreviousPage() {
+        mm.StopMusic();
         StartCoroutine("PreviousPageAnim");
         BookSounds.PlayOneShot(prevPageSound);
     }
@@ -102,6 +105,7 @@ public class PageTurner : MonoBehaviour {
     }
 
     public void NextPage() {
+        mm.StopMusic();
         StartCoroutine("NextPageAnim");
         BookSounds.PlayOneShot(nextPageSound);
     }
@@ -164,7 +168,11 @@ public class PageTurner : MonoBehaviour {
     }
     //
 
-
+    public void flipButtons() {
+        nextPageButton.SetActive(!nextPageButton.activeSelf);
+        previousPageButton.SetActive(!previousPageButton.activeSelf);
+        
+    }
 
 
     void ButtonToggle() {
