@@ -270,7 +270,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &10810956
 GameObject:
@@ -4786,7 +4786,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawimage: {fileID: 1025988208}
-  cam: {fileID: 1833506179}
+  webcamPrefab: {fileID: 9212956316708075528, guid: a416c098f5054894ca294464f3a63d90,
+    type: 3}
   uiM: {fileID: 704552239}
 --- !u!1 &1125913051
 GameObject:
@@ -5132,7 +5133,7 @@ RectTransform:
   - {fileID: 1157281746}
   - {fileID: 1477990384}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7013,7 +7014,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawimage: {fileID: 1659859404}
-  cam: {fileID: 1833506179}
+  webcamPrefab: {fileID: 9212956316708075528, guid: a416c098f5054894ca294464f3a63d90,
+    type: 3}
   uiM: {fileID: 704552239}
 --- !u!1 &1469595385
 GameObject:
@@ -9127,50 +9129,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830078327}
   m_CullTransparentMesh: 0
---- !u!1 &1833506178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1833506180}
-  - component: {fileID: 1833506179}
-  m_Layer: 0
-  m_Name: WebCam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1833506179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833506178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f522e8772ea4894db4623c13783b210, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tex: {fileID: 0}
---- !u!4 &1833506180
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833506178}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1853300607
 GameObject:
   m_ObjectHideFlags: 0
@@ -10300,19 +10258,19 @@ MonoBehaviour:
   - {fileID: 645277372}
   ContinueButton: {fileID: 1469595387}
   cardFace:
-  - {fileID: 21300000, guid: d0527682c365a834b93a4e5e129c550f, type: 3}
+  - {fileID: 21300000, guid: 5089006188f1ff841b5be0e8110abef0, type: 3}
   - {fileID: 21300000, guid: c520ae8fd034a3f419224c7853cf38b3, type: 3}
   - {fileID: 21300000, guid: d443f00891818704fa3215b4b6d0efa0, type: 3}
   - {fileID: 21300000, guid: ff7b77d015c76604fb3e9ba3835d8b73, type: 3}
-  - {fileID: 21300000, guid: a6377193019e43f4587d2db4bf0923da, type: 3}
-  - {fileID: 21300000, guid: fc39bb80a1313764f8f33d18bf662d9f, type: 3}
+  - {fileID: 21300000, guid: 88b973c924fa6a544b77ca62f6c4cf9b, type: 3}
+  - {fileID: 21300000, guid: bbcfcaf2972a4a843be9d79a8cab9c38, type: 3}
   cardFace2:
-  - {fileID: 21300000, guid: 2f33a853c1505b14ca4007d12672fdf5, type: 3}
+  - {fileID: 21300000, guid: 5db9f59b1912be8448f443c09b4c35b0, type: 3}
   - {fileID: 21300000, guid: 1a7406fb0c551c04ba6527d5e2b22529, type: 3}
   - {fileID: 21300000, guid: c25c9ec0befab82479c8de3d8f827881, type: 3}
   - {fileID: 21300000, guid: 4799857224226de41b86fd56bb810ae2, type: 3}
-  - {fileID: 21300000, guid: c790ad374f9796b4d8a98fbd6804e3f4, type: 3}
-  - {fileID: 21300000, guid: cdbf928289a0a434f9c4bc39f62101aa, type: 3}
+  - {fileID: 21300000, guid: 7ed321d6939ab1547a609016c60323d7, type: 3}
+  - {fileID: 21300000, guid: 94c22bbc8494b3243b04dc4af2737143, type: 3}
   cardBack: {fileID: 21300000, guid: e4187b8a7c92034428ac1f055bbba80d, type: 3}
   cards:
   - {fileID: 1917506270}
@@ -10357,7 +10315,6 @@ MonoBehaviour:
   - {fileID: 1377339807}
   - {fileID: 713124697}
   cameraFlash: {fileID: 54269885}
-  cam: {fileID: 1833506179}
   selectedPlayer: 0
   fadeOut: {fileID: 4958377}
   memorySound: {fileID: 2017262830}

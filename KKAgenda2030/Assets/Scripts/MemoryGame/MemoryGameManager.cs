@@ -34,7 +34,6 @@ public class MemoryGameManager : MonoBehaviour {
     public GameObject[] endPairs;
 
     public GameObject cameraFlash;
-    public WebCam cam;
     public int selectedPlayer = 0;
 
     public Image fadeOut;

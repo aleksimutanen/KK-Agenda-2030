@@ -9,7 +9,21 @@ public class CameraCapture : MonoBehaviour {
     MemoryGameManager mgm;
     public RawImage rawimage;  //Image for rendering what the camera sees.
     WebCamTexture webcamTexture = null;
-    public WebCam cam;
+    public GameObject webcamPrefab;
+    WebCam _cam;
+    WebCam cam {
+        get {
+            if (_cam == null) {
+                _cam = FindObjectOfType<WebCam>();
+                if (_cam == null) {
+                    var g = Instantiate(webcamPrefab);
+                    DontDestroyOnLoad(g);
+                    _cam = g.GetComponent<WebCam>();
+                }
+            }
+            return _cam;
+        }
+    }
 
     public UIManager_MemoryGame uiM;
 

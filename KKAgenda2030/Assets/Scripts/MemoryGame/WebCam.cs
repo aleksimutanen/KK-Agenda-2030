@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class WebCam : MonoBehaviour {
 
-
-    public WebCamTexture tex = null;
-
-    public void Awake() {
-        WebCamDevice[] camDevices = WebCamTexture.devices;
-        string camName = camDevices[0].name;
-        tex = new WebCamTexture(camName);
+    WebCamTexture _tex;
+    public WebCamTexture tex {
+        get {
+            if (_tex == null) {
+                WebCamDevice[] camDevices = WebCamTexture.devices;
+                string camName = camDevices[0].name;
+                _tex = new WebCamTexture(camName);
+            }
+            return _tex;
+        }
     }
-
-
 }
