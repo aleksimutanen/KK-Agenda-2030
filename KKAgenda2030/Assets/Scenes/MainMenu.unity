@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5502,7 +5502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 354108075, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821290047, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_IsActive
@@ -5675,6 +5675,42 @@ PrefabInstance:
       propertyPath: musicClips.Array.data[3]
       value: 
       objectReference: {fileID: 8300000, guid: 0f702fe1dc0e98741a7e96097b09c111, type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: videoClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 32900000, guid: 121d18b36b5585d4ea991219e678bef5,
+        type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: videoClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 32900000, guid: bf42e7bf47c20ff4f831c5167d36e5de,
+        type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: videoClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 32900000, guid: 4493c43eb05479448896b0060b006bfd,
+        type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: videoClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 32900000, guid: cba66d39b0d5cc746a5f17266d62789f,
+        type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: videoClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 32900000, guid: f9cde9b4fd69b8c449d8c255c4f31ca7,
+        type: 3}
+    - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: videoClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 32900000, guid: 8106259d37a420940b70d6975c3074d0,
+        type: 3}
     - target: {fileID: 264693691, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -5707,6 +5743,10 @@ PrefabInstance:
     - target: {fileID: 1252766751, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179814467928370, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
