@@ -276,7 +276,10 @@ public class UIManager : MonoBehaviour {
             //unpaused
             transition = true;
 
-            for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
+            for (int i = 0; i < pauseMenuButtons.Length; i++) {
+                pauseMenuButtons[i].GetComponent<Image>().raycastTarget = false;
+                pauseMenuButtons[i].interactable = false;
+            }
 
             Color[] b = new Color[pauseMenuImageList.Length];
             float[] d = new float[pauseMenuImageList.Length];
@@ -320,7 +323,10 @@ public class UIManager : MonoBehaviour {
                 }
                 yield return null;
             }
-            for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = true;
+            for (int i = 0; i < pauseMenuButtons.Length; i++) {
+                pauseMenuButtons[i].GetComponent<Image>().raycastTarget = true;
+                pauseMenuButtons[i].interactable = true;
+            }
 
             transition = false;
         }
