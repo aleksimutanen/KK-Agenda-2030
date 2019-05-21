@@ -8,6 +8,9 @@ public class HaloToggle : MonoBehaviour
     ToyRepairManager trm;
     public Animator lennuAnimator;
 
+    public AudioSource toySounds;
+    public AudioClip toyDone;
+
     void Start()
     {
         trm = FindObjectOfType<ToyRepairManager>();
@@ -17,6 +20,7 @@ public class HaloToggle : MonoBehaviour
     void Update()
     {
         if (trm.toysInPlace == 3) {
+            toySounds.PlayOneShot(toyDone);
             halo.SetActive(true);
             lennuAnimator.Play("Lennu_happy");
             trm.haloVisible = true;
