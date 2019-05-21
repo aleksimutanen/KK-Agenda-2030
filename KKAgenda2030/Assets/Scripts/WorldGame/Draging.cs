@@ -14,33 +14,31 @@ public class Draging : MonoBehaviour
 
 
 
-    public void MouseDown()
-    {
-        dist = Camera.main.WorldToScreenPoint(transform.position);
-        posX = Input.mousePosition.x - dist.x;
-        posY = Input.mousePosition.y - dist.y;
-
-        dragging = true;
+    public void MouseDown() {
+        if (!GrandManager.instance.paused) {
+            dist = Camera.main.WorldToScreenPoint(transform.position);
+            posX = Input.mousePosition.x - dist.x;
+            posY = Input.mousePosition.y - dist.y;
+            dragging = true;
+        }
     }
 
-    public void MouseDrag()
-    {
-        dragging = true;
-        print(dragging);
-        Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 0);
-
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-        worldPos.z = 0f;
-        transform.position = worldPos;
-
-       
+    public void MouseDrag() {
+        if (!GrandManager.instance.paused) {
+            dragging = true;
+            print(dragging);
+            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 0);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+            worldPos.z = 0f;
+            transform.position = worldPos;
+        }
     }
 
 
-    public void MouseUp()
-    {
-       
-        dragging = false;
-        print(dragging);
+    public void MouseUp() {
+        if (!GrandManager.instance.paused) {
+            dragging = false;
+            print(dragging);
+        }
     }
 }

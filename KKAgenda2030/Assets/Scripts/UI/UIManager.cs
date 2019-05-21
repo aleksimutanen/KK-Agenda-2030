@@ -20,7 +20,10 @@ public class UIManager : MonoBehaviour {
     public Image trashGameTransition;
 
     public Image runnerGameTransition;
+
     public Image memoryGameTransition;
+
+    public Image worldGameTransition;
 
 
     public Image sliderImage;
@@ -171,6 +174,17 @@ public class UIManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void ReloadWorldGame() {
+        StartCoroutine("ReloadWorldGameFade");
+    }
+
+    IEnumerator ReloadWorldGameFade() {
+        worldGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     ///////// 
 
 
@@ -213,6 +227,17 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator QuitMemoryGameFade() {
         memoryGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitWorldGame() {
+        StartCoroutine("QuitWorldGameFade");
+    }
+
+    IEnumerator QuitWorldGameFade() {
+        worldGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
         PauseButton();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
