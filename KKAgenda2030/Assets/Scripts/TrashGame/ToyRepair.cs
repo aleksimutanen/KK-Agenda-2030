@@ -14,6 +14,9 @@ public class ToyRepair : MonoBehaviour {
     DragToys2 dt2;
     bool toyInPlace = false;
 
+    public AudioSource ToySounds;
+    public AudioClip rightPlace;
+
     private void Start() {
         goalPoint = GameObject.FindGameObjectWithTag("GoalPoint");
         tRM = GameObject.FindObjectOfType<ToyRepairManager>();
@@ -25,6 +28,7 @@ public class ToyRepair : MonoBehaviour {
 
     private void Update() {
         if (toyInPlace) {
+            ToySounds.PlayOneShot(rightPlace);
             animator.Play("EndNoFloat");
         }
         else {
