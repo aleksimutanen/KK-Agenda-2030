@@ -49,7 +49,11 @@ public class MenuManager : MonoBehaviour {
         pt.flipButtons();
         //MenuForThegame.gameObject.SetActive(true);
         VideoScreen.gameObject.SetActive(true);
-        StartCoroutine(PlaySeaVideo());
+        videoPlayer.Prepare();
+        while (videoPlayer.isPrepared) {
+            return;
+        }
+        StartCoroutine(PlayVideoClip());
         // Screen.SetResolution(720,720,false);
         
     }    
@@ -62,7 +66,7 @@ public class MenuManager : MonoBehaviour {
         pt.flipButtons();
     }
 
-    public IEnumerator PlaySeaVideo() {
+    public IEnumerator PlayVideoClip() {
         videoPlayer.Play();       
         yield return new WaitForSeconds(1f);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);
