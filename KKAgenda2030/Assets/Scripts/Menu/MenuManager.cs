@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
     public GameObject MenuForThegame;
-    public GameObject VideoScreen;
+    public GameObject videoScreen;
     public GameObject creditsTheGame;
     private VideoPlayer videoPlayer;
     [HideInInspector] public AudioSource audioData;
@@ -16,20 +17,22 @@ public class MenuManager : MonoBehaviour {
     GrandManager grandManager;
     public AudioClip[] musicClips = new AudioClip[6];
     public VideoClip[] videoClips = new VideoClip[6];
+    public VideoClip[] DIYClips = new VideoClip[6];
+    public GameObject[] audioSourceGO = new GameObject[6];
+
 
     void Awake() {
         pt = GameObject.Find("PageTurner").GetComponent<PageTurner>();
         grandManager = GameObject.Find("GrandManager").GetComponent<GrandManager>();
-        videoPlayer = VideoScreen.GetComponent<VideoPlayer>();
+        videoPlayer = videoScreen.GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
-        VideoScreen.gameObject.SetActive(false);
         creditsTheGame.gameObject.SetActive(false);
     }
 
     private void Update() {
-        if (VideoScreen.gameObject == true) {
+        if (videoScreen.GetComponent<RawImage>().enabled == true) {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Mouse0)) {
-                VideoScreen.gameObject.SetActive(false);
+                StopVideo();
             }
         }
     }
@@ -45,32 +48,46 @@ public class MenuManager : MonoBehaviour {
         StopMusic();
         videoPlayer.clip = videoClips[pt.pageIndex - 1];
         // Toggle pagebuttons and bcg music off!
+        audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
         grandManager.GetComponent<AudioSource>().enabled = false;
         pt.flipButtons();
         //MenuForThegame.gameObject.SetActive(true);
-        VideoScreen.gameObject.SetActive(true);
-        videoPlayer.Prepare();
-        while (videoPlayer.isPrepared) {
-            return;
-        }
         StartCoroutine(PlayVideoClip());
         // Screen.SetResolution(720,720,false);
-        
-    }    
+    }
+
+    public void PlayDIYVideo() {
+        StopMusic();
+        videoPlayer.clip = DIYClips[pt.pageIndex - 1];
+        // Toggle pagebuttons and bcg music off!
+        grandManager.GetComponent<AudioSource>().enabled = false;
+        audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
+        pt.flipButtons();
+        //MenuForThegame.gameObject.SetActive(true);
+        StartCoroutine(PlayVideoClip());
+        // Screen.SetResolution(720,720,false);
+
+    }
 
 
     private void StopVideo() {
-        VideoScreen.gameObject.SetActive(false);
+        videoScreen.GetComponent<RawImage>().enabled = false;
         videoPlayer.Stop();
         grandManager.GetComponent<AudioSource>().enabled = true;
+        audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = true;
         pt.flipButtons();
     }
 
     public IEnumerator PlayVideoClip() {
+        videoPlayer.Prepare();
+        while (!videoPlayer.isPrepared) {
+            yield return null;
+        }
+        videoScreen.GetComponent<RawImage>().enabled = true;
         videoPlayer.Play();       
         yield return new WaitForSeconds(1f);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);
-        MenuForThegame.gameObject.SetActive(false);
+        //MenuForThegame.gameObject.SetActive(false);
         StopVideo();
     }
 
