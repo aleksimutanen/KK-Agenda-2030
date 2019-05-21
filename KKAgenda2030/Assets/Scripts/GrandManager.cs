@@ -110,15 +110,14 @@ public class GrandManager : MonoBehaviour {
     }
 
     public IEnumerator LaunchBeeGame() {
-
         var ui = FindObjectOfType<UIManager>();
         ui.runnerGameTransition.GetComponentInParent<Animator>().Play("RunnerLevelTransition");
         yield return new WaitForSeconds(3.5f);
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("RunnerGame");
     }
-    public IEnumerator LaunchMemoryGame() {
 
+    public IEnumerator LaunchMemoryGame() {
         var ui = FindObjectOfType<UIManager>();
         ui.memoryGameTransition.GetComponent<Animator>().Play("MemoryTransition");
         yield return new WaitForSeconds(3.5f);
@@ -126,7 +125,15 @@ public class GrandManager : MonoBehaviour {
         SceneManager.LoadScene("MemoryGame");
     }
 
-        public void BackToMainMenu() {
+    public IEnumerator LaunchWorldGame() {
+        var ui = FindObjectOfType<UIManager>();
+        ui.worldGameTransition.GetComponent<Animator>().Play("WorldGameTransition");
+        yield return new WaitForSeconds(2.75f);
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
+        SceneManager.LoadScene("WorldGame");
+    }
+
+    public void BackToMainMenu() {
         //previousScene = activeScene;
         //previousScene.SetActive(false);
         //activeScene = mainMenu;

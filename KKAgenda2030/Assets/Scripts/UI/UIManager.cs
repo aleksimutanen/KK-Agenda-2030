@@ -103,6 +103,10 @@ public class UIManager : MonoBehaviour {
         GrandManager.instance.StartCoroutine("LaunchMemoryGame");
 
     }
+    public void LaunchWorldGame() {
+        GrandManager.instance.StartCoroutine("LaunchWorldGame");
+
+    }
 
     public void DisableMenuButtons() {
         foreach (Button b in menuButtons) b.gameObject.SetActive(false);
