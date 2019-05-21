@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3786,6 +3786,7 @@ MonoBehaviour:
   trashGameTransition: {fileID: 0}
   runnerGameTransition: {fileID: 723150813}
   memoryGameTransition: {fileID: 0}
+  worldGameTransition: {fileID: 0}
   sliderImage: {fileID: 261540134}
   slider: {fileID: 0}
   fadeTime: 0.5
@@ -3917,8 +3918,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.299999, y: -0.0800004}
-  m_SizeDelta: {x: 13, y: 4}
+  m_AnchoredPosition: {x: -8.19, y: -0.212}
+  m_SizeDelta: {x: 10.79, y: 4.488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1192937648
 Animator:
@@ -6203,7 +6204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

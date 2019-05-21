@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -420,7 +420,7 @@ RectTransform:
 --- !u!199 &15441733
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7115,6 +7115,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 693519002}
     m_Modifications:
+    - target: {fileID: 2015761261, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
+      propertyPath: m_Name
+      value: PlaneSilhuette
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015761261, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2015761262, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
       propertyPath: m_LocalPosition.y
       value: 51.40001
@@ -7134,14 +7142,6 @@ PrefabInstance:
     - target: {fileID: 2015761262, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015761261, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
-      propertyPath: m_Name
-      value: PlaneSilhuette
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015761261, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2015761263, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
       propertyPath: m_Sprite
@@ -8222,7 +8222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9088,13 +9088,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 693519002}
     m_Modifications:
-    - target: {fileID: 2015761262, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2015761261, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015761262, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 238dc72083e04ad42a9444ea89613c93, type: 3}
@@ -9901,6 +9901,8 @@ MonoBehaviour:
   animator: {fileID: 290606507}
   showAnimation: 
   happyAnimation: Ville_happy
+  AnimalSound: {fileID: 0}
+  AnimalNoise: {fileID: 0}
 --- !u!65 &290606509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10067,7 +10069,7 @@ Transform:
 --- !u!199 &296377123
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -15140,6 +15142,9 @@ MonoBehaviour:
   - {fileID: 541702440}
   - {fileID: 1540204101}
   - {fileID: 1396250894}
+  BookSounds: {fileID: 0}
+  nextPageSound: {fileID: 0}
+  prevPageSound: {fileID: 0}
 --- !u!4 &312166989
 Transform:
   m_ObjectHideFlags: 0
@@ -15522,6 +15527,21 @@ MonoBehaviour:
   MenuForThegame: {fileID: 542335511}
   VideoScreen: {fileID: 1498269085}
   creditsTheGame: {fileID: 1475721887}
+  audioData: {fileID: 0}
+  musicClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  videoClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!224 &342171423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15884,7 +15904,7 @@ RectTransform:
 --- !u!199 &350136254
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -20693,11 +20713,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
-        type: 3}
-      propertyPath: m_Name
-      value: SBubbleKosti
-      objectReference: {fileID: 0}
     - target: {fileID: 721973955, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalScale.x
       value: 7.5
@@ -20705,6 +20720,11 @@ PrefabInstance:
     - target: {fileID: 721973955, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalScale.y
       value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
+        type: 3}
+      propertyPath: m_Name
+      value: SBubbleKosti
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
@@ -22415,7 +22435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -22664,7 +22684,7 @@ RectTransform:
 --- !u!199 &468211720
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27594,11 +27614,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
-        type: 3}
-      propertyPath: m_Name
-      value: SBubbleVille
-      objectReference: {fileID: 0}
     - target: {fileID: 721973955, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalScale.x
       value: 7.5
@@ -27606,6 +27621,11 @@ PrefabInstance:
     - target: {fileID: 721973955, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_LocalScale.y
       value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396326637095345424, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb,
+        type: 3}
+      propertyPath: m_Name
+      value: SBubbleVille
       objectReference: {fileID: 0}
     - target: {fileID: 721973956, guid: a0ac2ed8f2bd2ff4bb0b8cabea39c2cb, type: 3}
       propertyPath: m_FlipX
@@ -29018,7 +29038,7 @@ SortingGroup:
 --- !u!199 &556709744
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -34862,6 +34882,8 @@ MonoBehaviour:
   animator: {fileID: 603777456}
   showAnimation: 
   happyAnimation: Kosti_happy
+  AnimalSound: {fileID: 0}
+  AnimalNoise: {fileID: 0}
 --- !u!95 &603777456
 Animator:
   serializedVersion: 3
@@ -44688,6 +44710,8 @@ MonoBehaviour:
   animator: {fileID: 1085908652}
   showAnimation: 
   happyAnimation: Kaarlo_happy
+  AnimalSound: {fileID: 0}
+  AnimalNoise: {fileID: 0}
 --- !u!95 &1085908652
 Animator:
   serializedVersion: 3
@@ -47744,7 +47768,7 @@ Transform:
 --- !u!199 &1233933926
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -53464,7 +53488,7 @@ Transform:
 --- !u!199 &1286389442
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -59897,6 +59921,10 @@ MonoBehaviour:
   siniSimpukka: {fileID: 0}
   pike: {fileID: 0}
   roach: {fileID: 0}
+  menuSounds: {fileID: 0}
+  pikeSound: {fileID: 0}
+  siniSound: {fileID: 0}
+  roachSwim: {fileID: 0}
 --- !u!1 &1344308007
 GameObject:
   m_ObjectHideFlags: 0
@@ -60962,6 +60990,10 @@ MonoBehaviour:
   siniSimpukka: {fileID: 0}
   pike: {fileID: 0}
   roach: {fileID: 0}
+  menuSounds: {fileID: 0}
+  pikeSound: {fileID: 0}
+  siniSound: {fileID: 0}
+  roachSwim: {fileID: 0}
 --- !u!224 &1397844740
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63128,6 +63160,10 @@ MonoBehaviour:
   siniSimpukka: {fileID: 1597374336}
   pike: {fileID: 1672513989}
   roach: {fileID: 109291946}
+  menuSounds: {fileID: 0}
+  pikeSound: {fileID: 0}
+  siniSound: {fileID: 0}
+  roachSwim: {fileID: 0}
 --- !u!1 &1553568759
 GameObject:
   m_ObjectHideFlags: 0
@@ -63587,6 +63623,10 @@ MonoBehaviour:
   siniSimpukka: {fileID: 2076754488}
   pike: {fileID: 64389814}
   roach: {fileID: 304116535}
+  menuSounds: {fileID: 0}
+  pikeSound: {fileID: 0}
+  siniSound: {fileID: 0}
+  roachSwim: {fileID: 0}
 --- !u!1 &1568518613
 GameObject:
   m_ObjectHideFlags: 0
@@ -64753,6 +64793,8 @@ MonoBehaviour:
   fishTransitionCircle: {fileID: 1930771101}
   trashGameTransition: {fileID: 0}
   runnerGameTransition: {fileID: 0}
+  memoryGameTransition: {fileID: 0}
+  worldGameTransition: {fileID: 0}
   sliderImage: {fileID: 2008180221}
   slider: {fileID: 1938954232}
   fadeTime: 0.3
@@ -65175,7 +65217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -67917,7 +67959,7 @@ SortingGroup:
 --- !u!199 &1758459771
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -73813,15 +73855,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 693519002}
     m_Modifications:
-    - target: {fileID: 8609824894527233110, guid: 34f814616dc552341bdc862d6bdce06e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8609824894527233111, guid: 34f814616dc552341bdc862d6bdce06e,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8609824894527233110, guid: 34f814616dc552341bdc862d6bdce06e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f814616dc552341bdc862d6bdce06e, type: 3}
@@ -74844,6 +74886,10 @@ MonoBehaviour:
   siniSimpukka: {fileID: 0}
   pike: {fileID: 0}
   roach: {fileID: 0}
+  menuSounds: {fileID: 0}
+  pikeSound: {fileID: 0}
+  siniSound: {fileID: 0}
+  roachSwim: {fileID: 0}
 --- !u!1 &1869622912
 GameObject:
   m_ObjectHideFlags: 0

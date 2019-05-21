@@ -75,6 +75,7 @@ public class MemoryGameManager : MonoBehaviour {
         bool foundEmpty = false;
         if (playerCount == 1) {
             ContinueButton.interactable = true;
+            ContinueButton.GetComponent<Animator>().Play("ContinueButtonScale");
         } else {
             for (int i = 0; i < playerRawImages.Count; i++) {
                 var ri = playerRawImages[i].GetComponent<RawImage>();
@@ -174,13 +175,15 @@ public class MemoryGameManager : MonoBehaviour {
         }
         else {
             memorySound.PlayOneShot(noPairSound);
-            SwitchTurn();
         }
 
         for (int i = 0; i < c.Count; i++) {
             cards[c[i]].GetComponent<CardBehaviour>().state = x;
             cards[c[i]].GetComponent<CardBehaviour>().falseCheck();
         }
+
+        SwitchTurn();
+
         // vuoron vaihto toiselle
         //if (playerCount == 2) {
         //    selectedPlayer = 1 - selectedPlayer;
@@ -198,6 +201,10 @@ public class MemoryGameManager : MonoBehaviour {
         if (playerCount == 2) {
             selectedPlayer = 1 - selectedPlayer;
             SlotSelected(selectedPlayer);
+            foreach (var item in cards) {
+                item.GetComponent<Button>().interactable = true;
+            }
+        } else {
             foreach (var item in cards) {
                 item.GetComponent<Button>().interactable = true;
             }

@@ -27,11 +27,12 @@ public class WorldManager : MonoBehaviour
     private float range = 1000f;
     private Draging createdObject;
 
-    private void Start()
-    {
+    public Image worldGameTransition;
 
-        foreach (var pressed in worldSelectionButtons)
-        {
+    private void Start() {
+        worldGameTransition.GetComponent<Animator>().Play("FadeOut");
+
+        foreach (var pressed in worldSelectionButtons) {
             pressed.GetComponent<Image>().enabled = true;
 
         }

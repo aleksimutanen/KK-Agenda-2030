@@ -20,7 +20,10 @@ public class UIManager : MonoBehaviour {
     public Image trashGameTransition;
 
     public Image runnerGameTransition;
+
     public Image memoryGameTransition;
+
+    public Image worldGameTransition;
 
 
     public Image sliderImage;
@@ -100,6 +103,10 @@ public class UIManager : MonoBehaviour {
         GrandManager.instance.StartCoroutine("LaunchMemoryGame");
 
     }
+    public void LaunchWorldGame() {
+        GrandManager.instance.StartCoroutine("LaunchWorldGame");
+
+    }
 
     public void DisableMenuButtons() {
         foreach (Button b in menuButtons) b.gameObject.SetActive(false);
@@ -171,6 +178,17 @@ public class UIManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void ReloadWorldGame() {
+        StartCoroutine("ReloadWorldGameFade");
+    }
+
+    IEnumerator ReloadWorldGameFade() {
+        worldGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     ///////// 
 
 
@@ -218,6 +236,17 @@ public class UIManager : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void QuitWorldGame() {
+        StartCoroutine("QuitWorldGameFade");
+    }
+
+    IEnumerator QuitWorldGameFade() {
+        worldGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        PauseButton();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
+    }
+
 
 
     public void TrashGameStartFade() {
@@ -247,7 +276,10 @@ public class UIManager : MonoBehaviour {
             //unpaused
             transition = true;
 
-            for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = false;
+            for (int i = 0; i < pauseMenuButtons.Length; i++) {
+                pauseMenuButtons[i].GetComponent<Image>().raycastTarget = false;
+                pauseMenuButtons[i].interactable = false;
+            }
 
             Color[] b = new Color[pauseMenuImageList.Length];
             float[] d = new float[pauseMenuImageList.Length];
@@ -291,7 +323,10 @@ public class UIManager : MonoBehaviour {
                 }
                 yield return null;
             }
-            for (int i = 0; i < pauseMenuButtons.Length; i++) pauseMenuButtons[i].interactable = true;
+            for (int i = 0; i < pauseMenuButtons.Length; i++) {
+                pauseMenuButtons[i].GetComponent<Image>().raycastTarget = true;
+                pauseMenuButtons[i].interactable = true;
+            }
 
             transition = false;
         }
