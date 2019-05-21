@@ -225,6 +225,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Project
       objectReference: {fileID: 0}
+    - target: {fileID: 4411624453941657544, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4619155680307206, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_LocalPosition.x
       value: 355.9825
@@ -1655,6 +1660,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: afbfb8c2d23f3ad47a877343afa93f6e, type: 3}
+    - target: {fileID: 354108075, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 938044399, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1683,6 +1692,32 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 9558d01e1ca5811409f5cb50268efd04, type: 3}
+    - target: {fileID: 114693946503532136, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: menuSounds
+      value: 
+      objectReference: {fileID: 1863954097}
+    - target: {fileID: 114693946503532136, guid: c1dcf163cef0f134b84f9e16841e4308,
+        type: 3}
+      propertyPath: lennuSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 44c75cad545f2fb4e90879b1065dbacc, type: 3}
+    - target: {fileID: 1553435915, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: toySounds
+      value: 
+      objectReference: {fileID: 1863954097}
+    - target: {fileID: 1553435915, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: toyDone
+      value: 
+      objectReference: {fileID: 8300000, guid: a35c3dcf75809be45b2bc433482c994f, type: 3}
+    - target: {fileID: 1087465108, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: toySounds
+      value: 
+      objectReference: {fileID: 1863954097}
+    - target: {fileID: 1087465108, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: toyDone
+      value: 
+      objectReference: {fileID: 8300000, guid: a35c3dcf75809be45b2bc433482c994f, type: 3}
     - target: {fileID: 182674654, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
       propertyPath: toySounds
       value: 

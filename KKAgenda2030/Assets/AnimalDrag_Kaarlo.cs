@@ -10,6 +10,9 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
     AnimationManager_MemoryGame aMM;
     public string idleAnimation;
 
+    public AudioSource animalSound;
+    public AudioClip animSnapSound;
+
     public void Start() {
         snapPos = GameObject.Find(snapPosName).transform;
         aMM = GameObject.Find("AnimationManager").GetComponent<AnimationManager_MemoryGame>();
@@ -33,6 +36,7 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
                 found = true;
         }
         if (found) {
+            animalSound.PlayOneShot(animSnapSound);
             transform.position = snapPos.position;
             transform.rotation = snapPos.rotation;
             mkd.ResetHalo();
