@@ -27,12 +27,15 @@ public class MenuManager : MonoBehaviour {
         videoPlayer = videoScreen.GetComponent<VideoPlayer>();
         audioData = GetComponent<AudioSource>();
         creditsTheGame.gameObject.SetActive(false);
+        videoScreen.gameObject.SetActive(false);
     }
 
     private void Update() {
-        if (videoScreen.GetComponent<RawImage>().enabled == true) {
+    /*if (videoScreen.GetComponent<RawImage>().enabled == true)*/
+        if (videoScreen.gameObject == true) {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Mouse0)) {
-                StopVideo();
+                videoScreen.gameObject.SetActive(false);
+                //StopVideo();
             }
         }
     }
@@ -71,7 +74,8 @@ public class MenuManager : MonoBehaviour {
 
 
     private void StopVideo() {
-        videoScreen.GetComponent<RawImage>().enabled = false;
+        //videoScreen.GetComponent<RawImage>().enabled = false;
+        videoScreen.gameObject.SetActive(false);
         videoPlayer.Stop();
         grandManager.GetComponent<AudioSource>().enabled = true;
         audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = true;
@@ -79,11 +83,12 @@ public class MenuManager : MonoBehaviour {
     }
 
     public IEnumerator PlayVideoClip() {
-        videoPlayer.Prepare();
-        while (!videoPlayer.isPrepared) {
-            yield return null;
-        }
-        videoScreen.GetComponent<RawImage>().enabled = true;
+        //videoPlayer.Prepare();
+        //while (!videoPlayer.isPrepared) {
+        //    yield return null;
+        //}
+        videoScreen.gameObject.SetActive(true);
+        //videoScreen.GetComponent<RawImage>().enabled = true;
         videoPlayer.Play();       
         yield return new WaitForSeconds(1f);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);
@@ -98,11 +103,13 @@ public class MenuManager : MonoBehaviour {
     public void PlayMusic() {
         audioData.clip = musicClips[pt.pageIndex - 1];
         grandManager.GetComponent<AudioSource>().enabled = false;
+        audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
         if (audioData.isPlaying) {
             audioData.Stop();
             grandManager.GetComponent<AudioSource>().enabled = true;
-        }
-        else if (!audioData.isPlaying)
+            audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = true;
+
+        } else if (!audioData.isPlaying)
             audioData.Play();
     }
 
@@ -110,6 +117,8 @@ public class MenuManager : MonoBehaviour {
         if (audioData.isPlaying) {
             audioData.Stop();
             grandManager.GetComponent<AudioSource>().enabled = true;
+            audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = true;
+
         }
     }
 

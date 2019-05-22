@@ -237,6 +237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Project
       objectReference: {fileID: 0}
+    - target: {fileID: 1427893185649020, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4411624453941657544, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
       propertyPath: m_IsActive
@@ -1765,14 +1769,10 @@ PrefabInstance:
       propertyPath: toyDone
       value: 
       objectReference: {fileID: 8300000, guid: a35c3dcf75809be45b2bc433482c994f, type: 3}
-    - target: {fileID: 1427893185649020, guid: c1dcf163cef0f134b84f9e16841e4308, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114945684984931710, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114553804500375818, guid: c1dcf163cef0f134b84f9e16841e4308,
         type: 3}
