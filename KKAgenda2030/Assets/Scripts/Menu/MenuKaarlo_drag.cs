@@ -40,7 +40,12 @@ public class MenuKaarlo_drag : MonoBehaviour {
             at.enabled = true;
         }
         this.enabled = true;
-        animator.Play(defaultAnimation);
+        //if (animator != null) {
+            // fix this after DEMODAY!
+            // TODO: animator when going on page, but it shouldn't
+            animator.Play(defaultAnimation);
+        //}
+
         sLock.vertical = enabled;
         gameObject.GetComponent<BoxCollider>().enabled = true;
         jigsawHalo.SetActive(false);
