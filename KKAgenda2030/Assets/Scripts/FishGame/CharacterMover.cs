@@ -116,8 +116,9 @@ private void OnDrawGizmos() {
 
     void FixedUpdate() {
 
-        if (Input.GetKeyDown(KeyCode.L))
-            for (int i = 0; i < 30; i++) GrowScale();
+        //if (Input.GetKeyDown(KeyCode.L))
+        //    for (int i = 0; i < 30; i++) GrowScale();
+
         //graphics
         if (transform.eulerAngles.y > -90f && transform.eulerAngles.y < 180f)
             FlipSpriteYPos();
@@ -151,12 +152,14 @@ private void OnDrawGizmos() {
             0.5f * (Mathf.Sin(sprintT * 2 * Mathf.PI / sprintDuration - 0.5f * Mathf.PI) + 1);
         sprintFactor *= (maxSprintSpeed - 1);
         sprintFactor += 1f;
-        if (oldSprintFactor < bubbleLimitSpeed && sprintFactor > bubbleLimitSpeed) {
-            StartBubbleBurst.Play();
-        }
-        else if (oldSprintFactor > bubbleLimitSpeed && sprintFactor < bubbleLimitSpeed) {
-            StartBubbleBurst.Stop();
-        }
+
+        //if (oldSprintFactor < bubbleLimitSpeed && sprintFactor > bubbleLimitSpeed) {
+        //    StartBubbleBurst.Play();
+        //}
+        //else if (oldSprintFactor > bubbleLimitSpeed && sprintFactor < bubbleLimitSpeed) {
+        //    StartBubbleBurst.Stop();
+        //}
+
         if ((Input.GetKey(KeyCode.Mouse0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && canMove) {
             RaycastHit hitGround;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
