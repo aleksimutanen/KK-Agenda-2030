@@ -229,9 +229,19 @@ public class UIManager : MonoBehaviour {
         StartCoroutine("QuitMemoryGameFade");
     }
 
+    public void QuitFromXButton() {
+        StartCoroutine("QuitMemoryGameFromXButton");
+    }
+
     IEnumerator QuitMemoryGameFade() {
         memoryGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
         PauseButton();
+        yield return new WaitForSeconds(.4f);
+        SceneManager.LoadScene(0);
+    }
+
+    IEnumerator QuitMemoryGameFromXButton() {
+        memoryGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
     }

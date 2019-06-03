@@ -9,7 +9,7 @@ public class PhoneVibrate : MonoBehaviour {
 
     void Update() {
         if (nets.Count > 0) {
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         }
     }
 
@@ -22,6 +22,6 @@ public class PhoneVibrate : MonoBehaviour {
     }
 
     public void Vibrate() {
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
     }
 }
