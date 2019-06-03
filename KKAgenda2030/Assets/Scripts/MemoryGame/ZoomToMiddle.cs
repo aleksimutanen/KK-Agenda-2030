@@ -33,7 +33,7 @@ public class ZoomToMiddle : MonoBehaviour {
             //for (int i = 0; i < 5; i++)
             //    newT = Mathf.SmoothStep(0f, 1f, newT);
             transform.position = Vector3.Lerp(startPos, middlePos.position, t);
-            transform.localScale = Vector3.Lerp(startScale, startScale * 1.5f, t);
+            transform.localScale = Vector3.Lerp(startScale, startScale * 2f, t);
             yield return null;
         }
         yield return new WaitForSeconds(2f);
@@ -41,7 +41,7 @@ public class ZoomToMiddle : MonoBehaviour {
         while (t2 < 1) {
             t2 += Time.deltaTime * (1 / transitionSeconds);
             transform.position = Vector3.Lerp(middlePos.position, startPos, t2);
-            transform.localScale = Vector3.Lerp(startScale * 1.5f, startScale, t2);
+            transform.localScale = Vector3.Lerp(startScale * 2f, startScale, t2);
 
             yield return null;
         }
