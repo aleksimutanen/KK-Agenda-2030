@@ -25,7 +25,7 @@ public class ButtonManager : MonoBehaviour {
     }
 
     public void NextScene() {
-        if (sceneIndex == sceneFolder.Count - 1) return;
+        if (sceneIndex == sceneFolder.Count - 1 || GrandManager.instance.paused) return;
         sceneIndex++;
         StartCoroutine("NextSceneTransition");
     }
@@ -39,7 +39,7 @@ public class ButtonManager : MonoBehaviour {
             button.interactable = false;
         }
 
-        imgAnim.Play("Fade");
+        imgAnim.Play("RunnerGameQuickTransition");
         yield return new WaitForSeconds(1f);
 
         sceneFolder[sceneIndex - 1].gameObject.SetActive(false);
@@ -60,7 +60,7 @@ public class ButtonManager : MonoBehaviour {
     }
 
     public void PreviousScene() {
-        if (sceneIndex == 0) return;
+        if (sceneIndex == 0 || GrandManager.instance.paused) return;
         sceneIndex--;
         StartCoroutine("PreviousSceneTransition");
     }
@@ -74,7 +74,7 @@ public class ButtonManager : MonoBehaviour {
             button.interactable = false;
         }
 
-        imgAnim.Play("Fade");
+        imgAnim.Play("RunnerGameQuickTransition");
         yield return new WaitForSeconds(1f);
 
         sceneFolder[sceneIndex + 1].gameObject.SetActive(false);
