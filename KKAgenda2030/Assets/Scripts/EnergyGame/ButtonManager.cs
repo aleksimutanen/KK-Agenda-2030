@@ -11,23 +11,17 @@ public class ButtonManager : MonoBehaviour {
     public int sceneIndex;
     public List<SceneParent> sceneFolder;
 
-    //public List<Scene> listScenes;
-    //public List<Toggle> toggles;
-
-    public List<Toggle> livingRoomToggles;
-    public List<Toggle> yardToggles;
-    public List<Toggle> kitchenToggles;
-
     void Start() {
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.RightArrow)) NextScene();
         if (Input.GetKeyDown(KeyCode.LeftArrow)) PreviousScene();
-
     }
 
     public void NextScene() {
+        if (sceneIndex == sceneFolder.Count - 1) return;
+
         foreach (Toggle toggle in sceneFolder[sceneIndex].toggles) {
             toggle.interactable = false;
         }
@@ -41,9 +35,12 @@ public class ButtonManager : MonoBehaviour {
         }
 
         sceneIndex++;
+        currentScene = Scenes.livingRoom + sceneIndex;
     }
 
     public void PreviousScene() {
+        if (sceneIndex == 0) return;
+
         foreach (Toggle toggle in sceneFolder[sceneIndex].toggles) {
             toggle.interactable = false;
         }
@@ -57,5 +54,6 @@ public class ButtonManager : MonoBehaviour {
         }
 
         sceneIndex--;
+        currentScene = Scenes.livingRoom + sceneIndex;
     }
 }
