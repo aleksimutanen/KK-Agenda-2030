@@ -5,4 +5,5 @@ using UnityEngine.UI;
 public class SceneParent : MonoBehaviour
 {
     public List<Toggle> toggles;
+    public List<Button> buttons;
 }
