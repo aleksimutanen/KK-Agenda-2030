@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject videoScreen;
     public GameObject creditsTheGame;
     private VideoPlayer videoPlayer;
+    public VideoPlayer vp;
     [HideInInspector] public AudioSource audioData;
     private string Web =  "https://";
     PageTurner pt;
@@ -31,6 +32,12 @@ public class MenuManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            vp.Play();
+            audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
+            grandManager.GetComponent<AudioSource>().enabled = false;
+            pt.flipButtons();
+        }
     /*if (videoScreen.GetComponent<RawImage>().enabled == true)*/
         if (videoScreen.gameObject == true) {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -38,6 +45,13 @@ public class MenuManager : MonoBehaviour {
                 //StopVideo();
             }
         }
+    }
+
+    public void TestPlay() {
+        vp.Play();
+        audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
+        grandManager.GetComponent<AudioSource>().enabled = false;
+        pt.flipButtons();
     }
 
     public void GameOptions() {
