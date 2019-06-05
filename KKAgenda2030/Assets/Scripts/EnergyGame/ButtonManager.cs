@@ -11,7 +11,12 @@ public class ButtonManager : MonoBehaviour {
     public int sceneIndex;
     public List<SceneParent> sceneFolder;
 
+    public Image fadeImage;
+    Animator imgAnim;
+
     void Start() {
+        imgAnim = fadeImage.GetComponent<Animator>();
+        imgAnim.Play("FadeOut");
     }
 
     void Update() {
@@ -21,39 +26,71 @@ public class ButtonManager : MonoBehaviour {
 
     public void NextScene() {
         if (sceneIndex == sceneFolder.Count - 1) return;
+        sceneIndex++;
+        StartCoroutine("NextSceneTransition");
+    }
 
-        foreach (Toggle toggle in sceneFolder[sceneIndex].toggles) {
+    IEnumerator NextSceneTransition() {
+        foreach (Toggle toggle in sceneFolder[sceneIndex - 1].toggles) {
             toggle.interactable = false;
         }
-        //transition something
 
-        sceneFolder[sceneIndex].gameObject.SetActive(false);
-        sceneFolder[sceneIndex + 1].gameObject.SetActive(true);
+        foreach (Button button in sceneFolder[sceneIndex - 1].buttons) {
+            button.interactable = false;
+        }
 
-        foreach (Toggle toggle in sceneFolder[sceneIndex + 1].toggles) {
+        imgAnim.Play("Fade");
+        yield return new WaitForSeconds(1f);
+
+        sceneFolder[sceneIndex - 1].gameObject.SetActive(false);
+        sceneFolder[sceneIndex].gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (Toggle toggle in sceneFolder[sceneIndex].toggles) {
             toggle.interactable = true;
         }
 
-        sceneIndex++;
+        foreach(Button button in sceneFolder[sceneIndex].buttons) {
+            button.interactable = true;
+        }
+
+        //sceneIndex++;
         currentScene = Scenes.livingRoom + sceneIndex;
     }
 
     public void PreviousScene() {
         if (sceneIndex == 0) return;
+        sceneIndex--;
+        StartCoroutine("PreviousSceneTransition");
+    }
 
-        foreach (Toggle toggle in sceneFolder[sceneIndex].toggles) {
+    IEnumerator PreviousSceneTransition() {
+        foreach (Toggle toggle in sceneFolder[sceneIndex + 1].toggles) {
             toggle.interactable = false;
         }
-        //transition something
 
-        sceneFolder[sceneIndex].gameObject.SetActive(false);
-        sceneFolder[sceneIndex - 1].gameObject.SetActive(true);
+        foreach (Button button in sceneFolder[sceneIndex + 1].buttons) {
+            button.interactable = false;
+        }
 
-        foreach (Toggle toggle in sceneFolder[sceneIndex - 1].toggles) {
+        imgAnim.Play("Fade");
+        yield return new WaitForSeconds(1f);
+
+        sceneFolder[sceneIndex + 1].gameObject.SetActive(false);
+        sceneFolder[sceneIndex].gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (Toggle toggle in sceneFolder[sceneIndex].toggles) {
             toggle.interactable = true;
         }
 
-        sceneIndex--;
+        foreach (Button button in sceneFolder[sceneIndex].buttons) {
+            button.interactable = true;
+        }
+
+        //sceneIndex--;
         currentScene = Scenes.livingRoom + sceneIndex;
     }
 }
