@@ -17,6 +17,7 @@ public class PageTurner : MonoBehaviour {
     public Button[] buttons;
     public GameObject nextPageButton;
     public GameObject previousPageButton;
+    public GameObject settingsButton;
 
     public int pageIndex;
     public List<Image> fadeImages = new List<Image>();
@@ -171,7 +172,7 @@ public class PageTurner : MonoBehaviour {
     public void flipButtons() {
         nextPageButton.SetActive(!nextPageButton.activeSelf);
         previousPageButton.SetActive(!previousPageButton.activeSelf);
-        
+        settingsButton.SetActive(!settingsButton.activeSelf);
     }
 
 

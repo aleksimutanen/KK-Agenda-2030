@@ -32,26 +32,17 @@ public class MenuManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            vp.Play();
-            audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
-            grandManager.GetComponent<AudioSource>().enabled = false;
-            pt.flipButtons();
-        }
-    /*if (videoScreen.GetComponent<RawImage>().enabled == true)*/
-        if (videoScreen.gameObject == true) {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Mouse0)) {
-                videoScreen.gameObject.SetActive(false);
-                //StopVideo();
-            }
+        if (vp.isPlaying && Input.GetKeyDown(KeyCode.Mouse0)) {
+            vp.Stop();
         }
     }
 
-    public void TestPlay() {
-        vp.Play();
+    public void TestPlay(VideoClip clip) {
+        vp.clip = clip;
         audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
         grandManager.GetComponent<AudioSource>().enabled = false;
         pt.flipButtons();
+        StartCoroutine(PlayVideoClip());
     }
 
     public void GameOptions() {
@@ -61,26 +52,26 @@ public class MenuManager : MonoBehaviour {
     }
 
      
-    public void PlayVideo() {
-        StopMusic();
-        videoPlayer.clip = videoClips[pt.pageIndex - 1];
-        // Toggle pagebuttons and bcg music off!
-        audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
-        grandManager.GetComponent<AudioSource>().enabled = false;
-        pt.flipButtons();
-        //MenuForThegame.gameObject.SetActive(true);
-        StartCoroutine(PlayVideoClip());
-        // Screen.SetResolution(720,720,false);
-    }
+    //public void PlayVideo() {
+    //    StopMusic();
+    //    videoPlayer.clip = videoClips[pt.pageIndex - 1];
+
+    //    // Toggle pagebuttons and bcg music off!
+    //    audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
+    //    grandManager.GetComponent<AudioSource>().enabled = false;
+    //    pt.flipButtons();
+    //    StartCoroutine(PlayVideoClip());
+    //    // Screen.SetResolution(720,720,false);
+    //}
 
     public void PlayDIYVideo() {
         StopMusic();
         videoPlayer.clip = DIYClips[pt.pageIndex - 1];
+
         // Toggle pagebuttons and bcg music off!
         grandManager.GetComponent<AudioSource>().enabled = false;
         audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = false;
         pt.flipButtons();
-        //MenuForThegame.gameObject.SetActive(true);
         StartCoroutine(PlayVideoClip());
         // Screen.SetResolution(720,720,false);
 
@@ -88,25 +79,16 @@ public class MenuManager : MonoBehaviour {
 
 
     private void StopVideo() {
-        //videoScreen.GetComponent<RawImage>().enabled = false;
-        videoScreen.gameObject.SetActive(false);
-        videoPlayer.Stop();
+        pt.flipButtons();
         grandManager.GetComponent<AudioSource>().enabled = true;
         audioSourceGO[pt.pageIndex - 1].GetComponent<AudioSource>().enabled = true;
-        pt.flipButtons();
+        vp.Stop();
     }
 
     public IEnumerator PlayVideoClip() {
-        //videoPlayer.Prepare();
-        //while (!videoPlayer.isPrepared) {
-        //    yield return null;
-        //}
-        videoScreen.gameObject.SetActive(true);
-        //videoScreen.GetComponent<RawImage>().enabled = true;
-        videoPlayer.Play();       
+        vp.Play();
         yield return new WaitForSeconds(1f);
-        yield return new WaitUntil(() => !videoPlayer.isPlaying);
-        //MenuForThegame.gameObject.SetActive(false);
+        yield return new WaitUntil(() => !vp.isPlaying);
         StopVideo();
     }
 
