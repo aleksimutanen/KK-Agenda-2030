@@ -64,6 +64,7 @@ public class MemoryGameManager : MonoBehaviour {
             //memorySound.PlayOneShot(cardSound);
             checkCards();
         }
+        
     }
 
     // AVATAR CAMERA CAPTURE FUNCTIONALITY

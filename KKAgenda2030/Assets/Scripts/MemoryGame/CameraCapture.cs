@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CameraCapture : MonoBehaviour {
 
-    MemoryGameManager mgm;
+    public MemoryGameManager mgm;
     public RawImage rawimage;  //Image for rendering what the camera sees.
     WebCamTexture webcamTexture = null;
     public GameObject webcamPrefab;
@@ -28,7 +28,7 @@ public class CameraCapture : MonoBehaviour {
     public UIManager_MemoryGame uiM;
 
     void Start() {
-        mgm = FindObjectOfType<MemoryGameManager>();
+        //mgm = FindObjectOfType<MemoryGameManager>();
         rawimage.texture = cam.tex;
         cam.tex.Play();
     }

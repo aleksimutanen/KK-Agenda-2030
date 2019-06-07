@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
 
     public GameObject MenuForThegame;
-    public GameObject videoScreen;
     public GameObject creditsTheGame;
     public VideoPlayer vp;
     [HideInInspector] public AudioSource audioData;

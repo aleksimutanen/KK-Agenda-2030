@@ -36,7 +36,7 @@ public class AnimalDrag_Kaarlo : MonoBehaviour {
                 found = true;
         }
         if (found) {
-            animalSound.PlayOneShot(animSnapSound);
+            //animalSound.PlayOneShot(animSnapSound);
             transform.position = snapPos.position;
             transform.rotation = snapPos.rotation;
             mkd.ResetHalo();

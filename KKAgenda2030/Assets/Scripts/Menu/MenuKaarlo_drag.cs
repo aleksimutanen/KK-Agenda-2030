@@ -24,7 +24,7 @@ public class MenuKaarlo_drag : MonoBehaviour {
     AnimatorTimer at;
 
     void Awake() {
-        kaarloScrollRect = GameObject.Find("Page6_Kaarlo");
+        kaarloScrollRect = transform.parent.parent.parent.gameObject;
         sLock = kaarloScrollRect.GetComponent<ScrollRect>();
         animator = GetComponent<Animator>();
     }
@@ -43,9 +43,17 @@ public class MenuKaarlo_drag : MonoBehaviour {
         //if (animator != null) {
             // fix this after DEMODAY!
             // TODO: animator when going on page, but it shouldn't
-            animator.Play(defaultAnimation);
+        if (animator == null) {
+            animator = GetComponent<Animator>();
+        }
+        animator.Play(defaultAnimation);
         //}
 
+        if (sLock == null) {
+            kaarloScrollRect = transform.parent.parent.parent.gameObject;
+            sLock = kaarloScrollRect.GetComponent<ScrollRect>();
+
+        }
         sLock.vertical = enabled;
         gameObject.GetComponent<BoxCollider>().enabled = true;
         jigsawHalo.SetActive(false);
