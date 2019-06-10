@@ -19,7 +19,7 @@ public class AvatarClickBehaviour : MonoBehaviour {
     }
 
     public void OnSelected() {
-        memorySound.PlayOneShot(changeTurn);
+        //memorySound.PlayOneShot(changeTurn);
         animator.Play("AvatarGlow");
         halo.SetActive(true);
         grayImage.SetActive(false);

@@ -55,12 +55,12 @@ public class CameraCapture : MonoBehaviour {
         mgm.SetSelfieTexture(GetCamPicture());
         cam.tex.Stop();
         StartCoroutine(SelfieCameraRestart());
-        mgm.SwitchTurn();
+        //mgm.SwitchTurn();
     }
 
     public void SetPlaceholderTexture() {
         mgm.SetSelfieTexture(mgm.placeHolderTexture);
-        mgm.SwitchTurn();
+        //mgm.SwitchTurn();
     }
 
     Texture2D GetCamPicture() {

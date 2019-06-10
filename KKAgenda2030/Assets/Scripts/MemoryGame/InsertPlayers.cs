@@ -10,9 +10,6 @@ public class InsertPlayers : MonoBehaviour {
     public GameObject player1Avatar;
     public GameObject player2Avatar;
 
-
-
-
     public void Insert1Player() {
         mgm.playerCount = 1;
         gameObject.SetActive(false);
