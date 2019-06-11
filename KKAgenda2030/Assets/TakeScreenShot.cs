@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TakeScreenShot : MonoBehaviour
 {
-    [SerializeField]
-    GameObject photo;
+   
+    public GameObject photo;
 
+  
     public void TakeAShot()
     {
         StartCoroutine("CaptureIt");
@@ -18,8 +20,11 @@ public class TakeScreenShot : MonoBehaviour
         string fileName = "Screenshot" + timeStamp + ".png";
         string pathToSave = fileName;
         ScreenCapture.CaptureScreenshot(pathToSave);
+
         yield return new WaitForEndOfFrame();
-        Instantiate(photo, new Vector2(0f, 0f), Quaternion.identity);
+
+        print("Kuva otettu");
+
     }
 
 }
