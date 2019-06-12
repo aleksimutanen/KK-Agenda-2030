@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public enum SceneActive { Menu, Ocean }
 public class GrandManager : MonoBehaviour {
@@ -13,6 +14,8 @@ public class GrandManager : MonoBehaviour {
     public GameObject previousScene;
 
     public bool paused;
+
+    public AudioMixer audioMixer;
 
     // Menu:
     public GameObject mainMenu;
@@ -148,5 +151,14 @@ public class GrandManager : MonoBehaviour {
 
         Fabric.EventManager.Instance.PostEvent("stopMusic");
         Fabric.EventManager.Instance.PostEvent("ambient");
+    }
+
+    public void SetMusicVolume(float volume) {
+        audioMixer.SetFloat("Music", volume);
+
+    }
+
+    public void SetSFXVolume(float volume) {
+        audioMixer.SetFloat("Sfx", volume);
     }
 }
