@@ -11,7 +11,9 @@ public class AnimatorTimer : MonoBehaviour {
     public float maxT;
     public bool animatioPlaying = false;
 
-    void Start() {
+    int random;
+
+    void Awake() {
         animator = GetComponent<Animator>();
         animTimer = Random.Range(2, 5);
     }
@@ -19,7 +21,8 @@ public class AnimatorTimer : MonoBehaviour {
     void Update() {
         animTimer -= Time.deltaTime;
         if(animTimer < 0 && !animatioPlaying) {
-            animator.Play(animationPool[Random.Range(0, animationPool.Count)]);
+            random = Random.Range(0, animationPool.Count);
+            animator.Play(animationPool[random]);
             animTimer = Random.Range(minT, maxT);
         }
     }
@@ -31,4 +34,10 @@ public class AnimatorTimer : MonoBehaviour {
     public void AnimationBoolFalse() {
         animatioPlaying = false;
     }
+
+    public void OnEnable() {
+        animator.Play(animationPool[random]);
+    }
+
+
 }
