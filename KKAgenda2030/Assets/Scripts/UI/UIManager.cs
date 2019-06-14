@@ -109,6 +109,9 @@ public class UIManager : MonoBehaviour {
         GrandManager.instance.StartCoroutine("LaunchWorldGame");
 
     }
+    public void LaunchClimateGame() {
+        GrandManager.instance.StartCoroutine("LaunchClimateGame");
+    }
 
     public void DisableMenuButtons() {
         foreach (Button b in menuButtons) b.gameObject.SetActive(false);

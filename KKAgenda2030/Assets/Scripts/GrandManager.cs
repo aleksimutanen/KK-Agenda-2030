@@ -37,6 +37,9 @@ public class GrandManager : MonoBehaviour {
     public string ambient;
     public string stopAmbient;
 
+    public GrandManager() {
+    }
+
     void Start() {
 
         if (instance)
@@ -134,6 +137,14 @@ public class GrandManager : MonoBehaviour {
         yield return new WaitForSeconds(2.75f);
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("WorldGame");
+    }
+
+    public IEnumerator LaunchClimateGame() {
+        var ui = FindObjectOfType<UIManager>();
+        //gametransition for climategame here. Adjust also yield below
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
+        SceneManager.LoadScene("Aleksi_devscene");
     }
 
     public void BackToMainMenu() {
