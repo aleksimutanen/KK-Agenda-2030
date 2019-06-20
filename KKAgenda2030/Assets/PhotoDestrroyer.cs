@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class PhotoDestrroyer : MonoBehaviour
 {
+    public GameObject GoDestroy;
 
-    private void FixedUpdate()
-    {
-        gameObject.SetActive(false);
+    void Update()
+   {
+        if(GoDestroy.activeSelf)
+        {
+            GoDestroy.gameObject.SetActive(false);
+        }
+
     }
 }

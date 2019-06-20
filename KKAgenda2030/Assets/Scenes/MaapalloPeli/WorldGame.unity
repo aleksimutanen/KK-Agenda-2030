@@ -400,6 +400,7 @@ MonoBehaviour:
   activeScene: {fileID: 0}
   previousScene: {fileID: 0}
   paused: 0
+  audioMixer: {fileID: 0}
   mainMenu: {fileID: 0}
   oceanGame: {fileID: 0}
   trashGame: {fileID: 0}
@@ -1748,6 +1749,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4727968591627219573, guid: e224ed084a932fa44aeb6ba7998d5234,
+        type: 3}
+      propertyPath: GoDestroy
+      value: 
+      objectReference: {fileID: 2048166265}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e224ed084a932fa44aeb6ba7998d5234, type: 3}
 --- !u!1 &880641208
@@ -2566,7 +2572,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c2d9ad5b680f9f4791277285bd56c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photo: {fileID: 8279580412045238376, guid: e224ed084a932fa44aeb6ba7998d5234, type: 3}
+  photo: {fileID: 2048166265}
+  uiElements:
+  - {fileID: 758156868}
+  - {fileID: 1666584717}
+  - {fileID: 649321300}
+  - {fileID: 205111654}
+  - {fileID: 1777775517}
 --- !u!4 &1224236974
 Transform:
   m_ObjectHideFlags: 0
@@ -2968,17 +2980,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2048166265}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3020,6 +3021,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777775517}
   m_CullTransparentMesh: 0
+--- !u!1 &1784394332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6638416883023062233, guid: bfb595a0e8ca6844ba40a455e85b9b9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6813069192171481358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1784394334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784394332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17973e9df0bc95a42b6f75df3d8062b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoDestroy: {fileID: 1784394332}
 --- !u!114 &1861388281 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 425971633085741854, guid: eecdf86380dd16e4cb446737e0936504,
@@ -4631,7 +4651,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6813069192171481358}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1784394332}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -6104,6 +6124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WoodImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638416883023062233, guid: bfb595a0e8ca6844ba40a455e85b9b9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2469760932430025850, guid: bfb595a0e8ca6844ba40a455e85b9b9d,
         type: 3}
