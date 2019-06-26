@@ -141,8 +141,9 @@ public class GrandManager : MonoBehaviour {
 
     public IEnumerator LaunchClimateGame() {
         var ui = FindObjectOfType<UIManager>();
+        ui.energyGameTransition.GetComponent<Animator>().Play("EnergyGameTransition");
         //gametransition for climategame here. Adjust also yield below
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         FindObjectOfType<PersistentData>().pageIndex = FindObjectOfType<PageTurner>().pageIndex;
         SceneManager.LoadScene("Aleksi_devscene");
     }

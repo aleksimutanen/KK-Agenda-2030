@@ -3795,7 +3795,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.29411766, g: 0.29411766, b: 0.29411766, a: 0.29411766}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -11651,7 +11651,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.29411766, g: 0.29411766, b: 0.29411766, a: 0.29411766}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -17351,6 +17351,7 @@ MonoBehaviour:
   activeScene: {fileID: 0}
   previousScene: {fileID: 0}
   paused: 0
+  audioMixer: {fileID: 0}
   mainMenu: {fileID: 0}
   oceanGame: {fileID: 0}
   trashGame: {fileID: 0}
