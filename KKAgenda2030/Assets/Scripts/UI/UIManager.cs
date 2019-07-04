@@ -284,6 +284,16 @@ public class UIManager : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void FinishEnergyGame() {
+        StartCoroutine("FinishEnergyGameFade");
+    }
+
+    IEnumerator FinishEnergyGameFade() {
+        energyGameTransition.GetComponent<Animator>().Play("RunnerGameQuickTransition");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
+    }
+
 
 
     public void TrashGameStartFade() {

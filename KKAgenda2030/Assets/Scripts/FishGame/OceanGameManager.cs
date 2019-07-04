@@ -121,16 +121,16 @@ public class OceanGameManager : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            foodEaten = levelFoodAmounts[levelIndex] - 1;
-            HitFood();
-            //HitTrash();
-        }
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            foodEaten = levelFoodAmounts[levelIndex] - 1;
-            levelIndex = 2;
-            HitFood();
-        }
+        //if (Input.GetKeyDown(KeyCode.P)) {
+        //    foodEaten = levelFoodAmounts[levelIndex] - 1;
+        //    HitFood();
+        //    //HitTrash();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Y)) {
+        //    foodEaten = levelFoodAmounts[levelIndex] - 1;
+        //    levelIndex = 2;
+        //    HitFood();
+        //}
 
         for (int i = 0; i < scoreTimers.Count;) {
             scoreTimers[i] -= Time.deltaTime;
