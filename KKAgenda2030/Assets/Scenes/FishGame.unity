@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15130,6 +15130,7 @@ MonoBehaviour:
   - {fileID: 1811590043}
   nextPageButton: {fileID: 1811590042}
   previousPageButton: {fileID: 1228810161}
+  settingsButton: {fileID: 0}
   pageIndex: 0
   fadeImages: []
   pdPrefab: {fileID: 7965749728950599697, guid: c8ea32f1a1d7fcb45839920e7ae3b687,
@@ -15529,8 +15530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuForThegame: {fileID: 542335511}
-  videoScreen: {fileID: 0}
   creditsTheGame: {fileID: 1475721887}
+  vp: {fileID: 0}
   audioData: {fileID: 0}
   musicClips:
   - {fileID: 0}
@@ -15554,6 +15555,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   audioSourceGO:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  musicButtonParticles:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -44427,6 +44435,7 @@ MonoBehaviour:
   activeScene: {fileID: 0}
   previousScene: {fileID: 0}
   paused: 0
+  audioMixer: {fileID: 0}
   mainMenu: {fileID: 988156295}
   oceanGame: {fileID: 853928567}
   trashGame: {fileID: 0}
@@ -64893,6 +64902,7 @@ MonoBehaviour:
   runnerGameTransition: {fileID: 0}
   memoryGameTransition: {fileID: 0}
   worldGameTransition: {fileID: 0}
+  energyGameTransition: {fileID: 0}
   sliderImage: {fileID: 2008180221}
   slider: {fileID: 1938954232}
   fadeTime: 0.3
@@ -73517,7 +73527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1787266544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -73702,7 +73712,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 18455f804a06075448fe159255649ecb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a699163e642382d4fbe6cff917fe0e4e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
