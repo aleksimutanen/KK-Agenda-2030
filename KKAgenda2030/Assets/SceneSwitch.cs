@@ -8,7 +8,7 @@ public class SceneSwitch : MonoBehaviour {
     public string sceneName;
 
     public void LoadToMenu() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void SwitchScene() {
